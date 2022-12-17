@@ -1,0 +1,29 @@
+Package: sva.vistools
+Title: Einfach Visualisierungstools für die SVA IV
+Version: 0.0.0.9000
+Authors@R: 
+    person("Andriu", "Cavelti", , "cia@svazurich.ch", role = c("aut", "cre"))
+Description: Wrappers um ggplot Visualisierung, die das Erzeugen von Grafiken erleichtern.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports: 
+    colorspace,
+    cowplot,
+    dplyr,
+    forcats,
+    ggdist,
+    ggplot2,
+    ggrepel,
+    lubridate,
+    RColorBrewer,
+    rlang,
+    scales,
+    stats,
+    tsbox
+Suggests: 
+    testthat (>= 3.0.0),
+    tibble,
+    vdiffr
+Config/testthat/edition: 3

@@ -1,0 +1,14 @@
+utils::globalVariables(
+  c(
+  "n_label",
+  "n",
+  "pos_value",
+  "pos_label",
+  "count",
+  "focus",
+  "highlight",
+  "id",
+  "time",
+  "value"
+  )
+)
