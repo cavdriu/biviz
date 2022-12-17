@@ -1,4 +1,4 @@
 library(testthat)
-library(sva.vistools)
+library(biviz)
 
-test_check("sva.vistools")
+test_check("biviz")
