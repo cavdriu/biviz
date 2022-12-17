@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# sva.vistools
+# biviz
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -22,7 +22,7 @@ Einfache Visualisierungsfunktionen für die häufig verwendeten Grafiken in den 
 
 ## Installation
 
-You can install the development version of sva.vistools like so:
+You can install the development version of biviz like so:
 
 ``` r
 # FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
@@ -33,7 +33,7 @@ You can install the development version of sva.vistools like so:
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(sva.vistools)
+library(biviz)
 ## basic example code
 ```
 

@@ -1,8 +1,8 @@
-Package: sva.vistools
-Title: Einfach Visualisierungstools für die SVA IV
+Package: biviz
+Title: Visualisierungstools für einfache Grafiken
 Version: 0.0.0.9000
 Authors@R: 
-    person("Andriu", "Cavelti", , "cia@svazurich.ch", role = c("aut", "cre"))
+    person("Andriu", "Cavelti", , "tricktracktriu@mailbox.org", role = c("aut", "cre"))
 Description: Wrappers um ggplot Visualisierung, die das Erzeugen von Grafiken erleichtern.
 License: MIT + file LICENSE
 Encoding: UTF-8
