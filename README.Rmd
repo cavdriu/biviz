@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-Einfache Visualisierungsfunktionen für die häufig verwendeten Grafiken in den Analysen/Dashboards.
+Einfache Visualisierungsfunktionen für die häufig verwendeten Grafiken in Analysen/Dashboards.
 
 ## Installation
 
