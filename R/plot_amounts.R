@@ -100,7 +100,8 @@ plot_amounts_grouped <- function(data, x, y, group) {
 
   # anzahl levels wird verwendet um die farbpalette auszuwählen
   levels <- nlevels(group_as_factor)
-  colors <- RColorBrewer::brewer.pal(levels, "Blues") #[3:5] #[5:(5-length(levels))]
+  #colors <- RColorBrewer::brewer.pal(levels, "Blues") #[3:5] #[5:(5-length(levels))]
+  colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
 
   plot <-
     ggplot(data = data,
