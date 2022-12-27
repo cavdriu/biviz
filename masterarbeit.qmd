@@ -1,0 +1,268 @@
+---
+title: "Masterarbeit"
+subtitle: "Viz Tool"
+date: "2020-02-1"
+author: 
+  - name: Andriu Cavelti
+    email: andriu.cavelti@stud.unibas.ch
+    affiliations:
+    - name: Universität Basel, Digital Humanities
+lang: de
+toc: true
+lof: true
+lot: true
+bibliography: references.bib
+link-citations: true
+#csl: #chicago is default csl
+highlight-style: pygments
+format: 
+  html: 
+    code-fold: true
+    code-tools: true
+    #code-link: true
+  # pdf:
+  #   number-sections: true
+  #   colorlinks: true
+  # # geometry:
+  # #     - top=30mm
+  # #     - left=30mm
+---
+
+# Testing (H1)
+
+```{r}
+#| label: load-packages
+#| include: false
+
+library(tidyverse)
+library(lubridate)
+library(palmerpenguins)
+devtools::load_all()
+```
+
+## H2
+
+The plots in @fig-mpg show the relationship between city and highway mileage for 38 popular models of cars. [@abendroth2019]
+
+::: callout-note
+Das ist ein spannendes Tool für meine Arbeit
+:::
+
+In @fig-mpg-1 the points are colored by the number of cylinders while in @fig-mpg-2 the points are colored by engine displacement. [@bannert2022]
+
+```{r}
+#| label: fig-mpg
+#| fig-cap: "City and highway mileage for 38 popular models of cars."
+#| fig-subcap:
+#|   - "Color by number of cylinders"
+#|   - "Color by engine displacement, in liters"
+#| layout-ncol: 2
+
+ggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +
+  geom_point(alpha = 0.5, size = 2) +
+  scale_color_viridis_c() +
+  theme_minimal()
+
+ggplot(mpg, aes(x = hwy, y = cty, color = displ)) +
+  geom_point(alpha = 0.5, size = 2) +
+  scale_color_viridis_c(option = "E") +
+  theme_minimal()
+```
+
+You can add options to executable code like this
+
+```{r}
+2 + 2
+```
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+### H3
+
+# Real Text
+
+## Ausgangslage / Einleitung
+
+## Forschungsvorhaben / RQ
+
+## Untersuchungsgegenstand
+
+## Literatur / Theorie (Data Storytelling)
+
+Wichtige Aspekte werden hier besprochen. [@nussbaumerknaflic2017]
+
+### Visualisierungs-Theorien
+
+####TODO: Begrifflichkeiten -\> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene
+
+Daten zu visualisieren heisst, eine Transformation von Daten hinzu systematische und logische visuelle Elemente zu vollziehen, welche in ihrer Summe als bildliche Einheit interpretiert wird. Im Kern ordnet der Transformationsprozess der Datenvisualisierung den Daten ein quantifizierbares Merkmal hinzu. Das kann eine Grösse, eine Farbe, oder eine Position sein. In der Datenvisualisierungen stehen 4 grundlegende Aesthetics (Gestaltungselemente) für die Darstellung von Daten als Grafiken zur Verfügung. [@wilke2020, S. 7]
+
+|          Position          |          Grösse           |          Farbe          |          Form          |
+|:----------------:|:----------------:|:----------------:|:----------------:|
+| ![](pics/aes_position.JPG) | ![](pics/aes_groesse.JPG) | ![](pics/aes_farbe.JPG) | ![](pics/aes_form.JPG) |
+
+: Basis Aesthetics [vgl. @wilke2020, S. 8]
+
+Die Aesthetics Linientyp, Linienbreite und Transparenz können als spezial Elemente von Form, Grösse und Farbe interpretiert werden.
+
+Aesthetics werden in 2 Skalen unterteilt: solche die kontinuierliche Daten darstellen können und solche, die das nicht können. [@wilke2020, S. 8-9] Unter kontinuierliche Daten werden alle Skalenniveaus, für die eine beliebige Anzahl an an Zwischenausprägungen besteht, gefasst. Wie beispielsweise eine Zeitdauer. Umgekehrt haben diskrete Daten eine begrenzte Anzahl an Ausprägungen die nicht weiter abgestuft werden kann. Es ist beispielsweise nicht möglich, dass eine Familie 1.7 Kinder hat. Das Skalenniveau definiert die Art der Ausprägung (Werte) der gemessenen Dimensionen (Merkmale) die in einer Variable erfasst wird. Bei quantitativen Forschungsmethoden werden die Skalen sehr genau definiert, da das Skalenniveau die rechnerischen Operationen und die Vergleichsmöglichkeiten definiert. [@diaz-bone2006, Kapitel 2.1 und 2.2]. Für die Anwendung der Aesthetics ist die Unterscheidung zwischen kontinuierlichen und diskreten Skalen entscheidende.
+
+<!-- [*###Tabelle nochmals überdenken*]{.underline} -->
+
+<!-- | Aehstetic | Skalenniveau | Skala | Beispiel | Beschreibung | -->
+
+<!-- |-----------|--------------|-------|----------|--------------| -->
+
+<!-- : Variablentypen für Visualisierunge [in Anlehnung an @wilke2020, @diaz-bone2006 und @gehrau2022] -->
+
+```{r}
+#| label: dataframe with discret and continuos variables
+
+# source: https://www.zh.ch/de/politik-staat/opendata.zhweb-noredirect.zhweb-cache.html?keywords=ogd#/datasets/1803@awel-kanton-zuerich
+
+abfall_zh <- read_csv(here::here("data", "KTZH_00001803_00003460.csv"))
+
+abfall_zh_clean <- 
+  abfall_zh|> 
+  filter(row_number() %% 214 == 1) |> 
+  select(!c("Gemeinde_Nr", "Einheit")) |> 
+  rename("Menge in Tonnen" = Wert)
+
+abfall_zh_clean |> 
+  head(4) |> 
+  knitr::kable()
+  
+
+```
+
+Die Spalte *Jahr* ist ein diskreter numerischer Wert. Im Gegensatz dazu wäre 01.01.2021 ein kontinuierlicher Datumswert. *Gemeinde* und *Abfallart* sind beides kategorische (Faktor) Werte ohne logische Reihenfolge. Im Gegensatz dazu besitzen die Kategorien "hässlich", "schön", "wunderschön" eine logischen Reihenfolge. *Menge in Tonnen* ist ein kontinuierlicher numerischer Wert. Neben ganzen Zahlen gehören auch rationale oder reelle Zahlen in diese Kategorie.
+
+Für die Abbildung der Daten auf Aesthetics wird angegeben, welche Datenwerte welchem Wert auf der Datenskala entspricht. Das bedeutet, mithilfe der Skala erfolgt die eindeutige Zuordnung von Daten und Aesthetics. Bei einem Diagramm mit einer x-Achse wird angegeben welcher Wert auf welche Position auf dieser Achse dargestellt wird. Der gleichen Logik folgend, geben wir an welche Grösse, Farbe oder Form ein Datenwert einnehmen soll. Anstatt auf einer Positionsskala werden die einfach Grössen-, Farben- oder Formskala verwendet. Ein Datenwert entspricht in jeder Skala einem eindeutigen Skalawert bzw. Aestetic. Je Datenwert darf es nur ein Skalawert geben und umgekehrt. Eine eins zu eins Beziehung ist notwendig, damit die Datenvisualisierung nicht mehrdeutig wird. (Vgl. @sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics)
+
+![Skalen verknüpfen Datenwerte mit Aesthetics. Quelle: \[\@wilke2020, S. 10\]](images/image-103507192.png){fig-align="center"}
+
+Wenden wir diese Erkenntnise beim Datensatz zum Abfall im Kanton Zürich an, dann erhalten wird folgendes Ergebnis: Auf der x-Achse werden die *Gemeinden* anhand der Positionsskala platziert. Die Variable hat keine logische Reihenfolge. Für die Unterstützung des lesens des Diagramms, sind die Gemeinden anhand der Menge an Abfall sortiert. Auf der Positionsskala y-Achse ist die *Menge in Tonnen* übertragen. Zusätzlich wurden die *Gemeinden* auf die Farben übertragen. Vor dem Hintergrund des Data Storytelling lässt sich die Frage stellen, ob die Verwendung des Aesthetic Farbe sinnvoll ist. (vgl. KAPITEL) Bei diesem Beispiel steht jedoch die Beziehung zwischen den Datenwerte und Aesthetics durch Skalen im Zentrum. Daher wurde für jede Gemeinde eine eigene Farbe verwendet.
+
+```{r}
+#| label: example for connection between data and aesthetics
+#| fig-cap: "Anzahl Brennbare Abfälle und Sperrgut je Gemeinde im Jahr 2021"
+
+abfall_zh_clean |> 
+  filter(Gemeinde %in% c("Aeugst a.A.", 
+                         "Affoltern a.A.", 
+                         "Bonstetten", 
+                         "Hausen a.A."),
+         Abfallart == "Brennbare Abfälle und Sperrgut"
+         ) |> 
+  plot_amounts_grouped(
+    x = fct_reorder(Gemeinde, `Menge in Tonnen`),
+    y = `Menge in Tonnen`, 
+    group = Gemeinde) +
+  labs(x = "Gemeinde") +
+  theme(legend.position = "none")
+```
+
+Bei diesem Beispiel entspricht die Positionsskala einem kartesischen 2D-Koordinatensystem. Jeder Ort ist durch einen x- und y-Wert eindeutig markiert. Da die Achsen positive als auch negative Zahlen darstellen, muss der Zahlenbereich für jede Achse definiert werden. Bei diesem Beispiel verläuft die y-Achse von 0 bis 2297.4 (5% über dem höchsten y-Wert, welcher bei diesem Beispiel 2188 ist). Ist ein Datenwert innerhalb des definierten Zahlenbereichs, dann wird er im Diagramm an der entsprechenden Position abgebildet. Ansonsten wird der Wert verworfen und erscheint nicht im Diagramm.
+
+HIER SEITE 14 WEITER
+
+[@wilke2020, S. 13-16]
+
+
+### Visualisierungs Design
+
+## Vorgehen Methode
+
+### Tidy Data als Basis von Visualisuerngen
+
+Für die effektive Anwendung Datenvisualisierungen müssen die Daten als "Tidy Data" [@wickham2014] aufbereitet sein. Folgende Kriterien müssen gemäss Wickham [@wickham2014, S. 4] erfüllt sein, damit ein Datensatz dem Grundatz Tidy Data entspricht:
+
+1.  Jede Variable hat eine eigene Spalte.
+
+2.  Jede Beobachtung hat eine eigene Zeile.
+
+3.  Jeder Wert hat eine eigene Zelle.
+
+![Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: **???? r4ds**](images/image-192429895.png){alt="Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle:"}
+
+Abgesehen, dass mit Tidy Data eine konsistente Methode für die Datenspeicherung verwendet wird, kann R die Vorteile einer vektorisierten Programmiersprache so optimal ausschöpfen. **141 r4ds** Vektorisiert bedeutet, das eine Funktion einen Vektor mit Werten als Input nimmt und einen Vektor mit der gleichen Anzahl an Werten als Output retourniert. **53** Tidy Data entspricht einem langen Datenformat. Dadurch entsteht eine Redundanz an Werten, was bei der Speicherung von Daten nicht gewünscht ist, aber die Datenanalyse vereinfacht. [@healy2018a, S. 56]
+
+....
+
+### Die Beziehung von Daten und Visualiserungen mit "Grammer of Graphics" {#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics}
+
+Die Visualisierungen im entwickelten Paket **kissviz** basieren auf dem Paket **ggplot2** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die grammer of graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. Bei Visualisierungen besteht eine strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik. Dieser Prozess wird *mapping* genannt. Bei **ggplot2** werden Daten auf bestimmte visuelle Elemente zugeordnet. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit **ggplot2** folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Damit eine solche Verbindung entstehen kann wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit **ggplot2** eine Grafik erstellen kann. Um die Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird. [@healy2018, S. 54-56]
+
+Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. [@wickham2010, S. 4-5] Die Umsetzung in **ggplot2** folgt immer dem gleichen Konzept [@healy2018, S. 60]:
+
+1.  Daten als Tidy Data aufbereiten.
+
+```{r}
+#| code-fold: false
+
+# Step 1: Tidy Data
+mpg |> 
+  dplyr::select(manufacturer:cyl, class) |> 
+  head() |> 
+  knitr::kable()
+```
+
+2.  Daten definieren und welche Beziehung soll abgebildet werden.
+
+```{r}
+#| code-fold: false
+
+# Step 2: Mapping
+plot <- 
+  ggplot(data = mpg,
+         mapping = aes(x = class)) # aesthetics
+
+plot
+```
+
+3.  Wahl des geometrischen Objekts. Es sind mehrere Layer möglich. Die *aesthetics* können je *geom* in der `geom_*()` Funktion angepasst werden.
+
+```{r}
+#| code-fold: false
+
+# Step 3: Geom
+plot <- 
+  plot + 
+  geom_bar()
+
+plot
+```
+
+4.  Kontrolle von Details im Diagramm inkl. Koordinatensystem. Default ist das kartesische Koordinatensystem [@wilke2020, S.13-16].
+
+```{r}
+#| code-fold: false
+
+# Step 4: Details
+plot <- 
+  plot +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(
+    title = "SUVs sind die grösse Gruppe von Fahrzeugtypen",
+    x = "Autotyp",
+    y = "Anzahl"
+    ) +
+  cowplot::theme_minimal_hgrid()
+
+plot
+```
+
+### 
+
+...
+
+## Resultat
+
+## Fazit / Schlussfolgerung
+
+## Literaturverzeichnis {.unnumbered}
