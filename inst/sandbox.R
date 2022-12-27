@@ -169,4 +169,6 @@ plot_bar_v(gss_sm, agegrp, childs) #+
   x <- zoo::zoo(rnorm(12), x.Date)
   zoo::rollmean(x, 3)
 
+# temp2 <- temp |> filter(row_number() %% 214 == 1)
+# df.new = df[seq(1, nrow(df), 5), ]
 
