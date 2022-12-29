@@ -36,6 +36,8 @@ format:
 
 library(tidyverse)
 library(lubridate)
+library(cowplot)
+library(colorspace)
 library(palmerpenguins)
 devtools::load_all()
 ```
@@ -98,13 +100,15 @@ Wichtige Aspekte werden hier besprochen. [@nussbaumerknaflic2017]
 
 ### Visualisierungs-Theorien
 
+## Darstellen von Daten
+
 ####TODO: Begrifflichkeiten -\> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene
 
 Daten zu visualisieren heisst, eine Transformation von Daten hinzu systematische und logische visuelle Elemente zu vollziehen, welche in ihrer Summe als bildliche Einheit interpretiert wird. Im Kern ordnet der Transformationsprozess der Datenvisualisierung den Daten ein quantifizierbares Merkmal hinzu. Das kann eine Grösse, eine Farbe, oder eine Position sein. In der Datenvisualisierungen stehen 4 grundlegende Aesthetics (Gestaltungselemente) für die Darstellung von Daten als Grafiken zur Verfügung. [@wilke2020, S. 7]
 
-|          Position          |          Grösse           |          Farbe          |          Form          |
-|:----------------:|:----------------:|:----------------:|:----------------:|
-| ![](pics/aes_position.JPG) | ![](pics/aes_groesse.JPG) | ![](pics/aes_farbe.JPG) | ![](pics/aes_form.JPG) |
+|           Position           |           Grösse            |           Farbe           |           Form           |
+|:----------------------------:|:---------------------------:|:-------------------------:|:------------------------:|
+| ![](images/aes_position.JPG) | ![](images/aes_groesse.JPG) | ![](images/aes_farbe.JPG) | ![](images/aes_form.JPG) |
 
 : Basis Aesthetics [vgl. @wilke2020, S. 8]
 
@@ -122,18 +126,20 @@ Aesthetics werden in 2 Skalen unterteilt: solche die kontinuierliche Daten darst
 
 ```{r}
 #| label: dataframe with discret and continuos variables
+#| message: false
 
 # source: https://www.zh.ch/de/politik-staat/opendata.zhweb-noredirect.zhweb-cache.html?keywords=ogd#/datasets/1803@awel-kanton-zuerich
 
-abfall_zh <- read_csv(here::here("data", "KTZH_00001803_00003460.csv"))
-
-abfall_zh_clean <- 
-  abfall_zh|> 
-  filter(row_number() %% 214 == 1) |> 
+abfall_zh <- 
+  read_csv(here::here("data", "KTZH_00001803_00003460.csv")) |> 
   select(!c("Gemeinde_Nr", "Einheit")) |> 
   rename("Menge in Tonnen" = Wert)
 
-abfall_zh_clean |> 
+abfall_zh_sample <- 
+  abfall_zh|> 
+  filter(row_number() %% 214 == 1)
+
+abfall_zh_sample |> 
   head(4) |> 
   knitr::kable()
   
@@ -144,37 +150,113 @@ Die Spalte *Jahr* ist ein diskreter numerischer Wert. Im Gegensatz dazu wäre 01
 
 Für die Abbildung der Daten auf Aesthetics wird angegeben, welche Datenwerte welchem Wert auf der Datenskala entspricht. Das bedeutet, mithilfe der Skala erfolgt die eindeutige Zuordnung von Daten und Aesthetics. Bei einem Diagramm mit einer x-Achse wird angegeben welcher Wert auf welche Position auf dieser Achse dargestellt wird. Der gleichen Logik folgend, geben wir an welche Grösse, Farbe oder Form ein Datenwert einnehmen soll. Anstatt auf einer Positionsskala werden die einfach Grössen-, Farben- oder Formskala verwendet. Ein Datenwert entspricht in jeder Skala einem eindeutigen Skalawert bzw. Aestetic. Je Datenwert darf es nur ein Skalawert geben und umgekehrt. Eine eins zu eins Beziehung ist notwendig, damit die Datenvisualisierung nicht mehrdeutig wird. (Vgl. @sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics)
 
-![Skalen verknüpfen Datenwerte mit Aesthetics. Quelle: \[\@wilke2020, S. 10\]](images/image-103507192.png){fig-align="center"}
+![Skalen verknüpfen Datenwerte mit Aesthetics. Quelle: \[\@wilke2020, S. 10\]](images/image-103507192.png){#fig-aesthetics}
 
-Wenden wir diese Erkenntnise beim Datensatz zum Abfall im Kanton Zürich an, dann erhalten wird folgendes Ergebnis: Auf der x-Achse werden die *Gemeinden* anhand der Positionsskala platziert. Die Variable hat keine logische Reihenfolge. Für die Unterstützung des lesens des Diagramms, sind die Gemeinden anhand der Menge an Abfall sortiert. Auf der Positionsskala y-Achse ist die *Menge in Tonnen* übertragen. Zusätzlich wurden die *Gemeinden* auf die Farben übertragen. Vor dem Hintergrund des Data Storytelling lässt sich die Frage stellen, ob die Verwendung des Aesthetic Farbe sinnvoll ist. (vgl. KAPITEL) Bei diesem Beispiel steht jedoch die Beziehung zwischen den Datenwerte und Aesthetics durch Skalen im Zentrum. Daher wurde für jede Gemeinde eine eigene Farbe verwendet.
+Wenden wir diese Erkenntnise beim Datensatz zum Abfall im Kanton Zürich an, dann erhalten wird folgendes Ergebnis: Auf der x-Achse werden die *Gemeinden* anhand der Positionsskala platziert. Die Variable hat keine logische Reihenfolge. Für die Unterstützung des lesens des Diagramms, sind die Gemeinden anhand der Menge an Abfall sortiert. Auf der Positionsskala y-Achse ist die *Menge in Tonnen* übertragen. Zusätzlich wurden die *Gemeinden* auf die Farben übertragen. Vor dem Hintergrund des Data Storytelling lässt sich die Frage stellen, ob die Verwendung des Aesthetic Farbe sinnvoll ist.
+
+(vgl. KAPITEL)
+
+Bei diesem Beispiel steht jedoch die Beziehung zwischen den Datenwerte und Aesthetics durch Skalen im Zentrum. Daher wurde für jede Gemeinde eine eigene Farbe verwendet.
 
 ```{r}
-#| label: example for connection between data and aesthetics
-#| fig-cap: "Anzahl Brennbare Abfälle und Sperrgut je Gemeinde im Jahr 2021"
+#| label: fig-abfall_zh
+#| fig-cap: "Anzahl Brennbare Abfälle und Sperrgut je Gemeinde im Jahr 2021."
 
-abfall_zh_clean |> 
-  filter(Gemeinde %in% c("Aeugst a.A.", 
-                         "Affoltern a.A.", 
-                         "Bonstetten", 
-                         "Hausen a.A."),
-         Abfallart == "Brennbare Abfälle und Sperrgut"
+abfall_zh_sample |> 
+  filter(
+    Gemeinde %in% c("Aeugst a.A.", 
+                    "Affoltern a.A.", 
+                    "Bonstetten", 
+                    "Hausen a.A."),
+    Abfallart == "Brennbare Abfälle und Sperrgut"
          ) |> 
   plot_amounts_grouped(
     x = fct_reorder(Gemeinde, `Menge in Tonnen`),
     y = `Menge in Tonnen`, 
     group = Gemeinde) +
+  # nicht notwendig, macht den plot aber etwas hübscher
   labs(x = "Gemeinde") +
   theme(legend.position = "none")
 ```
 
-Bei diesem Beispiel entspricht die Positionsskala einem kartesischen 2D-Koordinatensystem. Jeder Ort ist durch einen x- und y-Wert eindeutig markiert. Da die Achsen positive als auch negative Zahlen darstellen, muss der Zahlenbereich für jede Achse definiert werden. Bei diesem Beispiel verläuft die y-Achse von 0 bis 2297.4 (5% über dem höchsten y-Wert, welcher bei diesem Beispiel 2188 ist). Ist ein Datenwert innerhalb des definierten Zahlenbereichs, dann wird er im Diagramm an der entsprechenden Position abgebildet. Ansonsten wird der Wert verworfen und erscheint nicht im Diagramm.
+### Das kartesisches Koordinatensystem als Positionsskala
 
-HIER SEITE 14 WEITER
+Bei Beispiel (@fig-abfall_zh) entspricht die Positionsskala einem kartesischen 2D-Koordinatensystem. Jeder Ort ist durch einen x- und y-Wert eindeutig markiert. Da die Achsen positive als auch negative Zahlen darstellen, muss der Zahlenbereich für jede Achse definiert werden. Bei diesem Beispiel verläuft die y-Achse von 0 bis 2297.4 (5% über dem höchsten y-Wert, welcher bei diesem Beispiel 2188 ist). Ist ein Datenwert innerhalb des definierten Zahlenbereichs, dann wird er im Diagramm an der entsprechenden Position abgebildet. Ansonsten wird der Wert verworfen und erscheint nicht im Diagramm. [@wilke2020, S. 13]
 
-[@wilke2020, S. 13-16]
+```{r}
+#| label: fig-economics
+#| message: false
+#| fig-cap: "Die Anzahl Arbeitslose sind in tausend angegeben. Datenquelle: Teil des ggplot2 Pakets."
 
+temp_plot <- 
+  ggplot2::economics |> 
+  mutate(group = "eco") |> 
+  filter(date > "1980-01-01" & date <= "2000-01-01") |> 
+  plot_timeseries_line(x = date, y = unemploy, group = group) +
+  scale_x_date(
+    breaks = c(ymd("1980-01-01"), ymd("1990-01-01"), ymd("2000-01-01")),
+    labels = c("1980", "1990", "2000")
+  ) +
+  theme_minimal_grid() +
+  labs(
+    x = "Jahr",
+    y = "Arbeitslose" #\n in 1000"
+  ) #+  theme(axis.title.y = element_text(size = 12))
 
-### Visualisierungs Design
+plot_grid(
+  plot_grid(
+    temp_plot, NULL, temp_plot, 
+    rel_widths = c(1, 0.06, 2),
+    labels = c("a", "", "b"),
+    nrow = 1
+    ),
+  NULL, temp_plot,
+  rel_heights = c(1.5, 0.06, 1), 
+  labels = c("", "", "c"), 
+  label_y = c(1, 1, 1.2), 
+  ncol = 1
+  )
+
+```
+
+Beim kartesischen Koordinatensystem sind die Abstände zwischen den Gitterlinien der Achsen diskrete Schritten. Entlang einer Achse sind die Gitterlinen gleichmässig verteilt und entsprechen einer Linearen Positionsskala. Dies gilt sowohl für die Dateneinheiten als auch in der Visualisierung. In allen drei Diagrammen sind die Schritte auf der y-Achse 3000 je Gitterline und auf der x-Achse 10 Jahre. Der verwendete Raum um die diskreten Schritte abzubilden können aber unterschiedlich gross sein, womit unterschiedliche Botschaften vermittelt werden können. Abbildung (a) betont die Veränderung auf der y-Achse und Abbildung (c) betont die Veränderung über die Zeit. Werden auf der x- und y-Achse die gleichen Einheiten verwendet, so sollten die Gitterabstände identische sein. So, dass der Abstand zwischen zwischen zwei Gitterlinien die gleiche Menge and Dateneinehiten beinhalten. [@wilke2020, S. 14-15]
+
+Neben linearen Achsen gibt es auch nichtlineare Skalen, welche meistens eine logarithmische Skala verwendet. Hier entspricht eine Einheit auf der Skale einer Multiplikation von einem festen Wert. [@wilke2020, S. 17] Bei Datenvisualisierungen werden auch Polarkoordinatensysteme verwendet, bei denen die Position durch den Winkel und radialen Abstand zum Ursprung angegeben wird. [@wilke2020, S. 22] Da bei dieser Arbeit ausser beim Donutdiagramm nur das lineare kartesische Koordinatensystem verwendet wird, stehen diese Systeme nicht im Fokus. Für eine Vertiefung der Thematik ist das Kapitel 3 aus @wilke2020 zu Empfehlen.
+
+### Farben als Steuerungsinstrument {#sec-farben-als-steuerungsinstrument}
+
+Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. [@nussbaumerknaflic2017, S. 98-99] Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkiet nicht bewusst wahr. Das genaue Zusammenspiel der verschiedenen Gedächnissen wird im Kapitel @sec-visualisierungs-design erläutert. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. [@nussbaumerknaflic2017, S. 83-86]Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.
+
+::: {layout-ncol="2"}
+![Zahlen ohne präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 86\]](images/ohne_praeattentive_merkmale.jpg){#fig-ohne_praeattetiven_merkmalen}
+
+![Zahlen mit präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 87\]](images/mit_praeattentive_merkmale.jpg){#fig-mit_praeattetiven_merkmalen}
+:::
+
+Die wichtigsten Aufgaben von Farben ist die Unterscheidung von Datengruppen (wie beim Beispiel des Zahlenblocks), Darstellen von Datenwerten oder die Hervorhebung von Datenpunkte. Bei @fig-abfall_zh dient die Farbe als Unterscheidungsmerkmal der einzelnen Gemeinden. Bei der Anwendung von Farbe als Unterscheidungsmerkmal werden qualitative Farbskalen verwendet. Das heisst, die Anzahl Farben ist endlich, sie unterscheiden sich voneinander und sind gleichwertig zueinander. Folglich darf keine Farbe darf dominanter als die andere sein und der Eindruck einer Reihenfolge muss vermieden werden. Die Okabe Ito Farbskala [@okabe] ist eine bekannte Standardskala welche die beschriebenen Voraussetzungen erfüllt und Farbenblindheit berücksichtigt. Rund acht Prozent der Männer und ein halbes Prozent der Frauen sind farbenblind, wodurch sie Rottöne und Grüntöne nur schlecht unterscheiden können.[^1] Um positive und negative Punkte trotzdem mit Farben hervorzuheben wird oft blau für positive Werte und orange für negative Werte verwendet. [@nussbaumerknaflic2017, S.101-102] Um quantitative Datenwerte darzustellen werden sequenzielle Farbskalen verwendet. Bei denen erkennbar ist, welcher Wert grösser oder kleiner ist. Damit abgeschätzt werden kann, wie weit zwei Werte voneinander entfernt sind, müssen die Farbabstuffungen gleichmässig über den gesamten Bereich verändern. Das ist sowohl mit einem einzelnen Farbton wie auch mit mehreren Farbtönen möglich. Werden quantitative Datenwerte relativ zu einem neutralen Mittelpunkt visualisiert, wird eine divergente Farbskala verwendet. Beispielsweise bei einer Variable mit positiven als auch negativen Werten. [@wilke2020, S. 24-28]
+
+[^1]: Es gibt viele Programme um die Farbenblindheit zu simulieren. Beispielsweise die Website [vischeck.com](http://www.vischeck.com).
+
+```{r}
+#| label: fig-farbskalen
+#| message: false
+#| fig-cap: "Das R Paket colorspace [@colorspa] ist ein flexibles Werkzeug um eigene Farbpaletten zu erstellen (beispielsweise eine Okabe Ito Farbskala) oder auf bestehende Skalen zuzugreifen."
+
+swatchplot(
+  "Qualitative 1"              = qualitative_hcl(n = 5, palette = "Dark 3"),
+  "Qualitative 2"              = qualitative_hcl(n = 5, palette = "Pastel 1"),
+  "Sequenziell\neinfarbig"     = sequential_hcl(n = 5, palette = "Blues"),
+  "Sequenziell\nmehrfarbig"    = sequential_hcl(n = 5, palette = "YlOrRd"),
+  "Divergent"                  = diverging_hcl(n = 5, palette = "Green-Brown"),
+  off = 0
+)
+```
+
+@nussbaumerknaflic2017 S. 98 und 177
+
+### Visualisierungs Design {#sec-visualisierungs-design}
+
+nussbaumercole 84-86
 
 ## Vorgehen Methode
 
@@ -238,7 +320,7 @@ plot <-
 plot
 ```
 
-4.  Kontrolle von Details im Diagramm inkl. Koordinatensystem. Default ist das kartesische Koordinatensystem [@wilke2020, S.13-16].
+4.  Kontrolle von Details im Diagramm inkl. Koordinatensystem. Default ist das kartesische Koordinatensystem [@wilke2020, S.13].
 
 ```{r}
 #| code-fold: false
