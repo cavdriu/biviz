@@ -15,6 +15,7 @@ bibliography: references.bib
 link-citations: true
 #csl: #chicago is default csl
 highlight-style: pygments
+tbl-cap-location: bottom
 format: 
   html: 
     code-fold: true
@@ -98,19 +99,17 @@ The `echo: false` option disables the printing of code (only output is displayed
 
 Wichtige Aspekte werden hier besprochen. [@nussbaumerknaflic2017]
 
-### Visualisierungs-Theorien
-
-## Darstellen von Daten
+## Von Datenwerten zu Visualisierung
 
 ####TODO: Begrifflichkeiten -\> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene
 
 Daten zu visualisieren heisst, eine Transformation von Daten hinzu systematische und logische visuelle Elemente zu vollziehen, welche in ihrer Summe als bildliche Einheit interpretiert wird. Im Kern ordnet der Transformationsprozess der Datenvisualisierung den Daten ein quantifizierbares Merkmal hinzu. Das kann eine Grösse, eine Farbe, oder eine Position sein. In der Datenvisualisierungen stehen 4 grundlegende Aesthetics (Gestaltungselemente) für die Darstellung von Daten als Grafiken zur Verfügung. [@wilke2020, S. 7]
 
 |           Position           |           Grösse            |           Farbe           |           Form           |
-|:----------------------------:|:---------------------------:|:-------------------------:|:------------------------:|
+|:-----------------:|:----------------:|:----------------:|:----------------:|
 | ![](images/aes_position.JPG) | ![](images/aes_groesse.JPG) | ![](images/aes_farbe.JPG) | ![](images/aes_form.JPG) |
 
-: Basis Aesthetics [vgl. @wilke2020, S. 8]
+: Basis Aesthetics Quelle: @wilke2020, S. 8. {#tbl-aesthetics}
 
 Die Aesthetics Linientyp, Linienbreite und Transparenz können als spezial Elemente von Form, Grösse und Farbe interpretiert werden.
 
@@ -125,10 +124,9 @@ Aesthetics werden in 2 Skalen unterteilt: solche die kontinuierliche Daten darst
 <!-- : Variablentypen für Visualisierunge [in Anlehnung an @wilke2020, @diaz-bone2006 und @gehrau2022] -->
 
 ```{r}
-#| label: dataframe with discret and continuos variables
+#| label: tbl-data-abfall-zuerich
+#| tbl-cap: "Abfallart und -menge im Kanton Zürich. Quelle: @amtfürabfallwasserenergieundluftdeskantonszürich"
 #| message: false
-
-# source: https://www.zh.ch/de/politik-staat/opendata.zhweb-noredirect.zhweb-cache.html?keywords=ogd#/datasets/1803@awel-kanton-zuerich
 
 abfall_zh <- 
   read_csv(here::here("data", "KTZH_00001803_00003460.csv")) |> 
@@ -233,9 +231,9 @@ Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachte
 ![Zahlen mit präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 87\]](images/mit_praeattentive_merkmale.jpg){#fig-mit_praeattetiven_merkmalen}
 :::
 
-Die wichtigsten Aufgaben von Farben ist die Unterscheidung von Datengruppen (wie beim Beispiel des Zahlenblocks), Darstellen von Datenwerten oder die Hervorhebung von Datenpunkte. Bei @fig-abfall_zh dient die Farbe als Unterscheidungsmerkmal der einzelnen Gemeinden. Bei der Anwendung von Farbe als Unterscheidungsmerkmal werden qualitative Farbskalen verwendet. Das heisst, die Anzahl Farben ist endlich, sie unterscheiden sich voneinander und sind gleichwertig zueinander. Folglich darf keine Farbe darf dominanter als die andere sein und der Eindruck einer Reihenfolge muss vermieden werden. Die Okabe Ito Farbskala [@okabe] ist eine bekannte Standardskala welche die beschriebenen Voraussetzungen erfüllt und Farbenblindheit berücksichtigt. Rund acht Prozent der Männer und ein halbes Prozent der Frauen sind farbenblind, wodurch sie Rottöne und Grüntöne nur schlecht unterscheiden können.[^1] Um positive und negative Punkte trotzdem mit Farben hervorzuheben wird oft blau für positive Werte und orange für negative Werte verwendet. [@nussbaumerknaflic2017, S.101-102] Um quantitative Datenwerte darzustellen werden sequenzielle Farbskalen verwendet. Bei denen erkennbar ist, welcher Wert grösser oder kleiner ist. Damit abgeschätzt werden kann, wie weit zwei Werte voneinander entfernt sind, müssen die Farbabstuffungen gleichmässig über den gesamten Bereich verändern. Das ist sowohl mit einem einzelnen Farbton wie auch mit mehreren Farbtönen möglich. Werden quantitative Datenwerte relativ zu einem neutralen Mittelpunkt visualisiert, wird eine divergente Farbskala verwendet. Beispielsweise bei einer Variable mit positiven als auch negativen Werten. [@wilke2020, S. 24-28]
+Die korrekte Verwendung von Farbpaletten und ihre Wichtigkeit für die Kommunikation mit Visualisierungen betrifft neben der Interpretation der Diagrammen auch die Berücksichtigung der Farbenblindheit. [@hawkins2015 or @bartram2017] Die wichtigsten Aufgaben von Farben ist die Unterscheidung von Datengruppen (wie beim Beispiel des Zahlenblocks), Darstellen von Datenwerten oder die Hervorhebung von Datenpunkte. Bei @fig-abfall_zh dient die Farbe als Unterscheidungsmerkmal der einzelnen Gemeinden. Bei der Anwendung von Farbe als Unterscheidungsmerkmal werden qualitative Farbskalen verwendet. Das heisst, die Anzahl Farben ist endlich, sie unterscheiden sich voneinander und sind gleichwertig zueinander. Folglich darf keine Farbe darf dominanter als die andere sein und der Eindruck einer Reihenfolge muss vermieden werden. [@wilke2020, S. 25-26] Die Okabe Ito Farbskala [@okabe] ist eine bekannte Standardskala welche die beschriebenen Voraussetzungen erfüllt und Farbenblindheit berücksichtigt. Rund acht Prozent der Männer und ein halbes Prozent der Frauen sind farbenblind, wodurch sie Rottöne und Grüntöne nur schlecht unterscheiden können.[^1] Um positive und negative Punkte trotzdem mit Farben hervorzuheben wird oft blau für positive Werte und orange für negative Werte verwendet. [@nussbaumerknaflic2017, S.101-102] Um quantitative Datenwerte darzustellen werden sequenzielle Farbskalen verwendet. Bei denen erkennbar ist, welcher Wert grösser oder kleiner ist. Damit abgeschätzt werden kann, wie weit zwei Werte voneinander entfernt sind, müssen die Farbabstuffungen gleichmässig über den gesamten Bereich verändern. Das ist sowohl mit einem einzelnen Farbton wie auch mit mehreren Farbtönen möglich. Werden quantitative Datenwerte relativ zu einem neutralen Mittelpunkt visualisiert, wird eine divergente Farbskala verwendet. Beispielsweise bei einer Variable mit positiven als auch negativen Werten. [@wilke2020, S. 27-28]
 
-[^1]: Es gibt viele Programme um die Farbenblindheit zu simulieren. Beispielsweise die Website [vischeck.com](http://www.vischeck.com).
+[^1]: Es gibt viele Programme um die Farbenblindheit zu simulieren. Beispielsweise die Websiten [hclwizard.org/cvdemulator](http://hclwizard.org:3000/cvdemulator/) oder [vischeck.com](http://www.vischeck.com).
 
 ```{r}
 #| label: fig-farbskalen
@@ -252,11 +250,13 @@ swatchplot(
 )
 ```
 
-@nussbaumerknaflic2017 S. 98 und 177
+Wann ist der Einsatz von Farbe sinnvoll? Immer dann wenn sie dem Publikum das lesen des Diagramms erleichtert. Farbe muss nicht unterhalten, sondern ein Signal senden. Verändert sich etwas in der Grafik oder gibt es einen wichtigen Punkt zu beachten? Dann muss das Publikum auf diesen Umstand aufmerksam gemacht werden. Das geht nur, wenn die Farbe zurückhalten und durchgehend, also nicht in jeder Visualisierung eine andere Farbe verwenden. Die kognitive Belastung reduziert sich, wenn die Bedeutung einer Farbe innerhalb eines Visualisierungsportfolio (beispielsweise in einem Paper oder in einer Präsentation) gleich bleibt [@nussbaumerknaflic2017, S. 100-101] Ansonsten besteht nicht nur die Gefahr, dass das Publikum verwirrt sondern gar aktiv in die Irregeführt wird. [@borland2007, S. 15]
 
-### Visualisierungs Design {#sec-visualisierungs-design}
+## TODO - Mit Daten Geschichten erzählen
 
 nussbaumercole 84-86
+
+@nussbaumerknaflic2017 S. 98 und 177
 
 ## Vorgehen Methode
 
@@ -270,17 +270,21 @@ Für die effektive Anwendung Datenvisualisierungen müssen die Daten als "Tidy D
 
 3.  Jeder Wert hat eine eigene Zelle.
 
-![Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: **???? r4ds**](images/image-192429895.png){alt="Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle:"}
+![Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: [@wickham2016, S. 149]](images/image-192429895.png){#fig-tidy-data-struktur}
 
-Abgesehen, dass mit Tidy Data eine konsistente Methode für die Datenspeicherung verwendet wird, kann R die Vorteile einer vektorisierten Programmiersprache so optimal ausschöpfen. **141 r4ds** Vektorisiert bedeutet, das eine Funktion einen Vektor mit Werten als Input nimmt und einen Vektor mit der gleichen Anzahl an Werten als Output retourniert. **53** Tidy Data entspricht einem langen Datenformat. Dadurch entsteht eine Redundanz an Werten, was bei der Speicherung von Daten nicht gewünscht ist, aber die Datenanalyse vereinfacht. [@healy2018a, S. 56]
+Die Standartisierung der Organisation von Datenwerten in einem Datensatz durch den Tidy Data Ansatz vereinfacht die Datenanalyse, indem die Datenstruktur (Zweidimensionale Tabelle mit Spalten und Zeilen) mit einer Semantik (Variablen, Beobachtungen, Werte) verknüpft wird. Es ist nicht immer einfach Herauszufinden, was Beobachtungen und was Variablen sind. Um die Variablen und Beobachtungen für eine Datenanalyse herauszufinden, gilt der Grundsatz: Beziehungen lassen sich einfacher zwischen Variablen beschreiben und Vergleiche zwischen Gruppen von Beobachtungen. [@wickham2014, S. 3-4]
 
-....
+![Ordnung durch Tidy Data. Quelle: [@lowndes2020]](images/tidy_data.jpg){#fig-tidy-data fig-alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way."}
+
+Abgesehen, dass mit Tidy Data eine konsistente Methode für die Datenspeicherung verwendet wird, kann R die Vorteile einer vektorisierten Programmiersprache so optimal ausschöpfen. [@wickham2016, S. 150] Vektorisiert bedeutet, das eine Funktion einen Vektor mit Werten als Input nimmt und einen Vektor mit der gleichen Anzahl an Werten als Output retourniert. [@wickham2016, S. 56] Tidy Data entspricht einem langen Datenformat. Dadurch entsteht eine Redundanz an Werten, was bei der Speicherung von Daten nicht gewünscht ist, aber die Datenanalyse vereinfacht. [@healy2018a, S. 56]
 
 ### Die Beziehung von Daten und Visualiserungen mit "Grammer of Graphics" {#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics}
 
-Die Visualisierungen im entwickelten Paket **kissviz** basieren auf dem Paket **ggplot2** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die grammer of graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. Bei Visualisierungen besteht eine strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik. Dieser Prozess wird *mapping* genannt. Bei **ggplot2** werden Daten auf bestimmte visuelle Elemente zugeordnet. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit **ggplot2** folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Damit eine solche Verbindung entstehen kann wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit **ggplot2** eine Grafik erstellen kann. Um die Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird. [@healy2018, S. 54-56]
+Die Visualisierungen im entwickelten Paket **kissviz** basieren auf dem Paket **ggplot2** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die Grammer of Graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. In der Theorie folgt die Grammer of Graphics sieben Schritten zur Erstellung einer Grafik. Daten werden Variablen zugeordnet. Anschliessend durchlaufen die Variablen drei Transformationsschritte (Algebra, Skalen, Statistik). Danach werden die transformierten Variablen einem geometrischen Objekt übergeben, damit die Daten eine Form erhalten. Im nächsten Schritt wird das Objekt in einem Koordinatensystem positioniert. Zum Schluss wird ein Visuell wahrnehmbares Objekt erstellt, das Grafik heisst. [@wilkinson2012, S. 376] Diese strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik macht sich das Paket **ggplot2** zu eigen um Diagramme zu erstellen. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit **ggplot2** folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den Skalen der grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Am Ende des Visualisierungsprozess wird diese Verbindung in eine Grafik umgewandelt. Damit eine solche Verbindung entstehen kann, wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit **ggplot2** eine Grafik erstellen kann. Um mehr Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. [@healy2018, S. 54-56] Viele Schritte der Grammer of Graphics haben bei **ggplot2** abhängig von den Daten und dem gewählten *geom* eine Voreinstellung. Beispielsweise bei den Transformationsschritten und dem Koordinatensystem. Die Einstellungen können aber manuell angepasst werden. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird.
 
-Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. [@wickham2010, S. 4-5] Die Umsetzung in **ggplot2** folgt immer dem gleichen Konzept [@healy2018, S. 60]:
+Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. Am Ende besteht ein Diagramm immer aus einer Kombination von drei Quellen: 1. Daten, dessen Datenwerte durch das geom dargestellt werden. 2. Skalen und Koordinatensystem um die Daten in eine Grafik umzuwandeln. 3. Erläuterungen wie Labels oder Titel damit die Grafik interpretierbar wird. [@wickham2010, S. 4-5]
+
+Die Umsetzung in **ggplot2** folgt immer dem gleichen Konzept [@healy2018, S. 60]:
 
 1.  Daten als Tidy Data aufbereiten.
 
@@ -339,9 +343,15 @@ plot <-
 plot
 ```
 
-### 
+...[@hehman2021],
 
-...
+### TODO - R-Paket Entwicklungs Prozess
+
+...[@chang2013]
+
+...[@wickham2015]
+
+... online dokumentatione
 
 ## Resultat
 
