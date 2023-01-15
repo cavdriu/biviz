@@ -145,8 +145,9 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#das-kartesisches-koordinatensystem-als-positionsskala" id="toc-das-kartesisches-koordinatensystem-als-positionsskala" class="nav-link" data-scroll-target="#das-kartesisches-koordinatensystem-als-positionsskala">Das kartesisches Koordinatensystem als Positionsskala</a></li>
   <li><a href="#sec-farben-als-steuerungsinstrument" id="toc-sec-farben-als-steuerungsinstrument" class="nav-link" data-scroll-target="#sec-farben-als-steuerungsinstrument">Farben als Steuerungsinstrument</a></li>
+  <li><a href="#sec-gestaltungsprizipien-in-datenvisualisierungen" id="toc-sec-gestaltungsprizipien-in-datenvisualisierungen" class="nav-link" data-scroll-target="#sec-gestaltungsprizipien-in-datenvisualisierungen">Gestaltungsprizipien in Datenvisualisierungen</a></li>
+  <li><a href="#mit-daten-geschichten-erzählen" id="toc-mit-daten-geschichten-erzählen" class="nav-link" data-scroll-target="#mit-daten-geschichten-erzählen">Mit Daten Geschichten erzählen</a></li>
   </ul></li>
-  <li><a href="#todo---mit-daten-geschichten-erzählen" id="toc-todo---mit-daten-geschichten-erzählen" class="nav-link" data-scroll-target="#todo---mit-daten-geschichten-erzählen">TODO - Mit Daten Geschichten erzählen</a></li>
   <li><a href="#vorgehen-methode" id="toc-vorgehen-methode" class="nav-link" data-scroll-target="#vorgehen-methode">Vorgehen Methode</a>
   <ul class="collapse">
   <li><a href="#tidy-data-als-basis-von-visualisuerngen" id="toc-tidy-data-als-basis-von-visualisuerngen" class="nav-link" data-scroll-target="#tidy-data-als-basis-von-visualisuerngen">Tidy Data als Basis von Visualisuerngen</a></li>
@@ -387,7 +388,7 @@ Hinweis
 </div>
 </div>
 <p>Die Spalte <em>Jahr</em> ist ein diskreter numerischer Wert. Im Gegensatz dazu wäre 01.01.2021 ein kontinuierlicher Datumswert. <em>Gemeinde</em> und <em>Abfallart</em> sind beides kategorische (Faktor) Werte ohne logische Reihenfolge. Im Gegensatz dazu besitzen die Kategorien “hässlich”, “schön”, “wunderschön” eine logischen Reihenfolge. <em>Menge in Tonnen</em> ist ein kontinuierlicher numerischer Wert. Neben ganzen Zahlen gehören auch rationale oder reelle Zahlen in diese Kategorie.</p>
-<p>Für die Abbildung der Daten auf Aesthetics wird angegeben, welche Datenwerte welchem Wert auf der Datenskala entspricht. Das bedeutet, mithilfe der Skala erfolgt die eindeutige Zuordnung von Daten und Aesthetics. Bei einem Diagramm mit einer x-Achse wird angegeben welcher Wert auf welche Position auf dieser Achse dargestellt wird. Der gleichen Logik folgend, geben wir an welche Grösse, Farbe oder Form ein Datenwert einnehmen soll. Anstatt auf einer Positionsskala werden die einfach Grössen-, Farben- oder Formskala verwendet. Ein Datenwert entspricht in jeder Skala einem eindeutigen Skalawert bzw. Aestetic. Je Datenwert darf es nur ein Skalawert geben und umgekehrt. Eine eins zu eins Beziehung ist notwendig, damit die Datenvisualisierung nicht mehrdeutig wird. (Vgl. <a href="#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics">Kapitel&nbsp;2.7.2</a>)</p>
+<p>Für die Abbildung der Daten auf Aesthetics wird angegeben, welche Datenwerte welchem Wert auf der Datenskala entspricht. Das bedeutet, mithilfe der Skala erfolgt die eindeutige Zuordnung von Daten und Aesthetics. Bei einem Diagramm mit einer x-Achse wird angegeben welcher Wert auf welche Position auf dieser Achse dargestellt wird. Der gleichen Logik folgend, geben wir an welche Grösse, Farbe oder Form ein Datenwert einnehmen soll. Anstatt auf einer Positionsskala werden die einfach Grössen-, Farben- oder Formskala verwendet. Ein Datenwert entspricht in jeder Skala einem eindeutigen Skalawert bzw. Aestetic. Je Datenwert darf es nur ein Skalawert geben und umgekehrt. Eine eins zu eins Beziehung ist notwendig, damit die Datenvisualisierung nicht mehrdeutig wird. (Vgl. <a href="#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics">Kapitel&nbsp;2.6.2</a>)</p>
 <div id="fig-aesthetics" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/image-103507192.png" class="img-fluid figure-img"></p>
@@ -413,7 +414,7 @@ Hinweis
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">`</span><span class="at">Menge in Tonnen</span><span class="st">`</span>, </span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> Gemeinde) <span class="sc">+</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># nicht notwendig, macht den plot aber etwas hübscher</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Gemeinde"</span>) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Gemeinde"</span>) <span class="sc">+</span> </span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -474,7 +475,7 @@ Hinweis
 </section>
 <section id="sec-farben-als-steuerungsinstrument" class="level3">
 <h3 class="anchored" data-anchor-id="sec-farben-als-steuerungsinstrument">Farben als Steuerungsinstrument</h3>
-<p>Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 98–99</a>)</span> Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkiet nicht bewusst wahr. Das genaue Zusammenspiel der verschiedenen Gedächnissen wird im Kapitel <strong>?@sec-visualisierungs-design</strong> erläutert. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 83–86</a>)</span>Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.</p>
+<p>Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 98–99</a>)</span> Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkeit nicht bewusst wahr. Bereits nach Sekundenbruchteile wird das Signal ans Kurzzeitgedächtnis weitergeleitet. Hier werden die Informationen verarbeitet. Da das Kurzzeitgedächtnis nur einen begrenzte Kapazität hat, muss beim Datastorytelling die Reize für das Gehrin bewusst gesteuert werden. Die kognitive Belastung für das Publikum soll möglichst gering sein, damit sie die die vermittelten Informationen erhalten. Das Kurzzeitgedächntnsi kann in etwa vier Elemente visueller Informationen zeitgleich Verarbeiten. Indem Informationen als Zusammenhängende visuelle Elemente dargestellt werden, wird die kognitive Belastung für das Publikum reduziert und besitzt dennoch eine hohe Informationsdichte. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 83–86</a>)</span>Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -519,11 +520,150 @@ Hinweis
 </div>
 <p>Wann ist der Einsatz von Farbe sinnvoll? Immer dann wenn sie dem Publikum das lesen des Diagramms erleichtert. Farbe muss nicht unterhalten, sondern ein Signal senden. Verändert sich etwas in der Grafik oder gibt es einen wichtigen Punkt zu beachten? Dann muss das Publikum auf diesen Umstand aufmerksam gemacht werden. Das geht nur, wenn die Farbe zurückhalten und durchgehend, also nicht in jeder Visualisierung eine andere Farbe verwenden. Die kognitive Belastung reduziert sich, wenn die Bedeutung einer Farbe innerhalb eines Visualisierungsportfolio (beispielsweise in einem Paper oder in einer Präsentation) gleich bleibt <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 100–101</a>)</span> Ansonsten besteht nicht nur die Gefahr, dass das Publikum verwirrt sondern gar aktiv in die Irregeführt wird. <span class="citation" data-cites="borland2007">(<a href="#ref-borland2007" role="doc-biblioref">Borland und Taylor Ii 2007, 15</a>)</span></p>
 </section>
+<section id="sec-gestaltungsprizipien-in-datenvisualisierungen" class="level3">
+<h3 class="anchored" data-anchor-id="sec-gestaltungsprizipien-in-datenvisualisierungen">Gestaltungsprizipien in Datenvisualisierungen</h3>
+<p>Die Aufnahme von Informationen ist für das Gehirn eine mentale Anstrengung. Die Gerhinkapazität des Publikums ist begrenzt, daher muss die kognitive Belastung muss folglich bewusst und effektiv gestaltet sein. Das bedeutet, relevanten Informationen mit bei möglichst geringer wahrgenommene kognitive Belastung kommuniziert werden. Dafür müssen die Signale (die Informationen die vermittelt werden) gestärkt und das Rauchen (Elemente die von der Information ablenken) reduziert werden. Das Diagramm soll eingänglich und einfach erscheinen. Komplizierte Grafiken können das Publikum abschrecken und ihre Aufmerksamkeit geht verloren. Die Gestaltprinzipien der visuellen Wahrnehmung helfen die Signale einer Grafik zu erkennen und Rauschen zu minimieren. Damit das verfolgte Ziel mit den präsentieren Daten einfach erkennbar ist. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 61–63</a>)</span> Die Überlegungen und Grafiken zu den Gestaltprinzipien folgen den Ausführungen von Nussbaumer Knaflic <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">2017</a>)</span> im Kapitel <em>Gestaltprinzipien der visuellen Wahrnehmung</em>:</p>
+<div id="fig-naehe" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_naehe.jpg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_naehe2.jpg" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8: Das Gestaltprinzip der Nähe.</figcaption><p></p>
+</figure>
+</div>
+<p>Durch die physische nähe der Punkte, werden sie als Zusammegehörig wahrgenommen. Durch die Anordnung und Nutzung von Zwischenräumen sehen die Augen Gruppen, Linien etc.. Bei den vertikalen Reihen ist der Weissraum (Zwischenräume) grösser zwischen den nebeneinander liegenden Punkten und den horizontalen zwischen den oberen und unteren Punkten.</p>
+<div id="fig-aehnlichkeit" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_aehnlichkeit.jpg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_aehnlichkeit2.jpg" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;9: Das Gestaltprinzip der Ähnlichkeit.</figcaption><p></p>
+</figure>
+</div>
+<p>Haben Objekte eine ähnliche Erscheinung (Form, Farbe, Grösse, etc) so stellt unser Gehirn eine Verbindung zwischen diesen Punkten her. Damit kann dem Publikum wichtige Interpretationhilfe geboten werden und die kognitive Belastung tief halten. Beispielsweise sehen wir durch die Färbung der Punkte in der zweiten Grafik Linien.</p>
+<div id="fig-umrandung" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_umrandung.jpg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_umrandung2.jpg" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;10: Das Gestaltprinzip der Umrandung</figcaption><p></p>
+</figure>
+</div>
+<p>Durch einen Rahmen können Teilemengen einfach als Gruppe indentifiziert werden. Die Fläche kann schattiert werden oder klassisch mit Linien umrandet. Die Umrandung ist hilfreich zur Unterscheidung von unterschiedlichen (Daten-) Bereichen.</p>
+<div id="fig-form" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_form.jpg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_form2.jpg" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;11: Das Gestaltprinzip der Form.</figcaption><p></p>
+</figure>
+</div>
+<p>Unser Hirn neigt dazu, einzelne Elemente in einer Reihe wenn möglich als ein einzige Form wahrzunehmen. Trotz den Lücken in der Kreisform erkennt unser Gehirn einen Kreis, indem er die fehlenden Teile ausfüllt. Dazu muss das Konstrukt aber bekannt und eine einfach Darstellung sein. Dank dem Konzept der Form erkennen wir auch, die Zusammengehörigkeit einer Grafik ohne einen Rahmen. Gleichzeitig wird das Rauschen reduziert und die Daten hervorgehoben.</p>
+<div id="fig-kontinuitaet" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_kontinuitaet.jpg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_kontinuitaet2.jpg" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12: Das Gestaltprinzip der Kontinuität.</figcaption><p></p>
+</figure>
+</div>
+<p>Unser Gehirn sucht in Objekten die Kontinuität und das Bekannte. Daher erwarten die meisten Menschen beim Auseinander nehmen des Bildes 1, das Bild 2, obwohl es genauso gut Bild 3 sein könnte. Im Balkendiagramm wird kein y-Achse benötigt, da unser Hirn die Linie selber zeichnet und erkennt, dass alle Balken am gleichen Punkt starten. Da die Distanz bzw. der Weissraum zwischen der Beschriftung (links) und den dargestellten Daten (rechtes) überall identisch ist, wird eine Linie produziert.</p>
+<div id="fig-verbindung" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_verbindung.jpg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/gestaltprinzip_verbindung2.jpg" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;13: Das Gestaltprinzip der Verbindung.</figcaption><p></p>
+</figure>
+</div>
+<p>Das Gestaltprinzip der Verbindung ist stärker als das Prinzip der Ähnlichkeit und schwächer als die Umrandung. Das heisst, die Zusammengehörigkeit von Verbundene Elemente ist stärker als die gleiche Farbe, Grösse oder Form. Eine Umrandung ist besitzt jedoch eine höhere visuelle Hirarchie als die Verbindung, wodurch die Objekte in einem Rahmen zusammengehörig wahrgenommen werden obwohl sie mit einem anderen Objekten verbunden sind. Verbindungen helfen, den Datenpunkten eine Ordnung zugeben und wird unteranderem bei Liniendiagrammen eingesetzt. In den meisten Liniendiagrammen bestehen aus einzelnen Datenpunkten, welche erste dank dem Gestaltprinzip der Verbindung als Kontinuum erkennbar werden.</p>
+<p>…nussbaumercole 88, 90, 91-93, 105</p>
 </section>
-<section id="todo---mit-daten-geschichten-erzählen" class="level2">
-<h2 class="anchored" data-anchor-id="todo---mit-daten-geschichten-erzählen">TODO - Mit Daten Geschichten erzählen</h2>
-<p>nussbaumercole 84-86</p>
-<p><span class="citation" data-cites="nussbaumerknaflic2017">Nussbaumer Knaflic (<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">2017</a>)</span> S. 98 und 177</p>
+<section id="mit-daten-geschichten-erzählen" class="level3">
+<h3 class="anchored" data-anchor-id="mit-daten-geschichten-erzählen">Mit Daten Geschichten erzählen</h3>
+<p>Die Vermittlung von Analysen ist üblicherweise der einzige Teil welches das Publikum zu sehen bekommt von einer Datenanalyse. Folglich sollte dieser Schritt möglichst erfolgreich und nachhaltig gestaltet werden. Damit das erreicht werden kann, muss der Wechsel von der erforschenden Analyse zur erkärenden Analyse erfolgen. Die erforschende Analyse ist der Prozess, welcher uns zu neuem Verständnis und Erkenntnissen führt. Bei der Vermittlung der Resultate kann aber nicht der gesamte analytische Prozess wiedergeben werden, daher ist es wichtig einem erklärenden Ansatz anzuwenden. Hier möchten wir einen bestimmte Erkenntnis erklären und analysieren, die für das Publikum und die gegebene Situation wichtig ist. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 17</a>)</span></p>
+<div id="tbl-erforschen-erklaeren" class="anchored">
+<table class="table">
+<caption>Tabelle&nbsp;3: Die zwei Arten der Analyse. Quelle: <span class="citation" data-cites="dykes2020">(<a href="#ref-dykes2020" role="doc-biblioref">Dykes 2020, 138</a>)</span> mit eigenen Anpassungen.</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">erforschende Analyse</th>
+<th style="text-align: left;">erklärende Analyse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ziel</td>
+<td style="text-align: left;">Verstehen</td>
+<td style="text-align: left;">Kommunizieren</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Publikum</td>
+<td style="text-align: left;">Analyst:in</td>
+<td style="text-align: left;">andere Personen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vertrautheit des Publikums mit den Daten</td>
+<td style="text-align: left;">Sehr vertraut</td>
+<td style="text-align: left;">Nicht bis wenige vertraut</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fokus der Visualisierung</td>
+<td style="text-align: left;">Flexibel und schnell</td>
+<td style="text-align: left;">Einfach, klar und schlüssig</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Erzählung</td>
+<td style="text-align: left;">Unwissend</td>
+<td style="text-align: left;">Wissend</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Resultat</td>
+<td style="text-align: left;">Insighet (Verständnis &amp; Erkenntnis)</td>
+<td style="text-align: left;">Aktion</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In der Forschung ist das die Beantwortung der Forschungsfrage und im geschäftlichen Umfeld biespielsweise die Erkärung weshalb der Pendenzenstand im Team A zugenommen hat. Um die Fragen zu beantworten, werden eine Vielzahl von erforschenden Analysen durchgeführt, aber nur einige wenige geben Informationen um die Fragestellung zu beantworten. Auf diese Informationen wird bei der erklärenden Analyse eingegangen. Damit die Argumente überzeugen und die Erkenntnisse in Erinnerung bleiben, wird eine packende Geschichte benötigt. Die Erzählung einer Geschichte hilf, die gewonnen Fakten aus der erforschenden Analyse bei der erklärenden Analyse dem Publikum interessant und nachvollziehbar zu präsentieren. Damit das möglich ist, muss der Kontext eruiert werden. Wer ist das Publikum und in welcher Rolle stehe ich zum Zielpublikum? Je nach Situation muss eine andere Kommunikation gewählt werden, damit die Geschichte ihr Ziel erreicht. Was soll das Publikum wissen? Erkennen was für das Publikum spannend und relevant ist. Hier wir die Handlung der Geschichte definiert. Dabei muss immer die Frage beantwortet werden, weshalb soll sich das Publikum für die Geschichte interessieren soll. Wie kann die Frage beantwortet werden? Bei diesem Schritt werden die Daten ausgewählt, welche die Geschichte untermauern und plausibilisieren. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 18–23</a>)</span> Um den Kontext einer Data Story zu erfassen, ist der Startpunkt am Ende des Prozesses der Entwicklung einer Data Story. Damit die Geischichte entstehen kann, werden zuerst die Daten untersucht und anschiessend die entscheidenden Erkenntnisse dem Publikum präsentiert. <span class="citation" data-cites="dykes2020">(<a href="#ref-dykes2020" role="doc-biblioref">Dykes 2020, 136</a>)</span> Was aber ist eine Geschichte? Bei einer Geschichte werden Beobachtungen, Erkenntnisse und Ereignisse in eine bestimmte Reihenfolge gebracht, mit dem Ziel beim Publikum eine emotionale Wirkung zu erzielen. Durch den Aufbau einer Spannung am Anfang und der Lösung am Ende der Geschichte fesselt eine Geschichte das Publikum, was eine emotionale Reaktion verursacht. <span class="citation" data-cites="wilke2020">(<a href="#ref-wilke2020" role="doc-biblioref">Wilke 2020, 304</a>)</span> Neben der Wiederholung ist die emotionale Wirkung der Geschichte deren Spannungsbogen wichtig, damit sie in unserem Gedächnis bleibt. Es gibt eine Vielzahl von narrativen Strukturen und Methoden des Storytellings, sei es im Theater, im Film oder bei Texten. Eine einfache Methode für das Datastorytelling ist das Muster Anfang-Mitte-Ende, welches im dem klassischen Narrativ eines Forschungspaper (Einleitung-Hauptteil-Schlussfolgerung) gleicht. Am Anfang wir de Handlung eingeführt und eine Auslegeordnung gemacht, damit das Publikum erkennt weshalb die Geschichte wichtig für sie ist. Was ist der Kontext, welches sind die Schlüsselpunkte, was ist das Problem und was ist die gewünschte Lösungen. In der Mitte muss das Publikum von einem Sachstand überzeugt werden. Deshalb steht das “wie” der Problemlösung im Zentrum. Dafür wird das Thema in ins seinen Details (Hintergrundinformationen, Vergleiche, Szenarien, mögliche Problemlösungen) dargestellt. Am Ende wird auf die Ausgangslage Bezug genommen und eine Handlungsempfehlung abgegeben. Über den ganzen Prozess steht immer das Publikum im Mittelpunkt: Warum ist es relevant für sie? Was stösst auf Resonanz und motiviert? Dabei steht jedes mal der gleiche Inhalt zur Debatte lediglich aus unterschiedlichen Perspektiven (Einführen, Details, Zusammenfassen).<span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 146–49</a>)</span> Bei der Integration von Datenvisualisierungen in Geschichte müssen gewisse Punkte berücksichtigt werden. Erstens kann eine einzelne Visualisierung keine ganze Geschichte erzählen. Damit mit Visualisierung eine Geschichte erzählt werden kann, benötigt es mehrere Diagramme. Je Station des Storytellings benötigt es in der Regel mindestens eine Grafik. Sowenig in Textform der Anfang, die Mitte und das Ende einer Geschichte in einem Satz sinnvoll dargelegt werden kann, kann dies auch keine Visualisierung erreichen. <span class="citation" data-cites="wilke2020">(<a href="#ref-wilke2020" role="doc-biblioref">Wilke 2020, 305</a>)</span> Damit die Visualisierung (Form) den gewünschten Effekt (Funktion) auslösst, muss die Form (Visualisierung) der Funktion (Effekt). Das heisst, mit der Visualisierung soll etwas auslösen, damit das funktioniert, benötigt sie eine vorher definierte Funktion (Was soll die Grafik machen?). Um die Funktion des Diagramms zu zeigen werden visuelle Affordanzen benutzt. Die wichtigste Methode dafür ist bei der Datenvisualisierung die Verwendung von Farben (vgl. <a href="#sec-farben-als-steuerungsinstrument">Kapitel&nbsp;2.5.2</a>). Damit die Hervorhebung seine Wirkung entfalten kann, ist es wichtig sparsam mit diesem Tool umzugehen. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 107–9</a>)</span> Zudem muss die Visualisierung Zugänglichkeit, nicht das Publikum ist verantwortlich, dass es die Grafik versteht sondern der Autor. Durch ein verständliches Design (keine unnötige Komplexität), Lesbarkeit (Schriftart und Grösse), Klarheit (wichtiges wird Hervorgehoben) und einfche Sprache (Publikum angepasst). Das Publikum muss durch das Diagramm geführt werden, dazu sind Titel, Achsenbeschriftungen und direkte Annotationen notwendig. <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 118–19</a>)</span> Werden alle diese Punkte berücksichtige und alle Elemente folgen einer visuellen Ordnung, dann hat das Diagramm eine ansprechende Ästhetik, wodurch das Vertrauen des Publikums gewonnen wird <span class="citation" data-cites="nussbaumerknaflic2017">(<a href="#ref-nussbaumerknaflic2017" role="doc-biblioref">Nussbaumer Knaflic 2017, 68</a> &amp; S. 123)</span></p>
+<p>… evt. Grafik bei nussbaumer auf Seite 114 hinzufügen.</p>
+</section>
 </section>
 <section id="vorgehen-methode" class="level2">
 <h2 class="anchored" data-anchor-id="vorgehen-methode">Vorgehen Methode</h2>
@@ -538,23 +678,23 @@ Hinweis
 <div id="fig-tidy-data-struktur" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/image-192429895.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;8: Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: <span class="citation" data-cites="wickham2016">(<a href="#ref-wickham2016" role="doc-biblioref">Wickham und Grolemund 2016, 149</a>)</span></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;14: Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: <span class="citation" data-cites="wickham2016">(<a href="#ref-wickham2016" role="doc-biblioref">Wickham und Grolemund 2016, 149</a>)</span></figcaption><p></p>
 </figure>
 </div>
 <p>Die Standartisierung der Organisation von Datenwerten in einem Datensatz durch den Tidy Data Ansatz vereinfacht die Datenanalyse, indem die Datenstruktur (Zweidimensionale Tabelle mit Spalten und Zeilen) mit einer Semantik (Variablen, Beobachtungen, Werte) verknüpft wird. Es ist nicht immer einfach Herauszufinden, was Beobachtungen und was Variablen sind. Um die Variablen und Beobachtungen für eine Datenanalyse herauszufinden, gilt der Grundsatz: Beziehungen lassen sich einfacher zwischen Variablen beschreiben und Vergleiche zwischen Gruppen von Beobachtungen. <span class="citation" data-cites="wickham2014">(<a href="#ref-wickham2014" role="doc-biblioref">Wickham 2014, 3–4</a>)</span></p>
 <div id="fig-tidy-data" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/tidy_data.jpg" class="img-fluid figure-img" alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way."></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;9: Ordnung durch Tidy Data. Quelle: <span class="citation" data-cites="lowndes2020">(<a href="#ref-lowndes2020" role="doc-biblioref">Lowndes und Horst 2020</a>)</span></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;15: Ordnung durch Tidy Data. Quelle: <span class="citation" data-cites="lowndes2020">(<a href="#ref-lowndes2020" role="doc-biblioref">Lowndes und Horst 2020</a>)</span></figcaption><p></p>
 </figure>
 </div>
 <p>Abgesehen, dass mit Tidy Data eine konsistente Methode für die Datenspeicherung verwendet wird, kann R die Vorteile einer vektorisierten Programmiersprache so optimal ausschöpfen. <span class="citation" data-cites="wickham2016">(<a href="#ref-wickham2016" role="doc-biblioref">Wickham und Grolemund 2016, 150</a>)</span> Vektorisiert bedeutet, das eine Funktion einen Vektor mit Werten als Input nimmt und einen Vektor mit der gleichen Anzahl an Werten als Output retourniert. <span class="citation" data-cites="wickham2016">(<a href="#ref-wickham2016" role="doc-biblioref">Wickham und Grolemund 2016, 56</a>)</span> Tidy Data entspricht einem langen Datenformat. Dadurch entsteht eine Redundanz an Werten, was bei der Speicherung von Daten nicht gewünscht ist, aber die Datenanalyse vereinfacht. <span class="citation" data-cites="healy2018a">(<a href="#ref-healy2018a" role="doc-biblioref">Healy 2018a, 56</a>)</span></p>
 </section>
 <section id="sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics" class="level3">
 <h3 class="anchored" data-anchor-id="sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics">Die Beziehung von Daten und Visualiserungen mit “Grammer of Graphics”</h3>
-<p>Die Visualisierungen im entwickelten Paket <strong>kissviz</strong> basieren auf dem Paket <strong>ggplot2</strong> <span class="citation" data-cites="hadley2016">(<a href="#ref-hadley2016" role="doc-biblioref">Hadley 2016</a>)</span>, welches den Ansatz “The Grammar of Graphics” <span class="citation" data-cites="wilkinson2005">(<a href="#ref-wilkinson2005" role="doc-biblioref">Wilkinson 2005</a>)</span> verfolgt und vektorisiert ist. Durch die grammer of graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. Bei Visualisierungen besteht eine strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik. Dieser Prozess wird <em>mapping</em> genannt. Bei <strong>ggplot2</strong> werden Daten auf bestimmte visuelle Elemente zugeordnet. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit <strong>ggplot2</strong> folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen <em>aesthetics.</em> Damit eine solche Verbindung entstehen kann wird in der Funktion <code>ggplot()</code> die Daten und die Beziehung zwischen den Datenvariablen und dem <em>mapping</em> auf die <em>aesthetics</em> definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der <em>geom</em> definiert. Mit dem <em>geom</em> wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit <code>geom_bar()</code> oder Streuudiagramme mit <code>geom_point()</code> erzeugt. Diese Abfolge von Code reicht, damit <strong>ggplot2</strong> eine Grafik erstellen kann. Um die Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird. <span class="citation" data-cites="healy2018">(<a href="#ref-healy2018" role="doc-biblioref">Healy 2018b, 54–56</a>)</span></p>
-<p>…details zu grammer of graphics <span class="citation" data-cites="wilkinson2012">(<a href="#ref-wilkinson2012" role="doc-biblioref">Wilkinson 2012</a>)</span></p>
-<p>Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. <span class="citation" data-cites="wickham2010">(<a href="#ref-wickham2010" role="doc-biblioref">Wickham 2010, 4–5</a>)</span> Die Umsetzung in <strong>ggplot2</strong> folgt immer dem gleichen Konzept <span class="citation" data-cites="healy2018">(<a href="#ref-healy2018" role="doc-biblioref">Healy 2018b, 60</a>)</span>:</p>
+<p>Die Visualisierungen im entwickelten Paket <strong>kissviz</strong> basieren auf dem Paket <strong>ggplot2</strong> <span class="citation" data-cites="hadley2016">(<a href="#ref-hadley2016" role="doc-biblioref">Hadley 2016</a>)</span>, welches den Ansatz “The Grammar of Graphics” <span class="citation" data-cites="wilkinson2005">(<a href="#ref-wilkinson2005" role="doc-biblioref">Wilkinson 2005</a>)</span> verfolgt und vektorisiert ist. Durch die Grammer of Graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. In der Theorie folgt die Grammer of Graphics sieben Schritten zur Erstellung einer Grafik. Daten werden Variablen zugeordnet. Anschliessend durchlaufen die Variablen drei Transformationsschritte (Algebra, Skalen, Statistik). Danach werden die transformierten Variablen einem geometrischen Objekt übergeben, damit die Daten eine Form erhalten. Im nächsten Schritt wird das Objekt in einem Koordinatensystem positioniert. Zum Schluss wird ein Visuell wahrnehmbares Objekt erstellt, das Grafik heisst. <span class="citation" data-cites="wilkinson2012">(<a href="#ref-wilkinson2012" role="doc-biblioref">Wilkinson 2012, 376–77</a>)</span> Diese strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik macht sich das Paket <strong>ggplot2</strong> zu eigen um Diagramme zu erstellen. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit <strong>ggplot2</strong> folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den Skalen der grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen <em>aesthetics.</em> Am Ende des Visualisierungsprozess wird diese Verbindung in eine Grafik umgewandelt. Damit eine solche Verbindung entstehen kann, wird in der Funktion <code>ggplot()</code> die Daten und die Beziehung zwischen den Datenvariablen und dem <em>mapping</em> auf die <em>aesthetics</em> definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der <em>geom</em> definiert. Mit dem <em>geom</em> wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit <code>geom_bar()</code> oder Streuudiagramme mit <code>geom_point()</code> erzeugt. Diese Abfolge von Code reicht, damit <strong>ggplot2</strong> eine Grafik erstellen kann. Um mehr Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. <span class="citation" data-cites="healy2018">(<a href="#ref-healy2018" role="doc-biblioref">Healy 2018b, 54–56</a>)</span> Viele Schritte der Grammer of Graphics haben bei <strong>ggplot2</strong> abhängig von den Daten und dem gewählten <em>geom</em> eine Voreinstellung. Beispielsweise bei den Transformationsschritten und dem Koordinatensystem. Die Einstellungen können aber manuell angepasst werden. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird.</p>
+<p>Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. Am Ende besteht ein Diagramm immer aus einer Kombination von drei Quellen: 1. Daten, dessen Datenwerte durch das geom dargestellt werden. 2. Skalen und Koordinatensystem um die Daten in eine Grafik umzuwandeln. 3. Erläuterungen wie Labels oder Titel damit die Grafik interpretierbar wird. <span class="citation" data-cites="wickham2010">(<a href="#ref-wickham2010" role="doc-biblioref">Wickham 2010, 4–5</a>)</span></p>
+<p>Die Umsetzung in <strong>ggplot2</strong> folgt immer dem gleichen Konzept <span class="citation" data-cites="healy2018">(<a href="#ref-healy2018" role="doc-biblioref">Healy 2018b, 60</a>)</span>:</p>
 <ol type="1">
 <li>Daten als Tidy Data aufbereiten.</li>
 </ol>
@@ -682,7 +822,7 @@ Hinweis
 <section id="todo---r-paket-entwicklungs-prozess" class="level3">
 <h3 class="anchored" data-anchor-id="todo---r-paket-entwicklungs-prozess">TODO - R-Paket Entwicklungs Prozess</h3>
 <p>…<span class="citation" data-cites="chang2013">(<a href="#ref-chang2013" role="doc-biblioref">Chang 2013</a>)</span></p>
-<p>…<span class="citation" data-cites="wickham2015">(<a href="#ref-wickham2015" role="doc-biblioref"><strong>wickham2015?</strong></a>)</span></p>
+<p>…<span class="citation" data-cites="wickham2015">(<a href="#ref-wickham2015" role="doc-biblioref">Wickham 2015</a>)</span></p>
 <p>… online dokumentatione</p>
 </section>
 </section>
@@ -726,6 +866,9 @@ Chang, Winston. 2013. <em>R graphics cookbook: practical recipes for visualizing
 <div id="ref-diaz-bone2006" class="csl-entry" role="doc-biblioentry">
 Diaz-Bone, Rainer. 2006. <em>Statistik für Soziologen</em>. UTB für Wissenschaft : Uni-Taschenbücher. Konstanz: UVK Verlagsgesellschaft.
 </div>
+<div id="ref-dykes2020" class="csl-entry" role="doc-biblioentry">
+Dykes, Brent. 2020. <em>Effective data storytelling: how to drive change with data, narrative and visuals</em>. Hoboken, New Jersey: John Wiley; Sons, Inc.
+</div>
 <div id="ref-hadley2016" class="csl-entry" role="doc-biblioentry">
 Hadley, Wickham. 2016. <em>Ggplot2</em>. New York, NY: Springer Science+Business Media, LLC.
 </div>
@@ -755,6 +898,9 @@ Wickham, Hadley. 2010. <span>„A Layered Grammar of Graphics“</span>. <em>Jou
 </div>
 <div id="ref-wickham2014" class="csl-entry" role="doc-biblioentry">
 ———. 2014. <span>„Tidy Data“</span>. <em>Journal of Statistical Software</em> 59 (September): 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
+</div>
+<div id="ref-wickham2015" class="csl-entry" role="doc-biblioentry">
+———. 2015. <em>R packages</em>. First edition. Sebastopol, CA: O’Reilly Media.
 </div>
 <div id="ref-wickham2016" class="csl-entry" role="doc-biblioentry">
 Wickham, Hadley, und Garrett Grolemund. 2016. <em>R for data science: import, tidy, transform, visualize, and model data</em>. First edition. Sebastopol, CA: O’Reilly.
@@ -982,343 +1128,424 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">    #code-link: true</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">  # pdf:</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">  #   number-sections: true</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">  #   colorlinks: true</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">  # # geometry:</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">  # #     - top=30mm</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">  # #     - left=30mm</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="fu"># Testing (H1)</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">    colorlinks: true</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">    execute:</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">      echo: false</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">  # geometry:</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="co">  #     - top=30mm</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">  #     - left=30mm</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-packages</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorspace)</span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## H2</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="fu"># Testing (H1)</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-packages</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorspace)</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>The plots in @fig-mpg show the relationship between city and highway mileage for 38 popular models of cars. <span class="co">[</span><span class="ot">@abendroth2019</span><span class="co">]</span></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## H2</span></span>
 <span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>Das ist ein spannendes Tool für meine Arbeit</span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>In @fig-mpg-1 the points are colored by the number of cylinders while in @fig-mpg-2 the points are colored by engine displacement. <span class="co">[</span><span class="ot">@bannert2022</span><span class="co">]</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>The plots in @fig-mpg show the relationship between city and highway mileage for 38 popular models of cars. <span class="co">[</span><span class="ot">@abendroth2019</span><span class="co">]</span></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>Das ist ein spannendes Tool für meine Arbeit</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mpg</span></span>
-<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "City and highway mileage for 38 popular models of cars."</span></span>
-<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-subcap:</span></span>
-<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - "Color by number of cylinders"</span></span>
-<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - "Color by engine displacement, in liters"</span></span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| layout-ncol: 2</span></span>
-<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">y =</span> cty, <span class="at">color =</span> cyl)) <span class="sc">+</span></span>
-<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
-<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">y =</span> cty, <span class="at">color =</span> displ)) <span class="sc">+</span></span>
-<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"E"</span>) <span class="sc">+</span></span>
-<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a>You can add options to executable code like this</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>In @fig-mpg-1 the points are colored by the number of cylinders while in @fig-mpg-2 the points are colored by engine displacement. <span class="co">[</span><span class="ot">@bannert2022</span><span class="co">]</span></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mpg</span></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "City and highway mileage for 38 popular models of cars."</span></span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-subcap:</span></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - "Color by number of cylinders"</span></span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="co">#|   - "Color by engine displacement, in liters"</span></span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| layout-ncol: 2</span></span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">y =</span> cty, <span class="at">color =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">y =</span> cty, <span class="at">color =</span> displ)) <span class="sc">+</span></span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"E"</span>) <span class="sc">+</span></span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a>The <span class="in">`echo: false`</span> option disables the printing of code (only output is displayed).</span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a>You can add options to executable code like this</span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### H3</span></span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a>The <span class="in">`echo: false`</span> option disables the printing of code (only output is displayed).</span>
 <span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a><span class="fu"># Real Text</span></span>
+<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a><span class="fu">### H3</span></span>
 <span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ausgangslage / Einleitung</span></span>
+<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a><span class="fu"># Real Text</span></span>
 <span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Forschungsvorhaben / RQ</span></span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ausgangslage / Einleitung</span></span>
 <span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Untersuchungsgegenstand</span></span>
+<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Forschungsvorhaben / RQ</span></span>
 <span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## Literatur / Theorie (Data Storytelling)</span></span>
+<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## Untersuchungsgegenstand</span></span>
 <span id="cb13-107"><a href="#cb13-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a>Wichtige Aspekte werden hier besprochen. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017</span><span class="co">]</span></span>
+<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Literatur / Theorie (Data Storytelling)</span></span>
 <span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## Von Datenwerten zu Visualisierung</span></span>
+<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a>Wichtige Aspekte werden hier besprochen. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017</span><span class="co">]</span></span>
 <span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a>####TODO: Begrifflichkeiten -<span class="sc">\&gt;</span> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene</span>
+<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="fu">## Von Datenwerten zu Visualisierung</span></span>
 <span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a>Daten zu visualisieren heisst, eine Transformation von Daten hinzu systematische und logische visuelle Elemente zu vollziehen, welche in ihrer Summe als bildliche Einheit interpretiert wird. Im Kern ordnet der Transformationsprozess der Datenvisualisierung den Daten ein quantifizierbares Merkmal hinzu. Das kann eine Grösse, eine Farbe, oder eine Position sein. In der Datenvisualisierungen stehen 4 grundlegende Aesthetics (Gestaltungselemente) für die Darstellung von Daten als Grafiken zur Verfügung. <span class="co">[</span><span class="ot">@wilke2020, S. 7</span><span class="co">]</span></span>
+<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a>####TODO: Begrifflichkeiten -<span class="sc">\&gt;</span> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene</span>
 <span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a>|           Position           |           Grösse            |           Farbe           |           Form           |</span>
-<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a>|:-----------------:|:----------------:|:----------------:|:----------------:|</span>
-<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a>| <span class="al">![](images/aes_position.JPG)</span> | <span class="al">![](images/aes_groesse.JPG)</span> | <span class="al">![](images/aes_farbe.JPG)</span> | <span class="al">![](images/aes_form.JPG)</span> |</span>
-<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a>: Basis Aesthetics Quelle: @wilke2020, S. 8. {#tbl-aesthetics}</span>
+<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a>Daten zu visualisieren heisst, eine Transformation von Daten hinzu systematische und logische visuelle Elemente zu vollziehen, welche in ihrer Summe als bildliche Einheit interpretiert wird. Im Kern ordnet der Transformationsprozess der Datenvisualisierung den Daten ein quantifizierbares Merkmal hinzu. Das kann eine Grösse, eine Farbe, oder eine Position sein. In der Datenvisualisierungen stehen 4 grundlegende Aesthetics (Gestaltungselemente) für die Darstellung von Daten als Grafiken zur Verfügung. <span class="co">[</span><span class="ot">@wilke2020, S. 7</span><span class="co">]</span></span>
+<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a>|           Position           |           Grösse            |           Farbe           |           Form           |</span>
+<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a>|:-----------------:|:----------------:|:----------------:|:----------------:|</span>
+<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a>| <span class="al">![](images/aes_position.JPG)</span> | <span class="al">![](images/aes_groesse.JPG)</span> | <span class="al">![](images/aes_farbe.JPG)</span> | <span class="al">![](images/aes_form.JPG)</span> |</span>
 <span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a>Die Aesthetics Linientyp, Linienbreite und Transparenz können als spezial Elemente von Form, Grösse und Farbe interpretiert werden.</span>
+<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a>: Basis Aesthetics Quelle: @wilke2020, S. 8. {#tbl-aesthetics}</span>
 <span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a>Aesthetics werden in 2 Skalen unterteilt: solche die kontinuierliche Daten darstellen können und solche, die das nicht können. <span class="co">[</span><span class="ot">@wilke2020, S. 8-9</span><span class="co">]</span> Unter kontinuierliche Daten werden alle Skalenniveaus, für die eine beliebige Anzahl an an Zwischenausprägungen besteht, gefasst. Wie beispielsweise eine Zeitdauer. Umgekehrt haben diskrete Daten eine begrenzte Anzahl an Ausprägungen die nicht weiter abgestuft werden kann. Es ist beispielsweise nicht möglich, dass eine Familie 1.7 Kinder hat. Das Skalenniveau definiert die Art der Ausprägung (Werte) der gemessenen Dimensionen (Merkmale) die in einer Variable erfasst wird. Bei quantitativen Forschungsmethoden werden die Skalen sehr genau definiert, da das Skalenniveau die rechnerischen Operationen und die Vergleichsmöglichkeiten definiert. <span class="co">[</span><span class="ot">@diaz-bone2006, Kapitel 2.1 und 2.2</span><span class="co">]</span>. Für die Anwendung der Aesthetics ist die Unterscheidung zwischen kontinuierlichen und diskreten Skalen entscheidende.</span>
+<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a>Die Aesthetics Linientyp, Linienbreite und Transparenz können als spezial Elemente von Form, Grösse und Farbe interpretiert werden.</span>
 <span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [*###Tabelle nochmals überdenken*]{.underline} --&gt;</span></span>
+<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a>Aesthetics werden in 2 Skalen unterteilt: solche die kontinuierliche Daten darstellen können und solche, die das nicht können. <span class="co">[</span><span class="ot">@wilke2020, S. 8-9</span><span class="co">]</span> Unter kontinuierliche Daten werden alle Skalenniveaus, für die eine beliebige Anzahl an an Zwischenausprägungen besteht, gefasst. Wie beispielsweise eine Zeitdauer. Umgekehrt haben diskrete Daten eine begrenzte Anzahl an Ausprägungen die nicht weiter abgestuft werden kann. Es ist beispielsweise nicht möglich, dass eine Familie 1.7 Kinder hat. Das Skalenniveau definiert die Art der Ausprägung (Werte) der gemessenen Dimensionen (Merkmale) die in einer Variable erfasst wird. Bei quantitativen Forschungsmethoden werden die Skalen sehr genau definiert, da das Skalenniveau die rechnerischen Operationen und die Vergleichsmöglichkeiten definiert. <span class="co">[</span><span class="ot">@diaz-bone2006, Kapitel 2.1 und 2.2</span><span class="co">]</span>. Für die Anwendung der Aesthetics ist die Unterscheidung zwischen kontinuierlichen und diskreten Skalen entscheidende.</span>
 <span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- | Aehstetic | Skalenniveau | Skala | Beispiel | Beschreibung | --&gt;</span></span>
+<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- [*###Tabelle nochmals überdenken*]{.underline} --&gt;</span></span>
 <span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- |-----------|--------------|-------|----------|--------------| --&gt;</span></span>
+<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- | Aehstetic | Skalenniveau | Skala | Beispiel | Beschreibung | --&gt;</span></span>
 <span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- : Variablentypen für Visualisierunge [in Anlehnung an @wilke2020, @diaz-bone2006 und @gehrau2022] --&gt;</span></span>
+<span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- |-----------|--------------|-------|----------|--------------| --&gt;</span></span>
 <span id="cb13-133"><a href="#cb13-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-136"><a href="#cb13-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-137"><a href="#cb13-137" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-data-abfall-zuerich</span></span>
-<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Abfallart und -menge im Kanton Zürich. Quelle: @amtfürabfallwasserenergieundluftdeskantonszürich"</span></span>
-<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a>abfall_zh <span class="ot">&lt;-</span> </span>
-<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"KTZH_00001803_00003460.csv"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(<span class="st">"Gemeinde_Nr"</span>, <span class="st">"Einheit"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Menge in Tonnen"</span> <span class="ot">=</span> Wert)</span>
-<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a>abfall_zh_sample <span class="ot">&lt;-</span> </span>
-<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a>  abfall_zh<span class="sc">|&gt;</span> </span>
-<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">%%</span> <span class="dv">214</span> <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a>abfall_zh_sample <span class="sc">|&gt;</span> </span>
-<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
-<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-134"><a href="#cb13-134" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- : Variablentypen für Visualisierunge [in Anlehnung an @wilke2020, @diaz-bone2006 und @gehrau2022] --&gt;</span></span>
+<span id="cb13-135"><a href="#cb13-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-data-abfall-zuerich</span></span>
+<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Abfallart und -menge im Kanton Zürich. Quelle: @amtfürabfallwasserenergieundluftdeskantonszürich"</span></span>
+<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a>abfall_zh <span class="ot">&lt;-</span> </span>
+<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"KTZH_00001803_00003460.csv"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(<span class="st">"Gemeinde_Nr"</span>, <span class="st">"Einheit"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Menge in Tonnen"</span> <span class="ot">=</span> Wert)</span>
+<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a>abfall_zh_sample <span class="ot">&lt;-</span> </span>
+<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a>  abfall_zh<span class="sc">|&gt;</span> </span>
+<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">%%</span> <span class="dv">214</span> <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a>abfall_zh_sample <span class="sc">|&gt;</span> </span>
+<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a>Die Spalte *Jahr* ist ein diskreter numerischer Wert. Im Gegensatz dazu wäre 01.01.2021 ein kontinuierlicher Datumswert. *Gemeinde* und *Abfallart* sind beides kategorische (Faktor) Werte ohne logische Reihenfolge. Im Gegensatz dazu besitzen die Kategorien "hässlich", "schön", "wunderschön" eine logischen Reihenfolge. *Menge in Tonnen* ist ein kontinuierlicher numerischer Wert. Neben ganzen Zahlen gehören auch rationale oder reelle Zahlen in diese Kategorie.</span>
+<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-158"><a href="#cb13-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a>Für die Abbildung der Daten auf Aesthetics wird angegeben, welche Datenwerte welchem Wert auf der Datenskala entspricht. Das bedeutet, mithilfe der Skala erfolgt die eindeutige Zuordnung von Daten und Aesthetics. Bei einem Diagramm mit einer x-Achse wird angegeben welcher Wert auf welche Position auf dieser Achse dargestellt wird. Der gleichen Logik folgend, geben wir an welche Grösse, Farbe oder Form ein Datenwert einnehmen soll. Anstatt auf einer Positionsskala werden die einfach Grössen-, Farben- oder Formskala verwendet. Ein Datenwert entspricht in jeder Skala einem eindeutigen Skalawert bzw. Aestetic. Je Datenwert darf es nur ein Skalawert geben und umgekehrt. Eine eins zu eins Beziehung ist notwendig, damit die Datenvisualisierung nicht mehrdeutig wird. (Vgl. @sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics)</span>
+<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a>Die Spalte *Jahr* ist ein diskreter numerischer Wert. Im Gegensatz dazu wäre 01.01.2021 ein kontinuierlicher Datumswert. *Gemeinde* und *Abfallart* sind beides kategorische (Faktor) Werte ohne logische Reihenfolge. Im Gegensatz dazu besitzen die Kategorien "hässlich", "schön", "wunderschön" eine logischen Reihenfolge. *Menge in Tonnen* ist ein kontinuierlicher numerischer Wert. Neben ganzen Zahlen gehören auch rationale oder reelle Zahlen in diese Kategorie.</span>
 <span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a><span class="al">![Skalen verknüpfen Datenwerte mit Aesthetics. Quelle: \[\@wilke2020, S. 10\]](images/image-103507192.png)</span>{#fig-aesthetics}</span>
+<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a>Für die Abbildung der Daten auf Aesthetics wird angegeben, welche Datenwerte welchem Wert auf der Datenskala entspricht. Das bedeutet, mithilfe der Skala erfolgt die eindeutige Zuordnung von Daten und Aesthetics. Bei einem Diagramm mit einer x-Achse wird angegeben welcher Wert auf welche Position auf dieser Achse dargestellt wird. Der gleichen Logik folgend, geben wir an welche Grösse, Farbe oder Form ein Datenwert einnehmen soll. Anstatt auf einer Positionsskala werden die einfach Grössen-, Farben- oder Formskala verwendet. Ein Datenwert entspricht in jeder Skala einem eindeutigen Skalawert bzw. Aestetic. Je Datenwert darf es nur ein Skalawert geben und umgekehrt. Eine eins zu eins Beziehung ist notwendig, damit die Datenvisualisierung nicht mehrdeutig wird. (Vgl. @sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics)</span>
 <span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a>Wenden wir diese Erkenntnise beim Datensatz zum Abfall im Kanton Zürich an, dann erhalten wird folgendes Ergebnis: Auf der x-Achse werden die *Gemeinden* anhand der Positionsskala platziert. Die Variable hat keine logische Reihenfolge. Für die Unterstützung des lesens des Diagramms, sind die Gemeinden anhand der Menge an Abfall sortiert. Auf der Positionsskala y-Achse ist die *Menge in Tonnen* übertragen. Zusätzlich wurden die *Gemeinden* auf die Farben übertragen. Vor dem Hintergrund des Data Storytelling lässt sich die Frage stellen, ob die Verwendung des Aesthetic Farbe sinnvoll ist.</span>
+<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a><span class="al">![Skalen verknüpfen Datenwerte mit Aesthetics. Quelle: \[\@wilke2020, S. 10\]](images/image-103507192.png)</span>{#fig-aesthetics}</span>
 <span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a>(vgl. KAPITEL)</span>
+<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a>Wenden wir diese Erkenntnise beim Datensatz zum Abfall im Kanton Zürich an, dann erhalten wird folgendes Ergebnis: Auf der x-Achse werden die *Gemeinden* anhand der Positionsskala platziert. Die Variable hat keine logische Reihenfolge. Für die Unterstützung des lesens des Diagramms, sind die Gemeinden anhand der Menge an Abfall sortiert. Auf der Positionsskala y-Achse ist die *Menge in Tonnen* übertragen. Zusätzlich wurden die *Gemeinden* auf die Farben übertragen. Vor dem Hintergrund des Data Storytelling lässt sich die Frage stellen, ob die Verwendung des Aesthetic Farbe sinnvoll ist.</span>
 <span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a>Bei diesem Beispiel steht jedoch die Beziehung zwischen den Datenwerte und Aesthetics durch Skalen im Zentrum. Daher wurde für jede Gemeinde eine eigene Farbe verwendet.</span>
+<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a>(vgl. KAPITEL)</span>
 <span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-abfall_zh</span></span>
-<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Anzahl Brennbare Abfälle und Sperrgut je Gemeinde im Jahr 2021."</span></span>
-<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a>abfall_zh_sample <span class="sc">|&gt;</span> </span>
-<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a>    Gemeinde <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Aeugst a.A."</span>, </span>
-<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Affoltern a.A."</span>, </span>
-<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Bonstetten"</span>, </span>
-<span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Hausen a.A."</span>),</span>
-<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a>    Abfallart <span class="sc">==</span> <span class="st">"Brennbare Abfälle und Sperrgut"</span></span>
-<span id="cb13-182"><a href="#cb13-182" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">|&gt;</span> </span>
-<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_amounts_grouped</span>(</span>
-<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(Gemeinde, <span class="st">`</span><span class="at">Menge in Tonnen</span><span class="st">`</span>),</span>
-<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">`</span><span class="at">Menge in Tonnen</span><span class="st">`</span>, </span>
-<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> Gemeinde) <span class="sc">+</span></span>
-<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a>  <span class="co"># nicht notwendig, macht den plot aber etwas hübscher</span></span>
-<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Gemeinde"</span>) <span class="sc">+</span></span>
-<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a><span class="fu">### Das kartesisches Koordinatensystem als Positionsskala</span></span>
+<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a>Bei diesem Beispiel steht jedoch die Beziehung zwischen den Datenwerte und Aesthetics durch Skalen im Zentrum. Daher wurde für jede Gemeinde eine eigene Farbe verwendet.</span>
+<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-abfall_zh</span></span>
+<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Anzahl Brennbare Abfälle und Sperrgut je Gemeinde im Jahr 2021."</span></span>
+<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a>abfall_zh_sample <span class="sc">|&gt;</span> </span>
+<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a>    Gemeinde <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Aeugst a.A."</span>, </span>
+<span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Affoltern a.A."</span>, </span>
+<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Bonstetten"</span>, </span>
+<span id="cb13-182"><a href="#cb13-182" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Hausen a.A."</span>),</span>
+<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a>    Abfallart <span class="sc">==</span> <span class="st">"Brennbare Abfälle und Sperrgut"</span></span>
+<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">|&gt;</span> </span>
+<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_amounts_grouped</span>(</span>
+<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">fct_reorder</span>(Gemeinde, <span class="st">`</span><span class="at">Menge in Tonnen</span><span class="st">`</span>),</span>
+<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">`</span><span class="at">Menge in Tonnen</span><span class="st">`</span>, </span>
+<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> Gemeinde) <span class="sc">+</span></span>
+<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a>  <span class="co"># nicht notwendig, macht den plot aber etwas hübscher</span></span>
+<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Gemeinde"</span>) <span class="sc">+</span> </span>
+<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a>Bei Beispiel (@fig-abfall_zh) entspricht die Positionsskala einem kartesischen 2D-Koordinatensystem. Jeder Ort ist durch einen x- und y-Wert eindeutig markiert. Da die Achsen positive als auch negative Zahlen darstellen, muss der Zahlenbereich für jede Achse definiert werden. Bei diesem Beispiel verläuft die y-Achse von 0 bis 2297.4 (5% über dem höchsten y-Wert, welcher bei diesem Beispiel 2188 ist). Ist ein Datenwert innerhalb des definierten Zahlenbereichs, dann wird er im Diagramm an der entsprechenden Position abgebildet. Ansonsten wird der Wert verworfen und erscheint nicht im Diagramm. <span class="co">[</span><span class="ot">@wilke2020, S. 13</span><span class="co">]</span></span>
+<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### Das kartesisches Koordinatensystem als Positionsskala</span></span>
 <span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-economics</span></span>
-<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Die Anzahl Arbeitslose sind in tausend angegeben. Datenquelle: Teil des ggplot2 Pakets."</span></span>
-<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a>temp_plot <span class="ot">&lt;-</span> </span>
-<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span>economics <span class="sc">|&gt;</span> </span>
-<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="st">"eco"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;</span> <span class="st">"1980-01-01"</span> <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="st">"2000-01-01"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_timeseries_line</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy, <span class="at">group =</span> group) <span class="sc">+</span></span>
-<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
-<span id="cb13-209"><a href="#cb13-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fu">ymd</span>(<span class="st">"1980-01-01"</span>), <span class="fu">ymd</span>(<span class="st">"1990-01-01"</span>), <span class="fu">ymd</span>(<span class="st">"2000-01-01"</span>)),</span>
-<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1980"</span>, <span class="st">"1990"</span>, <span class="st">"2000"</span>)</span>
-<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
-<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Jahr"</span>,</span>
-<span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Arbeitslose"</span> <span class="co">#\n in 1000"</span></span>
-<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a>  ) <span class="co">#+  theme(axis.title.y = element_text(size = 12))</span></span>
-<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(</span>
-<span id="cb13-219"><a href="#cb13-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_grid</span>(</span>
-<span id="cb13-220"><a href="#cb13-220" aria-hidden="true" tabindex="-1"></a>    temp_plot, <span class="cn">NULL</span>, temp_plot, </span>
-<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a>    <span class="at">rel_widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.06</span>, <span class="dv">2</span>),</span>
-<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">""</span>, <span class="st">"b"</span>),</span>
-<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">1</span></span>
-<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span>, temp_plot,</span>
-<span id="cb13-226"><a href="#cb13-226" aria-hidden="true" tabindex="-1"></a>  <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">0.06</span>, <span class="dv">1</span>), </span>
-<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">""</span>, <span class="st">"c"</span>), </span>
-<span id="cb13-228"><a href="#cb13-228" aria-hidden="true" tabindex="-1"></a>  <span class="at">label_y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.2</span>), </span>
-<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">1</span></span>
-<span id="cb13-230"><a href="#cb13-230" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-232"><a href="#cb13-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a>Bei Beispiel (@fig-abfall_zh) entspricht die Positionsskala einem kartesischen 2D-Koordinatensystem. Jeder Ort ist durch einen x- und y-Wert eindeutig markiert. Da die Achsen positive als auch negative Zahlen darstellen, muss der Zahlenbereich für jede Achse definiert werden. Bei diesem Beispiel verläuft die y-Achse von 0 bis 2297.4 (5% über dem höchsten y-Wert, welcher bei diesem Beispiel 2188 ist). Ist ein Datenwert innerhalb des definierten Zahlenbereichs, dann wird er im Diagramm an der entsprechenden Position abgebildet. Ansonsten wird der Wert verworfen und erscheint nicht im Diagramm. <span class="co">[</span><span class="ot">@wilke2020, S. 13</span><span class="co">]</span></span>
+<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-economics</span></span>
+<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Die Anzahl Arbeitslose sind in tausend angegeben. Datenquelle: Teil des ggplot2 Pakets."</span></span>
+<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a>temp_plot <span class="ot">&lt;-</span> </span>
+<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span>economics <span class="sc">|&gt;</span> </span>
+<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="st">"eco"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(date <span class="sc">&gt;</span> <span class="st">"1980-01-01"</span> <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="st">"2000-01-01"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-209"><a href="#cb13-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_timeseries_line</span>(<span class="at">x =</span> date, <span class="at">y =</span> unemploy, <span class="at">group =</span> group) <span class="sc">+</span></span>
+<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(</span>
+<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fu">ymd</span>(<span class="st">"1980-01-01"</span>), <span class="fu">ymd</span>(<span class="st">"1990-01-01"</span>), <span class="fu">ymd</span>(<span class="st">"2000-01-01"</span>)),</span>
+<span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1980"</span>, <span class="st">"1990"</span>, <span class="st">"2000"</span>)</span>
+<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal_grid</span>() <span class="sc">+</span></span>
+<span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Jahr"</span>,</span>
+<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Arbeitslose"</span> <span class="co">#\n in 1000"</span></span>
+<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a>  ) <span class="co">#+  theme(axis.title.y = element_text(size = 12))</span></span>
+<span id="cb13-219"><a href="#cb13-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-220"><a href="#cb13-220" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(</span>
+<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_grid</span>(</span>
+<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a>    temp_plot, <span class="cn">NULL</span>, temp_plot, </span>
+<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">rel_widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.06</span>, <span class="dv">2</span>),</span>
+<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">""</span>, <span class="st">"b"</span>),</span>
+<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="dv">1</span></span>
+<span id="cb13-226"><a href="#cb13-226" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NULL</span>, temp_plot,</span>
+<span id="cb13-228"><a href="#cb13-228" aria-hidden="true" tabindex="-1"></a>  <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">1.5</span>, <span class="fl">0.06</span>, <span class="dv">1</span>), </span>
+<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">""</span>, <span class="st">"c"</span>), </span>
+<span id="cb13-230"><a href="#cb13-230" aria-hidden="true" tabindex="-1"></a>  <span class="at">label_y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">1.2</span>), </span>
+<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">1</span></span>
+<span id="cb13-232"><a href="#cb13-232" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb13-233"><a href="#cb13-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-234"><a href="#cb13-234" aria-hidden="true" tabindex="-1"></a>Beim kartesischen Koordinatensystem sind die Abstände zwischen den Gitterlinien der Achsen diskrete Schritten. Entlang einer Achse sind die Gitterlinen gleichmässig verteilt und entsprechen einer Linearen Positionsskala. Dies gilt sowohl für die Dateneinheiten als auch in der Visualisierung. In allen drei Diagrammen sind die Schritte auf der y-Achse 3000 je Gitterline und auf der x-Achse 10 Jahre. Der verwendete Raum um die diskreten Schritte abzubilden können aber unterschiedlich gross sein, womit unterschiedliche Botschaften vermittelt werden können. Abbildung (a) betont die Veränderung auf der y-Achse und Abbildung (c) betont die Veränderung über die Zeit. Werden auf der x- und y-Achse die gleichen Einheiten verwendet, so sollten die Gitterabstände identische sein. So, dass der Abstand zwischen zwischen zwei Gitterlinien die gleiche Menge and Dateneinehiten beinhalten. <span class="co">[</span><span class="ot">@wilke2020, S. 14-15</span><span class="co">]</span></span>
+<span id="cb13-234"><a href="#cb13-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-235"><a href="#cb13-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-236"><a href="#cb13-236" aria-hidden="true" tabindex="-1"></a>Neben linearen Achsen gibt es auch nichtlineare Skalen, welche meistens eine logarithmische Skala verwendet. Hier entspricht eine Einheit auf der Skale einer Multiplikation von einem festen Wert. <span class="co">[</span><span class="ot">@wilke2020, S. 17</span><span class="co">]</span> Bei Datenvisualisierungen werden auch Polarkoordinatensysteme verwendet, bei denen die Position durch den Winkel und radialen Abstand zum Ursprung angegeben wird. <span class="co">[</span><span class="ot">@wilke2020, S. 22</span><span class="co">]</span> Da bei dieser Arbeit ausser beim Donutdiagramm nur das lineare kartesische Koordinatensystem verwendet wird, stehen diese Systeme nicht im Fokus. Für eine Vertiefung der Thematik ist das Kapitel 3 aus @wilke2020 zu Empfehlen.</span>
+<span id="cb13-236"><a href="#cb13-236" aria-hidden="true" tabindex="-1"></a>Beim kartesischen Koordinatensystem sind die Abstände zwischen den Gitterlinien der Achsen diskrete Schritten. Entlang einer Achse sind die Gitterlinen gleichmässig verteilt und entsprechen einer Linearen Positionsskala. Dies gilt sowohl für die Dateneinheiten als auch in der Visualisierung. In allen drei Diagrammen sind die Schritte auf der y-Achse 3000 je Gitterline und auf der x-Achse 10 Jahre. Der verwendete Raum um die diskreten Schritte abzubilden können aber unterschiedlich gross sein, womit unterschiedliche Botschaften vermittelt werden können. Abbildung (a) betont die Veränderung auf der y-Achse und Abbildung (c) betont die Veränderung über die Zeit. Werden auf der x- und y-Achse die gleichen Einheiten verwendet, so sollten die Gitterabstände identische sein. So, dass der Abstand zwischen zwischen zwei Gitterlinien die gleiche Menge and Dateneinehiten beinhalten. <span class="co">[</span><span class="ot">@wilke2020, S. 14-15</span><span class="co">]</span></span>
 <span id="cb13-237"><a href="#cb13-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-238"><a href="#cb13-238" aria-hidden="true" tabindex="-1"></a><span class="fu">### Farben als Steuerungsinstrument {#sec-farben-als-steuerungsinstrument}</span></span>
+<span id="cb13-238"><a href="#cb13-238" aria-hidden="true" tabindex="-1"></a>Neben linearen Achsen gibt es auch nichtlineare Skalen, welche meistens eine logarithmische Skala verwendet. Hier entspricht eine Einheit auf der Skale einer Multiplikation von einem festen Wert. <span class="co">[</span><span class="ot">@wilke2020, S. 17</span><span class="co">]</span> Bei Datenvisualisierungen werden auch Polarkoordinatensysteme verwendet, bei denen die Position durch den Winkel und radialen Abstand zum Ursprung angegeben wird. <span class="co">[</span><span class="ot">@wilke2020, S. 22</span><span class="co">]</span> Da bei dieser Arbeit ausser beim Donutdiagramm nur das lineare kartesische Koordinatensystem verwendet wird, stehen diese Systeme nicht im Fokus. Für eine Vertiefung der Thematik ist das Kapitel 3 aus @wilke2020 zu Empfehlen.</span>
 <span id="cb13-239"><a href="#cb13-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-240"><a href="#cb13-240" aria-hidden="true" tabindex="-1"></a>Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 98-99</span><span class="co">]</span> Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkiet nicht bewusst wahr. Das genaue Zusammenspiel der verschiedenen Gedächnissen wird im Kapitel @sec-visualisierungs-design erläutert. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 83-86</span><span class="co">]</span>Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.</span>
+<span id="cb13-240"><a href="#cb13-240" aria-hidden="true" tabindex="-1"></a><span class="fu">### Farben als Steuerungsinstrument {#sec-farben-als-steuerungsinstrument}</span></span>
 <span id="cb13-241"><a href="#cb13-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-242"><a href="#cb13-242" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol="2"}</span>
-<span id="cb13-243"><a href="#cb13-243" aria-hidden="true" tabindex="-1"></a><span class="al">![Zahlen ohne präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 86\]](images/ohne_praeattentive_merkmale.jpg)</span>{#fig-ohne_praeattetiven_merkmalen}</span>
-<span id="cb13-244"><a href="#cb13-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-245"><a href="#cb13-245" aria-hidden="true" tabindex="-1"></a><span class="al">![Zahlen mit präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 87\]](images/mit_praeattentive_merkmale.jpg)</span>{#fig-mit_praeattetiven_merkmalen}</span>
-<span id="cb13-246"><a href="#cb13-246" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-247"><a href="#cb13-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-248"><a href="#cb13-248" aria-hidden="true" tabindex="-1"></a>Die korrekte Verwendung von Farbpaletten und ihre Wichtigkeit für die Kommunikation mit Visualisierungen betrifft neben der Interpretation der Diagrammen auch die Berücksichtigung der Farbenblindheit. <span class="co">[</span><span class="ot">@hawkins2015 or @bartram2017</span><span class="co">]</span> Die wichtigsten Aufgaben von Farben ist die Unterscheidung von Datengruppen (wie beim Beispiel des Zahlenblocks), Darstellen von Datenwerten oder die Hervorhebung von Datenpunkte. Bei @fig-abfall_zh dient die Farbe als Unterscheidungsmerkmal der einzelnen Gemeinden. Bei der Anwendung von Farbe als Unterscheidungsmerkmal werden qualitative Farbskalen verwendet. Das heisst, die Anzahl Farben ist endlich, sie unterscheiden sich voneinander und sind gleichwertig zueinander. Folglich darf keine Farbe darf dominanter als die andere sein und der Eindruck einer Reihenfolge muss vermieden werden. <span class="co">[</span><span class="ot">@wilke2020, S. 25-26</span><span class="co">]</span> Die Okabe Ito Farbskala <span class="co">[</span><span class="ot">@okabe</span><span class="co">]</span> ist eine bekannte Standardskala welche die beschriebenen Voraussetzungen erfüllt und Farbenblindheit berücksichtigt. Rund acht Prozent der Männer und ein halbes Prozent der Frauen sind farbenblind, wodurch sie Rottöne und Grüntöne nur schlecht unterscheiden können.<span class="ot">[^1]</span> Um positive und negative Punkte trotzdem mit Farben hervorzuheben wird oft blau für positive Werte und orange für negative Werte verwendet. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S.101-102</span><span class="co">]</span> Um quantitative Datenwerte darzustellen werden sequenzielle Farbskalen verwendet. Bei denen erkennbar ist, welcher Wert grösser oder kleiner ist. Damit abgeschätzt werden kann, wie weit zwei Werte voneinander entfernt sind, müssen die Farbabstuffungen gleichmässig über den gesamten Bereich verändern. Das ist sowohl mit einem einzelnen Farbton wie auch mit mehreren Farbtönen möglich. Werden quantitative Datenwerte relativ zu einem neutralen Mittelpunkt visualisiert, wird eine divergente Farbskala verwendet. Beispielsweise bei einer Variable mit positiven als auch negativen Werten. <span class="co">[</span><span class="ot">@wilke2020, S. 27-28</span><span class="co">]</span></span>
+<span id="cb13-242"><a href="#cb13-242" aria-hidden="true" tabindex="-1"></a>Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 98-99</span><span class="co">]</span> Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkeit nicht bewusst wahr. Bereits nach Sekundenbruchteile wird das Signal ans Kurzzeitgedächtnis weitergeleitet. Hier werden die Informationen verarbeitet. Da das Kurzzeitgedächtnis nur einen begrenzte Kapazität hat, muss beim Datastorytelling die Reize für das Gehrin bewusst gesteuert werden. Die kognitive Belastung für das Publikum soll möglichst gering sein, damit sie die die vermittelten Informationen erhalten. Das Kurzzeitgedächntnsi kann in etwa vier Elemente visueller Informationen zeitgleich Verarbeiten. Indem Informationen als Zusammenhängende visuelle Elemente dargestellt werden, wird die kognitive Belastung für das Publikum reduziert und besitzt dennoch eine hohe Informationsdichte. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 83-86</span><span class="co">]</span>Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.</span>
+<span id="cb13-243"><a href="#cb13-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-244"><a href="#cb13-244" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol="2"}</span>
+<span id="cb13-245"><a href="#cb13-245" aria-hidden="true" tabindex="-1"></a><span class="al">![Zahlen ohne präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 86\]](images/ohne_praeattentive_merkmale.jpg)</span>{#fig-ohne_praeattetiven_merkmalen}</span>
+<span id="cb13-246"><a href="#cb13-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-247"><a href="#cb13-247" aria-hidden="true" tabindex="-1"></a><span class="al">![Zahlen mit präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 87\]](images/mit_praeattentive_merkmale.jpg)</span>{#fig-mit_praeattetiven_merkmalen}</span>
+<span id="cb13-248"><a href="#cb13-248" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb13-249"><a href="#cb13-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-250"><a href="#cb13-250" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Es gibt viele Programme um die Farbenblindheit zu simulieren. Beispielsweise die Websiten <span class="co">[</span><span class="ot">hclwizard.org/cvdemulator</span><span class="co">](http://hclwizard.org:3000/cvdemulator/)</span> oder <span class="co">[</span><span class="ot">vischeck.com</span><span class="co">](http://www.vischeck.com)</span>.</span>
+<span id="cb13-250"><a href="#cb13-250" aria-hidden="true" tabindex="-1"></a>Die korrekte Verwendung von Farbpaletten und ihre Wichtigkeit für die Kommunikation mit Visualisierungen betrifft neben der Interpretation der Diagrammen auch die Berücksichtigung der Farbenblindheit. <span class="co">[</span><span class="ot">@hawkins2015 or @bartram2017</span><span class="co">]</span> Die wichtigsten Aufgaben von Farben ist die Unterscheidung von Datengruppen (wie beim Beispiel des Zahlenblocks), Darstellen von Datenwerten oder die Hervorhebung von Datenpunkte. Bei @fig-abfall_zh dient die Farbe als Unterscheidungsmerkmal der einzelnen Gemeinden. Bei der Anwendung von Farbe als Unterscheidungsmerkmal werden qualitative Farbskalen verwendet. Das heisst, die Anzahl Farben ist endlich, sie unterscheiden sich voneinander und sind gleichwertig zueinander. Folglich darf keine Farbe darf dominanter als die andere sein und der Eindruck einer Reihenfolge muss vermieden werden. <span class="co">[</span><span class="ot">@wilke2020, S. 25-26</span><span class="co">]</span> Die Okabe Ito Farbskala <span class="co">[</span><span class="ot">@okabe</span><span class="co">]</span> ist eine bekannte Standardskala welche die beschriebenen Voraussetzungen erfüllt und Farbenblindheit berücksichtigt. Rund acht Prozent der Männer und ein halbes Prozent der Frauen sind farbenblind, wodurch sie Rottöne und Grüntöne nur schlecht unterscheiden können.<span class="ot">[^1]</span> Um positive und negative Punkte trotzdem mit Farben hervorzuheben wird oft blau für positive Werte und orange für negative Werte verwendet. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S.101-102</span><span class="co">]</span> Um quantitative Datenwerte darzustellen werden sequenzielle Farbskalen verwendet. Bei denen erkennbar ist, welcher Wert grösser oder kleiner ist. Damit abgeschätzt werden kann, wie weit zwei Werte voneinander entfernt sind, müssen die Farbabstuffungen gleichmässig über den gesamten Bereich verändern. Das ist sowohl mit einem einzelnen Farbton wie auch mit mehreren Farbtönen möglich. Werden quantitative Datenwerte relativ zu einem neutralen Mittelpunkt visualisiert, wird eine divergente Farbskala verwendet. Beispielsweise bei einer Variable mit positiven als auch negativen Werten. <span class="co">[</span><span class="ot">@wilke2020, S. 27-28</span><span class="co">]</span></span>
 <span id="cb13-251"><a href="#cb13-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-254"><a href="#cb13-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-255"><a href="#cb13-255" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-farbskalen</span></span>
-<span id="cb13-256"><a href="#cb13-256" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb13-257"><a href="#cb13-257" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Das R Paket colorspace [@colorspa] ist ein flexibles Werkzeug um eigene Farbpaletten zu erstellen (beispielsweise eine Okabe Ito Farbskala) oder auf bestehende Skalen zuzugreifen."</span></span>
-<span id="cb13-258"><a href="#cb13-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-259"><a href="#cb13-259" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(</span>
-<span id="cb13-260"><a href="#cb13-260" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Qualitative 1"</span>              <span class="ot">=</span> <span class="fu">qualitative_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"Dark 3"</span>),</span>
-<span id="cb13-261"><a href="#cb13-261" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Qualitative 2"</span>              <span class="ot">=</span> <span class="fu">qualitative_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"Pastel 1"</span>),</span>
-<span id="cb13-262"><a href="#cb13-262" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sequenziell</span><span class="sc">\n</span><span class="st">einfarbig"</span>     <span class="ot">=</span> <span class="fu">sequential_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"Blues"</span>),</span>
-<span id="cb13-263"><a href="#cb13-263" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sequenziell</span><span class="sc">\n</span><span class="st">mehrfarbig"</span>    <span class="ot">=</span> <span class="fu">sequential_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"YlOrRd"</span>),</span>
-<span id="cb13-264"><a href="#cb13-264" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Divergent"</span>                  <span class="ot">=</span> <span class="fu">diverging_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"Green-Brown"</span>),</span>
-<span id="cb13-265"><a href="#cb13-265" aria-hidden="true" tabindex="-1"></a>  <span class="at">off =</span> <span class="dv">0</span></span>
-<span id="cb13-266"><a href="#cb13-266" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-267"><a href="#cb13-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-268"><a href="#cb13-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-269"><a href="#cb13-269" aria-hidden="true" tabindex="-1"></a>Wann ist der Einsatz von Farbe sinnvoll? Immer dann wenn sie dem Publikum das lesen des Diagramms erleichtert. Farbe muss nicht unterhalten, sondern ein Signal senden. Verändert sich etwas in der Grafik oder gibt es einen wichtigen Punkt zu beachten? Dann muss das Publikum auf diesen Umstand aufmerksam gemacht werden. Das geht nur, wenn die Farbe zurückhalten und durchgehend, also nicht in jeder Visualisierung eine andere Farbe verwenden. Die kognitive Belastung reduziert sich, wenn die Bedeutung einer Farbe innerhalb eines Visualisierungsportfolio (beispielsweise in einem Paper oder in einer Präsentation) gleich bleibt <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 100-101</span><span class="co">]</span> Ansonsten besteht nicht nur die Gefahr, dass das Publikum verwirrt sondern gar aktiv in die Irregeführt wird. <span class="co">[</span><span class="ot">@borland2007, S. 15</span><span class="co">]</span></span>
+<span id="cb13-252"><a href="#cb13-252" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Es gibt viele Programme um die Farbenblindheit zu simulieren. Beispielsweise die Websiten <span class="co">[</span><span class="ot">hclwizard.org/cvdemulator</span><span class="co">](http://hclwizard.org:3000/cvdemulator/)</span> oder <span class="co">[</span><span class="ot">vischeck.com</span><span class="co">](http://www.vischeck.com)</span>.</span>
+<span id="cb13-253"><a href="#cb13-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-256"><a href="#cb13-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-257"><a href="#cb13-257" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-farbskalen</span></span>
+<span id="cb13-258"><a href="#cb13-258" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb13-259"><a href="#cb13-259" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Das R Paket colorspace [@colorspa] ist ein flexibles Werkzeug um eigene Farbpaletten zu erstellen (beispielsweise eine Okabe Ito Farbskala) oder auf bestehende Skalen zuzugreifen."</span></span>
+<span id="cb13-260"><a href="#cb13-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-261"><a href="#cb13-261" aria-hidden="true" tabindex="-1"></a><span class="fu">swatchplot</span>(</span>
+<span id="cb13-262"><a href="#cb13-262" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Qualitative 1"</span>              <span class="ot">=</span> <span class="fu">qualitative_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"Dark 3"</span>),</span>
+<span id="cb13-263"><a href="#cb13-263" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Qualitative 2"</span>              <span class="ot">=</span> <span class="fu">qualitative_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"Pastel 1"</span>),</span>
+<span id="cb13-264"><a href="#cb13-264" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sequenziell</span><span class="sc">\n</span><span class="st">einfarbig"</span>     <span class="ot">=</span> <span class="fu">sequential_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"Blues"</span>),</span>
+<span id="cb13-265"><a href="#cb13-265" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sequenziell</span><span class="sc">\n</span><span class="st">mehrfarbig"</span>    <span class="ot">=</span> <span class="fu">sequential_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"YlOrRd"</span>),</span>
+<span id="cb13-266"><a href="#cb13-266" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Divergent"</span>                  <span class="ot">=</span> <span class="fu">diverging_hcl</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">palette =</span> <span class="st">"Green-Brown"</span>),</span>
+<span id="cb13-267"><a href="#cb13-267" aria-hidden="true" tabindex="-1"></a>  <span class="at">off =</span> <span class="dv">0</span></span>
+<span id="cb13-268"><a href="#cb13-268" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-269"><a href="#cb13-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-270"><a href="#cb13-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-271"><a href="#cb13-271" aria-hidden="true" tabindex="-1"></a><span class="fu">## TODO - Mit Daten Geschichten erzählen</span></span>
+<span id="cb13-271"><a href="#cb13-271" aria-hidden="true" tabindex="-1"></a>Wann ist der Einsatz von Farbe sinnvoll? Immer dann wenn sie dem Publikum das lesen des Diagramms erleichtert. Farbe muss nicht unterhalten, sondern ein Signal senden. Verändert sich etwas in der Grafik oder gibt es einen wichtigen Punkt zu beachten? Dann muss das Publikum auf diesen Umstand aufmerksam gemacht werden. Das geht nur, wenn die Farbe zurückhalten und durchgehend, also nicht in jeder Visualisierung eine andere Farbe verwenden. Die kognitive Belastung reduziert sich, wenn die Bedeutung einer Farbe innerhalb eines Visualisierungsportfolio (beispielsweise in einem Paper oder in einer Präsentation) gleich bleibt <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 100-101</span><span class="co">]</span> Ansonsten besteht nicht nur die Gefahr, dass das Publikum verwirrt sondern gar aktiv in die Irregeführt wird. <span class="co">[</span><span class="ot">@borland2007, S. 15</span><span class="co">]</span></span>
 <span id="cb13-272"><a href="#cb13-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-273"><a href="#cb13-273" aria-hidden="true" tabindex="-1"></a>nussbaumercole 84-86</span>
+<span id="cb13-273"><a href="#cb13-273" aria-hidden="true" tabindex="-1"></a><span class="fu">### Gestaltungsprizipien in Datenvisualisierungen {#sec-gestaltungsprizipien-in-datenvisualisierungen}</span></span>
 <span id="cb13-274"><a href="#cb13-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-275"><a href="#cb13-275" aria-hidden="true" tabindex="-1"></a>@nussbaumerknaflic2017 S. 98 und 177</span>
+<span id="cb13-275"><a href="#cb13-275" aria-hidden="true" tabindex="-1"></a>Die Aufnahme von Informationen ist für das Gehirn eine mentale Anstrengung. Die Gerhinkapazität des Publikums ist begrenzt, daher muss die kognitive Belastung muss folglich bewusst und effektiv gestaltet sein. Das bedeutet, relevanten Informationen mit bei möglichst geringer wahrgenommene kognitive Belastung kommuniziert werden. Dafür müssen die Signale (die Informationen die vermittelt werden) gestärkt und das Rauchen (Elemente die von der Information ablenken) reduziert werden. Das Diagramm soll eingänglich und einfach erscheinen. Komplizierte Grafiken können das Publikum abschrecken und ihre Aufmerksamkeit geht verloren. Die Gestaltprinzipien der visuellen Wahrnehmung helfen die Signale einer Grafik zu erkennen und Rauschen zu minimieren. Damit das verfolgte Ziel mit den präsentieren Daten einfach erkennbar ist. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 61-63</span><span class="co">]</span> Die Überlegungen und Grafiken zu den Gestaltprinzipien folgen den Ausführungen von Nussbaumer Knaflic <span class="co">[</span><span class="ot">-@nussbaumerknaflic2017</span><span class="co">]</span> im Kapitel *Gestaltprinzipien der visuellen Wahrnehmung*:</span>
 <span id="cb13-276"><a href="#cb13-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-277"><a href="#cb13-277" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vorgehen Methode</span></span>
-<span id="cb13-278"><a href="#cb13-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-279"><a href="#cb13-279" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tidy Data als Basis von Visualisuerngen</span></span>
-<span id="cb13-280"><a href="#cb13-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-281"><a href="#cb13-281" aria-hidden="true" tabindex="-1"></a>Für die effektive Anwendung Datenvisualisierungen müssen die Daten als "Tidy Data" <span class="co">[</span><span class="ot">@wickham2014</span><span class="co">]</span> aufbereitet sein. Folgende Kriterien müssen gemäss Wickham <span class="co">[</span><span class="ot">@wickham2014, S. 4</span><span class="co">]</span> erfüllt sein, damit ein Datensatz dem Grundatz Tidy Data entspricht:</span>
-<span id="cb13-282"><a href="#cb13-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-283"><a href="#cb13-283" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Jede Variable hat eine eigene Spalte.</span>
+<span id="cb13-277"><a href="#cb13-277" aria-hidden="true" tabindex="-1"></a>::: {#fig-naehe layout-ncol="2"}</span>
+<span id="cb13-278"><a href="#cb13-278" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_naehe.jpg)</span></span>
+<span id="cb13-279"><a href="#cb13-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-280"><a href="#cb13-280" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_naehe2.jpg)</span></span>
+<span id="cb13-281"><a href="#cb13-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-282"><a href="#cb13-282" aria-hidden="true" tabindex="-1"></a>Das Gestaltprinzip der Nähe.</span>
+<span id="cb13-283"><a href="#cb13-283" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb13-284"><a href="#cb13-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-285"><a href="#cb13-285" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Jede Beobachtung hat eine eigene Zeile.</span>
+<span id="cb13-285"><a href="#cb13-285" aria-hidden="true" tabindex="-1"></a>Durch die physische nähe der Punkte, werden sie als Zusammegehörig wahrgenommen. Durch die Anordnung und Nutzung von Zwischenräumen sehen die Augen Gruppen, Linien etc.. Bei den vertikalen Reihen ist der Weissraum (Zwischenräume) grösser zwischen den nebeneinander liegenden Punkten und den horizontalen zwischen den oberen und unteren Punkten.</span>
 <span id="cb13-286"><a href="#cb13-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-287"><a href="#cb13-287" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Jeder Wert hat eine eigene Zelle.</span>
-<span id="cb13-288"><a href="#cb13-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-289"><a href="#cb13-289" aria-hidden="true" tabindex="-1"></a>!<span class="co">[</span><span class="ot">Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: [@wickham2016, S. 149]</span><span class="co">](images/image-192429895.png)</span>{#fig-tidy-data-struktur}</span>
-<span id="cb13-290"><a href="#cb13-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-291"><a href="#cb13-291" aria-hidden="true" tabindex="-1"></a>Die Standartisierung der Organisation von Datenwerten in einem Datensatz durch den Tidy Data Ansatz vereinfacht die Datenanalyse, indem die Datenstruktur (Zweidimensionale Tabelle mit Spalten und Zeilen) mit einer Semantik (Variablen, Beobachtungen, Werte) verknüpft wird. Es ist nicht immer einfach Herauszufinden, was Beobachtungen und was Variablen sind. Um die Variablen und Beobachtungen für eine Datenanalyse herauszufinden, gilt der Grundsatz: Beziehungen lassen sich einfacher zwischen Variablen beschreiben und Vergleiche zwischen Gruppen von Beobachtungen. <span class="co">[</span><span class="ot">@wickham2014, S. 3-4</span><span class="co">]</span></span>
-<span id="cb13-292"><a href="#cb13-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-293"><a href="#cb13-293" aria-hidden="true" tabindex="-1"></a>!<span class="co">[</span><span class="ot">Ordnung durch Tidy Data. Quelle: [@lowndes2020]</span><span class="co">](images/tidy_data.jpg)</span>{#fig-tidy-data fig-alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way."}</span>
+<span id="cb13-287"><a href="#cb13-287" aria-hidden="true" tabindex="-1"></a>::: {#fig-aehnlichkeit layout-ncol="2"}</span>
+<span id="cb13-288"><a href="#cb13-288" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_aehnlichkeit.jpg)</span></span>
+<span id="cb13-289"><a href="#cb13-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-290"><a href="#cb13-290" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_aehnlichkeit2.jpg)</span></span>
+<span id="cb13-291"><a href="#cb13-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-292"><a href="#cb13-292" aria-hidden="true" tabindex="-1"></a>Das Gestaltprinzip der Ähnlichkeit.</span>
+<span id="cb13-293"><a href="#cb13-293" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb13-294"><a href="#cb13-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-295"><a href="#cb13-295" aria-hidden="true" tabindex="-1"></a>Abgesehen, dass mit Tidy Data eine konsistente Methode für die Datenspeicherung verwendet wird, kann R die Vorteile einer vektorisierten Programmiersprache so optimal ausschöpfen. <span class="co">[</span><span class="ot">@wickham2016, S. 150</span><span class="co">]</span> Vektorisiert bedeutet, das eine Funktion einen Vektor mit Werten als Input nimmt und einen Vektor mit der gleichen Anzahl an Werten als Output retourniert. <span class="co">[</span><span class="ot">@wickham2016, S. 56</span><span class="co">]</span> Tidy Data entspricht einem langen Datenformat. Dadurch entsteht eine Redundanz an Werten, was bei der Speicherung von Daten nicht gewünscht ist, aber die Datenanalyse vereinfacht. <span class="co">[</span><span class="ot">@healy2018a, S. 56</span><span class="co">]</span></span>
+<span id="cb13-295"><a href="#cb13-295" aria-hidden="true" tabindex="-1"></a>Haben Objekte eine ähnliche Erscheinung (Form, Farbe, Grösse, etc) so stellt unser Gehirn eine Verbindung zwischen diesen Punkten her. Damit kann dem Publikum wichtige Interpretationhilfe geboten werden und die kognitive Belastung tief halten. Beispielsweise sehen wir durch die Färbung der Punkte in der zweiten Grafik Linien.</span>
 <span id="cb13-296"><a href="#cb13-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-297"><a href="#cb13-297" aria-hidden="true" tabindex="-1"></a><span class="fu">### Die Beziehung von Daten und Visualiserungen mit "Grammer of Graphics" {#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics}</span></span>
-<span id="cb13-298"><a href="#cb13-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-299"><a href="#cb13-299" aria-hidden="true" tabindex="-1"></a>Die Visualisierungen im entwickelten Paket **kissviz** basieren auf dem Paket **ggplot2** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die grammer of graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. Bei Visualisierungen besteht eine strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik. Dieser Prozess wird *mapping* genannt. Bei **ggplot2** werden Daten auf bestimmte visuelle Elemente zugeordnet. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit **ggplot2** folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Damit eine solche Verbindung entstehen kann wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit **ggplot2** eine Grafik erstellen kann. Um die Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird. <span class="co">[</span><span class="ot">@healy2018, S. 54-56</span><span class="co">]</span></span>
-<span id="cb13-300"><a href="#cb13-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-301"><a href="#cb13-301" aria-hidden="true" tabindex="-1"></a>...details zu grammer of graphics <span class="co">[</span><span class="ot">@wilkinson2012</span><span class="co">]</span></span>
-<span id="cb13-302"><a href="#cb13-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-303"><a href="#cb13-303" aria-hidden="true" tabindex="-1"></a>Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. <span class="co">[</span><span class="ot">@wickham2010, S. 4-5</span><span class="co">]</span> Die Umsetzung in **ggplot2** folgt immer dem gleichen Konzept <span class="co">[</span><span class="ot">@healy2018, S. 60</span><span class="co">]</span>:</span>
+<span id="cb13-297"><a href="#cb13-297" aria-hidden="true" tabindex="-1"></a>::: {#fig-umrandung layout-ncol="2"}</span>
+<span id="cb13-298"><a href="#cb13-298" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_umrandung.jpg)</span></span>
+<span id="cb13-299"><a href="#cb13-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-300"><a href="#cb13-300" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_umrandung2.jpg)</span></span>
+<span id="cb13-301"><a href="#cb13-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-302"><a href="#cb13-302" aria-hidden="true" tabindex="-1"></a>Das Gestaltprinzip der Umrandung</span>
+<span id="cb13-303"><a href="#cb13-303" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb13-304"><a href="#cb13-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-305"><a href="#cb13-305" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Daten als Tidy Data aufbereiten.</span>
+<span id="cb13-305"><a href="#cb13-305" aria-hidden="true" tabindex="-1"></a>Durch einen Rahmen können Teilemengen einfach als Gruppe indentifiziert werden. Die Fläche kann schattiert werden oder klassisch mit Linien umrandet. Die Umrandung ist hilfreich zur Unterscheidung von unterschiedlichen (Daten-) Bereichen.</span>
 <span id="cb13-306"><a href="#cb13-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-309"><a href="#cb13-309" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-310"><a href="#cb13-310" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb13-307"><a href="#cb13-307" aria-hidden="true" tabindex="-1"></a>::: {#fig-form layout-ncol="2"}</span>
+<span id="cb13-308"><a href="#cb13-308" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_form.jpg)</span></span>
+<span id="cb13-309"><a href="#cb13-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-310"><a href="#cb13-310" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_form2.jpg)</span></span>
 <span id="cb13-311"><a href="#cb13-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-312"><a href="#cb13-312" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Tidy Data</span></span>
-<span id="cb13-313"><a href="#cb13-313" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">|&gt;</span> </span>
-<span id="cb13-314"><a href="#cb13-314" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(manufacturer<span class="sc">:</span>cyl, class) <span class="sc">|&gt;</span> </span>
-<span id="cb13-315"><a href="#cb13-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb13-316"><a href="#cb13-316" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
-<span id="cb13-317"><a href="#cb13-317" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-318"><a href="#cb13-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-319"><a href="#cb13-319" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Daten definieren und welche Beziehung soll abgebildet werden.</span>
-<span id="cb13-320"><a href="#cb13-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-323"><a href="#cb13-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-324"><a href="#cb13-324" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
-<span id="cb13-325"><a href="#cb13-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-326"><a href="#cb13-326" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Mapping</span></span>
-<span id="cb13-327"><a href="#cb13-327" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> </span>
-<span id="cb13-328"><a href="#cb13-328" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> mpg,</span>
-<span id="cb13-329"><a href="#cb13-329" aria-hidden="true" tabindex="-1"></a>         <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="co"># aesthetics</span></span>
-<span id="cb13-330"><a href="#cb13-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-331"><a href="#cb13-331" aria-hidden="true" tabindex="-1"></a>plot</span>
-<span id="cb13-332"><a href="#cb13-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-333"><a href="#cb13-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-334"><a href="#cb13-334" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Wahl des geometrischen Objekts. Es sind mehrere Layer möglich. Die *aesthetics* können je *geom* in der `geom_*()` Funktion angepasst werden.</span>
-<span id="cb13-335"><a href="#cb13-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-338"><a href="#cb13-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-339"><a href="#cb13-339" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb13-312"><a href="#cb13-312" aria-hidden="true" tabindex="-1"></a>Das Gestaltprinzip der Form.</span>
+<span id="cb13-313"><a href="#cb13-313" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-314"><a href="#cb13-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-315"><a href="#cb13-315" aria-hidden="true" tabindex="-1"></a>Unser Hirn neigt dazu, einzelne Elemente in einer Reihe wenn möglich als ein einzige Form wahrzunehmen. Trotz den Lücken in der Kreisform erkennt unser Gehirn einen Kreis, indem er die fehlenden Teile ausfüllt. Dazu muss das Konstrukt aber bekannt und eine einfach Darstellung sein. Dank dem Konzept der Form erkennen wir auch, die Zusammengehörigkeit einer Grafik ohne einen Rahmen. Gleichzeitig wird das Rauschen reduziert und die Daten hervorgehoben.</span>
+<span id="cb13-316"><a href="#cb13-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-317"><a href="#cb13-317" aria-hidden="true" tabindex="-1"></a>::: {#fig-kontinuitaet layout-ncol="2"}</span>
+<span id="cb13-318"><a href="#cb13-318" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_kontinuitaet.jpg)</span></span>
+<span id="cb13-319"><a href="#cb13-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-320"><a href="#cb13-320" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_kontinuitaet2.jpg)</span></span>
+<span id="cb13-321"><a href="#cb13-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-322"><a href="#cb13-322" aria-hidden="true" tabindex="-1"></a>Das Gestaltprinzip der Kontinuität.</span>
+<span id="cb13-323"><a href="#cb13-323" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-324"><a href="#cb13-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-325"><a href="#cb13-325" aria-hidden="true" tabindex="-1"></a>Unser Gehirn sucht in Objekten die Kontinuität und das Bekannte. Daher erwarten die meisten Menschen beim Auseinander nehmen des Bildes 1, das Bild 2, obwohl es genauso gut Bild 3 sein könnte. Im Balkendiagramm wird kein y-Achse benötigt, da unser Hirn die Linie selber zeichnet und erkennt, dass alle Balken am gleichen Punkt starten. Da die Distanz bzw. der Weissraum zwischen der Beschriftung (links) und den dargestellten Daten (rechtes) überall identisch ist, wird eine Linie produziert.</span>
+<span id="cb13-326"><a href="#cb13-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-327"><a href="#cb13-327" aria-hidden="true" tabindex="-1"></a>::: {#fig-verbindung layout-ncol="2"}</span>
+<span id="cb13-328"><a href="#cb13-328" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_verbindung.jpg)</span></span>
+<span id="cb13-329"><a href="#cb13-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-330"><a href="#cb13-330" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gestaltprinzip_verbindung2.jpg)</span></span>
+<span id="cb13-331"><a href="#cb13-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-332"><a href="#cb13-332" aria-hidden="true" tabindex="-1"></a>Das Gestaltprinzip der Verbindung.</span>
+<span id="cb13-333"><a href="#cb13-333" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-334"><a href="#cb13-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-335"><a href="#cb13-335" aria-hidden="true" tabindex="-1"></a>Das Gestaltprinzip der Verbindung ist stärker als das Prinzip der Ähnlichkeit und schwächer als die Umrandung. Das heisst, die Zusammengehörigkeit von Verbundene Elemente ist stärker als die gleiche Farbe, Grösse oder Form. Eine Umrandung ist besitzt jedoch eine höhere visuelle Hirarchie als die Verbindung, wodurch die Objekte in einem Rahmen zusammengehörig wahrgenommen werden obwohl sie mit einem anderen Objekten verbunden sind. Verbindungen helfen, den Datenpunkten eine Ordnung zugeben und wird unteranderem bei Liniendiagrammen eingesetzt. In den meisten Liniendiagrammen bestehen aus einzelnen Datenpunkten, welche erste dank dem Gestaltprinzip der Verbindung als Kontinuum erkennbar werden.</span>
+<span id="cb13-336"><a href="#cb13-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-337"><a href="#cb13-337" aria-hidden="true" tabindex="-1"></a>...nussbaumercole 88, 90, 91-93, 105</span>
+<span id="cb13-338"><a href="#cb13-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-339"><a href="#cb13-339" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mit Daten Geschichten erzählen</span></span>
 <span id="cb13-340"><a href="#cb13-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-341"><a href="#cb13-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Geom</span></span>
-<span id="cb13-342"><a href="#cb13-342" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> </span>
-<span id="cb13-343"><a href="#cb13-343" aria-hidden="true" tabindex="-1"></a>  plot <span class="sc">+</span> </span>
-<span id="cb13-344"><a href="#cb13-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
-<span id="cb13-345"><a href="#cb13-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-346"><a href="#cb13-346" aria-hidden="true" tabindex="-1"></a>plot</span>
-<span id="cb13-347"><a href="#cb13-347" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-348"><a href="#cb13-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-349"><a href="#cb13-349" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Kontrolle von Details im Diagramm inkl. Koordinatensystem. Default ist das kartesische Koordinatensystem <span class="co">[</span><span class="ot">@wilke2020, S.13</span><span class="co">]</span>.</span>
-<span id="cb13-350"><a href="#cb13-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-353"><a href="#cb13-353" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-354"><a href="#cb13-354" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb13-341"><a href="#cb13-341" aria-hidden="true" tabindex="-1"></a>Die Vermittlung von Analysen ist üblicherweise der einzige Teil welches das Publikum zu sehen bekommt von einer Datenanalyse. Folglich sollte dieser Schritt möglichst erfolgreich und nachhaltig gestaltet werden. Damit das erreicht werden kann, muss der Wechsel von der erforschenden Analyse zur erkärenden Analyse erfolgen. Die erforschende Analyse ist der Prozess, welcher uns zu neuem Verständnis und Erkenntnissen führt. Bei der Vermittlung der Resultate kann aber nicht der gesamte analytische Prozess wiedergeben werden, daher ist es wichtig einem erklärenden Ansatz anzuwenden. Hier möchten wir einen bestimmte Erkenntnis erklären und analysieren, die für das Publikum und die gegebene Situation wichtig ist. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 17</span><span class="co">]</span></span>
+<span id="cb13-342"><a href="#cb13-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-343"><a href="#cb13-343" aria-hidden="true" tabindex="-1"></a>|                                          | erforschende Analyse                | erklärende Analyse          |</span>
+<span id="cb13-344"><a href="#cb13-344" aria-hidden="true" tabindex="-1"></a>|:-----------------------|:-----------------------|:-----------------------|</span>
+<span id="cb13-345"><a href="#cb13-345" aria-hidden="true" tabindex="-1"></a>| Ziel                                     | Verstehen                           | Kommunizieren               |</span>
+<span id="cb13-346"><a href="#cb13-346" aria-hidden="true" tabindex="-1"></a>| Publikum                                 | Analyst:in                          | andere Personen             |</span>
+<span id="cb13-347"><a href="#cb13-347" aria-hidden="true" tabindex="-1"></a>| Vertrautheit des Publikums mit den Daten | Sehr vertraut                       | Nicht bis wenige vertraut   |</span>
+<span id="cb13-348"><a href="#cb13-348" aria-hidden="true" tabindex="-1"></a>| Fokus der Visualisierung                 | Flexibel und schnell                | Einfach, klar und schlüssig |</span>
+<span id="cb13-349"><a href="#cb13-349" aria-hidden="true" tabindex="-1"></a>| Erzählung                                | Unwissend                           | Wissend                     |</span>
+<span id="cb13-350"><a href="#cb13-350" aria-hidden="true" tabindex="-1"></a>| Resultat                                 | Insighet (Verständnis &amp; Erkenntnis) | Aktion                      |</span>
+<span id="cb13-351"><a href="#cb13-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-352"><a href="#cb13-352" aria-hidden="true" tabindex="-1"></a>: Die zwei Arten der Analyse. Quelle: <span class="co">[</span><span class="ot">@dykes2020, S. 138</span><span class="co">]</span> mit eigenen Anpassungen. {#tbl-erforschen-erklaeren}</span>
+<span id="cb13-353"><a href="#cb13-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-354"><a href="#cb13-354" aria-hidden="true" tabindex="-1"></a>In der Forschung ist das die Beantwortung der Forschungsfrage und im geschäftlichen Umfeld biespielsweise die Erkärung weshalb der Pendenzenstand im Team A zugenommen hat. Um die Fragen zu beantworten, werden eine Vielzahl von erforschenden Analysen durchgeführt, aber nur einige wenige geben Informationen um die Fragestellung zu beantworten. Auf diese Informationen wird bei der erklärenden Analyse eingegangen. Damit die Argumente überzeugen und die Erkenntnisse in Erinnerung bleiben, wird eine packende Geschichte benötigt. Die Erzählung einer Geschichte hilf, die gewonnen Fakten aus der erforschenden Analyse bei der erklärenden Analyse dem Publikum interessant und nachvollziehbar zu präsentieren. Damit das möglich ist, muss der Kontext eruiert werden. Wer ist das Publikum und in welcher Rolle stehe ich zum Zielpublikum? Je nach Situation muss eine andere Kommunikation gewählt werden, damit die Geschichte ihr Ziel erreicht. Was soll das Publikum wissen? Erkennen was für das Publikum spannend und relevant ist. Hier wir die Handlung der Geschichte definiert. Dabei muss immer die Frage beantwortet werden, weshalb soll sich das Publikum für die Geschichte interessieren soll. Wie kann die Frage beantwortet werden? Bei diesem Schritt werden die Daten ausgewählt, welche die Geschichte untermauern und plausibilisieren. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 18-23</span><span class="co">]</span> Um den Kontext einer Data Story zu erfassen, ist der Startpunkt am Ende des Prozesses der Entwicklung einer Data Story. Damit die Geischichte entstehen kann, werden zuerst die Daten untersucht und anschiessend die entscheidenden Erkenntnisse dem Publikum präsentiert. <span class="co">[</span><span class="ot">@dykes2020, S. 136</span><span class="co">]</span> Was aber ist eine Geschichte? Bei einer Geschichte werden Beobachtungen, Erkenntnisse und Ereignisse in eine bestimmte Reihenfolge gebracht, mit dem Ziel beim Publikum eine emotionale Wirkung zu erzielen. Durch den Aufbau einer Spannung am Anfang und der Lösung am Ende der Geschichte fesselt eine Geschichte das Publikum, was eine emotionale Reaktion verursacht. <span class="co">[</span><span class="ot">@wilke2020, S. 304</span><span class="co">]</span> Neben der Wiederholung ist die emotionale Wirkung der Geschichte deren Spannungsbogen wichtig, damit sie in unserem Gedächnis bleibt. Es gibt eine Vielzahl von narrativen Strukturen und Methoden des Storytellings, sei es im Theater, im Film oder bei Texten. Eine einfache Methode für das Datastorytelling ist das Muster Anfang-Mitte-Ende, welches im dem klassischen Narrativ eines Forschungspaper (Einleitung-Hauptteil-Schlussfolgerung) gleicht. Am Anfang wir de Handlung eingeführt und eine Auslegeordnung gemacht, damit das Publikum erkennt weshalb die Geschichte wichtig für sie ist. Was ist der Kontext, welches sind die Schlüsselpunkte, was ist das Problem und was ist die gewünschte Lösungen. In der Mitte muss das Publikum von einem Sachstand überzeugt werden. Deshalb steht das "wie" der Problemlösung im Zentrum. Dafür wird das Thema in ins seinen Details (Hintergrundinformationen, Vergleiche, Szenarien, mögliche Problemlösungen) dargestellt. Am Ende wird auf die Ausgangslage Bezug genommen und eine Handlungsempfehlung abgegeben. Über den ganzen Prozess steht immer das Publikum im Mittelpunkt: Warum ist es relevant für sie? Was stösst auf Resonanz und motiviert? Dabei steht jedes mal der gleiche Inhalt zur Debatte lediglich aus unterschiedlichen Perspektiven (Einführen, Details, Zusammenfassen).<span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 146-149</span><span class="co">]</span> Bei der Integration von Datenvisualisierungen in Geschichte müssen gewisse Punkte berücksichtigt werden. Erstens kann eine einzelne Visualisierung keine ganze Geschichte erzählen. Damit mit Visualisierung eine Geschichte erzählt werden kann, benötigt es mehrere Diagramme. Je Station des Storytellings benötigt es in der Regel mindestens eine Grafik. Sowenig in Textform der Anfang, die Mitte und das Ende einer Geschichte in einem Satz sinnvoll dargelegt werden kann, kann dies auch keine Visualisierung erreichen. <span class="co">[</span><span class="ot">@wilke2020, S. 305</span><span class="co">]</span> Damit die Visualisierung (Form) den gewünschten Effekt (Funktion) auslösst, muss die Form (Visualisierung) der Funktion (Effekt). Das heisst, mit der Visualisierung soll etwas auslösen, damit das funktioniert, benötigt sie eine vorher definierte Funktion (Was soll die Grafik machen?). Um die Funktion des Diagramms zu zeigen werden visuelle Affordanzen benutzt. Die wichtigste Methode dafür ist bei der Datenvisualisierung die Verwendung von Farben (vgl. @sec-farben-als-steuerungsinstrument). Damit die Hervorhebung seine Wirkung entfalten kann, ist es wichtig sparsam mit diesem Tool umzugehen. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 107-109</span><span class="co">]</span> Zudem muss die Visualisierung Zugänglichkeit, nicht das Publikum ist verantwortlich, dass es die Grafik versteht sondern der Autor. Durch ein verständliches Design (keine unnötige Komplexität), Lesbarkeit (Schriftart und Grösse), Klarheit (wichtiges wird Hervorgehoben) und einfche Sprache (Publikum angepasst). Das Publikum muss durch das Diagramm geführt werden, dazu sind Titel, Achsenbeschriftungen und direkte Annotationen notwendig. <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 118-119</span><span class="co">]</span> Werden alle diese Punkte berücksichtige und alle Elemente folgen einer visuellen Ordnung, dann hat das Diagramm eine ansprechende Ästhetik, wodurch das Vertrauen des Publikums gewonnen wird <span class="co">[</span><span class="ot">@nussbaumerknaflic2017, S. 68 &amp; S. 123</span><span class="co">]</span></span>
 <span id="cb13-355"><a href="#cb13-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-356"><a href="#cb13-356" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Details</span></span>
-<span id="cb13-357"><a href="#cb13-357" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> </span>
-<span id="cb13-358"><a href="#cb13-358" aria-hidden="true" tabindex="-1"></a>  plot <span class="sc">+</span></span>
-<span id="cb13-359"><a href="#cb13-359" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb13-360"><a href="#cb13-360" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-361"><a href="#cb13-361" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"SUVs sind die grösse Gruppe von Fahrzeugtypen"</span>,</span>
-<span id="cb13-362"><a href="#cb13-362" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Autotyp"</span>,</span>
-<span id="cb13-363"><a href="#cb13-363" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Anzahl"</span></span>
-<span id="cb13-364"><a href="#cb13-364" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb13-365"><a href="#cb13-365" aria-hidden="true" tabindex="-1"></a>  cowplot<span class="sc">::</span><span class="fu">theme_minimal_hgrid</span>()</span>
-<span id="cb13-366"><a href="#cb13-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-367"><a href="#cb13-367" aria-hidden="true" tabindex="-1"></a>plot</span>
-<span id="cb13-368"><a href="#cb13-368" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-356"><a href="#cb13-356" aria-hidden="true" tabindex="-1"></a>... evt. Grafik bei nussbaumer auf Seite 114 hinzufügen.</span>
+<span id="cb13-357"><a href="#cb13-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-358"><a href="#cb13-358" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vorgehen Methode</span></span>
+<span id="cb13-359"><a href="#cb13-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-360"><a href="#cb13-360" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tidy Data als Basis von Visualisuerngen</span></span>
+<span id="cb13-361"><a href="#cb13-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-362"><a href="#cb13-362" aria-hidden="true" tabindex="-1"></a>Für die effektive Anwendung Datenvisualisierungen müssen die Daten als "Tidy Data" <span class="co">[</span><span class="ot">@wickham2014</span><span class="co">]</span> aufbereitet sein. Folgende Kriterien müssen gemäss Wickham <span class="co">[</span><span class="ot">@wickham2014, S. 4</span><span class="co">]</span> erfüllt sein, damit ein Datensatz dem Grundatz Tidy Data entspricht:</span>
+<span id="cb13-363"><a href="#cb13-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-364"><a href="#cb13-364" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Jede Variable hat eine eigene Spalte.</span>
+<span id="cb13-365"><a href="#cb13-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-366"><a href="#cb13-366" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Jede Beobachtung hat eine eigene Zeile.</span>
+<span id="cb13-367"><a href="#cb13-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-368"><a href="#cb13-368" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Jeder Wert hat eine eigene Zelle.</span>
 <span id="cb13-369"><a href="#cb13-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-370"><a href="#cb13-370" aria-hidden="true" tabindex="-1"></a>...<span class="co">[</span><span class="ot">@hehman2021</span><span class="co">]</span>,</span>
+<span id="cb13-370"><a href="#cb13-370" aria-hidden="true" tabindex="-1"></a>!<span class="co">[</span><span class="ot">Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: [@wickham2016, S. 149]</span><span class="co">](images/image-192429895.png)</span>{#fig-tidy-data-struktur}</span>
 <span id="cb13-371"><a href="#cb13-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-372"><a href="#cb13-372" aria-hidden="true" tabindex="-1"></a><span class="fu">### TODO - R-Paket Entwicklungs Prozess</span></span>
+<span id="cb13-372"><a href="#cb13-372" aria-hidden="true" tabindex="-1"></a>Die Standartisierung der Organisation von Datenwerten in einem Datensatz durch den Tidy Data Ansatz vereinfacht die Datenanalyse, indem die Datenstruktur (Zweidimensionale Tabelle mit Spalten und Zeilen) mit einer Semantik (Variablen, Beobachtungen, Werte) verknüpft wird. Es ist nicht immer einfach Herauszufinden, was Beobachtungen und was Variablen sind. Um die Variablen und Beobachtungen für eine Datenanalyse herauszufinden, gilt der Grundsatz: Beziehungen lassen sich einfacher zwischen Variablen beschreiben und Vergleiche zwischen Gruppen von Beobachtungen. <span class="co">[</span><span class="ot">@wickham2014, S. 3-4</span><span class="co">]</span></span>
 <span id="cb13-373"><a href="#cb13-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-374"><a href="#cb13-374" aria-hidden="true" tabindex="-1"></a>...<span class="co">[</span><span class="ot">@chang2013</span><span class="co">]</span></span>
+<span id="cb13-374"><a href="#cb13-374" aria-hidden="true" tabindex="-1"></a>!<span class="co">[</span><span class="ot">Ordnung durch Tidy Data. Quelle: [@lowndes2020]</span><span class="co">](images/tidy_data.jpg)</span>{#fig-tidy-data fig-alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way."}</span>
 <span id="cb13-375"><a href="#cb13-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-376"><a href="#cb13-376" aria-hidden="true" tabindex="-1"></a>...<span class="co">[</span><span class="ot">@wickham2015</span><span class="co">]</span></span>
+<span id="cb13-376"><a href="#cb13-376" aria-hidden="true" tabindex="-1"></a>Abgesehen, dass mit Tidy Data eine konsistente Methode für die Datenspeicherung verwendet wird, kann R die Vorteile einer vektorisierten Programmiersprache so optimal ausschöpfen. <span class="co">[</span><span class="ot">@wickham2016, S. 150</span><span class="co">]</span> Vektorisiert bedeutet, das eine Funktion einen Vektor mit Werten als Input nimmt und einen Vektor mit der gleichen Anzahl an Werten als Output retourniert. <span class="co">[</span><span class="ot">@wickham2016, S. 56</span><span class="co">]</span> Tidy Data entspricht einem langen Datenformat. Dadurch entsteht eine Redundanz an Werten, was bei der Speicherung von Daten nicht gewünscht ist, aber die Datenanalyse vereinfacht. <span class="co">[</span><span class="ot">@healy2018a, S. 56</span><span class="co">]</span></span>
 <span id="cb13-377"><a href="#cb13-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-378"><a href="#cb13-378" aria-hidden="true" tabindex="-1"></a>... online dokumentatione</span>
+<span id="cb13-378"><a href="#cb13-378" aria-hidden="true" tabindex="-1"></a><span class="fu">### Die Beziehung von Daten und Visualiserungen mit "Grammer of Graphics" {#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics}</span></span>
 <span id="cb13-379"><a href="#cb13-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-380"><a href="#cb13-380" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultat</span></span>
+<span id="cb13-380"><a href="#cb13-380" aria-hidden="true" tabindex="-1"></a>Die Visualisierungen im entwickelten Paket **kissviz** basieren auf dem Paket **ggplot2** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die Grammer of Graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. In der Theorie folgt die Grammer of Graphics sieben Schritten zur Erstellung einer Grafik. Daten werden Variablen zugeordnet. Anschliessend durchlaufen die Variablen drei Transformationsschritte (Algebra, Skalen, Statistik). Danach werden die transformierten Variablen einem geometrischen Objekt übergeben, damit die Daten eine Form erhalten. Im nächsten Schritt wird das Objekt in einem Koordinatensystem positioniert. Zum Schluss wird ein Visuell wahrnehmbares Objekt erstellt, das Grafik heisst. [@wilkinson2012, S. 376-377] Diese strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik macht sich das Paket **ggplot2** zu eigen um Diagramme zu erstellen. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit **ggplot2** folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den Skalen der grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Am Ende des Visualisierungsprozess wird diese Verbindung in eine Grafik umgewandelt. Damit eine solche Verbindung entstehen kann, wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit **ggplot2** eine Grafik erstellen kann. Um mehr Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. [@healy2018, S. 54-56] Viele Schritte der Grammer of Graphics haben bei **ggplot2** abhängig von den Daten und dem gewählten *geom* eine Voreinstellung. Beispielsweise bei den Transformationsschritten und dem Koordinatensystem. Die Einstellungen können aber manuell angepasst werden. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird.</span>
 <span id="cb13-381"><a href="#cb13-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-382"><a href="#cb13-382" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fazit / Schlussfolgerung</span></span>
+<span id="cb13-382"><a href="#cb13-382" aria-hidden="true" tabindex="-1"></a>Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. Am Ende besteht ein Diagramm immer aus einer Kombination von drei Quellen: 1. Daten, dessen Datenwerte durch das geom dargestellt werden. 2. Skalen und Koordinatensystem um die Daten in eine Grafik umzuwandeln. 3. Erläuterungen wie Labels oder Titel damit die Grafik interpretierbar wird. <span class="co">[</span><span class="ot">@wickham2010, S. 4-5</span><span class="co">]</span></span>
 <span id="cb13-383"><a href="#cb13-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-384"><a href="#cb13-384" aria-hidden="true" tabindex="-1"></a><span class="fu">## Literaturverzeichnis {.unnumbered}</span></span>
+<span id="cb13-384"><a href="#cb13-384" aria-hidden="true" tabindex="-1"></a>Die Umsetzung in **ggplot2** folgt immer dem gleichen Konzept <span class="co">[</span><span class="ot">@healy2018, S. 60</span><span class="co">]</span>:</span>
+<span id="cb13-385"><a href="#cb13-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-386"><a href="#cb13-386" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Daten als Tidy Data aufbereiten.</span>
+<span id="cb13-387"><a href="#cb13-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-390"><a href="#cb13-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-391"><a href="#cb13-391" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb13-392"><a href="#cb13-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-393"><a href="#cb13-393" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Tidy Data</span></span>
+<span id="cb13-394"><a href="#cb13-394" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">|&gt;</span> </span>
+<span id="cb13-395"><a href="#cb13-395" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(manufacturer<span class="sc">:</span>cyl, class) <span class="sc">|&gt;</span> </span>
+<span id="cb13-396"><a href="#cb13-396" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb13-397"><a href="#cb13-397" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb13-398"><a href="#cb13-398" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-399"><a href="#cb13-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-400"><a href="#cb13-400" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Daten definieren und welche Beziehung soll abgebildet werden.</span>
+<span id="cb13-401"><a href="#cb13-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-404"><a href="#cb13-404" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-405"><a href="#cb13-405" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb13-406"><a href="#cb13-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-407"><a href="#cb13-407" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Mapping</span></span>
+<span id="cb13-408"><a href="#cb13-408" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> </span>
+<span id="cb13-409"><a href="#cb13-409" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> mpg,</span>
+<span id="cb13-410"><a href="#cb13-410" aria-hidden="true" tabindex="-1"></a>         <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> class)) <span class="co"># aesthetics</span></span>
+<span id="cb13-411"><a href="#cb13-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-412"><a href="#cb13-412" aria-hidden="true" tabindex="-1"></a>plot</span>
+<span id="cb13-413"><a href="#cb13-413" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-414"><a href="#cb13-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-415"><a href="#cb13-415" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Wahl des geometrischen Objekts. Es sind mehrere Layer möglich. Die *aesthetics* können je *geom* in der `geom_*()` Funktion angepasst werden.</span>
+<span id="cb13-416"><a href="#cb13-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-419"><a href="#cb13-419" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-420"><a href="#cb13-420" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb13-421"><a href="#cb13-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-422"><a href="#cb13-422" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Geom</span></span>
+<span id="cb13-423"><a href="#cb13-423" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> </span>
+<span id="cb13-424"><a href="#cb13-424" aria-hidden="true" tabindex="-1"></a>  plot <span class="sc">+</span> </span>
+<span id="cb13-425"><a href="#cb13-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb13-426"><a href="#cb13-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-427"><a href="#cb13-427" aria-hidden="true" tabindex="-1"></a>plot</span>
+<span id="cb13-428"><a href="#cb13-428" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-429"><a href="#cb13-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-430"><a href="#cb13-430" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Kontrolle von Details im Diagramm inkl. Koordinatensystem. Default ist das kartesische Koordinatensystem <span class="co">[</span><span class="ot">@wilke2020, S.13</span><span class="co">]</span>.</span>
+<span id="cb13-431"><a href="#cb13-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-434"><a href="#cb13-434" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-435"><a href="#cb13-435" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb13-436"><a href="#cb13-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-437"><a href="#cb13-437" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Details</span></span>
+<span id="cb13-438"><a href="#cb13-438" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> </span>
+<span id="cb13-439"><a href="#cb13-439" aria-hidden="true" tabindex="-1"></a>  plot <span class="sc">+</span></span>
+<span id="cb13-440"><a href="#cb13-440" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb13-441"><a href="#cb13-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-442"><a href="#cb13-442" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"SUVs sind die grösse Gruppe von Fahrzeugtypen"</span>,</span>
+<span id="cb13-443"><a href="#cb13-443" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Autotyp"</span>,</span>
+<span id="cb13-444"><a href="#cb13-444" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Anzahl"</span></span>
+<span id="cb13-445"><a href="#cb13-445" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb13-446"><a href="#cb13-446" aria-hidden="true" tabindex="-1"></a>  cowplot<span class="sc">::</span><span class="fu">theme_minimal_hgrid</span>()</span>
+<span id="cb13-447"><a href="#cb13-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-448"><a href="#cb13-448" aria-hidden="true" tabindex="-1"></a>plot</span>
+<span id="cb13-449"><a href="#cb13-449" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-450"><a href="#cb13-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-451"><a href="#cb13-451" aria-hidden="true" tabindex="-1"></a>...<span class="co">[</span><span class="ot">@hehman2021</span><span class="co">]</span>,</span>
+<span id="cb13-452"><a href="#cb13-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-453"><a href="#cb13-453" aria-hidden="true" tabindex="-1"></a><span class="fu">### TODO - R-Paket Entwicklungs Prozess</span></span>
+<span id="cb13-454"><a href="#cb13-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-455"><a href="#cb13-455" aria-hidden="true" tabindex="-1"></a>...<span class="co">[</span><span class="ot">@chang2013</span><span class="co">]</span></span>
+<span id="cb13-456"><a href="#cb13-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-457"><a href="#cb13-457" aria-hidden="true" tabindex="-1"></a>...<span class="co">[</span><span class="ot">@wickham2015</span><span class="co">]</span></span>
+<span id="cb13-458"><a href="#cb13-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-459"><a href="#cb13-459" aria-hidden="true" tabindex="-1"></a>... online dokumentatione</span>
+<span id="cb13-460"><a href="#cb13-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-461"><a href="#cb13-461" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultat</span></span>
+<span id="cb13-462"><a href="#cb13-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-463"><a href="#cb13-463" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fazit / Schlussfolgerung</span></span>
+<span id="cb13-464"><a href="#cb13-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-465"><a href="#cb13-465" aria-hidden="true" tabindex="-1"></a><span class="fu">## Literaturverzeichnis {.unnumbered}</span></span>
 </code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

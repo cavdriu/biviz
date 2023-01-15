@@ -21,12 +21,14 @@ format:
     code-fold: true
     code-tools: true
     #code-link: true
-  # pdf:
-  #   number-sections: true
-  #   colorlinks: true
-  # # geometry:
-  # #     - top=30mm
-  # #     - left=30mm
+  pdf:
+    number-sections: true
+    colorlinks: true
+    execute:
+      echo: false
+  # geometry:
+  #     - top=30mm
+  #     - left=30mm
 ---
 
 # Testing (H1)
@@ -173,7 +175,7 @@ abfall_zh_sample |>
     y = `Menge in Tonnen`, 
     group = Gemeinde) +
   # nicht notwendig, macht den plot aber etwas hübscher
-  labs(x = "Gemeinde") +
+  labs(x = "Gemeinde") + 
   theme(legend.position = "none")
 ```
 
@@ -223,7 +225,7 @@ Neben linearen Achsen gibt es auch nichtlineare Skalen, welche meistens eine log
 
 ### Farben als Steuerungsinstrument {#sec-farben-als-steuerungsinstrument}
 
-Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. [@nussbaumerknaflic2017, S. 98-99] Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkiet nicht bewusst wahr. Das genaue Zusammenspiel der verschiedenen Gedächnissen wird im Kapitel @sec-visualisierungs-design erläutert. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. [@nussbaumerknaflic2017, S. 83-86]Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.
+Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. [@nussbaumerknaflic2017, S. 98-99] Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkeit nicht bewusst wahr. Bereits nach Sekundenbruchteile wird das Signal ans Kurzzeitgedächtnis weitergeleitet. Hier werden die Informationen verarbeitet. Da das Kurzzeitgedächtnis nur einen begrenzte Kapazität hat, muss beim Datastorytelling die Reize für das Gehrin bewusst gesteuert werden. Die kognitive Belastung für das Publikum soll möglichst gering sein, damit sie die die vermittelten Informationen erhalten. Das Kurzzeitgedächntnsi kann in etwa vier Elemente visueller Informationen zeitgleich Verarbeiten. Indem Informationen als Zusammenhängende visuelle Elemente dargestellt werden, wird die kognitive Belastung für das Publikum reduziert und besitzt dennoch eine hohe Informationsdichte. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. [@nussbaumerknaflic2017, S. 83-86]Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.
 
 ::: {layout-ncol="2"}
 ![Zahlen ohne präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 86\]](images/ohne_praeattentive_merkmale.jpg){#fig-ohne_praeattetiven_merkmalen}
@@ -252,11 +254,90 @@ swatchplot(
 
 Wann ist der Einsatz von Farbe sinnvoll? Immer dann wenn sie dem Publikum das lesen des Diagramms erleichtert. Farbe muss nicht unterhalten, sondern ein Signal senden. Verändert sich etwas in der Grafik oder gibt es einen wichtigen Punkt zu beachten? Dann muss das Publikum auf diesen Umstand aufmerksam gemacht werden. Das geht nur, wenn die Farbe zurückhalten und durchgehend, also nicht in jeder Visualisierung eine andere Farbe verwenden. Die kognitive Belastung reduziert sich, wenn die Bedeutung einer Farbe innerhalb eines Visualisierungsportfolio (beispielsweise in einem Paper oder in einer Präsentation) gleich bleibt [@nussbaumerknaflic2017, S. 100-101] Ansonsten besteht nicht nur die Gefahr, dass das Publikum verwirrt sondern gar aktiv in die Irregeführt wird. [@borland2007, S. 15]
 
-## TODO - Mit Daten Geschichten erzählen
+### Gestaltungsprizipien in Datenvisualisierungen {#sec-gestaltungsprizipien-in-datenvisualisierungen}
 
-nussbaumercole 84-86
+Die Aufnahme von Informationen ist für das Gehirn eine mentale Anstrengung. Die Gerhinkapazität des Publikums ist begrenzt, daher muss die kognitive Belastung muss folglich bewusst und effektiv gestaltet sein. Das bedeutet, relevanten Informationen mit bei möglichst geringer wahrgenommene kognitive Belastung kommuniziert werden. Dafür müssen die Signale (die Informationen die vermittelt werden) gestärkt und das Rauchen (Elemente die von der Information ablenken) reduziert werden. Das Diagramm soll eingänglich und einfach erscheinen. Komplizierte Grafiken können das Publikum abschrecken und ihre Aufmerksamkeit geht verloren. Die Gestaltprinzipien der visuellen Wahrnehmung helfen die Signale einer Grafik zu erkennen und Rauschen zu minimieren. Damit das verfolgte Ziel mit den präsentieren Daten einfach erkennbar ist. [@nussbaumerknaflic2017, S. 61-63] Die Überlegungen und Grafiken zu den Gestaltprinzipien folgen den Ausführungen von Nussbaumer Knaflic [-@nussbaumerknaflic2017] im Kapitel *Gestaltprinzipien der visuellen Wahrnehmung*:
 
-@nussbaumerknaflic2017 S. 98 und 177
+::: {#fig-naehe layout-ncol="2"}
+![](images/gestaltprinzip_naehe.jpg)
+
+![](images/gestaltprinzip_naehe2.jpg)
+
+Das Gestaltprinzip der Nähe.
+:::
+
+Durch die physische nähe der Punkte, werden sie als Zusammegehörig wahrgenommen. Durch die Anordnung und Nutzung von Zwischenräumen sehen die Augen Gruppen, Linien etc.. Bei den vertikalen Reihen ist der Weissraum (Zwischenräume) grösser zwischen den nebeneinander liegenden Punkten und den horizontalen zwischen den oberen und unteren Punkten.
+
+::: {#fig-aehnlichkeit layout-ncol="2"}
+![](images/gestaltprinzip_aehnlichkeit.jpg)
+
+![](images/gestaltprinzip_aehnlichkeit2.jpg)
+
+Das Gestaltprinzip der Ähnlichkeit.
+:::
+
+Haben Objekte eine ähnliche Erscheinung (Form, Farbe, Grösse, etc) so stellt unser Gehirn eine Verbindung zwischen diesen Punkten her. Damit kann dem Publikum wichtige Interpretationhilfe geboten werden und die kognitive Belastung tief halten. Beispielsweise sehen wir durch die Färbung der Punkte in der zweiten Grafik Linien.
+
+::: {#fig-umrandung layout-ncol="2"}
+![](images/gestaltprinzip_umrandung.jpg)
+
+![](images/gestaltprinzip_umrandung2.jpg)
+
+Das Gestaltprinzip der Umrandung
+:::
+
+Durch einen Rahmen können Teilemengen einfach als Gruppe indentifiziert werden. Die Fläche kann schattiert werden oder klassisch mit Linien umrandet. Die Umrandung ist hilfreich zur Unterscheidung von unterschiedlichen (Daten-) Bereichen.
+
+::: {#fig-form layout-ncol="2"}
+![](images/gestaltprinzip_form.jpg)
+
+![](images/gestaltprinzip_form2.jpg)
+
+Das Gestaltprinzip der Form.
+:::
+
+Unser Hirn neigt dazu, einzelne Elemente in einer Reihe wenn möglich als ein einzige Form wahrzunehmen. Trotz den Lücken in der Kreisform erkennt unser Gehirn einen Kreis, indem er die fehlenden Teile ausfüllt. Dazu muss das Konstrukt aber bekannt und eine einfach Darstellung sein. Dank dem Konzept der Form erkennen wir auch, die Zusammengehörigkeit einer Grafik ohne einen Rahmen. Gleichzeitig wird das Rauschen reduziert und die Daten hervorgehoben.
+
+::: {#fig-kontinuitaet layout-ncol="2"}
+![](images/gestaltprinzip_kontinuitaet.jpg)
+
+![](images/gestaltprinzip_kontinuitaet2.jpg)
+
+Das Gestaltprinzip der Kontinuität.
+:::
+
+Unser Gehirn sucht in Objekten die Kontinuität und das Bekannte. Daher erwarten die meisten Menschen beim Auseinander nehmen des Bildes 1, das Bild 2, obwohl es genauso gut Bild 3 sein könnte. Im Balkendiagramm wird kein y-Achse benötigt, da unser Hirn die Linie selber zeichnet und erkennt, dass alle Balken am gleichen Punkt starten. Da die Distanz bzw. der Weissraum zwischen der Beschriftung (links) und den dargestellten Daten (rechtes) überall identisch ist, wird eine Linie produziert.
+
+::: {#fig-verbindung layout-ncol="2"}
+![](images/gestaltprinzip_verbindung.jpg)
+
+![](images/gestaltprinzip_verbindung2.jpg)
+
+Das Gestaltprinzip der Verbindung.
+:::
+
+Das Gestaltprinzip der Verbindung ist stärker als das Prinzip der Ähnlichkeit und schwächer als die Umrandung. Das heisst, die Zusammengehörigkeit von Verbundene Elemente ist stärker als die gleiche Farbe, Grösse oder Form. Eine Umrandung ist besitzt jedoch eine höhere visuelle Hirarchie als die Verbindung, wodurch die Objekte in einem Rahmen zusammengehörig wahrgenommen werden obwohl sie mit einem anderen Objekten verbunden sind. Verbindungen helfen, den Datenpunkten eine Ordnung zugeben und wird unteranderem bei Liniendiagrammen eingesetzt. In den meisten Liniendiagrammen bestehen aus einzelnen Datenpunkten, welche erste dank dem Gestaltprinzip der Verbindung als Kontinuum erkennbar werden.
+
+...nussbaumercole 88, 90, 91-93, 105
+
+### Mit Daten Geschichten erzählen
+
+Die Vermittlung von Analysen ist üblicherweise der einzige Teil welches das Publikum zu sehen bekommt von einer Datenanalyse. Folglich sollte dieser Schritt möglichst erfolgreich und nachhaltig gestaltet werden. Damit das erreicht werden kann, muss der Wechsel von der erforschenden Analyse zur erkärenden Analyse erfolgen. Die erforschende Analyse ist der Prozess, welcher uns zu neuem Verständnis und Erkenntnissen führt. Bei der Vermittlung der Resultate kann aber nicht der gesamte analytische Prozess wiedergeben werden, daher ist es wichtig einem erklärenden Ansatz anzuwenden. Hier möchten wir einen bestimmte Erkenntnis erklären und analysieren, die für das Publikum und die gegebene Situation wichtig ist. [@nussbaumerknaflic2017, S. 17]
+
+|                                          | erforschende Analyse                | erklärende Analyse          |
+|:-----------------------|:-----------------------|:-----------------------|
+| Ziel                                     | Verstehen                           | Kommunizieren               |
+| Publikum                                 | Analyst:in                          | andere Personen             |
+| Vertrautheit des Publikums mit den Daten | Sehr vertraut                       | Nicht bis wenige vertraut   |
+| Fokus der Visualisierung                 | Flexibel und schnell                | Einfach, klar und schlüssig |
+| Erzählung                                | Unwissend                           | Wissend                     |
+| Resultat                                 | Insighet (Verständnis & Erkenntnis) | Aktion                      |
+
+: Die zwei Arten der Analyse. Quelle: [@dykes2020, S. 138] mit eigenen Anpassungen. {#tbl-erforschen-erklaeren}
+
+In der Forschung ist das die Beantwortung der Forschungsfrage und im geschäftlichen Umfeld biespielsweise die Erkärung weshalb der Pendenzenstand im Team A zugenommen hat. Um die Fragen zu beantworten, werden eine Vielzahl von erforschenden Analysen durchgeführt, aber nur einige wenige geben Informationen um die Fragestellung zu beantworten. Auf diese Informationen wird bei der erklärenden Analyse eingegangen. Damit die Argumente überzeugen und die Erkenntnisse in Erinnerung bleiben, wird eine packende Geschichte benötigt. Die Erzählung einer Geschichte hilf, die gewonnen Fakten aus der erforschenden Analyse bei der erklärenden Analyse dem Publikum interessant und nachvollziehbar zu präsentieren. Damit das möglich ist, muss der Kontext eruiert werden. Wer ist das Publikum und in welcher Rolle stehe ich zum Zielpublikum? Je nach Situation muss eine andere Kommunikation gewählt werden, damit die Geschichte ihr Ziel erreicht. Was soll das Publikum wissen? Erkennen was für das Publikum spannend und relevant ist. Hier wir die Handlung der Geschichte definiert. Dabei muss immer die Frage beantwortet werden, weshalb soll sich das Publikum für die Geschichte interessieren soll. Wie kann die Frage beantwortet werden? Bei diesem Schritt werden die Daten ausgewählt, welche die Geschichte untermauern und plausibilisieren. [@nussbaumerknaflic2017, S. 18-23] Um den Kontext einer Data Story zu erfassen, ist der Startpunkt am Ende des Prozesses der Entwicklung einer Data Story. Damit die Geischichte entstehen kann, werden zuerst die Daten untersucht und anschiessend die entscheidenden Erkenntnisse dem Publikum präsentiert. [@dykes2020, S. 136] Was aber ist eine Geschichte? Bei einer Geschichte werden Beobachtungen, Erkenntnisse und Ereignisse in eine bestimmte Reihenfolge gebracht, mit dem Ziel beim Publikum eine emotionale Wirkung zu erzielen. Durch den Aufbau einer Spannung am Anfang und der Lösung am Ende der Geschichte fesselt eine Geschichte das Publikum, was eine emotionale Reaktion verursacht. [@wilke2020, S. 304] Neben der Wiederholung ist die emotionale Wirkung der Geschichte deren Spannungsbogen wichtig, damit sie in unserem Gedächnis bleibt. Es gibt eine Vielzahl von narrativen Strukturen und Methoden des Storytellings, sei es im Theater, im Film oder bei Texten. Eine einfache Methode für das Datastorytelling ist das Muster Anfang-Mitte-Ende, welches im dem klassischen Narrativ eines Forschungspaper (Einleitung-Hauptteil-Schlussfolgerung) gleicht. Am Anfang wir de Handlung eingeführt und eine Auslegeordnung gemacht, damit das Publikum erkennt weshalb die Geschichte wichtig für sie ist. Was ist der Kontext, welches sind die Schlüsselpunkte, was ist das Problem und was ist die gewünschte Lösungen. In der Mitte muss das Publikum von einem Sachstand überzeugt werden. Deshalb steht das "wie" der Problemlösung im Zentrum. Dafür wird das Thema in ins seinen Details (Hintergrundinformationen, Vergleiche, Szenarien, mögliche Problemlösungen) dargestellt. Am Ende wird auf die Ausgangslage Bezug genommen und eine Handlungsempfehlung abgegeben. Über den ganzen Prozess steht immer das Publikum im Mittelpunkt: Warum ist es relevant für sie? Was stösst auf Resonanz und motiviert? Dabei steht jedes mal der gleiche Inhalt zur Debatte lediglich aus unterschiedlichen Perspektiven (Einführen, Details, Zusammenfassen).[@nussbaumerknaflic2017, S. 146-149] Bei der Integration von Datenvisualisierungen in Geschichte müssen gewisse Punkte berücksichtigt werden. Erstens kann eine einzelne Visualisierung keine ganze Geschichte erzählen. Damit mit Visualisierung eine Geschichte erzählt werden kann, benötigt es mehrere Diagramme. Je Station des Storytellings benötigt es in der Regel mindestens eine Grafik. Sowenig in Textform der Anfang, die Mitte und das Ende einer Geschichte in einem Satz sinnvoll dargelegt werden kann, kann dies auch keine Visualisierung erreichen. [@wilke2020, S. 305] Damit die Visualisierung (Form) den gewünschten Effekt (Funktion) auslösst, muss die Form (Visualisierung) der Funktion (Effekt). Das heisst, mit der Visualisierung soll etwas auslösen, damit das funktioniert, benötigt sie eine vorher definierte Funktion (Was soll die Grafik machen?). Um die Funktion des Diagramms zu zeigen werden visuelle Affordanzen benutzt. Die wichtigste Methode dafür ist bei der Datenvisualisierung die Verwendung von Farben (vgl. @sec-farben-als-steuerungsinstrument). Damit die Hervorhebung seine Wirkung entfalten kann, ist es wichtig sparsam mit diesem Tool umzugehen. [@nussbaumerknaflic2017, S. 107-109] Zudem muss die Visualisierung Zugänglichkeit, nicht das Publikum ist verantwortlich, dass es die Grafik versteht sondern der Autor. Durch ein verständliches Design (keine unnötige Komplexität), Lesbarkeit (Schriftart und Grösse), Klarheit (wichtiges wird Hervorgehoben) und einfche Sprache (Publikum angepasst). Das Publikum muss durch das Diagramm geführt werden, dazu sind Titel, Achsenbeschriftungen und direkte Annotationen notwendig. [@nussbaumerknaflic2017, S. 118-119] Werden alle diese Punkte berücksichtige und alle Elemente folgen einer visuellen Ordnung, dann hat das Diagramm eine ansprechende Ästhetik, wodurch das Vertrauen des Publikums gewonnen wird [@nussbaumerknaflic2017, S. 68 & S. 123]
+
+... evt. Grafik bei nussbaumer auf Seite 114 hinzufügen.
 
 ## Vorgehen Methode
 
@@ -280,7 +361,7 @@ Abgesehen, dass mit Tidy Data eine konsistente Methode für die Datenspeicherung
 
 ### Die Beziehung von Daten und Visualiserungen mit "Grammer of Graphics" {#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics}
 
-Die Visualisierungen im entwickelten Paket **kissviz** basieren auf dem Paket **ggplot2** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die Grammer of Graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. In der Theorie folgt die Grammer of Graphics sieben Schritten zur Erstellung einer Grafik. Daten werden Variablen zugeordnet. Anschliessend durchlaufen die Variablen drei Transformationsschritte (Algebra, Skalen, Statistik). Danach werden die transformierten Variablen einem geometrischen Objekt übergeben, damit die Daten eine Form erhalten. Im nächsten Schritt wird das Objekt in einem Koordinatensystem positioniert. Zum Schluss wird ein Visuell wahrnehmbares Objekt erstellt, das Grafik heisst. [@wilkinson2012, S. 376] Diese strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik macht sich das Paket **ggplot2** zu eigen um Diagramme zu erstellen. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit **ggplot2** folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den Skalen der grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Am Ende des Visualisierungsprozess wird diese Verbindung in eine Grafik umgewandelt. Damit eine solche Verbindung entstehen kann, wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit **ggplot2** eine Grafik erstellen kann. Um mehr Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. [@healy2018, S. 54-56] Viele Schritte der Grammer of Graphics haben bei **ggplot2** abhängig von den Daten und dem gewählten *geom* eine Voreinstellung. Beispielsweise bei den Transformationsschritten und dem Koordinatensystem. Die Einstellungen können aber manuell angepasst werden. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird.
+Die Visualisierungen im entwickelten Paket **kissviz** basieren auf dem Paket **ggplot2** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die Grammer of Graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. In der Theorie folgt die Grammer of Graphics sieben Schritten zur Erstellung einer Grafik. Daten werden Variablen zugeordnet. Anschliessend durchlaufen die Variablen drei Transformationsschritte (Algebra, Skalen, Statistik). Danach werden die transformierten Variablen einem geometrischen Objekt übergeben, damit die Daten eine Form erhalten. Im nächsten Schritt wird das Objekt in einem Koordinatensystem positioniert. Zum Schluss wird ein Visuell wahrnehmbares Objekt erstellt, das Grafik heisst. [@wilkinson2012, S. 376-377] Diese strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik macht sich das Paket **ggplot2** zu eigen um Diagramme zu erstellen. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit **ggplot2** folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den Skalen der grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Am Ende des Visualisierungsprozess wird diese Verbindung in eine Grafik umgewandelt. Damit eine solche Verbindung entstehen kann, wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit **ggplot2** eine Grafik erstellen kann. Um mehr Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. [@healy2018, S. 54-56] Viele Schritte der Grammer of Graphics haben bei **ggplot2** abhängig von den Daten und dem gewählten *geom* eine Voreinstellung. Beispielsweise bei den Transformationsschritten und dem Koordinatensystem. Die Einstellungen können aber manuell angepasst werden. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird.
 
 Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. Am Ende besteht ein Diagramm immer aus einer Kombination von drei Quellen: 1. Daten, dessen Datenwerte durch das geom dargestellt werden. 2. Skalen und Koordinatensystem um die Daten in eine Grafik umzuwandeln. 3. Erläuterungen wie Labels oder Titel damit die Grafik interpretierbar wird. [@wickham2010, S. 4-5]
 
