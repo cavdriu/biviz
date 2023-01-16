@@ -325,7 +325,7 @@ Das Gestaltprinzip der Verbindung ist stärker als das Prinzip der Ähnlichkeit 
 Die Vermittlung von Analysen ist üblicherweise der einzige Teil welches das Publikum zu sehen bekommt von einer Datenanalyse. Folglich sollte dieser Schritt möglichst erfolgreich und nachhaltig gestaltet werden. Damit das erreicht werden kann, muss der Wechsel von der erforschenden Analyse zur erkärenden Analyse erfolgen. Die erforschende Analyse ist der Prozess, welcher uns zu neuem Verständnis und Erkenntnissen führt. Bei der Vermittlung der Resultate kann aber nicht der gesamte analytische Prozess wiedergeben werden, daher ist es wichtig einem erklärenden Ansatz anzuwenden. Hier möchten wir einen bestimmte Erkenntnis erklären und analysieren, die für das Publikum und die gegebene Situation wichtig ist. [@nussbaumerknaflic2017, S. 17]
 
 |                                          | erforschende Analyse                | erklärende Analyse          |
-|:-----------------------|:-----------------------|:-----------------------|
+|:--------------------------|:------------------------|:-------------------|
 | Ziel                                     | Verstehen                           | Kommunizieren               |
 | Publikum                                 | Analyst:in                          | andere Personen             |
 | Vertrautheit des Publikums mit den Daten | Sehr vertraut                       | Nicht bis wenige vertraut   |
@@ -426,7 +426,50 @@ plot
 
 ...[@hehman2021],
 
-### TODO - R-Paket Entwicklungs Prozess
+## TODO - R-Paket Entwicklungs Prozess
+
+### Struktur im Prozess
+
+Zu Beginn des Entwicklungsprozesses standen organisatorische Entscheide im Fokus. Zum einen musst die Ordnerstruktur des Pakets bestimmt und zum anderen eine Strategie für die Benennung der Funktionen definiert werden. Beide Aspekte helfen eine Struktur im Paket zu etablieren. Die Ordnerstruktur im **biviz** Paket folgt der Empfehlung von Bannert [@bannert2022, Kapitel 3.2.5]:
+
+-   R
+
+    Hier werden die Skripts der Funktionen gespeichert. Die einzelnen Funktionen des Pakets werden Thematisch in einer Datei zusammengefasst. Dank dem Paket **roxygen2** [@hadleywickham2022] kann die Dokumentation der Funktionen gleich im selben Skript wie die Funktionen geschrieben werden. Mit dem Paket **devtools** [@hadleywickham2022a] werden automatisch alle relevanten Dateien für die Dokumentation erzeugt.
+
+-   man
+
+    In diesen Ordner wird im normallfall die automatisch erzeugte Dokumentation abgespeichert und beinhaltet die Funktion- und Datendokumentationen. Diese Dokumentationen werden bei der Anwendung des Pakets mithilfe ?function_name oder help(function_name) aufgerufen.
+
+-   data
+
+    Damit der Bezug der Daten relativ bleibt werden sie in einem separaten Ordern abgespeichert. Der relative Bezug auf Daten und Funktionen (R) ist wichtig, damit andere Nutzende das Programm einfach verwenden können und der Pfad nicht aufgrund der persönlichen Ordnerstruktur gebrochen wird. Weitere Details zu relativen Datenpfaden hat Jenny Bryan ein einem Blogpost dargestellt. [@jennybryan2017]
+
+-   inst
+
+    R Pakete werden in der Regel mit `install.packages()` installiert und werden irgendwo auf dem Computer auf dem R verwendet wird abgespeichert. Sollen Dateien welche nicht direkt in Zusammenhang mit dem Paket stehen mitgeliefert werden, dann ist der inst Ordner ein guter Ort dafür. Der Ordner wird im Stammordner des installierten Pakets gespeichert und bleibt so immer in Bezug zum Paket. Der Ordner bietet auch Platz für Sandboxes oder um mit neuen Funktionen zu experimentieren.
+
+    ... wietere Ordner
+
+Neben der Ordnerstruktur ist für die stringente Entwicklung und anschliessende Nutzung des Pakets ist eine einheitliche Syntax wichtig. Für **biviz** wird der snake_case Ansatz verwendet. Beim snake_case werden alle Begriffe in Kleinbuchstaben oder Zahlen verwendet und mit einem Unterstrich ( \_ ) verbunden. Neben der Darstellung ist auch der Inhalt wichtig. Gute Namen können bereits eine Form der Dokumentation sein und entsprechend beschreiben was sie repräsentieren. Als Faustregel gilt: Variablen sind Nomen und beschreiben was sie sind (`abfallart`). Funktionen sind Verben und beschreiben was sie machen (`plot_amounts_grouped`). [@hadleywickham2022b] Es hilft sich in Erinnerung zu rufen, dass der Code auch von Menschen gelesen und verstanden werden muss. Für den Computer ist es nicht relevant ob `function1()` oder `compute_average()` steht. Für einen Menschen ist es jedoch ein grosser Unterschied und macht den Code verständlicher. Entsprechend soll der Code einfach und verständlich für Menschen gehalten werden.
+
+### Tidy evaluation
+
+Im Tidyverse Ecosystem wird Tidy evaluation verwendet, was eine Spezialform des non-standard evaluation ist (mehr Details zu non-standard evaluation [@wickham2019, Abschnitt Metaprogramming]). Für das Paket **biviz** wurde das data masking und tidy selection angewendet. Mit dem **data masking** können Variablen in bestimmten Funktionen so verwendet werden als ob sie in der Programmierumgebung sind. Es reicht dann `variable_x` zu verwenden anstatt `df$variable_x`. Mit data masking soll die Abgrenzung zwischen env-variables (Variablen fürs Programmieren, welche in R mit `<-` erstellt werden und Objekte sind) und data-variables (Statistische Variablen welche in Datentabellen gespeichert sind).
+
+```{r}
+df <- data.frame(variable_x = c(1:3), variable_y = c("a", "b", "c"))
+
+```
+
+Beim **tidy selection** können in gewissen Funktionen auf die Variablen anhand ihres Namen, Typ oder Postition zugegriffen werden.
+
+https://dplyr.tidyverse.org/articles/programming.html
+
+https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html#referring-to-ggplot2-functions
+
+https://rlang.r-lib.org/reference/topic-data-mask.html
+
+09.10.2022
 
 ...[@chang2013]
 
