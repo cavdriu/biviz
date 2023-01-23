@@ -42,6 +42,7 @@ library(lubridate)
 library(cowplot)
 library(colorspace)
 library(palmerpenguins)
+library(biviz)
 devtools::load_all()
 ```
 
@@ -101,7 +102,7 @@ The `echo: false` option disables the printing of code (only output is displayed
 
 Wichtige Aspekte werden hier besprochen. [@nussbaumerknaflic2017]
 
-## Von Datenwerten zu Visualisierung
+## Von Datenwerten zu Visualisierung {#sec-von-datenwerten-zu-visualisierung}
 
 ####TODO: Begrifflichkeiten -\> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene
 
@@ -132,11 +133,11 @@ Aesthetics werden in 2 Skalen unterteilt: solche die kontinuierliche Daten darst
 
 abfall_zh <- 
   read_csv(here::here("data", "KTZH_00001803_00003460.csv")) |> 
-  select(!c("Gemeinde_Nr", "Einheit")) |> 
-  rename("Menge in Tonnen" = Wert)
+  select(!c("Gemeinde_Nr", "Einheit"))
 
 abfall_zh_sample <- 
   abfall_zh|> 
+  rename("Menge in Tonnen" = Wert) |> 
   filter(row_number() %% 214 == 1)
 
 abfall_zh_sample |> 
@@ -179,7 +180,7 @@ abfall_zh_sample |>
   theme(legend.position = "none")
 ```
 
-### Das kartesisches Koordinatensystem als Positionsskala
+### Das kartesisches Koordinatensystem als Positionsskala {#sec-das-kartesisches-koordinatensystem-als-positionsskala}
 
 Bei Beispiel (@fig-abfall_zh) entspricht die Positionsskala einem kartesischen 2D-Koordinatensystem. Jeder Ort ist durch einen x- und y-Wert eindeutig markiert. Da die Achsen positive als auch negative Zahlen darstellen, muss der Zahlenbereich für jede Achse definiert werden. Bei diesem Beispiel verläuft die y-Achse von 0 bis 2297.4 (5% über dem höchsten y-Wert, welcher bei diesem Beispiel 2188 ist). Ist ein Datenwert innerhalb des definierten Zahlenbereichs, dann wird er im Diagramm an der entsprechenden Position abgebildet. Ansonsten wird der Wert verworfen und erscheint nicht im Diagramm. [@wilke2020, S. 13]
 
@@ -306,7 +307,7 @@ Unser Hirn neigt dazu, einzelne Elemente in einer Reihe wenn möglich als ein ei
 Das Gestaltprinzip der Kontinuität.
 :::
 
-Unser Gehirn sucht in Objekten die Kontinuität und das Bekannte. Daher erwarten die meisten Menschen beim Auseinander nehmen des Bildes 1, das Bild 2, obwohl es genauso gut Bild 3 sein könnte. Im Balkendiagramm wird kein y-Achse benötigt, da unser Hirn die Linie selber zeichnet und erkennt, dass alle Balken am gleichen Punkt starten. Da die Distanz bzw. der Weissraum zwischen der Beschriftung (links) und den dargestellten Daten (rechtes) überall identisch ist, wird eine Linie produziert.
+Unser Gehirn sucht in Objekten die Kontinuität und das Bekannte. Daher erwarten die meisten Menschen beim Auseinander nehmen des Bildes 1, das Bild 2, obwohl es genauso gut Bild 3 sein könnte. [vgl. auch @kanizsa1970] Im Balkendiagramm wird kein y-Achse benötigt, da unser Hirn die Linie selber zeichnet und erkennt, dass alle Balken am gleichen Punkt starten. Da die Distanz bzw. der Weissraum zwischen der Beschriftung (links) und den dargestellten Daten (rechtes) überall identisch ist, wird eine Linie produziert.
 
 ::: {#fig-verbindung layout-ncol="2"}
 ![](images/gestaltprinzip_verbindung.jpg)
@@ -426,7 +427,7 @@ plot
 
 ...[@hehman2021],
 
-## TODO - R-Paket Entwicklungs Prozess
+## R-Paket Entwicklungs Prozess
 
 ### Struktur im Prozess
 
@@ -434,11 +435,11 @@ Zu Beginn des Entwicklungsprozesses standen organisatorische Entscheide im Fokus
 
 -   R
 
-    Hier werden die Skripts der Funktionen gespeichert. Die einzelnen Funktionen des Pakets werden Thematisch in einer Datei zusammengefasst. Dank dem Paket **roxygen2** [@hadleywickham2022] kann die Dokumentation der Funktionen gleich im selben Skript wie die Funktionen geschrieben werden. Mit dem Paket **devtools** [@hadleywickham2022a] werden automatisch alle relevanten Dateien für die Dokumentation erzeugt.
+    Hier werden die Skripts der Funktionen gespeichert. Die einzelnen Funktionen des Pakets werden Thematisch in einer Datei zusammengefasst. Dank dem Paket **roxygen2** [@hadleywickham2022] kann die Dokumentation der Funktionen gleich im selben Skript wie die Funktionen geschrieben werden. Mit dem Paket **devtools** [@hadleywickham2022a] werden automatisch alle relevanten Dateien für die Dokumentation erzeugt. Devtools erstellt diesen Ordner automatisch.
 
 -   man
 
-    In diesen Ordner wird im normallfall die automatisch erzeugte Dokumentation abgespeichert und beinhaltet die Funktion- und Datendokumentationen. Diese Dokumentationen werden bei der Anwendung des Pakets mithilfe ?function_name oder help(function_name) aufgerufen.
+    In diesen Ordner wird im normallfall die automatisch erzeugte Dokumentation abgespeichert und beinhaltet die Funktion- und Datendokumentationen. Diese Dokumentationen werden bei der Anwendung des Pakets mithilfe ?function_name oder help(function_name) aufgerufen. Devtools erstellt diesen Ordner automatisch.
 
 -   data
 
@@ -454,20 +455,253 @@ Neben der Ordnerstruktur ist für die stringente Entwicklung und anschliessende 
 
 ### Tidy evaluation
 
-Im Tidyverse Ecosystem wird Tidy evaluation verwendet, was eine Spezialform des non-standard evaluation ist (mehr Details zu non-standard evaluation [@wickham2019, Abschnitt Metaprogramming]). Für das Paket **biviz** wurde das data masking und tidy selection angewendet. Mit dem **data masking** können Variablen in bestimmten Funktionen so verwendet werden als ob sie in der Programmierumgebung sind. Es reicht dann `variable_x` zu verwenden anstatt `df$variable_x`. Mit data masking soll die Abgrenzung zwischen env-variables (Variablen fürs Programmieren, welche in R mit `<-` erstellt werden und Objekte sind) und data-variables (Statistische Variablen welche in Datentabellen gespeichert sind).
+Im Tidyverse Ecosystem wird Tidy evaluation verwendet, was eine Spezialform des non-standard evaluation ist (mehr Details zu non-standard evaluation [@wickham2019, Abschnitt Metaprogramming]). Für das Paket **biviz** wurde das data masking und tidy selection angewendet. Mit dem **data-masking** können Variablen in bestimmten Funktionen so verwendet werden als ob sie in der Programmierumgebung bzw. Funktionsumgebung sind. Es reicht dann `variable_x` zu verwenden anstatt `df$variable_x`. Mit data-masking verschwimmt die Abgrenzung zwischen env-variables (Variablen fürs Programmieren, welche in R mit `<-` erstellt werden und Objekte sind) und data-variables (Statistische Variablen welche in Datentabellen gespeichert sind). [@wickham2022] Vereinfacht gesagt, wird durch das data-masking die spezifisch aufgerufene env-variable (im Normalfall eine Datentabelle) zur Programmierumgebung und die data-variable zur env-variable während dem Aufruf der Funktion.
 
 ```{r}
-df <- data.frame(variable_x = c(1:3), variable_y = c("a", "b", "c"))
+#| code-fold: false
+
+df <- tibble(variable_x = c(1, 1, 3), variable_y = c("a", "b", "c"))
+
+# env-variable
+df
+
+# data-variable
+df$variable_x
+
+# ohne tidy evaluation
+df[df$variable_x == 1 & df$variable_y == "a", ]
+
+# mit tidy evaluation
+filter(df, variable_x == 1 & variable_y == "a")
 
 ```
 
-Beim **tidy selection** können in gewissen Funktionen auf die Variablen anhand ihres Namen, Typ oder Postition zugegriffen werden.
+Das tidy evaluation Konzept vereinfacht die interaktive Datenanalyse. Beim Programmieren mit Tools die data-masking benutzen gilt es jedoch gewisse Herausforderungen zu meistern. Beim Schreiben von eigenen Funktionen mit data-variables müssen sie im Code speziell mit {{ variable_x }} ( "{{" wird auch curly-curly genannt) aufgerufen werden. Ohne die Einschliessung in {{ sucht R in der Funktionsumgebung bzw. Programmierumgebung nach einer env-variable "variable_x" und findet sie nicht, da variable_x eine data-variable ist, welche eine Spalte im df (env-variable) ist. {{ ist ein Weiterleitungsoperator, wodurch Funktionen mit data-masking welche in der selber geschriebenen Funktion verwendet werden ihr Verhalten in die neue Umgebung mitnehmen. [@henry2022] & [@henry2022a]
 
-https://dplyr.tidyverse.org/articles/programming.html
+```{r}
+#| code-fold: false
 
-https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html#referring-to-ggplot2-functions
+# interaktive Datenanalyse
+df |> 
+  summarise(max = max(variable_x))
 
-https://rlang.r-lib.org/reference/topic-data-mask.html
+# Funktionen programmieren
+compute_max <-  function(data, variable) {
+  data |> 
+    summarise(max = max({{ variable }}))
+}
+
+compute_max(df, variable_x)
+
+```
+
+Beim **tidy-selection** können in gewissen Funktionen auf die Variablen anhand ihres Namen, Typ oder Postition zugegriffen werden. Tidy-selection folgt den gleichen Prinzipien wie data-masking. Folglich gelten die gleichen Regeln wie oben beim data-masking beschrieben. [@wickham2022]
+
+### Workflow für die Entwickung von Paketen in R
+
+Wie für viele andere Aufgaben gibt es in R ein Paket, welches die Entwicklung von eigenen Paketen unterstützt. Diese Pakete werden im **devtools** [@wickham2022a] zusammengefasst. Nach dem das Paket devtools installiert und geladen ist, kann der Entwicklungsprozess beginnen. Der hier beschriebene Ablauf orientiert sich am Kapitel *The Whole Game* der zweiten Edition des Buches R Packages [@wickham2015a]. Die zweite Edition ist noch nicht veröffentlicht, die work-in-progress Verison steht [online](https://r-pkgs.org/whole-game.html) jedoch zur Verfügung. Folgend werden die Funktionsaufrufen mit Angabe des spezifischen Pakets angegeben, damit die Herkunft der Funktionen ersichtlich ist.
+
+#### Schritt 1: Initiierung des Pakets
+
+Als erstes wird mit `usethis::create_package("dogorcat")` im derzeitigen Arbeitsverzeichnis das Paket erstellen. Alternativ kann auch ein spezifischer Ordner verwendet werden `usethis::create_package("C:/Users/Andriu/Documents/dogorcat").` Mit `usethis::use_git()` und `usethis::use_github()` oder via Tools \> Version Control kann ein Git repository sowie die Verbindung zum GitHub repository erstellt werden.
+
+![Initiierung des Pakets](images/pkg_step_1.JPG){#pkg_development_step_1 fig-align="center"}
+
+#### Schritt 2: Funktionen schreiben {#sec-schritt-2-funktionen-schreiben}
+
+Nach der Initiierung des Pakets können Funktionen geschrieben werden. Zuerst wird mit `usethis::use_r("dog_or_cat")` (kann später auch verwendet werden um das Skript zu öffnen) ein Skriptfile im Ordner R abgespeichert werden. Dieser Schitt kann natürlich auch manuell erfolgen. Anschliessend wird die Funktion geschrieben. Die Funktionen im biviz sind als Familien organisiert. Das heisst, je Thema -- beispielsweise Proportions -- gibt es eine Datei in der der Quellcode und Dokumentation von mehreren Funktionen zusammen leben. Der Code kann direkt in der Funktion mit `#` dokumentiert werden. Wichtig beim Dokumentieren des Codes ist das "Warum?". Warum mache ich das so wie ich es mache. Für weitere Details zum Schreiben von Funktionen eignet sich das Kapitel Functions are for Humans and Computers im Buch R for Data Science [@wickham2016a].
+
+```{r}
+#| code-fold: false
+
+dog_or_cat <- function(favorite) {
+  # eine fehlerhafte eingabe soll so früh wie möglich erkennt werden
+  stopifnot("Das Argument 'favorite' muss ein String sein." = is.character(favorite), 
+            "Kein anderes Haustier möglich. Wähle Dog oder Cat." = favorite == "dog" | favorite == "cat")
+  ifelse(favorite == "cat", "Miauu!", "Woof, woof!")
+}
+```
+
+Mit `devtools::load_all()` ("Ctrl + Shift + L" oder Build \> Load) All kann anschliessend das Paket geladen werden und die Funktion steht zur Verfügung.
+
+```{r}
+#| code-fold: false
+
+dog_or_cat("dog")
+```
+
+Mit `devtools::check()` ("Ctrl + Shift + E" oder Build \> Check Package) wird ein R CMD check aufgerufen, welcher prüft ob das Paket funktionsfähig ist. Es ist zu empfehlen `devtools::check()` regelmässig auszuführen, damit frühzeitig Fehler entdeckt und behoben werden können. Beispielsweise nach dem Schreiben einer neuen Funktion.
+
+#### Schritt 3: Dokumentation
+
+Als erstes werden die Metadaten für das Paket erfasst. Dazu wird das file `DESCRIPTION` geöffnet und die relevanten Daten (Paketname, Autor, Licence, etc.) erfasst. Die Lizenz wird am einfachsten mit einem Shortcut wie `usethis::use_mit_licences()` ausgefüllt.
+
+Anschliessend wird eine Dokumentation für die Funktion erstellt. Dazu wird das Paket **roxygen2** [@wickham2022b]verwendet. Dazu wird im Skript mit der Funktion der Cursor in der Funktion `dog_or_cat` platziert und via Code \> Insert Roxygen Skeleton das Template aufgerufen. Anschliessend können alle Punkte bearbeitet werden.
+
+```{r}
+#| code-fold: false
+
+#' Title
+#'
+#' @param favorite 
+#'
+#' @return 
+#' @export
+#'
+#' @examples
+
+dog_or_cat <- function(favorite) {
+  # eine fehlerhafte eingabe soll so früh wie möglich erkennt werden
+  stopifnot("Das Argument 'favorite' muss ein String sein." = is.character(favorite), 
+            "Kein anderes Haustier möglich. Wähle Dog oder Cat." = favorite == "dog" | 
+              favorite == "cat")
+  ifelse(favorite == "cat", "Miauu!", "Woof, woof!")
+}
+```
+
+Nun soll der Dokumentationsteil noch als separate Datei im Ordner man gespeichert werde, damit es später mit `?dog_or_cat` oder `help("dog_or_cat")` zur Verfügung steht. Mit `devtools::document()` ("Ctrl + Shift + D" oder Build \> Document) wird in man die Datei dog_or_cat.Rd erstellt.
+
+Die Verwendung von Funktionen aus anderen Paketen müssen ebenfalls dokumentiert werden. Dazu wird `usethis::use_package("pkgname")` in `DESCRIPTION` das Paket als Import angegeben und mit `@importFrom` in der Dokumentation vermerkt. Alternativ kann auch die Funktion mit `pkgname::functionname` aufgerufen werden, wodurch das `@importFrom` hinfällig ist.
+
+```{r}
+#| code-fold: false
+
+#' Liebliengshaustier eruieren
+#'
+#' @param favorite 
+#'
+#' @return Ein character (string) Vektor.
+#' @export
+#' 
+#' @importFrom dplyr
+#' if_else
+#'
+#' @examples
+#' dog <- tidy_dog_or_cat("dog")
+#' dog
+
+tidy_dog_or_cat <- function(favorite) {
+  # eine fehlerhafte eingabe soll so früh wie möglich erkennt werden
+  stopifnot("Das Argument 'favorite' muss ein String sein." = is.character(favorite),
+            "Kein anderes Haustier möglich. Wähle Dog oder Cat." = favorite == "dog" | 
+              favorite == "cat")
+  if_else(favorite == "cat", "Miauu!", "Woof, woof!")
+}
+```
+
+Als letztes wird noch ein `README` für GitHub benötigt. Hier wird der Zweck des Pakets, die Installationsanweisungen und einen kleinen Einblick in die Anwendung des Pakets gegeben. Natürlich können noch weitere Punkte ins `README` gepackt werden. Am einfachsten wird mit `devtools::use_readme_rmd()` ein RMakrdown Dokument erstellt, so kann die Seite in gewohnter Umgebung geschrieben werden. Anschliessend wir mit `devtools::build_readme()` das `README.md`für GitHub erstellt. Das `README` ist die Homepage und das Intro ins Paket. Später kann auch eine eigene Website erstellt werden.
+
+#### Schritt 4: Testen
+
+Das Testen der Funktionen ist ein wichtiger Teil der Paketentwicklung. Das Testen ist so wichtig, dass es sich ab einer gewisse Relevanz (Anzahl Funktionen, Anzahl Nutzende, etc.) lohnt die Test zu formalisieren. Mit **testthat** [@wickham2011a] liefert das Paket devtools ein Framework, die das schreiben von Tests unterstützen. Für das Testen von Grafischenoutputs wir zusätzich noch das Paket **vdiffr** [@henry2023] benötigt. Beim Unit Test wird die erwartete Ausgabe eines Codes festgehalten und mit dem tatsächlichen Wert verglichen. Dieser Ablauft läuft automatisch auf der Basis von Code. Beim Snaphot testing wird eine Datei erstellt, die von einem Menschen lesbar ist. Bei Datenvisualisierungen -- wie im Paket **biviz** -- wird das Snaphot testing angewendet. Hier wird ein Bildfile mit der erwarteten Darstellung erstellt. Beim Testen wird anschliessend mit der erwarteten Darstellung angeglichen. Snapshots test für Grafiken sind anfällig. Aus diesem Grund und da sich biviz noch in der Entwicklungsphase ist, werden die Test bei biviz noch informell also händisch gemacht. Ausgenommen davon sind die standartisierten R CMD checks wie in @sec-schritt-2-funktionen-schreiben beschrieben.
+
+**Schritt 5: Installieren**
+
+Vor dem Installieren des Pakets wird nochmals mit `devtools::check()` alles geprüft und anschliessend mit `devtools::install()` (oder von GitHub mit `devtools::install_github()`). Danach wird das Paket wie alle Pakete mit `base::library()` verwendet.
+
+Die effektive Entwicklung von Paketen geschieht in den Schritten zwei bis vier. Die Anwendung und Reihenfolge dieser Schritte ist dabei dynamisch.
+
+### TODO
+
+### Vorteile
+
+Durch das **biviz** Paket sollen oft verwendete Visualisierungen einfach erstellt werden können. Mit einer Funktion kann eine komplexe Visualisierung erstellt werden. Damit das Handling der Funktion einfach bleibt, haben die Funktionen Einschränkungen bzw. können nicht die ganze Palette die in **ggplot2** zur Verfügung stehen anwenden. Wie im Kapitel @sec-von-datenwerten-zu-visualisierung gesehen sind für ein effektives Data Storytelling eine flexible Anpassung von Datenvisualisierungen wichtig. Durch den modularen Aufbau von **ggplot2** geht dies jedoch relativ einfach. Mit dem Aufruf einer **biviz** Funktion wird ein **ggplot2** Objekt erstellt. Dieses Objekt kann **ggplot2** Funktionen angepasst und verfeinert werden. Geht eine Feinpolierung über die Möglichkeit des **biviz** hinaus, so kann mit dem erstellten Objekt einfach **ggplot2** Funktionen angehänkt werden um die Anpassungen an der Grafik zu machen. Wichtig: Normalerweise werden in R aufeinanderfolgende Funktionsaufrufe mit der Pipe `|>` verbunden. Bei ggplot2 Objekten wird dafür das `+` verwendet.
+
+vgl. @sec-das-kartesisches-koordinatensystem-als-positionsskala
+
+```{r}
+
+df_abfall_zh <- 
+  abfall_zh |> 
+  filter(
+    Gemeinde %in% c("Aeugst a.A.", 
+                    "Affoltern a.A.", 
+                    "Bonstetten", 
+                    "Hausen a.A."),
+    Abfallart == "Brennbare Abfälle und Sperrgut",
+    row_number() %% 214 == 1
+         ) |>
+  arrange(Gemeinde) |> 
+  # quelle: https://www.zh.ch/de/politik-staat/gemeinden/gemeindeportraet.html
+  mutate(Bevoelkerung = c(1986, 12358, 5632, 3850)) |> 
+  group_by(Gemeinde) |> 
+  mutate(abfall_pro_person = Bevoelkerung / Wert)
+```
+
+```{r}
+#| code-fold: false
+
+## raw plot
+plot_abfall_zh_raw <- 
+  df_abfall_zh |>
+  # biviz funktion
+  plot_amounts_grouped(
+    # die daten haben keine logische reihenfolge, deshalb werden sie
+    # der grösse nach sortiert. dies geschieht mit forcats::fct_reorder
+    x = fct_reorder(Gemeinde, Wert),
+    y = Wert, 
+    group = Gemeinde) 
+
+## make the plot nice
+plot_abfall_zh_nice <- 
+  # das vorherige ggplot2 objekt wird verwendet
+  plot_abfall_zh_raw +
+  # kontext hinzufügen
+  ggtitle("Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021") +
+    labs(
+    x = "Gemeinde",
+    y = "Menge in Tonnen"
+  ) +
+  theme(legend.position = "none")
+
+## let the plot shine
+plot_abfall_zh_shine <- 
+  # das vorherige ggplot2 objekt wird verwendet
+  plot_abfall_zh_nice +
+  # mit diesem schritt werden alle balken ausser, der hervorzuhebende grau
+  # "übermalt" indem ein einer layer auf die visualisierung gelegt wird
+  geom_col(
+    data = filter(df_abfall_zh, abfall_pro_person != min(df_abfall_zh$abfall_pro_person)),
+    mapping = aes(
+      x = fct_reorder(Gemeinde, Wert),
+      y = Wert
+      ),
+    fill = "lightgrey",
+    position = "dodge"
+           ) +
+  ggtitle(
+    # mit dem paket ggtext kann html/markdown code im text verwendet werden
+    paste0(
+      "<span style = 'color:lightgrey;'>Im Jahr 2021 hatte die </span><br>",
+      "<span style = 'color:#909800; style = font-size:24pt'>Gemeinde Affoltern a.A.</span><br>",
+      "mit 5.6 Tonnen ",
+      "<span style = 'color:lightgrey;'>brennbaren Abfällen <br>und Sperrgut die</span>",
+      " kleinste pro Kopf Abfallmenge"
+      )
+    ) +
+  labs(y = "Abfallmenge Total\nin Tonnen") +
+  # damit der html/markdown code im text gerendert werden kann, benötigt es 
+  # die funktion element_markdown
+  theme(plot.title = ggtext::element_markdown(),
+        axis.title.x=element_blank()) 
+
+```
+
+```{r}
+#| layout: [[49, -2, 49], [100]]
+#| label: fig-abfall_zh_verschönern
+#| fig-cap: Verfeinern von biviz Visualisierungen
+#| fig-subcap: 
+#|   - "Raw Plot"
+#|   - "Make the Plot nice"
+#|   - "Let the Plot shine"
+
+plot_abfall_zh_raw
+plot_abfall_zh_nice
+plot_abfall_zh_shine
+```
+
+#### 
 
 09.10.2022
 
