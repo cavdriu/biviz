@@ -103,7 +103,7 @@ plot_distributions_sidebyside <- function(data, variable, group, bw = 5) {
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
   if (near(n_levels, 2)) {
-    colors <- c("#0d803e", "#4565b2")
+    colors <- c("#ff7b39", "#4565b2")
     } else {
       colors <- colorspace::qualitative_hcl(n_levels, palette = "Dark 3")
     }
@@ -158,7 +158,7 @@ plot_distributions_grouped <- function(data, variable, group, bw = 5) {
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
   if (near(levels, 2)) {
-    colors <- c("#0d803e", "#4565b2")
+    colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
   }

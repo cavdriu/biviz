@@ -191,7 +191,7 @@ plot_amounts_stacked <- function(data, x, y, group) {
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
   if (near(levels, 2)) {
-    colors <- c("#56B4E9", "#009E73")
+    colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
   }

@@ -148,7 +148,7 @@ plot_timeseries_line <- function(data, x, y, group, color_line = "#0d7abc", colo
 
   ## farbpaletten benoetigen mindestens 3 werte (n >= 3)
   if (dplyr::near(levels, 2)) {
-    colors <- c("#0d803e", "#4565b2")
+    colors <- c("#ff7b39", "#4565b2")
   }
   else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")

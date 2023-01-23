@@ -59,7 +59,7 @@ plot_proportions <- function(data, n = n, group) {
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
   if (near(levels, 2)) {
-    colors <- c("#0d803e", "#4565b2")
+    colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
   }
@@ -88,6 +88,10 @@ plot_proportions <- function(data, n = n, group) {
 #' @rdname plot_proportions
 plot_proportions_donut <- function(data, n = n, percent = percent, group) {
 
+# https://semba-blog.netlify.app/07/12/2019/pie-chart-and-donut-plot-with-ggplot2/
+# es ist einfacher alles zuerst ohne coord_polar() einzustellen, da ich gewohnt bin
+# kartesischen koordinatensystem zu denken
+
   # positionen für text berechnen
   data <-
     data |>
@@ -115,7 +119,7 @@ plot_proportions_donut <- function(data, n = n, percent = percent, group) {
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
   if (near(levels, 2)) {
-    colors <- c("#0d803e", "#4565b2")
+    colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
   }
@@ -160,7 +164,7 @@ plot_proportions_stacked <- function(data, x, y, group) {
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
   if (near(levels, 2)) {
-    colors <- c("#0d803e", "#4565b2")
+    colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
   }
@@ -204,7 +208,7 @@ plot_proportions_sidebyside_bar <- function(data, x, percent, facet) {
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
   if (near(levels, 2)) {
-    colors <- c("#0d803e", "#4565b2")
+    colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
   }
@@ -322,6 +326,8 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
   # die daten werden anhand der anzahl teilaspekte (facetten) multipliziert
   data <- df_build_group(data, {{ group }})
   #print(data)
+
+  ## check for numeric, wegen scale::percent ist eine dezihamlzahl notwendig
 
   plot <-
     ggplot(data = data,
