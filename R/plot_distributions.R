@@ -1,7 +1,7 @@
 #' Verteilungen visualisieren
 #'
 #' @param data Ein Tibble mit den Daten für den Plot.
-#' @param variable Variable die untersucht wird (x-Achse).
+#' @param x Variable die untersucht wird (x-Achse).
 #' @param bw Breite (Anzahl werte die zusammengefasst werden) der Behälter.
 #' @param color Farbe um die Balken optisch zu trennen.
 #' @param group Variable um die Daten zu gruppieren.
@@ -20,11 +20,11 @@
 #'
 #' @export
 #' @rdname plot_distributions
-plot_distributions <- function(data, variable, bw = 5, color = "#0d7abc") { #group
+plot_distributions_histogram <- function(data, x, bw = 5, color = "#0d7abc") { #group
 
   plot <-
     ggplot(data = data,
-           mapping = aes(x = {{ variable }})) +
+           mapping = aes(x = {{ x }})) +
     geom_histogram(
       # breite der behälter (balken), immer verschiedene werte ausprobieren
       binwidth = bw,
@@ -35,7 +35,7 @@ plot_distributions <- function(data, variable, bw = 5, color = "#0d7abc") { #gro
       fill = color)
 
   # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ variable }})))
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
@@ -50,11 +50,13 @@ plot_distributions <- function(data, variable, bw = 5, color = "#0d7abc") { #gro
 
 #' @export
 #' @rdname plot_distributions
-plot_distributions_density <- function(data, variable, bw = 5, color = "#0d7abc") {
+plot_distributions_density <- function(data, x, bw = 5, color = "#0d7abc") {
+
+  # https://de.wikipedia.org/wiki/Kerndichtesch%C3%A4tzer
 
   plot <-
     ggplot(data = data,
-           mapping = aes(x = {{ variable }})) + # y = stat(count), (scaled) bei skalierter dichte (Anzahl)
+           mapping = aes(x = {{ x }})) + # y = stat(count), (scaled) bei skalierter dichte (Anzahl)
     geom_density(
       # breite des bandes, immer verschiedene werte ausprobieren
       bw = bw,
@@ -63,7 +65,7 @@ plot_distributions_density <- function(data, variable, bw = 5, color = "#0d7abc"
       fill = color)
 
   # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ variable }})))
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
@@ -76,12 +78,12 @@ plot_distributions_density <- function(data, variable, bw = 5, color = "#0d7abc"
 
 #' @export
 #' @rdname plot_distributions
-plot_distributions_sidebyside <- function(data, variable, group, bw = 5) {
+plot_distributions_sidebyside <- function(data, x, group, bw = 5) {
 
   plot <-
     ggplot(data = data,
            # y = stat(count) skaliert die dichte auf anzahl, so ist die fläche das total an untersuchungen
-           mapping = aes(x = {{ variable }}, y = stat(count))) +
+           mapping = aes(x = {{ x }}, y = stat(count))) +
     geom_density(
       data = dplyr::select(data, !{{ group }}),
       mapping = aes(fill = "n_total"),
@@ -118,7 +120,7 @@ plot_distributions_sidebyside <- function(data, variable, group, bw = 5) {
     )
 
   # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ variable }})))
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
@@ -140,12 +142,13 @@ plot_distributions_sidebyside <- function(data, variable, group, bw = 5) {
 
 #' @export
 #' @rdname plot_distributions
-plot_distributions_grouped <- function(data, variable, group, bw = 5) {
+plot_distributions_grouped <- function(data, x, group, bw = 5) {
 
   plot <-
     ggplot(data = {{ data }},
-           mapping = aes(x = {{ variable }}, fill = {{ group }}, color = {{ group }})) +
+           mapping = aes(x = {{ x }}, fill = {{ group }}, color = {{ group }})) +
     geom_density(
+      # durch die transparenz sind die dichten besser unterscheidbar
       alpha = 0.3,
       # breite des bandes, immer verschiedene werte ausprobieren
       bw = bw)
@@ -164,7 +167,7 @@ plot_distributions_grouped <- function(data, variable, group, bw = 5) {
   }
 
   # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ variable }})))
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
@@ -180,11 +183,13 @@ plot_distributions_grouped <- function(data, variable, group, bw = 5) {
 
 #' @export
 #' @rdname plot_distributions
-plot_distributions_raincloud <- function(data, variable, group, bw = 5, color = "#0d7abc") {
+plot_distributions_raincloud <- function(data, x, group, bw = 5, color = "#0d7abc") {
+
+  # https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/
 
   plot <-
     ggplot(data = data,
-           mapping = aes(x = {{ group }}, y = {{ variable }})) +
+           mapping = aes(x = {{ group }}, y = {{ x }})) +
     geom_boxplot(width = 0.25, outlier.shape = NA) +
     geom_point(size = 1.3,
                color = color,
@@ -209,17 +214,22 @@ plot_distributions_raincloud <- function(data, variable, group, bw = 5, color = 
     scale_y_continuous(#expand = expansion(mult = c(0, 0.05)),
                        breaks = scales::breaks_extended(),
                        labels = scales::label_number(big.mark = "'")) +
-    cowplot::theme_half_open()
+    cowplot::theme_minimal_hgrid() +
+    # die x-line ist nicht notwendig und ist wirrwarr
+    theme(axis.ticks.x = element_blank(),
+          axis.line.x = element_blank())
 
 }
 
 #' @export
 #' @rdname plot_distributions
-plot_distributions_boxplot <- function(data, variable, group, bw = 5, color = "#0d7abc", size = 5) {
+plot_distributions_boxplot <- function(data, x, group, bw = 5, color = "#0d7abc", size = 5) {
 
 
 # helper function ---------------------------------------------------------
   n_fun <- function(x){
+    # in stat_summary wird y für die berechnung verwendet
+    # die daten werden via funktion integriert
     return(tibble::tibble(y = stats::median(x) + 1.5,
                           label = paste0("n = ",length(x))))
   }
@@ -228,8 +238,10 @@ plot_distributions_boxplot <- function(data, variable, group, bw = 5, color = "#
 
   plot <-
     ggplot(data = data,
-           mapping = aes(x = {{ group }}, y = {{ variable }})) +
+           mapping = aes(x = {{ group }}, y = {{ x }})) +
     geom_boxplot(width = 0.25, outlier.shape = NA) +
+    # auf der y-achse soll n angezeigt werden (vgl. helper function)
+    # https://ggplot2-book.org/layers.html?q=stat_summary#stat
     stat_summary(
       geom = "text",
       fun.data = n_fun,
@@ -244,7 +256,7 @@ plot_distributions_boxplot <- function(data, variable, group, bw = 5, color = "#
       # punkt beim median entfernen
       point_colour = NA
     ) +
-    # notwendig??
+    # notwendig??? ######
     coord_cartesian(xlim = c(1.2, NA))#, clip = "off")
 
   plot +

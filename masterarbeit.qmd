@@ -1,7 +1,7 @@
 ---
 title: "Masterarbeit"
 subtitle: "Viz Tool"
-date: "2020-02-1"
+date: "2022-02-19"
 author: 
   - name: Andriu Cavelti
     email: andriu.cavelti@stud.unibas.ch
@@ -31,8 +31,6 @@ format:
   #     - left=30mm
 ---
 
-# Testing (H1)
-
 ```{r}
 #| label: load-packages
 #| include: false
@@ -46,85 +44,55 @@ library(biviz)
 devtools::load_all()
 ```
 
-## H2
-
-The plots in @fig-mpg show the relationship between city and highway mileage for 38 popular models of cars. [@abendroth2019]
-
 ::: callout-note
-Das ist ein spannendes Tool für meine Arbeit
+Diese Arbeit ist mit [Quarto](https://quarto.org/) geschrieben. Eine HTML-Version der Arbeit steht auf der [Website des Pakets **bivi**](LINK) zur Verfügung. Der Quellcode des Pakets ist unter [GitHub](https://github.com/) abrufbar.
 :::
 
-In @fig-mpg-1 the points are colored by the number of cylinders while in @fig-mpg-2 the points are colored by engine displacement. [@bannert2022]
-
-```{r}
-#| label: fig-mpg
-#| fig-cap: "City and highway mileage for 38 popular models of cars."
-#| fig-subcap:
-#|   - "Color by number of cylinders"
-#|   - "Color by engine displacement, in liters"
-#| layout-ncol: 2
-
-ggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +
-  geom_point(alpha = 0.5, size = 2) +
-  scale_color_viridis_c() +
-  theme_minimal()
-
-ggplot(mpg, aes(x = hwy, y = cty, color = displ)) +
-  geom_point(alpha = 0.5, size = 2) +
-  scale_color_viridis_c(option = "E") +
-  theme_minimal()
-```
-
-You can add options to executable code like this
-
-```{r}
-2 + 2
-```
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
-
-### H3
-
-# Real Text
-
-## Ausgangslage / Einleitung
+# Einleitung
 
 ## Forschungsvorhaben / RQ
 
 ## Untersuchungsgegenstand
 
-## Literatur / Theorie (Data Storytelling)
-
-Wichtige Aspekte werden hier besprochen. [@nussbaumerknaflic2017]
-
-## Von Datenwerten zu Visualisierung {#sec-von-datenwerten-zu-visualisierung}
-
 ####TODO: Begrifflichkeiten -\> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene
+
+# Von Datenwerten zu Visualisierung {#sec-von-datenwerten-zu-visualisierung}
 
 Daten zu visualisieren heisst, eine Transformation von Daten hinzu systematische und logische visuelle Elemente zu vollziehen, welche in ihrer Summe als bildliche Einheit interpretiert wird. Im Kern ordnet der Transformationsprozess der Datenvisualisierung den Daten ein quantifizierbares Merkmal hinzu. Das kann eine Grösse, eine Farbe, oder eine Position sein. In der Datenvisualisierungen stehen 4 grundlegende Aesthetics (Gestaltungselemente) für die Darstellung von Daten als Grafiken zur Verfügung. [@wilke2020, S. 7]
 
-|           Position           |           Grösse            |           Farbe           |           Form           |
-|:-----------------:|:----------------:|:----------------:|:----------------:|
++------------------------------+-----------------------------+---------------------------+--------------------------+
+| Position                     | Grösse                      | Farbe                     | Form                     |
++:============================:+:===========================:+:=========================:+:========================:+
 | ![](images/aes_position.JPG) | ![](images/aes_groesse.JPG) | ![](images/aes_farbe.JPG) | ![](images/aes_form.JPG) |
++------------------------------+-----------------------------+---------------------------+--------------------------+
 
 : Basis Aesthetics Quelle: @wilke2020, S. 8. {#tbl-aesthetics}
 
 Die Aesthetics Linientyp, Linienbreite und Transparenz können als spezial Elemente von Form, Grösse und Farbe interpretiert werden.
 
-Aesthetics werden in 2 Skalen unterteilt: solche die kontinuierliche Daten darstellen können und solche, die das nicht können. [@wilke2020, S. 8-9] Unter kontinuierliche Daten werden alle Skalenniveaus, für die eine beliebige Anzahl an an Zwischenausprägungen besteht, gefasst. Wie beispielsweise eine Zeitdauer. Umgekehrt haben diskrete Daten eine begrenzte Anzahl an Ausprägungen die nicht weiter abgestuft werden kann. Es ist beispielsweise nicht möglich, dass eine Familie 1.7 Kinder hat. Das Skalenniveau definiert die Art der Ausprägung (Werte) der gemessenen Dimensionen (Merkmale) die in einer Variable erfasst wird. Bei quantitativen Forschungsmethoden werden die Skalen sehr genau definiert, da das Skalenniveau die rechnerischen Operationen und die Vergleichsmöglichkeiten definiert. [@diaz-bone2006, Kapitel 2.1 und 2.2]. Für die Anwendung der Aesthetics ist die Unterscheidung zwischen kontinuierlichen und diskreten Skalen entscheidende.
+Aesthetics werden in 2 Skalen unterteilt: solche die kontinuierliche Daten darstellen können und solche, die das nicht können. [@wilke2020, S. 8-9] Unter kontinuierliche Daten werden alle Skalenniveaus, für die eine beliebige Anzahl an an Zwischenausprägungen besteht, gefasst. Wie beispielsweise eine Zeitdauer. Umgekehrt haben diskrete Daten eine begrenzte Anzahl an Ausprägungen die nicht weiter abgestuft werden können. Es ist beispielsweise nicht möglich, dass eine Familie 1.7 Kinder hat. Das Skalenniveau definiert die Art der Ausprägung (Werte) der gemessenen Dimensionen (Merkmale) die in einer Variable erfasst wird. Bei quantitativen Forschungsmethoden werden die Skalen sehr genau definiert, da das Skalenniveau die rechnerischen Operationen und die Vergleichsmöglichkeiten definiert. [@diaz-bone2006, Kapitel 2.1, 2.2; @field2012, Kapitel 1.5.1]. Für die Anwendung der Aesthetics ist die Unterscheidung zwischen kontinuierlichen und diskreten Skalen entscheidende.
 
-<!-- [*###Tabelle nochmals überdenken*]{.underline} -->
++-----------------+-----------------------------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Variablentyp    | Skala                       | Beispiel                              | Beschreibung                                                                                                                                                                                             |
++=================+=============================+=======================================+==========================================================================================================================================================================================================+
+| Quantitativ/\   | Kontinuierlich              | 1,3; 83; 1.5 x 10^-2^                 | Beliebige numerische Werte. Diese können ganze, rationale oder reelle Zahlen sein.                                                                                                                       |
+| numerisch       |                             |                                       |                                                                                                                                                                                                          |
++-----------------+-----------------------------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Quantitativ/\   | Diskret                     | 1, 2, 3, 4                            | Zahlen in diskreten Einheiten sind meistens ganze Zahlen. Ausnahmen: Bspw. die Werte 0.5, 1.0, 1.5 sind auch diskrete Werte, sofern im Datensatz keine dazwischen liegenden Werte **existieren können**. |
+| numerisch       |                             |                                       |                                                                                                                                                                                                          |
++-----------------+-----------------------------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Qualitativ/\    | Diskret                     | Hund, Katze, Fisch                    | Eindeutige Kategorien ohne feste Reihenfolge. Oft als Merkmale bezeichnet.                                                                                                                               |
+| nominal         |                             |                                       |                                                                                                                                                                                                          |
++-----------------+-----------------------------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Qualitativ/\    | Diskret                     | schlecht, angemessen, gut             | Eindeutige Kategorien mit fester Reihenfolge. Oft als geordnete Merkmale bezeichnet.                                                                                                                     |
+| ordinal         |                             |                                       |                                                                                                                                                                                                          |
++-----------------+-----------------------------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Datum oder Zeit | Kontinuierlich oder diskret | 5\. Jan 2018, 08:03h                  | Spezifische Tage und/oder Zeiten. Allgemeine Datumsangaben ohne Jahr sind auch möglich ("4. Juli"). Das Format kann variieren.                                                                           |
++-----------------+-----------------------------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Text            | Keine oder diskret          | Franz jagt im Taxi quer durch Bayern. | Freitext. Kann bei Bedarf als kategorisierbar behandelt werden.                                                                                                                                          |
++-----------------+-----------------------------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-<!-- | Aehstetic | Skalenniveau | Skala | Beispiel | Beschreibung | -->
-
-<!-- |-----------|--------------|-------|----------|--------------| -->
-
-<!-- : Variablentypen für Visualisierunge [in Anlehnung an @wilke2020, @diaz-bone2006 und @gehrau2022] -->
+: Variablentypen für Visaulisierungen. Quelle: @wilke2020, S. 9. Eigene Anpassungen. {#tbl-variablentypen}
 
 ```{r}
 #| label: tbl-data-abfall-zuerich
@@ -147,21 +115,17 @@ abfall_zh_sample |>
 
 ```
 
-Die Spalte *Jahr* ist ein diskreter numerischer Wert. Im Gegensatz dazu wäre 01.01.2021 ein kontinuierlicher Datumswert. *Gemeinde* und *Abfallart* sind beides kategorische (Faktor) Werte ohne logische Reihenfolge. Im Gegensatz dazu besitzen die Kategorien "hässlich", "schön", "wunderschön" eine logischen Reihenfolge. *Menge in Tonnen* ist ein kontinuierlicher numerischer Wert. Neben ganzen Zahlen gehören auch rationale oder reelle Zahlen in diese Kategorie.
+Die Spalte *Jahr* ist ein diskreter datums Wert, da kein anderes Jahr in der Variable vorkommt. *Gemeinde* und *Abfallart* sind beides kategorische (nominale) Werte ohne logische Reihenfolge. *Menge in Tonnen* ist ein kontinuierlicher numerischer Wert.
 
-Für die Abbildung der Daten auf Aesthetics wird angegeben, welche Datenwerte welchem Wert auf der Datenskala entspricht. Das bedeutet, mithilfe der Skala erfolgt die eindeutige Zuordnung von Daten und Aesthetics. Bei einem Diagramm mit einer x-Achse wird angegeben welcher Wert auf welche Position auf dieser Achse dargestellt wird. Der gleichen Logik folgend, geben wir an welche Grösse, Farbe oder Form ein Datenwert einnehmen soll. Anstatt auf einer Positionsskala werden die einfach Grössen-, Farben- oder Formskala verwendet. Ein Datenwert entspricht in jeder Skala einem eindeutigen Skalawert bzw. Aestetic. Je Datenwert darf es nur ein Skalawert geben und umgekehrt. Eine eins zu eins Beziehung ist notwendig, damit die Datenvisualisierung nicht mehrdeutig wird. (Vgl. @sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics)
+Für die Abbildung der Daten auf Aesthetics wird angegeben, welche Datenwerte welchem Wert auf der Datenskala entspricht. Das bedeutet, mithilfe der Skala erfolgt die eindeutige Zuordnung von Daten und Aesthetics. Bei einem Diagramm mit einer x-Achse wird angegeben welcher Wert auf welche Position auf dieser Achse dargestellt wird. Der gleichen Logik folgend, geben wir an welche Grösse, Farbe oder Form ein Datenwert einnehmen soll. Anstatt auf einer Positionsskala werden die einfach Grössen-, Farben- oder Formskala verwendet. Ein Datenwert entspricht in jeder Skala einem eindeutigen Skalawert bzw. Aestetic. Je Datenwert darf es nur ein Skalawert geben und umgekehrt. Eine eins zu eins Beziehung ist notwendig, damit die Datenvisualisierung nicht mehrdeutig wird (vgl. @sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics).
 
-![Skalen verknüpfen Datenwerte mit Aesthetics. Quelle: \[\@wilke2020, S. 10\]](images/image-103507192.png){#fig-aesthetics}
+![Skalen verknüpfen Datenwerte mit Aesthetics. Quelle: @wilke2020, S. 10](images/image-103507192.png){#fig-aesthetics}
 
-Wenden wir diese Erkenntnise beim Datensatz zum Abfall im Kanton Zürich an, dann erhalten wird folgendes Ergebnis: Auf der x-Achse werden die *Gemeinden* anhand der Positionsskala platziert. Die Variable hat keine logische Reihenfolge. Für die Unterstützung des lesens des Diagramms, sind die Gemeinden anhand der Menge an Abfall sortiert. Auf der Positionsskala y-Achse ist die *Menge in Tonnen* übertragen. Zusätzlich wurden die *Gemeinden* auf die Farben übertragen. Vor dem Hintergrund des Data Storytelling lässt sich die Frage stellen, ob die Verwendung des Aesthetic Farbe sinnvoll ist.
-
-(vgl. KAPITEL)
-
-Bei diesem Beispiel steht jedoch die Beziehung zwischen den Datenwerte und Aesthetics durch Skalen im Zentrum. Daher wurde für jede Gemeinde eine eigene Farbe verwendet.
+Wenden wir diese Erkenntnise beim Datensatz zum Abfall im Kanton Zürich an, dann erhalten wird folgendes Ergebnis: Auf der x-Achse werden die *Gemeinden* anhand der Positionsskala platziert. Die Variable hat keine logische Reihenfolge. Für die Unterstützung des Lesens des Diagramms, sind die Gemeinden anhand der Menge an Abfall sortiert. Auf der Positionsskala y-Achse ist die *Menge in Tonnen* übertragen. Zusätzlich wurden die *Gemeinden* auf die Farben übertragen. Vor dem Hintergrund des Data Storytelling lässt sich die Frage stellen, ob die Verwendung des Aesthetic Farbe sinnvoll ist (vgl. @sec-farben-als-steuerungsinstrument). Bei diesem Beispiel steht jedoch die Beziehung zwischen den Datenwerte und Aesthetics durch Skalen im Zentrum. Daher wurde für jede Gemeinde eine eigene Farbe verwendet.
 
 ```{r}
 #| label: fig-abfall_zh
-#| fig-cap: "Anzahl Brennbare Abfälle und Sperrgut je Gemeinde im Jahr 2021."
+#| fig-cap: "Anzahl Brennbare Abfälle und Sperrgut je Gemeinde im Jahr 2021. Eigene Darstellung."
 
 abfall_zh_sample |> 
   filter(
@@ -180,14 +144,14 @@ abfall_zh_sample |>
   theme(legend.position = "none")
 ```
 
-### Das kartesisches Koordinatensystem als Positionsskala {#sec-das-kartesisches-koordinatensystem-als-positionsskala}
+## Das kartesisches Koordinatensystem als Positionsskala {#sec-das-kartesisches-koordinatensystem-als-positionsskala}
 
-Bei Beispiel (@fig-abfall_zh) entspricht die Positionsskala einem kartesischen 2D-Koordinatensystem. Jeder Ort ist durch einen x- und y-Wert eindeutig markiert. Da die Achsen positive als auch negative Zahlen darstellen, muss der Zahlenbereich für jede Achse definiert werden. Bei diesem Beispiel verläuft die y-Achse von 0 bis 2297.4 (5% über dem höchsten y-Wert, welcher bei diesem Beispiel 2188 ist). Ist ein Datenwert innerhalb des definierten Zahlenbereichs, dann wird er im Diagramm an der entsprechenden Position abgebildet. Ansonsten wird der Wert verworfen und erscheint nicht im Diagramm. [@wilke2020, S. 13]
+Bei der @fig-abfall_zh entspricht die Positionsskala einem kartesischen 2D-Koordinatensystem. Jeder Ort ist durch einen x- und y-Wert eindeutig markiert. Da die Achsen positive als auch negative Zahlen darstellen, muss der Zahlenbereich für jede Achse definiert werden. Bei diesem Beispiel verläuft die y-Achse von 0 bis 2297.4 (5% über dem höchsten y-Wert, welcher bei diesem Beispiel 2188 ist). Ist ein Datenwert innerhalb des definierten Zahlenbereichs, dann wird er im Diagramm an der entsprechenden Position abgebildet. Ansonsten wird der Wert verworfen und erscheint nicht im Diagramm. [@wilke2020, S. 13]
 
 ```{r}
 #| label: fig-economics
 #| message: false
-#| fig-cap: "Die Anzahl Arbeitslose sind in tausend angegeben. Datenquelle: Teil des ggplot2 Pakets."
+#| fig-cap: "Die Anzahl Arbeitslose sind in tausend angegeben. Datenquelle: Teil des ggplot2 Pakets. Eigene Darstellung."
 
 temp_plot <- 
   ggplot2::economics |> 
@@ -222,26 +186,26 @@ plot_grid(
 
 Beim kartesischen Koordinatensystem sind die Abstände zwischen den Gitterlinien der Achsen diskrete Schritten. Entlang einer Achse sind die Gitterlinen gleichmässig verteilt und entsprechen einer Linearen Positionsskala. Dies gilt sowohl für die Dateneinheiten als auch in der Visualisierung. In allen drei Diagrammen sind die Schritte auf der y-Achse 3000 je Gitterline und auf der x-Achse 10 Jahre. Der verwendete Raum um die diskreten Schritte abzubilden können aber unterschiedlich gross sein, womit unterschiedliche Botschaften vermittelt werden können. Abbildung (a) betont die Veränderung auf der y-Achse und Abbildung (c) betont die Veränderung über die Zeit. Werden auf der x- und y-Achse die gleichen Einheiten verwendet, so sollten die Gitterabstände identische sein. So, dass der Abstand zwischen zwischen zwei Gitterlinien die gleiche Menge and Dateneinehiten beinhalten. [@wilke2020, S. 14-15]
 
-Neben linearen Achsen gibt es auch nichtlineare Skalen, welche meistens eine logarithmische Skala verwendet. Hier entspricht eine Einheit auf der Skale einer Multiplikation von einem festen Wert. [@wilke2020, S. 17] Bei Datenvisualisierungen werden auch Polarkoordinatensysteme verwendet, bei denen die Position durch den Winkel und radialen Abstand zum Ursprung angegeben wird. [@wilke2020, S. 22] Da bei dieser Arbeit ausser beim Donutdiagramm nur das lineare kartesische Koordinatensystem verwendet wird, stehen diese Systeme nicht im Fokus. Für eine Vertiefung der Thematik ist das Kapitel 3 aus @wilke2020 zu Empfehlen.
+Neben linearen Achsen gibt es auch nichtlineare Skalen, welche meistens eine logarithmische Skala verwendet. Hier entspricht eine Einheit auf der Skale einer Multiplikation von einem festen Wert. [@wilke2020, S. 17] Bei Datenvisualisierungen werden auch Polarkoordinatensysteme verwendet, bei denen die Position durch den Winkel und radialen Abstand zum Ursprung angegeben wird. [@wilke2020, S. 22] Da bei dieser Arbeit ausser beim Donutdiagramm nur das lineare kartesische Koordinatensystem verwendet wird, stehen diese Systeme nicht im Fokus. Für eine Vertiefung der Thematik ist das *Kapitel 3* aus @wilke2020 zu Empfehlen.
 
-### Farben als Steuerungsinstrument {#sec-farben-als-steuerungsinstrument}
+## Farben als Steuerungsinstrument {#sec-farben-als-steuerungsinstrument}
 
-Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. [@nussbaumerknaflic2017, S. 98-99] Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkeit nicht bewusst wahr. Bereits nach Sekundenbruchteile wird das Signal ans Kurzzeitgedächtnis weitergeleitet. Hier werden die Informationen verarbeitet. Da das Kurzzeitgedächtnis nur einen begrenzte Kapazität hat, muss beim Datastorytelling die Reize für das Gehrin bewusst gesteuert werden. Die kognitive Belastung für das Publikum soll möglichst gering sein, damit sie die die vermittelten Informationen erhalten. Das Kurzzeitgedächntnsi kann in etwa vier Elemente visueller Informationen zeitgleich Verarbeiten. Indem Informationen als Zusammenhängende visuelle Elemente dargestellt werden, wird die kognitive Belastung für das Publikum reduziert und besitzt dennoch eine hohe Informationsdichte. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. [@nussbaumerknaflic2017, S. 83-86]Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.
+Bei Datenvisualisierungen sind Farben ein wirkungsvolles Mittel um die Betrachtenden beim Lesen des Diagramm zu unterstützen und ihre Aufmerksamkeit zu lenken. Damit die Wirkung sich entfalten kann, muss die Anwendung von Farben selektiv und überlegt sein. Die Verwendung von Farbe sollte ein bewusster Entscheid mit einer strategischen Absicht sein. Welche Aspekte sollen die Aufmerksamkeit der Lesenden erhalten? Damit die Farben effektiv wirken, benötigt es einen Kontrast. Die Gitterlinien der bisherigen Grafiken sind alle in grau. Farben heben sich besser von grau als von blau ab, dadurch entsteht ein grösserer Kontrast zu den Farben die für die Lenkung der Lesenden verwendet werden. Für die grösste Wirkung der Farben müssen sie sparsam und konsistent verwenden. So wird gewährleistet, dass sie ihre präattentive Wirkung beibehalten. Ist alles unterschiedlich, dann kann auch nichts hervorstechen. [@nussbaumerknaflic2017, S. 98-99] Unter präattentive Merkmale versteht Nussbaumer Knaflic Marker, die ein vorbewusste Warnhemung von Sinnesreizen stimuliert und effizent mit dem ikonischen Gedächtnis interagiert. Das ikonische Gedächtnis ist aktiviert sobald wir etwas betrachten. Dabei nehmen wir seine Tätigkeit nicht bewusst wahr. Bereits nach Sekundenbruchteile wird das Signal ans Kurzzeitgedächtnis weitergeleitet. Hier werden die Informationen verarbeitet. Da das Kurzzeitgedächtnis nur einen begrenzte Kapazität hat, muss beim Datastorytelling die Reize für das Gehrin bewusst gesteuert werden. Die kognitive Belastung für das Publikum soll möglichst gering sein, damit sie die die vermittelten Informationen erhalten. Das Kurzzeitgedächntnsi kann in etwa vier Elemente visueller Informationen zeitgleich Verarbeiten. Indem Informationen als Zusammenhängende visuelle Elemente dargestellt werden, wird die kognitive Belastung für das Publikum reduziert und besitzt dennoch eine hohe Informationsdichte. Präattentive Merkmale helfen die Aufmerksamketi des Publikums zu steuern und eine visuelle Hirarchie in einem Diagramm zu schaffen. Neben Farben sind auch Formen, Grösse oder Positionen klassiche präattentive Merkmale. [@nussbaumerknaflic2017, S. 83-86] Beispielsweise können wir dank der präattentiven Funktion der Farbe einfacher und schneller die alle Anzahl Dreien in einem Zahlenblock zählen.
 
 ::: {layout-ncol="2"}
-![Zahlen ohne präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 86\]](images/ohne_praeattentive_merkmale.jpg){#fig-ohne_praeattetiven_merkmalen}
+![Zahlen ohne präattentivem Merkmal. Quelle: [@nussbaumerknaflic2017, S. 86]](images/ohne_praeattentive_merkmale.jpg){#fig-ohne_praeattetiven_merkmalen}
 
-![Zahlen mit präattentivem Merkmal. Quelle: \[\@nussbaumerknaflic2017, S. 87\]](images/mit_praeattentive_merkmale.jpg){#fig-mit_praeattetiven_merkmalen}
+![Zahlen mit präattentivem Merkmal. Quelle: [@nussbaumerknaflic2017, S. 87]](images/mit_praeattentive_merkmale.jpg){#fig-mit_praeattetiven_merkmalen}
 :::
 
-Die korrekte Verwendung von Farbpaletten und ihre Wichtigkeit für die Kommunikation mit Visualisierungen betrifft neben der Interpretation der Diagrammen auch die Berücksichtigung der Farbenblindheit. [@hawkins2015 or @bartram2017] Die wichtigsten Aufgaben von Farben ist die Unterscheidung von Datengruppen (wie beim Beispiel des Zahlenblocks), Darstellen von Datenwerten oder die Hervorhebung von Datenpunkte. Bei @fig-abfall_zh dient die Farbe als Unterscheidungsmerkmal der einzelnen Gemeinden. Bei der Anwendung von Farbe als Unterscheidungsmerkmal werden qualitative Farbskalen verwendet. Das heisst, die Anzahl Farben ist endlich, sie unterscheiden sich voneinander und sind gleichwertig zueinander. Folglich darf keine Farbe darf dominanter als die andere sein und der Eindruck einer Reihenfolge muss vermieden werden. [@wilke2020, S. 25-26] Die Okabe Ito Farbskala [@okabe] ist eine bekannte Standardskala welche die beschriebenen Voraussetzungen erfüllt und Farbenblindheit berücksichtigt. Rund acht Prozent der Männer und ein halbes Prozent der Frauen sind farbenblind, wodurch sie Rottöne und Grüntöne nur schlecht unterscheiden können.[^1] Um positive und negative Punkte trotzdem mit Farben hervorzuheben wird oft blau für positive Werte und orange für negative Werte verwendet. [@nussbaumerknaflic2017, S.101-102] Um quantitative Datenwerte darzustellen werden sequenzielle Farbskalen verwendet. Bei denen erkennbar ist, welcher Wert grösser oder kleiner ist. Damit abgeschätzt werden kann, wie weit zwei Werte voneinander entfernt sind, müssen die Farbabstuffungen gleichmässig über den gesamten Bereich verändern. Das ist sowohl mit einem einzelnen Farbton wie auch mit mehreren Farbtönen möglich. Werden quantitative Datenwerte relativ zu einem neutralen Mittelpunkt visualisiert, wird eine divergente Farbskala verwendet. Beispielsweise bei einer Variable mit positiven als auch negativen Werten. [@wilke2020, S. 27-28]
+Die korrekte Verwendung von Farbpaletten und ihre Wichtigkeit für die Kommunikation mit Visualisierungen betrifft neben der Interpretation der Diagrammen auch die Berücksichtigung der Farbenblindheit. [@hawkins2015; @bartram2017] Die wichtigsten Aufgaben von Farben ist die Unterscheidung von Datengruppen (wie beim Beispiel des Zahlenblocks), Darstellen von Datenwerten oder die Hervorhebung von Datenpunkte. Bei @fig-abfall_zh dient die Farbe als Unterscheidungsmerkmal der einzelnen Gemeinden. Bei der Anwendung von Farbe als Unterscheidungsmerkmal werden qualitative Farbskalen verwendet. Das heisst, die Anzahl Farben ist endlich, sie unterscheiden sich voneinander und sind gleichwertig zueinander. Folglich darf keine Farbe darf dominanter als die andere sein und der Eindruck einer Reihenfolge muss vermieden werden. [@wilke2020, S. 25-26] Die Okabe Ito Farbskala [@okabe] ist eine bekannte Standardskala welche die beschriebenen Voraussetzungen erfüllt und Farbenblindheit berücksichtigt. Rund acht Prozent der Männer und ein halbes Prozent der Frauen sind farbenblind, wodurch sie Rottöne und Grüntöne nur schlecht unterscheiden können.[^1] Um positive und negative Punkte trotzdem mit Farben hervorzuheben wird oft blau für positive Werte und orange für negative Werte verwendet. [@nussbaumerknaflic2017, S.101-102] Um quantitative Datenwerte darzustellen werden sequenzielle Farbskalen verwendet. Bei denen erkennbar ist, welcher Wert grösser oder kleiner ist. Damit abgeschätzt werden kann, wie weit zwei Werte voneinander entfernt sind, müssen die Farbabstuffungen gleichmässig über den gesamten Bereich verändern. Das ist sowohl mit einem einzelnen Farbton wie auch mit mehreren Farbtönen möglich. Werden quantitative Datenwerte relativ zu einem neutralen Mittelpunkt visualisiert, wird eine divergente Farbskala verwendet. Beispielsweise bei einer Variable mit positiven als auch negativen Werten. [@wilke2020, S. 27-28]
 
 [^1]: Es gibt viele Programme um die Farbenblindheit zu simulieren. Beispielsweise die Websiten [hclwizard.org/cvdemulator](http://hclwizard.org:3000/cvdemulator/) oder [vischeck.com](http://www.vischeck.com).
 
 ```{r}
 #| label: fig-farbskalen
 #| message: false
-#| fig-cap: "Das R Paket colorspace [@colorspa] ist ein flexibles Werkzeug um eigene Farbpaletten zu erstellen (beispielsweise eine Okabe Ito Farbskala) oder auf bestehende Skalen zuzugreifen."
+#| fig-cap: "Das R Paket colorspace [@colorspa] ist ein flexibles Werkzeug um eigene Farbpaletten zu erstellen (beispielsweise eine Okabe Ito Farbskala) oder auf bestehende Skalen zuzugreifen. Eigene Darstellung."
 
 swatchplot(
   "Qualitative 1"              = qualitative_hcl(n = 5, palette = "Dark 3"),
@@ -255,7 +219,7 @@ swatchplot(
 
 Wann ist der Einsatz von Farbe sinnvoll? Immer dann wenn sie dem Publikum das lesen des Diagramms erleichtert. Farbe muss nicht unterhalten, sondern ein Signal senden. Verändert sich etwas in der Grafik oder gibt es einen wichtigen Punkt zu beachten? Dann muss das Publikum auf diesen Umstand aufmerksam gemacht werden. Das geht nur, wenn die Farbe zurückhalten und durchgehend, also nicht in jeder Visualisierung eine andere Farbe verwenden. Die kognitive Belastung reduziert sich, wenn die Bedeutung einer Farbe innerhalb eines Visualisierungsportfolio (beispielsweise in einem Paper oder in einer Präsentation) gleich bleibt [@nussbaumerknaflic2017, S. 100-101] Ansonsten besteht nicht nur die Gefahr, dass das Publikum verwirrt sondern gar aktiv in die Irregeführt wird. [@borland2007, S. 15]
 
-### Gestaltungsprizipien in Datenvisualisierungen {#sec-gestaltungsprizipien-in-datenvisualisierungen}
+## Gestaltungsprizipien in Datenvisualisierungen {#sec-gestaltungsprizipien-in-datenvisualisierungen}
 
 Die Aufnahme von Informationen ist für das Gehirn eine mentale Anstrengung. Die Gerhinkapazität des Publikums ist begrenzt, daher muss die kognitive Belastung muss folglich bewusst und effektiv gestaltet sein. Das bedeutet, relevanten Informationen mit bei möglichst geringer wahrgenommene kognitive Belastung kommuniziert werden. Dafür müssen die Signale (die Informationen die vermittelt werden) gestärkt und das Rauchen (Elemente die von der Information ablenken) reduziert werden. Das Diagramm soll eingänglich und einfach erscheinen. Komplizierte Grafiken können das Publikum abschrecken und ihre Aufmerksamkeit geht verloren. Die Gestaltprinzipien der visuellen Wahrnehmung helfen die Signale einer Grafik zu erkennen und Rauschen zu minimieren. Damit das verfolgte Ziel mit den präsentieren Daten einfach erkennbar ist. [@nussbaumerknaflic2017, S. 61-63] Die Überlegungen und Grafiken zu den Gestaltprinzipien folgen den Ausführungen von Nussbaumer Knaflic [-@nussbaumerknaflic2017] im Kapitel *Gestaltprinzipien der visuellen Wahrnehmung*:
 
@@ -319,32 +283,37 @@ Das Gestaltprinzip der Verbindung.
 
 Das Gestaltprinzip der Verbindung ist stärker als das Prinzip der Ähnlichkeit und schwächer als die Umrandung. Das heisst, die Zusammengehörigkeit von Verbundene Elemente ist stärker als die gleiche Farbe, Grösse oder Form. Eine Umrandung ist besitzt jedoch eine höhere visuelle Hirarchie als die Verbindung, wodurch die Objekte in einem Rahmen zusammengehörig wahrgenommen werden obwohl sie mit einem anderen Objekten verbunden sind. Verbindungen helfen, den Datenpunkten eine Ordnung zugeben und wird unteranderem bei Liniendiagrammen eingesetzt. In den meisten Liniendiagrammen bestehen aus einzelnen Datenpunkten, welche erste dank dem Gestaltprinzip der Verbindung als Kontinuum erkennbar werden.
 
-...nussbaumercole 88, 90, 91-93, 105
+> Falls noch mehr Text notwendig ist ...nussbaumercole 88, 90, 91-93, 105 !!!!!!!!!!
 
-### Mit Daten Geschichten erzählen
+## Mit Daten Geschichten erzählen
 
 Die Vermittlung von Analysen ist üblicherweise der einzige Teil welches das Publikum zu sehen bekommt von einer Datenanalyse. Folglich sollte dieser Schritt möglichst erfolgreich und nachhaltig gestaltet werden. Damit das erreicht werden kann, muss der Wechsel von der erforschenden Analyse zur erkärenden Analyse erfolgen. Die erforschende Analyse ist der Prozess, welcher uns zu neuem Verständnis und Erkenntnissen führt. Bei der Vermittlung der Resultate kann aber nicht der gesamte analytische Prozess wiedergeben werden, daher ist es wichtig einem erklärenden Ansatz anzuwenden. Hier möchten wir einen bestimmte Erkenntnis erklären und analysieren, die für das Publikum und die gegebene Situation wichtig ist. [@nussbaumerknaflic2017, S. 17]
 
++------------------------------------------+-------------------------------------+-----------------------------+
 |                                          | erforschende Analyse                | erklärende Analyse          |
-|:--------------------------|:------------------------|:-------------------|
++:=========================================+:====================================+:============================+
 | Ziel                                     | Verstehen                           | Kommunizieren               |
-| Publikum                                 | Analyst:in                          | andere Personen             |
++------------------------------------------+-------------------------------------+-----------------------------+
+| Publikum                                 | Analyst:in (sich selbst)            | andere Personen             |
++------------------------------------------+-------------------------------------+-----------------------------+
 | Vertrautheit des Publikums mit den Daten | Sehr vertraut                       | Nicht bis wenige vertraut   |
++------------------------------------------+-------------------------------------+-----------------------------+
 | Fokus der Visualisierung                 | Flexibel und schnell                | Einfach, klar und schlüssig |
-| Erzählung                                | Unwissend                           | Wissend                     |
++------------------------------------------+-------------------------------------+-----------------------------+
+| Erzählung                                | Unbekannt                           | Bekannt                     |
++------------------------------------------+-------------------------------------+-----------------------------+
 | Resultat                                 | Insighet (Verständnis & Erkenntnis) | Aktion                      |
++------------------------------------------+-------------------------------------+-----------------------------+
 
-: Die zwei Arten der Analyse. Quelle: [@dykes2020, S. 138] mit eigenen Anpassungen. {#tbl-erforschen-erklaeren}
+: Die zwei Arten der Analyse. Quelle: @dykes2020, S. 138, mit eigenen Anpassungen. {#tbl-erforschen-erklaeren}
 
-In der Forschung ist das die Beantwortung der Forschungsfrage und im geschäftlichen Umfeld biespielsweise die Erkärung weshalb der Pendenzenstand im Team A zugenommen hat. Um die Fragen zu beantworten, werden eine Vielzahl von erforschenden Analysen durchgeführt, aber nur einige wenige geben Informationen um die Fragestellung zu beantworten. Auf diese Informationen wird bei der erklärenden Analyse eingegangen. Damit die Argumente überzeugen und die Erkenntnisse in Erinnerung bleiben, wird eine packende Geschichte benötigt. Die Erzählung einer Geschichte hilf, die gewonnen Fakten aus der erforschenden Analyse bei der erklärenden Analyse dem Publikum interessant und nachvollziehbar zu präsentieren. Damit das möglich ist, muss der Kontext eruiert werden. Wer ist das Publikum und in welcher Rolle stehe ich zum Zielpublikum? Je nach Situation muss eine andere Kommunikation gewählt werden, damit die Geschichte ihr Ziel erreicht. Was soll das Publikum wissen? Erkennen was für das Publikum spannend und relevant ist. Hier wir die Handlung der Geschichte definiert. Dabei muss immer die Frage beantwortet werden, weshalb soll sich das Publikum für die Geschichte interessieren soll. Wie kann die Frage beantwortet werden? Bei diesem Schritt werden die Daten ausgewählt, welche die Geschichte untermauern und plausibilisieren. [@nussbaumerknaflic2017, S. 18-23] Um den Kontext einer Data Story zu erfassen, ist der Startpunkt am Ende des Prozesses der Entwicklung einer Data Story. Damit die Geischichte entstehen kann, werden zuerst die Daten untersucht und anschiessend die entscheidenden Erkenntnisse dem Publikum präsentiert. [@dykes2020, S. 136] Was aber ist eine Geschichte? Bei einer Geschichte werden Beobachtungen, Erkenntnisse und Ereignisse in eine bestimmte Reihenfolge gebracht, mit dem Ziel beim Publikum eine emotionale Wirkung zu erzielen. Durch den Aufbau einer Spannung am Anfang und der Lösung am Ende der Geschichte fesselt eine Geschichte das Publikum, was eine emotionale Reaktion verursacht. [@wilke2020, S. 304] Neben der Wiederholung ist die emotionale Wirkung der Geschichte deren Spannungsbogen wichtig, damit sie in unserem Gedächnis bleibt. Es gibt eine Vielzahl von narrativen Strukturen und Methoden des Storytellings, sei es im Theater, im Film oder bei Texten. Eine einfache Methode für das Datastorytelling ist das Muster Anfang-Mitte-Ende, welches im dem klassischen Narrativ eines Forschungspaper (Einleitung-Hauptteil-Schlussfolgerung) gleicht. Am Anfang wir de Handlung eingeführt und eine Auslegeordnung gemacht, damit das Publikum erkennt weshalb die Geschichte wichtig für sie ist. Was ist der Kontext, welches sind die Schlüsselpunkte, was ist das Problem und was ist die gewünschte Lösungen. In der Mitte muss das Publikum von einem Sachstand überzeugt werden. Deshalb steht das "wie" der Problemlösung im Zentrum. Dafür wird das Thema in ins seinen Details (Hintergrundinformationen, Vergleiche, Szenarien, mögliche Problemlösungen) dargestellt. Am Ende wird auf die Ausgangslage Bezug genommen und eine Handlungsempfehlung abgegeben. Über den ganzen Prozess steht immer das Publikum im Mittelpunkt: Warum ist es relevant für sie? Was stösst auf Resonanz und motiviert? Dabei steht jedes mal der gleiche Inhalt zur Debatte lediglich aus unterschiedlichen Perspektiven (Einführen, Details, Zusammenfassen).[@nussbaumerknaflic2017, S. 146-149] Bei der Integration von Datenvisualisierungen in Geschichte müssen gewisse Punkte berücksichtigt werden. Erstens kann eine einzelne Visualisierung keine ganze Geschichte erzählen. Damit mit Visualisierung eine Geschichte erzählt werden kann, benötigt es mehrere Diagramme. Je Station des Storytellings benötigt es in der Regel mindestens eine Grafik. Sowenig in Textform der Anfang, die Mitte und das Ende einer Geschichte in einem Satz sinnvoll dargelegt werden kann, kann dies auch keine Visualisierung erreichen. [@wilke2020, S. 305] Damit die Visualisierung (Form) den gewünschten Effekt (Funktion) auslösst, muss die Form (Visualisierung) der Funktion (Effekt). Das heisst, mit der Visualisierung soll etwas auslösen, damit das funktioniert, benötigt sie eine vorher definierte Funktion (Was soll die Grafik machen?). Um die Funktion des Diagramms zu zeigen werden visuelle Affordanzen benutzt. Die wichtigste Methode dafür ist bei der Datenvisualisierung die Verwendung von Farben (vgl. @sec-farben-als-steuerungsinstrument). Damit die Hervorhebung seine Wirkung entfalten kann, ist es wichtig sparsam mit diesem Tool umzugehen. [@nussbaumerknaflic2017, S. 107-109] Zudem muss die Visualisierung Zugänglichkeit, nicht das Publikum ist verantwortlich, dass es die Grafik versteht sondern der Autor. Durch ein verständliches Design (keine unnötige Komplexität), Lesbarkeit (Schriftart und Grösse), Klarheit (wichtiges wird Hervorgehoben) und einfche Sprache (Publikum angepasst). Das Publikum muss durch das Diagramm geführt werden, dazu sind Titel, Achsenbeschriftungen und direkte Annotationen notwendig. [@nussbaumerknaflic2017, S. 118-119] Werden alle diese Punkte berücksichtige und alle Elemente folgen einer visuellen Ordnung, dann hat das Diagramm eine ansprechende Ästhetik, wodurch das Vertrauen des Publikums gewonnen wird [@nussbaumerknaflic2017, S. 68 & S. 123]
+In der Forschung ist das die Beantwortung der Forschungsfrage und im geschäftlichen Umfeld biespielsweise die Erkärung weshalb der Pendenzenstand im Team A zugenommen hat. Um die Fragen zu beantworten, werden eine Vielzahl von erforschenden Analysen durchgeführt, aber nur einige wenige geben Informationen um die Fragestellung zu beantworten. Auf diese Informationen wird bei der erklärenden Analyse eingegangen. Damit die Argumente überzeugen und die Erkenntnisse in Erinnerung bleiben, wird eine packende Geschichte benötigt. Die Erzählung einer Geschichte hilf, die gewonnen Fakten aus der erforschenden Analyse bei der erklärenden Analyse dem Publikum interessant und nachvollziehbar zu präsentieren. Damit das möglich ist, muss der Kontext eruiert werden. Wer ist das Publikum und in welcher Rolle stehe ich zum Zielpublikum? Je nach Situation muss eine andere Kommunikation gewählt werden, damit die Geschichte ihr Ziel erreicht. Was soll das Publikum wissen? Erkennen was für das Publikum spannend und relevant ist. Hier wir die Handlung der Geschichte definiert. Dabei muss immer die Frage beantwortet werden, weshalb soll sich das Publikum für die Geschichte interessieren soll. Wie kann die Frage beantwortet werden? Bei diesem Schritt werden die Daten ausgewählt, welche die Geschichte untermauern und plausibilisieren. [@nussbaumerknaflic2017, S. 18-23] Um den Kontext einer Data Story zu erfassen, ist der Startpunkt am Ende des Prozesses der Entwicklung einer Data Story. Damit die Geischichte entstehen kann, werden zuerst die Daten untersucht und anschiessend die entscheidenden Erkenntnisse dem Publikum präsentiert. [@dykes2020, S. 136] Was aber ist eine Geschichte? Bei einer Geschichte werden Beobachtungen, Erkenntnisse und Ereignisse in eine bestimmte Reihenfolge gebracht, mit dem Ziel beim Publikum eine emotionale Wirkung zu erzielen. Durch den Aufbau einer Spannung am Anfang und der Lösung am Ende der Geschichte fesselt eine Geschichte das Publikum, was eine emotionale Reaktion verursacht. [@wilke2020, S. 304] Neben der Wiederholung ist die emotionale Wirkung der Geschichte deren Spannungsbogen wichtig, damit sie in unserem Gedächnis bleibt. Es gibt eine Vielzahl von narrativen Strukturen und Methoden des Storytellings, sei es im Theater, im Film oder bei Texten. Eine einfache Methode für das Datastorytelling ist das Muster Anfang-Mitte-Ende, welches im dem klassischen Narrativ eines Forschungspaper (Einleitung-Hauptteil-Schlussfolgerung) gleicht. Am Anfang wir de Handlung eingeführt und eine Auslegeordnung gemacht, damit das Publikum erkennt weshalb die Geschichte wichtig für sie ist. Was ist der Kontext, welches sind die Schlüsselpunkte, was ist das Problem und was ist die gewünschte Lösungen. In der Mitte muss das Publikum von einem Sachstand überzeugt werden. Deshalb steht das "wie" der Problemlösung im Zentrum. Dafür wird das Thema in ins seinen Details (Hintergrundinformationen, Vergleiche, Szenarien, mögliche Problemlösungen) dargestellt. Am Ende wird auf die Ausgangslage Bezug genommen und eine Handlungsempfehlung abgegeben. Über den ganzen Prozess steht immer das Publikum im Mittelpunkt: Warum ist es relevant für sie? Was stösst auf Resonanz und motiviert? Dabei steht jedes mal der gleiche Inhalt zur Debatte lediglich aus unterschiedlichen Perspektiven (Einführen, Details, Zusammenfassen). [@nussbaumerknaflic2017, S. 146-149] Bei der Integration von Datenvisualisierungen in Geschichte müssen gewisse Punkte berücksichtigt werden. Erstens kann eine einzelne Visualisierung keine ganze Geschichte erzählen. Damit mit Visualisierung eine Geschichte erzählt werden kann, benötigt es mehrere Diagramme. Je Station des Storytellings benötigt es in der Regel mindestens eine Grafik. Sowenig in Textform der Anfang, die Mitte und das Ende einer Geschichte in einem Satz sinnvoll dargelegt werden kann, kann dies auch keine Visualisierung erreichen. [@wilke2020, S. 305] Damit die Visualisierung (Form) den gewünschten Effekt (Funktion) auslösst, muss die Form (Visualisierung) der Funktion (Effekt). Das heisst, mit der Visualisierung soll etwas auslösen, damit das funktioniert, benötigt sie eine vorher definierte Funktion (Was soll die Grafik machen?). Um die Funktion des Diagramms zu zeigen werden visuelle Affordanzen benutzt. Die wichtigste Methode dafür ist bei der Datenvisualisierung die Verwendung von Farben (vgl. @sec-farben-als-steuerungsinstrument). Damit die Hervorhebung seine Wirkung entfalten kann, ist es wichtig sparsam mit diesem Tool umzugehen. [@nussbaumerknaflic2017, S. 107-109] Zudem muss die Visualisierung Zugänglichkeit, nicht das Publikum ist verantwortlich, dass es die Grafik versteht sondern der Autor. Durch ein verständliches Design (keine unnötige Komplexität), Lesbarkeit (Schriftart und Grösse), Klarheit (wichtiges wird Hervorgehoben) und einfche Sprache (Publikum angepasst). Das Publikum muss durch das Diagramm geführt werden, dazu sind Titel, Achsenbeschriftungen und direkte Annotationen notwendig. [@nussbaumerknaflic2017, S. 118-119] Werden alle diese Punkte berücksichtige und alle Elemente folgen einer visuellen Ordnung, dann hat das Diagramm eine ansprechende Ästhetik, wodurch das Vertrauen des Publikums gewonnen wird [@nussbaumerknaflic2017, S. 68; S. 123]
 
-... evt. Grafik bei nussbaumer auf Seite 114 hinzufügen.
+# Vorgehen Methode
 
-## Vorgehen Methode
+## Tidy Data als Basis von Visualisuerngen
 
-### Tidy Data als Basis von Visualisuerngen
-
-Für die effektive Anwendung Datenvisualisierungen müssen die Daten als "Tidy Data" [@wickham2014] aufbereitet sein. Folgende Kriterien müssen gemäss Wickham [@wickham2014, S. 4] erfüllt sein, damit ein Datensatz dem Grundatz Tidy Data entspricht:
+Für die effektive Anwendung Datenvisualisierungen müssen die Daten als "Tidy Data" [@wickham2014] aufbereitet sein. Folgende Kriterien müssen gemäss Wickham [-@wickham2014, S. 4] erfüllt sein, damit ein Datensatz dem Grundatz Tidy Data entspricht:
 
 1.  Jede Variable hat eine eigene Spalte.
 
@@ -352,21 +321,21 @@ Für die effektive Anwendung Datenvisualisierungen müssen die Daten als "Tidy D
 
 3.  Jeder Wert hat eine eigene Zelle.
 
-![Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: [@wickham2016, S. 149]](images/image-192429895.png){#fig-tidy-data-struktur}
+![Variablen sind in Spalten, Beobachtungen in Zeilen und Werte in Zellen gespeichert bei einem tidy Datenset. Quelle: @wickham2016, S. 149.](images/image-192429895.png){#fig-tidy-data-struktur}
 
 Die Standartisierung der Organisation von Datenwerten in einem Datensatz durch den Tidy Data Ansatz vereinfacht die Datenanalyse, indem die Datenstruktur (Zweidimensionale Tabelle mit Spalten und Zeilen) mit einer Semantik (Variablen, Beobachtungen, Werte) verknüpft wird. Es ist nicht immer einfach Herauszufinden, was Beobachtungen und was Variablen sind. Um die Variablen und Beobachtungen für eine Datenanalyse herauszufinden, gilt der Grundsatz: Beziehungen lassen sich einfacher zwischen Variablen beschreiben und Vergleiche zwischen Gruppen von Beobachtungen. [@wickham2014, S. 3-4]
 
-![Ordnung durch Tidy Data. Quelle: [@lowndes2020]](images/tidy_data.jpg){#fig-tidy-data fig-alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way."}
+![Ordnung durch Tidy Data. Quelle: @lowndes2020](images/tidy_data.jpg){#fig-tidy-data fig-alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading “our columns are variables and our rows are observations!”. Text to the left of that group reads “The standard structure of tidy data means that “tidy datasets are all alike…” The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) “my column are values and my rows are variables”, “I have variables in columns AND in rows”, “I have multiple variables in a single column”, and “I don’t even KNOW what my deal is.” Next to the frazzled data tables is text “...but every messy dataset is messy in its own way."}
 
 Abgesehen, dass mit Tidy Data eine konsistente Methode für die Datenspeicherung verwendet wird, kann R die Vorteile einer vektorisierten Programmiersprache so optimal ausschöpfen. [@wickham2016, S. 150] Vektorisiert bedeutet, das eine Funktion einen Vektor mit Werten als Input nimmt und einen Vektor mit der gleichen Anzahl an Werten als Output retourniert. [@wickham2016, S. 56] Tidy Data entspricht einem langen Datenformat. Dadurch entsteht eine Redundanz an Werten, was bei der Speicherung von Daten nicht gewünscht ist, aber die Datenanalyse vereinfacht. [@healy2018a, S. 56]
 
-### Die Beziehung von Daten und Visualiserungen mit "Grammer of Graphics" {#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics}
+## Die Beziehung von Daten und Visualiserungen mit "Grammer of Graphics" {#sec-die-beziehung-von-daten-und-visualiserungen-mit-grammer-of-graphics}
 
-Die Visualisierungen im entwickelten Paket **kissviz** basieren auf dem Paket **ggplot2** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die Grammer of Graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. In der Theorie folgt die Grammer of Graphics sieben Schritten zur Erstellung einer Grafik. Daten werden Variablen zugeordnet. Anschliessend durchlaufen die Variablen drei Transformationsschritte (Algebra, Skalen, Statistik). Danach werden die transformierten Variablen einem geometrischen Objekt übergeben, damit die Daten eine Form erhalten. Im nächsten Schritt wird das Objekt in einem Koordinatensystem positioniert. Zum Schluss wird ein Visuell wahrnehmbares Objekt erstellt, das Grafik heisst. [@wilkinson2012, S. 376-377] Diese strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik macht sich das Paket **ggplot2** zu eigen um Diagramme zu erstellen. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit **ggplot2** folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den Skalen der grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Am Ende des Visualisierungsprozess wird diese Verbindung in eine Grafik umgewandelt. Damit eine solche Verbindung entstehen kann, wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit **ggplot2** eine Grafik erstellen kann. Um mehr Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. [@healy2018, S. 54-56] Viele Schritte der Grammer of Graphics haben bei **ggplot2** abhängig von den Daten und dem gewählten *geom* eine Voreinstellung. Beispielsweise bei den Transformationsschritten und dem Koordinatensystem. Die Einstellungen können aber manuell angepasst werden. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird.
+Die Visualisierungen im entwickelten Paket {**biviz}** basieren auf dem Paket **{ggplot2}** [@hadley2016], welches den Ansatz "The Grammar of Graphics" [@wilkinson2005] verfolgt und vektorisiert ist. Durch die Grammer of Graphics werden Beziehungen zwischen den Daten und ihrer grafischen Darstellung ausgedrückt und bietet eine einheitliche Möglichkeit Visualisierungen zu erstellen. In der Theorie folgt die Grammer of Graphics sieben Schritten zur Erstellung einer Grafik. Daten werden Variablen zugeordnet. Anschliessend durchlaufen die Variablen drei Transformationsschritte (Algebra, Skalen, Statistik). Danach werden die transformierten Variablen einem geometrischen Objekt übergeben, damit die Daten eine Form erhalten. Im nächsten Schritt wird das Objekt in einem Koordinatensystem positioniert. Zum Schluss wird ein Visuell wahrnehmbares Objekt erstellt, das Grafik heisst. [@wilkinson2012, S. 376-377] Diese strukturierte Beziehung zwischen den Datenvariablen und deren Repräsentation in einer Grafik macht sich das Paket {ggplot2} zu eigen um Diagramme zu erstellen. Dazu werden zuerst die Daten definiert, anschliessend wird das visuelle Element definiert und am Ende werden die Details einer Visualisierung definiert. Das heisst, eine Code mit {ggplot2} folgt bei der Erstellung einer Grafik einer logischen Struktur. Es werden Verbindungen zwischen den Datenvariablen und den Skalen der grafischen Elementen (Farbe, Form, Position, Grösse) einer Visualisierung hergestellt. Diese Verbindungen heissen *aesthetics.* Am Ende des Visualisierungsprozess wird diese Verbindung in eine Grafik umgewandelt. Damit eine solche Verbindung entstehen kann, wird in der Funktion `ggplot()` die Daten und die Beziehung zwischen den Datenvariablen und dem *mapping* auf die *aesthetics* definiert. Anschliessend wird dem Programm gesagt, welcher Diagrammtyp (Balkendiagramm, Streudiagramm, etc.) dargestellt werden soll. Diagrammtype werden anhand der *geom* definiert. Mit dem *geom* wird gesagt welches geometrische Objekt (Balken, Punkte, etc.) für das Diagramm benutzt wird. Das heisst Balkendiagramme werden mit `geom_bar()` oder Streuudiagramme mit `geom_point()` erzeugt. Diese Abfolge von Code reicht, damit {ggplot2} eine Grafik erstellen kann. Um mehr Details der Grafik wie Achsen, Skalen oder Beschriftungen zu kontrollieren, werden weitere Codestücke hinzugefügt. Dafür wird auf die gleiche Logik wie beim definieren der Diagrammtypen benutzt. [@healy2018, S. 54-56] Viele Schritte der Grammer of Graphics haben bei {ggplot2} abhängig von den Daten und dem gewählten *geom* eine Voreinstellung. Beispielsweise bei den Transformationsschritten und dem Koordinatensystem. Die Einstellungen können aber manuell angepasst werden. Jeder Teilaspekt hat eine eigene Funktion, welches Argumente besitze, die spezifizieren was das an der Grafik angepasst wird.
 
 Durch die Zerstückelung der einzelnen Schritte der Erstellung einer Visualisierung, kann systematisch Stück für Stück eine individuelle Grafik erstellt werden. Dabei basieren die unterschiedlichen Grafiktypen immer auf den oben beschriebenen Grundspezifikationen. Am Ende besteht ein Diagramm immer aus einer Kombination von drei Quellen: 1. Daten, dessen Datenwerte durch das geom dargestellt werden. 2. Skalen und Koordinatensystem um die Daten in eine Grafik umzuwandeln. 3. Erläuterungen wie Labels oder Titel damit die Grafik interpretierbar wird. [@wickham2010, S. 4-5]
 
-Die Umsetzung in **ggplot2** folgt immer dem gleichen Konzept [@healy2018, S. 60]:
+Die Umsetzung in {ggplot2} folgt immer dem gleichen Konzept [@healy2018, S. 60]:
 
 1.  Daten als Tidy Data aufbereiten.
 
@@ -425,21 +394,19 @@ plot <-
 plot
 ```
 
-...[@hehman2021],
+# R-Paket Entwicklung
 
-## R-Paket Entwicklungs Prozess
+## Struktur im Prozess
 
-### Struktur im Prozess
-
-Zu Beginn des Entwicklungsprozesses standen organisatorische Entscheide im Fokus. Zum einen musst die Ordnerstruktur des Pakets bestimmt und zum anderen eine Strategie für die Benennung der Funktionen definiert werden. Beide Aspekte helfen eine Struktur im Paket zu etablieren. Die Ordnerstruktur im **biviz** Paket folgt der Empfehlung von Bannert [@bannert2022, Kapitel 3.2.5]:
+Zu Beginn des Entwicklungsprozesses standen organisatorische Entscheide im Fokus. Zum einen musst die Ordnerstruktur des Pakets bestimmt und zum anderen eine Strategie für die Benennung der Funktionen definiert werden. Beide Aspekte helfen eine Struktur im Paket zu etablieren. Die Ordnerstruktur im {biviz} Paket folgt der Empfehlung von Bannert [@bannert2022, Kapitel 3.2.5]:
 
 -   R
 
-    Hier werden die Skripts der Funktionen gespeichert. Die einzelnen Funktionen des Pakets werden Thematisch in einer Datei zusammengefasst. Dank dem Paket **roxygen2** [@hadleywickham2022] kann die Dokumentation der Funktionen gleich im selben Skript wie die Funktionen geschrieben werden. Mit dem Paket **devtools** [@hadleywickham2022a] werden automatisch alle relevanten Dateien für die Dokumentation erzeugt. Devtools erstellt diesen Ordner automatisch.
+    Hier werden die Skripts der Funktionen gespeichert. Die einzelnen Funktionen des Pakets werden Thematisch in einer Datei zusammengefasst. Dank dem Paket {**roxygen2}** [@hadleywickham2022] kann die Dokumentation der Funktionen gleich im selben Skript wie die Funktionen geschrieben werden. Mit dem Paket {**devtools}** [@hadleywickham2022a] werden automatisch alle relevanten Dateien für die Dokumentation erzeugt. Devtools erstellt diesen Ordner automatisch.
 
 -   man
 
-    In diesen Ordner wird im normallfall die automatisch erzeugte Dokumentation abgespeichert und beinhaltet die Funktion- und Datendokumentationen. Diese Dokumentationen werden bei der Anwendung des Pakets mithilfe ?function_name oder help(function_name) aufgerufen. Devtools erstellt diesen Ordner automatisch.
+    In diesen Ordner wird im normallfall die automatisch erzeugte Dokumentation abgespeichert und beinhaltet die Funktion- und Datendokumentationen. Diese Dokumentationen werden bei der Anwendung des Pakets mithilfe ?function_name oder help(function_name) aufgerufen. {devtools} erstellt diesen Ordner automatisch.
 
 -   data
 
@@ -449,13 +416,14 @@ Zu Beginn des Entwicklungsprozesses standen organisatorische Entscheide im Fokus
 
     R Pakete werden in der Regel mit `install.packages()` installiert und werden irgendwo auf dem Computer auf dem R verwendet wird abgespeichert. Sollen Dateien welche nicht direkt in Zusammenhang mit dem Paket stehen mitgeliefert werden, dann ist der inst Ordner ein guter Ort dafür. Der Ordner wird im Stammordner des installierten Pakets gespeichert und bleibt so immer in Bezug zum Paket. Der Ordner bietet auch Platz für Sandboxes oder um mit neuen Funktionen zu experimentieren.
 
-    ... wietere Ordner
+    > todo: docs / vignettes\
+    > https://devops-carpentry.github.io/book/programming.html#folder-structure
 
-Neben der Ordnerstruktur ist für die stringente Entwicklung und anschliessende Nutzung des Pakets ist eine einheitliche Syntax wichtig. Für **biviz** wird der snake_case Ansatz verwendet. Beim snake_case werden alle Begriffe in Kleinbuchstaben oder Zahlen verwendet und mit einem Unterstrich ( \_ ) verbunden. Neben der Darstellung ist auch der Inhalt wichtig. Gute Namen können bereits eine Form der Dokumentation sein und entsprechend beschreiben was sie repräsentieren. Als Faustregel gilt: Variablen sind Nomen und beschreiben was sie sind (`abfallart`). Funktionen sind Verben und beschreiben was sie machen (`plot_amounts_grouped`). [@hadleywickham2022b] Es hilft sich in Erinnerung zu rufen, dass der Code auch von Menschen gelesen und verstanden werden muss. Für den Computer ist es nicht relevant ob `function1()` oder `compute_average()` steht. Für einen Menschen ist es jedoch ein grosser Unterschied und macht den Code verständlicher. Entsprechend soll der Code einfach und verständlich für Menschen gehalten werden.
+Neben der Ordnerstruktur ist für die stringente Entwicklung und anschliessende Nutzung des Pakets ist eine einheitliche Syntax wichtig. Für {biviz} wird der snake_case Ansatz verwendet. Beim snake_case werden alle Begriffe in Kleinbuchstaben oder Zahlen verwendet und mit einem Unterstrich ( \_ ) verbunden. Neben der Darstellung ist auch der Inhalt wichtig. Gute Namen können bereits eine Form der Dokumentation sein und entsprechend beschreiben was sie repräsentieren. Als Faustregel gilt: Variablen sind Nomen und beschreiben was sie sind (`abfallart`). Funktionen sind Verben und beschreiben was sie machen (`plot_amounts_grouped`). [@hadleywickham2022b] Es hilft sich in Erinnerung zu rufen, dass der Code auch von Menschen gelesen und verstanden werden muss. Für den Computer ist es nicht relevant ob `function1()` oder `compute_average()` steht. Für einen Menschen ist es jedoch ein grosser Unterschied und macht den Code verständlicher. Entsprechend soll der Code einfach und verständlich für Menschen gehalten werden.
 
-### Tidy evaluation
+## Tidy evaluation
 
-Im Tidyverse Ecosystem wird Tidy evaluation verwendet, was eine Spezialform des non-standard evaluation ist (mehr Details zu non-standard evaluation [@wickham2019, Abschnitt Metaprogramming]). Für das Paket **biviz** wurde das data masking und tidy selection angewendet. Mit dem **data-masking** können Variablen in bestimmten Funktionen so verwendet werden als ob sie in der Programmierumgebung bzw. Funktionsumgebung sind. Es reicht dann `variable_x` zu verwenden anstatt `df$variable_x`. Mit data-masking verschwimmt die Abgrenzung zwischen env-variables (Variablen fürs Programmieren, welche in R mit `<-` erstellt werden und Objekte sind) und data-variables (Statistische Variablen welche in Datentabellen gespeichert sind). [@wickham2022] Vereinfacht gesagt, wird durch das data-masking die spezifisch aufgerufene env-variable (im Normalfall eine Datentabelle) zur Programmierumgebung und die data-variable zur env-variable während dem Aufruf der Funktion.
+Im Tidyverse Ecosystem wird Tidy evaluation verwendet, was eine Spezialform des non-standard evaluation ist (mehr Details zu non-standard evaluation [@wickham2019, Abschnitt Metaprogramming]). Für das Paket {biviz} wurde das data masking und tidy selection angewendet. Mit dem **data-masking** können Variablen in bestimmten Funktionen so verwendet werden als ob sie in der Programmierumgebung bzw. Funktionsumgebung sind. Es reicht dann `variable_x` zu verwenden anstatt `df$variable_x`. Mit data-masking verschwimmt die Abgrenzung zwischen env-variables (Variablen fürs Programmieren, welche in R mit `<-` erstellt werden und Objekte sind, .env Pronomen) und data-variables (Statistische Variablen welche in Datentabellen gespeichert sind, .data Pronomen). [@wickham2022] Vereinfacht gesagt, wird durch das data-masking die spezifisch aufgerufene env-variable (im Normalfall eine Datentabelle) zur Programmierumgebung und die data-variable zur env-variable während dem Aufruf der Funktion.
 
 ```{r}
 #| code-fold: false
@@ -476,7 +444,7 @@ filter(df, variable_x == 1 & variable_y == "a")
 
 ```
 
-Das tidy evaluation Konzept vereinfacht die interaktive Datenanalyse. Beim Programmieren mit Tools die data-masking benutzen gilt es jedoch gewisse Herausforderungen zu meistern. Beim Schreiben von eigenen Funktionen mit data-variables müssen sie im Code speziell mit {{ variable_x }} ( "{{" wird auch curly-curly genannt) aufgerufen werden. Ohne die Einschliessung in {{ sucht R in der Funktionsumgebung bzw. Programmierumgebung nach einer env-variable "variable_x" und findet sie nicht, da variable_x eine data-variable ist, welche eine Spalte im df (env-variable) ist. {{ ist ein Weiterleitungsoperator, wodurch Funktionen mit data-masking welche in der selber geschriebenen Funktion verwendet werden ihr Verhalten in die neue Umgebung mitnehmen. [@henry2022] & [@henry2022a]
+Das tidy evaluation Konzept vereinfacht die interaktive Datenanalyse. Beim Programmieren mit Tools die data-masking benutzen gilt es jedoch gewisse Herausforderungen zu meistern. Beim Schreiben von eigenen Funktionen mit data-variables müssen sie im Code speziell mit {{ variable_x }} ( "{{" wird auch curly-curly genannt) aufgerufen werden. Ohne die Einschliessung in {{ sucht R in der Funktionsumgebung bzw. Programmierumgebung nach einer env-variable "variable_x" und findet sie nicht, da variable_x eine data-variable ist, welche eine Spalte im df (env-variable) ist. {{ ist ein Weiterleitungsoperator, wodurch Funktionen mit data-masking welche in der selber geschriebenen Funktion verwendet werden ihr Verhalten in die neue Umgebung mitnehmen. [@henry2022; @henry2022a]
 
 ```{r}
 #| code-fold: false
@@ -497,25 +465,25 @@ compute_max(df, variable_x)
 
 Beim **tidy-selection** können in gewissen Funktionen auf die Variablen anhand ihres Namen, Typ oder Postition zugegriffen werden. Tidy-selection folgt den gleichen Prinzipien wie data-masking. Folglich gelten die gleichen Regeln wie oben beim data-masking beschrieben. [@wickham2022]
 
-### Workflow für die Entwickung von Paketen in R
+# Workflow für die Entwickung von Paketen in R
 
-Wie für viele andere Aufgaben gibt es in R ein Paket, welches die Entwicklung von eigenen Paketen unterstützt. Diese Pakete werden im **devtools** [@wickham2022a] zusammengefasst. Nach dem das Paket devtools installiert und geladen ist, kann der Entwicklungsprozess beginnen. Der hier beschriebene Ablauf orientiert sich am Kapitel *The Whole Game* der zweiten Edition des Buches R Packages [@wickham2015a]. Die zweite Edition ist noch nicht veröffentlicht, die work-in-progress Verison steht [online](https://r-pkgs.org/whole-game.html) jedoch zur Verfügung. Folgend werden die Funktionsaufrufen mit Angabe des spezifischen Pakets angegeben, damit die Herkunft der Funktionen ersichtlich ist.
+Wie für viele andere Aufgaben gibt es in R ein Paket, welches die Entwicklung von eigenen Paketen unterstützt. Diese Pakete werden im {devtools} [@wickham2022a] zusammengefasst. Nach dem das Paket devtools installiert und geladen ist, kann der Entwicklungsprozess beginnen. Der hier beschriebene Ablauf orientiert sich am Kapitel *The Whole Game* der zweiten Edition des Buches R Packages [@wickham2015a]. Die zweite Edition ist noch nicht veröffentlicht, die work-in-progress Verison steht jedoch [online](https://r-pkgs.org/whole-game.html) zur Verfügung. In den folgenden Schritten werden die Funktionsaufrufen mit Angabe des spezifischen Pakets angegeben, damit die Herkunft der Funktionen ersichtlich ist.
 
-#### Schritt 1: Initiierung des Pakets
+## Schritt 1: Initiierung des Pakets
 
 Als erstes wird mit `usethis::create_package("dogorcat")` im derzeitigen Arbeitsverzeichnis das Paket erstellen. Alternativ kann auch ein spezifischer Ordner verwendet werden `usethis::create_package("C:/Users/Andriu/Documents/dogorcat").` Mit `usethis::use_git()` und `usethis::use_github()` oder via Tools \> Version Control kann ein Git repository sowie die Verbindung zum GitHub repository erstellt werden.
 
-![Initiierung des Pakets](images/pkg_step_1.JPG){#pkg_development_step_1 fig-align="center"}
+![Initiierung des Pakets.](images/pkg_step_1.JPG){#pkg_development_step_1 fig-align="center"}
 
-#### Schritt 2: Funktionen schreiben {#sec-schritt-2-funktionen-schreiben}
+## Schritt 2: Funktionen schreiben {#sec-schritt-2-funktionen-schreiben}
 
-Nach der Initiierung des Pakets können Funktionen geschrieben werden. Zuerst wird mit `usethis::use_r("dog_or_cat")` (kann später auch verwendet werden um das Skript zu öffnen) ein Skriptfile im Ordner R abgespeichert werden. Dieser Schitt kann natürlich auch manuell erfolgen. Anschliessend wird die Funktion geschrieben. Die Funktionen im biviz sind als Familien organisiert. Das heisst, je Thema -- beispielsweise Proportions -- gibt es eine Datei in der der Quellcode und Dokumentation von mehreren Funktionen zusammen leben. Der Code kann direkt in der Funktion mit `#` dokumentiert werden. Wichtig beim Dokumentieren des Codes ist das "Warum?". Warum mache ich das so wie ich es mache. Für weitere Details zum Schreiben von Funktionen eignet sich das Kapitel Functions are for Humans and Computers im Buch R for Data Science [@wickham2016a].
+Nach der Initiierung des Pakets können Funktionen geschrieben werden. Zuerst wird mit `usethis::use_r("dog_or_cat")` (kann später auch verwendet werden um das Skript zu öffnen) ein Skriptfile im Ordner R abgespeichert werden. Dieser Schitt kann natürlich auch manuell erfolgen. Anschliessend wird die Funktion geschrieben. Die Funktionen im {biviz} sind als Familien organisiert. Das heisst, je Thema -- beispielsweise Proportions -- gibt es eine Datei in der der Quellcode und Dokumentation von mehreren Funktionen zusammen leben. Der Code kann direkt in der Funktion mit `#` dokumentiert werden. Wichtig beim Dokumentieren des Codes ist das "Warum?". Warum mache ich das so wie ich es mache. Für weitere Details zum Schreiben von Funktionen eignet sich das Kapitel Functions are for Humans and Computers im Buch R for Data Science [@wickham2016a].
 
 ```{r}
 #| code-fold: false
 
 dog_or_cat <- function(favorite) {
-  # eine fehlerhafte eingabe soll so früh wie möglich erkennt werden
+  # eine fehlerhafte eingabe soll so früh wie möglich erkannt werden
   stopifnot("Das Argument 'favorite' muss ein String sein." = is.character(favorite), 
             "Kein anderes Haustier möglich. Wähle Dog oder Cat." = favorite == "dog" | favorite == "cat")
   ifelse(favorite == "cat", "Miauu!", "Woof, woof!")
@@ -532,11 +500,11 @@ dog_or_cat("dog")
 
 Mit `devtools::check()` ("Ctrl + Shift + E" oder Build \> Check Package) wird ein R CMD check aufgerufen, welcher prüft ob das Paket funktionsfähig ist. Es ist zu empfehlen `devtools::check()` regelmässig auszuführen, damit frühzeitig Fehler entdeckt und behoben werden können. Beispielsweise nach dem Schreiben einer neuen Funktion.
 
-#### Schritt 3: Dokumentation
+## Schritt 3: Dokumentation
 
 Als erstes werden die Metadaten für das Paket erfasst. Dazu wird das file `DESCRIPTION` geöffnet und die relevanten Daten (Paketname, Autor, Licence, etc.) erfasst. Die Lizenz wird am einfachsten mit einem Shortcut wie `usethis::use_mit_licences()` ausgefüllt.
 
-Anschliessend wird eine Dokumentation für die Funktion erstellt. Dazu wird das Paket **roxygen2** [@wickham2022b]verwendet. Dazu wird im Skript mit der Funktion der Cursor in der Funktion `dog_or_cat` platziert und via Code \> Insert Roxygen Skeleton das Template aufgerufen. Anschliessend können alle Punkte bearbeitet werden.
+Anschliessend wird eine Dokumentation für die Funktion erstellt. Dazu wird das Paket {roxygen2} [@wickham2022b] verwendet. Dazu wird im Skript mit der Funktion der Cursor in der Funktion `dog_or_cat` platziert und via Code \> Insert Roxygen Skeleton das Template aufgerufen. Anschliessend können alle Punkte bearbeitet werden.
 
 ```{r}
 #| code-fold: false
@@ -591,9 +559,9 @@ tidy_dog_or_cat <- function(favorite) {
 
 Als letztes wird noch ein `README` für GitHub benötigt. Hier wird der Zweck des Pakets, die Installationsanweisungen und einen kleinen Einblick in die Anwendung des Pakets gegeben. Natürlich können noch weitere Punkte ins `README` gepackt werden. Am einfachsten wird mit `devtools::use_readme_rmd()` ein RMakrdown Dokument erstellt, so kann die Seite in gewohnter Umgebung geschrieben werden. Anschliessend wir mit `devtools::build_readme()` das `README.md`für GitHub erstellt. Das `README` ist die Homepage und das Intro ins Paket. Später kann auch eine eigene Website erstellt werden.
 
-#### Schritt 4: Testen
+## Schritt 4: Testen
 
-Das Testen der Funktionen ist ein wichtiger Teil der Paketentwicklung. Das Testen ist so wichtig, dass es sich ab einer gewisse Relevanz (Anzahl Funktionen, Anzahl Nutzende, etc.) lohnt die Test zu formalisieren. Mit **testthat** [@wickham2011a] liefert das Paket devtools ein Framework, die das schreiben von Tests unterstützen. Für das Testen von Grafischenoutputs wir zusätzich noch das Paket **vdiffr** [@henry2023] benötigt. Beim Unit Test wird die erwartete Ausgabe eines Codes festgehalten und mit dem tatsächlichen Wert verglichen. Dieser Ablauft läuft automatisch auf der Basis von Code. Beim Snaphot testing wird eine Datei erstellt, die von einem Menschen lesbar ist. Bei Datenvisualisierungen -- wie im Paket **biviz** -- wird das Snaphot testing angewendet. Hier wird ein Bildfile mit der erwarteten Darstellung erstellt. Beim Testen wird anschliessend mit der erwarteten Darstellung angeglichen. Snapshots test für Grafiken sind anfällig. Aus diesem Grund und da sich biviz noch in der Entwicklungsphase ist, werden die Test bei biviz noch informell also händisch gemacht. Ausgenommen davon sind die standartisierten R CMD checks wie in @sec-schritt-2-funktionen-schreiben beschrieben.
+Das Testen der Funktionen ist ein wichtiger Teil der Paketentwicklung. Das Testen ist so wichtig, dass es sich ab einer gewisse Relevanz (Anzahl Funktionen, Anzahl Nutzende, etc.) lohnt die Test zu formalisieren. Mit {**testthat**} [@wickham2011a] liefert das Paket devtools ein Framework, die das schreiben von Tests unterstützen. Für das Testen von Grafischenoutputs wir zusätzich noch das Paket {**vdiffr**} [@henry2023] benötigt. Beim Unit Test wird die erwartete Ausgabe eines Codes festgehalten und mit dem tatsächlichen Wert verglichen. Dieser Ablauft läuft automatisch auf der Basis von Code. Beim Snaphot testing wird eine Datei erstellt, die von einem Menschen lesbar ist. Bei Datenvisualisierungen -- wie im Paket {biviz} -- wird das Snaphot testing angewendet. Hier wird ein Bildfile mit der erwarteten Darstellung erstellt. Beim Testen wird anschliessend mit der erwarteten Darstellung angeglichen. Snapshots test für Grafiken sind anfällig. Aus diesem Grund und da sich {biviz} noch in der Entwicklungsphase ist, werden die Test bei {biviz} noch informell also händisch gemacht. Ausgenommen davon sind die standartisierten R CMD checks wie in @sec-schritt-2-funktionen-schreiben beschrieben.
 
 **Schritt 5: Installieren**
 
@@ -601,13 +569,25 @@ Vor dem Installieren des Pakets wird nochmals mit `devtools::check()` alles gepr
 
 Die effektive Entwicklung von Paketen geschieht in den Schritten zwei bis vier. Die Anwendung und Reihenfolge dieser Schritte ist dabei dynamisch.
 
-### TODO
+# (README) Verwendung von {biviz}
 
-### Vorteile
+Mit {biviz} können häufig verwendete Datenvisualisierungen mit einfachen Funktionen erstellt werden. {biviz} stellt insbesondere Datenvisualisierungen die oft im Bereich Business Intelligence (BI) verwendet werden zur Verfügung. Das Paket implementiert Trends der Datenvisualisierung, wodurch sich das Paket auch für andere Zwecke eignet. In {biviz} werden {ggplot2} Wrapper zur Verfügung gestellt, welche die gängigen Datenvisualisierungen erzeugen. Dies hat zum Vorteil, dass bei Standardgrafiken die Datenvisualisierung nicht Schicht für Schicht programmiert werden, wie es beim {ggplot2} Framework vorgesehen ist. Eine Zeile Code reicht um eine Datenvisualisierung zu erstellen. Da das Paket auf {ggplot2} aufbaut kann das erzeugte Objekt, zu einem späteren Zeitpunkt dennoch angepasst werden. Um die Wrapper schlank zu halten, werden bei den meisten Funktionen in {biviz} die Daten vor der Übergabe in die Funktion so aufbereitet, dass in der Visualisierung die Datenpunkte in den Daten abgebildet werden und keine Berechnungen innerhalb der Visualisierungsfunktion vorgenommen werden.
 
-Durch das **biviz** Paket sollen oft verwendete Visualisierungen einfach erstellt werden können. Mit einer Funktion kann eine komplexe Visualisierung erstellt werden. Damit das Handling der Funktion einfach bleibt, haben die Funktionen Einschränkungen bzw. können nicht die ganze Palette die in **ggplot2** zur Verfügung stehen anwenden. Wie im Kapitel @sec-von-datenwerten-zu-visualisierung gesehen sind für ein effektives Data Storytelling eine flexible Anpassung von Datenvisualisierungen wichtig. Durch den modularen Aufbau von **ggplot2** geht dies jedoch relativ einfach. Mit dem Aufruf einer **biviz** Funktion wird ein **ggplot2** Objekt erstellt. Dieses Objekt kann **ggplot2** Funktionen angepasst und verfeinert werden. Geht eine Feinpolierung über die Möglichkeit des **biviz** hinaus, so kann mit dem erstellten Objekt einfach **ggplot2** Funktionen angehänkt werden um die Anpassungen an der Grafik zu machen. Wichtig: Normalerweise werden in R aufeinanderfolgende Funktionsaufrufe mit der Pipe `|>` verbunden. Bei ggplot2 Objekten wird dafür das `+` verwendet.
+## Datenvisualisierungs Familien
 
-vgl. @sec-das-kartesisches-koordinatensystem-als-positionsskala
+Die Visualisierungen sind in 4 Gruppen (amounts, distributions, proportions und time series) aufgeteilt und folgen immer der gleichen Syntax. Jede Funktion startet mit `plot_*()` anschliessend wird die Gruppe definiert `plot_amounts_*()` und am Ende die Form `plot_amounts_grouped()`.
+
+In der Gruppe "amounts" sind Datenvisualisierungen zusammengefasst, die Mengen abbilden. Dabei werden die Zahlenwerte von Kategorien bzw. deren Anzahl in einer Variable dargestellt. Die Kategorien können zusätzlich auch einer Gruppe zugeordnet werden. Dazu werden Variablen verwendet, welche die Gruppenzugehörigkeit definieren.
+
+Bei "distributions" werden Verteilungen innerhalb einer Variable dargestellt. Dazu können unterschiedliche Methoden verwendet werden, welche je nach Ausgangslage unterschiedliche Vorteile mit sich bringen. Bei den Datenvisualisierungen zu Verteilungen lohnt es sich verschiedene Grafiken auszuprobieren und ein möglichst akkurates Bild der Daten zu erhalten. Die Funktion `plot_distributions_raincloud()` beispielsweise verfolgt das Ziel, ein gesamthaften Überblick (Rohdaten, zu präsentieren. Indem verschiedene Layers (Boxplot-, Violin- und Punkte-Diagramm) übereinander gelegt werden. Bei grossen Datenmengen gibt es jedoch soviele Datenpunkte, das das Punkte-Diagramm keinen Mehrwert mehr liefert. Deshalb bietet die Funktion `plot_distributions_boxplot()`eine alternative. Die Diskussion rund um statistisch robusteren und transparenten Ansätzen zur Datenvisualisierung ist ein Disziplin übergreifendes Thema. [vgl. @allen2021; @hehman2021]
+
+Für "proportions" gibt es unterschiedliche Formen der Darstellung, welche verschiedene Vorteile haben. Bei gestapelte Balken oder Donutplots ist es klar ersichtlich, dass Teilmengen eines Ganzen sind. Nebeneinander angeordnete Balken zeigen den relativen Unterschied besser und eignet sich auch für viele Teilmengen. Werden die Proportionen von verschiedenen Variablen untersucht, dann eignen sich wiederum gestapelte Balken. Durch Visualisierungstools wie {ggplot2} lassen sich Proportionen separat als Teil der Gesamtmenge darstellen. Mit `plot_proportions_sidebyside_density1()` werden zwei Probleme gelöst: Erstens ist das Verhältnis zur Gesamtmenge ersichtlich (im gegensaz zum Balkendiagramm) und zweitens hat jede Teilmenge eine Grundlinie wodurch die Mengen einfach verglichen werden können (im gegensatz zu gestapelten Balkendiagrammen). Mit `plot_proportions_sidebyside_density2()` kann der relativen Anteil zu einem bestimmten Zeitpunkt einfach bestimmt werden. [@nussbaumerknaflic2017, S. 47; @wilke2020 S. 92-94]
+
+Daten mit einem Zeitpunkt haben eine inhärente Reihenfolge (geordnete Richtung) und Liniendiagramme eigenen sich die zeitliche Ordnung darzustellen, da abgesehen vom Anfang und End alle Datenpunkte einen Vorgänger und Nachfolger haben. Die Familie "time_series" beitet neben unterschiedlichen Formen von Liniendiagrammen auch Visualisierungen von Trends an. Die Darstellung von Trends hilft, übergeordnete Entwicklungen zu erkennen. Um verschiedene Methoden der Glättung und Trendbereinigung bereitzustellen, greifen die Funktionen auf das Paket {**tsbox**} [@sax2021] zurück.
+
+## Vorteile
+
+Damit das Handling der Funktion in {biviz} einfach bleibt, haben die Funktionen Einschränkungen bzw. können nicht die ganze Palette die in {ggplot2} zur Verfügung stehen anwenden. Wie im Kapitel @sec-von-datenwerten-zu-visualisierung gesehen sind für ein effektives Data Storytelling eine flexible Anpassung von Datenvisualisierungen wichtig. Durch den modularen Aufbau von {ggplot2} geht dies jedoch relativ einfach. Mit dem Aufruf einer {biviz} Funktion wird ein {ggplot2} Objekt erstellt. Dieses Objekt kann {ggplot2} Funktionen angepasst und verfeinert werden. Geht eine Feinpolierung über die Möglichkeit des {biviz} hinaus, so kann mit dem erstellten Objekt einfach {ggplot2} Funktionen angehänkt werden um die Anpassungen an der Grafik zu machen. Wichtig: Normalerweise werden in R aufeinanderfolgende Funktionsaufrufe mit der Pipe `|>` verbunden. Bei {ggplot2} Objekten wird dafür das `+` verwendet.
 
 ```{r}
 
@@ -659,7 +639,7 @@ plot_abfall_zh_shine <-
   # das vorherige ggplot2 objekt wird verwendet
   plot_abfall_zh_nice +
   # mit diesem schritt werden alle balken ausser, der hervorzuhebende grau
-  # "übermalt" indem ein einer layer auf die visualisierung gelegt wird
+  # "übermalt" indem ein neuer layer auf die visualisierung gelegt wird
   geom_col(
     data = filter(df_abfall_zh, abfall_pro_person != min(df_abfall_zh$abfall_pro_person)),
     mapping = aes(
@@ -701,18 +681,6 @@ plot_abfall_zh_nice
 plot_abfall_zh_shine
 ```
 
-#### 
+# Fazit / Schlussfolgerung
 
-09.10.2022
-
-...[@chang2013]
-
-...[@wickham2015]
-
-... online dokumentatione
-
-## Resultat
-
-## Fazit / Schlussfolgerung
-
-## Literaturverzeichnis {.unnumbered}
+# Literaturverzeichnis {.unnumbered}

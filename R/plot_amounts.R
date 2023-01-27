@@ -27,11 +27,15 @@
 #' plot_amounts(df, x, y)
 #'
 #'@export plot_amounts
-plot_amounts <- function(data, x, y, color = "#0d7abc") {
+plot_amounts_vertical <- function(data, x, y, color = "#0d7abc") {
 
   plot <-
     ggplot(data = data,
            mapping = aes(x = {{ x }}, y = {{ y }})) +
+    # die aufbereitung der werte soll ausserhalb der funktion erfolgen.
+    # es wird geom_col anstatt geom_bar verwendet, da es stat_identity
+    # verwendet (die effektiven werte werden abgebildet).
+    # default von geom_bar ist stat_count (anzahl fälle je positione werden gezählt)
     geom_col(fill = color) # alpha = 0.9
 
   # testen ob die y-achse numerisch ist, damit die richtige skala verwendet werden kann
@@ -87,7 +91,7 @@ plot_amounts_horizontal <- function(data, x, y, color = "#0d7abc") {
 plot_amounts_grouped <- function(data, x, y, group) {
 
 
-# TODO: farbwahl bei nur 2 gruppen ----------------------------------------
+# TODO: farbwahl bei nur 2 gruppen und continues farbwahl ----------------------------------------
 
   # testen ob die group-variable ein factor ist
   group_as_factor <- dplyr::pull(data, {{ group }})
@@ -100,8 +104,13 @@ plot_amounts_grouped <- function(data, x, y, group) {
 
   # anzahl levels wird verwendet um die farbpalette auszuwählen
   levels <- nlevels(group_as_factor)
-  #colors <- RColorBrewer::brewer.pal(levels, "Blues") #[3:5] #[5:(5-length(levels))]
-  colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
+
+  # farbpaletten benötigen mindestens 3 werte (n >= 3)
+  if (near(levels, 2)) {
+    colors <- c("#ff7b39", "#4565b2")
+  } else {
+    colors <- colorspace::sequential_hcl(levels, palette = "Purples 2")
+  }
 
   plot <-
     ggplot(data = data,
@@ -160,6 +169,9 @@ plot_amounts_facets <- function(data, x, y, facet, n_col = 2, color = "#0d7abc")
 #' @rdname plot_amounts
 plot_amounts_stacked <- function(data, x, y, group) {
 
+  # stop if not -> check, dass die daten als werte abgebildet sind, also
+  # jede kombination ur einmal vorkommt, vgl. sandbox
+
   # labes berechnen, damit sie in der mitte des jeweiligen blocks sind
   data <-
     data |>
@@ -174,7 +186,7 @@ plot_amounts_stacked <- function(data, x, y, group) {
     # damit die einzelnen blöcke besser unterscheidbar sind, eine weisse linie hinzufügen
     geom_col(position = "stack", color = "white", size = 0.5, width = 1) + # width = 0.9
     geom_text(
-      aes(y = n_label, label = n),
+      aes(y = n_label, label = {{ y }}),
       color = "white", size = 4)
 
   # testen ob die group-variable ein factor ist

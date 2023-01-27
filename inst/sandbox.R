@@ -3,6 +3,7 @@
 library(devtools)
 library(tidyverse)
 library(lubridate)
+library(socviz)
 load_all()
 #library(socviz)  # Book: Data Visualization by Kieran Healy, https://github.com/kjhealy/socviz
 
@@ -20,21 +21,37 @@ tech_stocks <-
   read_csv("https://wilkelab.org/SDS375/datasets/tech_stocks.csv") |>
   mutate(date = ymd(date))
 
+
+# test amounts ------------------------------------------------------------
+
+gss_lon |>
+  mutate(count = n()) |>
+  #plot_amounts_vertical(degree, count)
+  #plot_amounts_vertical(count, degree)
+  #plot_amounts_horizontal(degree, count)
+  #plot_amounts_facets(age, count, degree)
+  #plot_amounts_grouped(sex, wtssall, degree)
+  count(degree, sex) |>
+  ## group_by(degree) |>
+  ## mutate(count_by_group = n()) |>
+  ## ungroup() |> select(degree, count_by_group, sex)
+  plot_amounts_stacked(x = degree, n, sex)
+
 # test distributions ------------------------------------------------------
 
 gss_lon|>
   filter(happy != "NA") |>
   #drop_na() |>
   #count(age)
-  #plot_distributions(as.numeric(age), bw = 3)
+  #plot_distributions_histogram(as.numeric(age), bw = 3)
   #plot_distributions_density(as.numeric(age), bw = 3)
-  plot_distributions_sidebyside(as.numeric(age), group = sex, bw = 3)
+  #plot_distributions_sidebyside(as.numeric(age), group = sex, bw = 3)
   #plot_distributions_grouped(as.numeric(age), group = happy, bw = 5)
 
 gss_lon |>
   filter(!is.na(happy)) |>
-  #plot_distributions_raincloud(age, happy)
-  plot_distributions_boxplot(age, happy, size = 3)
+  plot_distributions_raincloud(age, happy)
+  #plot_distributions_boxplot(age, happy, size = 3)
 
 
 
@@ -96,13 +113,13 @@ plot_timeseries_slope(data = df_temp, x = year, y = hwy_by_manufacturer, group =
 
 tech_stocks |>
   select(company, date, price_indexed) |>
-  filter(company == "Facebook") |>
+  filter(company == "Apple") |>
   plot_timeseries_line(x = date, y = price_indexed, group = company)
 
 tech_stocks |>
   select(company, date, price_indexed) |>
-  filter(company == "Apple") |>
-  plot_timeseries_trend(x = date, y = price_indexed, method = "loess") #+  facet_wrap(vars(company))
+  #filter(company == "Apple") |>
+  plot_timeseries_trend(x = date, y = price_indexed, method = "loess") +  facet_wrap(vars(company))
 
 ## detrendig
 
@@ -112,10 +129,15 @@ tech_stocks |>
   # mutate(date = year(date)) |>
   mutate(date = format(date, "%Y-%m")) |>
   # #mutate(date = as.yearmon(date, "%Y %m")) |>
+  filter(company == "Apple") |>
+  #group_by(date) |>
   group_by(company, date) |>
   summarise(price_indexed = mean(price_indexed)) |>
   ungroup() |>
-  plot_timeseries_detrend(x = date, y = price_indexed, method = "pc", group = company, facet = TRUE)
+  #plot_timeseries_detrend(x = date, y = price_indexed, method = "pc", group = company, facet = TRUE)
+  ## wenn nur eine gruppe
+  plot_timeseries_detrend(x = date, y = price_indexed, method = "pc", group = company, facet = FALSE)
+
 
 # library(tsbox)
 # temp <- fdeaths |>
@@ -171,4 +193,12 @@ plot_bar_v(gss_sm, agegrp, childs) #+
 
 # temp2 <- temp |> filter(row_number() %% 214 == 1)
 # df.new = df[seq(1, nrow(df), 5), ]
+
+
+# 21.01.2023 --------------------------------------------------------------
+
+p <- ggplot(data = midwest,
+              mapping = aes(x = area, color = state))
+p + geom_density(alpha = 0.3)
+p + geom_line(stat = "density")
 
