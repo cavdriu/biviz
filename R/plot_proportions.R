@@ -227,8 +227,8 @@ plot_proportions_sidebyside_density1 <- function(data, x, group, bw = 5, color =
 
   plot <-
     ggplot(data = data,
-           # y = stat(count) skaliert die dichte auf anzahl, so ist die fläche das total an untersuchungen
-           mapping = aes(x = {{ x }}, y = stat(count))) +
+           # y = after_stat(count) skaliert die dichte auf anzahl, so ist die fläche das total an untersuchungen
+           mapping = aes(x = {{ x }}, y = after_stat(count))) +
     geom_density(
       data = dplyr::select(data, !{{ group }}),
       mapping = aes(fill = "n_total"),
@@ -284,6 +284,18 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
   # }
   #stopifnot(all(!is.na(data)))
 
+  # legende muss noch optimiert werden
+  #
+  # Hilfe Funktionen sind notwendig, da die einzelne facette über alle daten ist (proportional)
+  #
+  # https://stackoverflow.com/questions/5249673/how-should-i-handle-helper-functions-in-an-r-package
+  #
+  # https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-and-vctrs/
+  #
+  #   Achtung: labelled daten müssen in factor umgewandet werden
+  #
+  # bw = bw & color = "transparent" kontrollieren ob das notwendig ist
+
 # helper functions -----------------------------------------------------------------------
 
   ## pro plot (facette) das verhältnis andere und untersuchte gruppe berechnen
@@ -333,7 +345,7 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
     ggplot(data = data,
            mapping = aes(x = {{ x }})) +
     geom_density(
-      mapping = aes(y = stat(count), fill = focus), #{{}}
+      mapping = aes(y = after_stat(count), fill = focus), #{{}}
       position = "fill",
       color = "transparent"
     )
