@@ -1,17 +1,18 @@
 ---
 title: "Masterarbeit"
 subtitle: "Viz Tool"
-date: "2022-02-19"
+date: "2023-02-19"
 author: 
   - name: Andriu Cavelti
     email: andriu.cavelti@stud.unibas.ch
     affiliations:
-    - name: Universität Basel, Digital Humanities
+        - name: Universität Basel, Digital Humanities
 lang: de
 toc: true
 lof: true
 lot: true
 bibliography: references.bib
+title-block-banner: "#0d7abc"
 link-citations: true
 #csl: #chicago is default csl
 highlight-style: pygments
@@ -22,6 +23,8 @@ format:
     code-tools: true
     #code-link: true
   pdf:
+    template-partials: 
+    - before-body.tex
     number-sections: true
     colorlinks: true
     execute:
@@ -42,19 +45,51 @@ library(colorspace)
 library(palmerpenguins)
 library(biviz)
 devtools::load_all()
+
+
+
+
 ```
 
+# Titelblatt
+
+....
+
+# Danksagung
+
 ::: callout-note
-Diese Arbeit ist mit [Quarto](https://quarto.org/) geschrieben. Eine HTML-Version der Arbeit steht auf der [Website des Pakets **bivi**](LINK) zur Verfügung. Der Quellcode des Pakets ist unter [GitHub](https://github.com/) abrufbar.
+Diese Arbeit ist mit [Quarto](https://quarto.org/){style="font-size: 11pt;"} geschrieben. Eine HTML-Version der Arbeit steht auf der Website des Pakets [bivi](https://tricktracktriu.github.io/biviz){style="font-size: 11pt;"} zur Verfügung. Der Quellcode des Pakets ist unter [GitHub](https://github.com/tricktracktriu/biviz/){style="font-size: 11pt;"} abrufbar.
 :::
 
 # Einleitung
 
-## Forschungsvorhaben / RQ
+Datenvisualisierungen und die Auseinandersetzung mit Informationsdesign für quantitative Daten gab es schon lange vor Big Data. John W. Tukey [@tukey1977], Edward R. Tufte [@tufte2001, Erstveröffentlichung 1982] und William S. Cleveland [@cleveland1984] sind bis heute prägend für das Gebiet der Datenvisualisierung. Datenvisualisierungen wurden aber schon viel früher für die Erkenntnissgewinnung verwendet. John Snow ein britischer Epidemiologe im 19. Jahrhundert erkannt durch die Visualisierung von Choleratodesfälle auf einer Karte von London (jeder Todesfall ein kleiner schwarzen Balken), dass die Cholerafälle rund um eine Wasserpumpe in der Broad Street konzentrierten. Nachder Abschaltung der Wasserpumpe gab es keine weiteren Fälle mehr. [@gerste2022, Kapitel Karte des Todes; @snow1855, S. 45] Datenvisualisierungen können wichtige Einblicke in Daten geben und werden in der statistischen Ausbildung oft etwas vernachlässigt.
 
-## Untersuchungsgegenstand
+> "The Analysis stage has traditionally been the main emphasis of statistics courses \[...\] but sometimes all that is required is a useful visualization \[...\]."\
+> [@spiegelhalter2020]
 
-####TODO: Begrifflichkeiten -\> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene
+Datenvisualisierungen alleine reichen aber nicht aus. Sie müssen eine Geschichte erzählen, damit sie zu einer Aktion führen. Beispielsweise zur Abschaltung der Wasserpumpe in der Broad Street. Das Storytelling ist bei der Arbeit mit Daten eine der wichtigsten Aufgaben. Nate Silver beschreibt es wie folgt:
+
+> "The number have no way of speaking for themselves. We speak for them. We imbue them with meaning."\
+> [@silver2020, S. 9]
+
+Als ich bei meinem alten Arbeitgeber angefangen habe, bemerkte ich schnell, dass diese Erkenntnisse in der Berufswelt noch nicht überall fussgefasst hat. Daten wurden meistens als Tabellen oder einzelne Werte in Excel oder PowerPoint dargestellt. Manchmal gab es auch Grafiken, sie wurden aber erstellt ohne sich Gedanken über die gewünschte Botschaft und ihre Wirkung zu machen. Bei diesem Workflow gibt es zwei grosse Probleme, welche die Qualität der Datenanalysen einschränken. Zum einen sind die Reports oder Analysen nicht reproduzierbar. In Excel ist Copy-Paste und händische Arbeitsschritte der Standard bei der Aufbereitung und Verarbeitung von Daten, folglich können die Auswertungen nicht reproduziert werden. Das hat weiter zur Folge, dass die Arbeitsschritte bei jeder Auswertungsperiode manuell abgearbeitet werden müssen. Das kann zu Fehler führen kann und bringt viel Aufwand mit sich. Leider können dabei die Fehlerquellen nicht mit Sicherheit ausgemacht werden, da die manuellen Arbeitsschritte nicht "aufgezeichnet" werden. Ein Skript basierter Workflow kann beiden Problemen entgegenwirken. Im Skript werden alle Arbeitsschritte als Code festgehalten. Am besten werden gleich ganze Datenpipelines erstellt. Bei wiederkehrender Reports muss anschliessend nur die Datenquelle aktualisiert und das Skript laufen gelassen werden. Alle Arbeitschritte werden anschliessend automatisch durchgeführt. Durch den Code sind die einzelnen Arbeitschritte "verschriftlicht" und der Computer führt die Anweisungen im Skript aus. Somit kann genau nachvollzogen werden was und in welchem Arbeitsschritt gemacht wird. Das heisst der Report ist reproduzierbar. Das zweite Problem ist die Annahme, dass die Daten für sich selbst sprechen und Datenvisualisierungen verwendet werden ohne sich Gedanken dazu zu machen, ob die gewählte Form nützlich für die Botschaft ist. Diese Problematik für die Qualität der Datenanalysen ist der Ausgangspunkt dieser Masterarbeit. Damit Analysen gehört werden, müssen sie überzeugen. Datanvisualisierungen sind ein wichtiges Tool um die Daten und Erkenntnisse klar und aussagekräftig zu präsentieren. Der Masterarbeit ging die Fragestellung "Wie wird Data Storytelling integraler Bestandteil eines Report?" voraus. Das ist eine komplexe Frage und steht im Zusammenhang mit Arbeitsprozessen sowie Gewohnheiten. Wilke [-@wilke2020] vergleicht die Fähigkeit klare, attraktive und überzeugende Visualisierungen zu erstellen mit dem "Ohr" eines Textredakteur der beim Lesen innerlich zu "hört", ob ein Text gut geschrieben ist:
+
+> \[...\] brauchen wir in ähnlicher Weise ein "Auge", also die Fähigkeit, eine Abbildung zu betrachten und festzustellen, ob sie ausgewogen, klar und überzeugend ist. Und ebenso wie beim Beurteilen von Text kann die Fähigkeit, zu sehen, ob eine Abbildung funktioniert oder nicht, erlernt werden. \[...\] Meine Erfahrung nach entwickeln Sie \[...\] noch kein Auge, wenn Sie am Wochenende mal ein Buch lesen. Es ist ein lebenslanger Prozess \[...\].[@wilke2020, S. XI]
+
+Da es in einer Masterarbeit schwer ist, einen Lebenslangerprozess zu untersuchen, hat diese Arbeit das Ziel die Entwicklung von Data Storys und Datenvisualisierungen zu unterstützen. Dies gescheit indem in R ein Visualisierungsprogramm entwickelt wird. Ziel des Pakets (Software) ist es, oft verwendete Datenvisualisierungen möglichst einfach zu erstellen. Gleichzeitig sollen die Grafiken aber einfach individuelle weiterentwickelt werden können. Das heisst, die Funktionen im entwickelten R-Paket erzeugen eine Datenvisualisierung die so verwendet werden können, ihre ganzes Potential aber erst mit einigen interaktiven Codeergänzungen ausschöpfen. Die Idee dabei ist es, dass die Hürde eine Datenvisualisierung zu erstellen möglichst gering ist. Desto einfacher eine Prozess ist, je eher wird er angewendet. Es ist schade, wenn aufgrund des befürchteten Arbeitsaufwand (oder Zeitdruck) keine Grafik erstellt wird oder nicht verschiedene Formen der Grafik getestet werden (was immer der Fall sein sollte).
+
+Mit der Zunahme der Datenmenge (Big Data) geht auch der Wusch einher die Daten zu verstehen. Dank der Erzählung von Geschichten entlang Datenvisualisierung werden Daten in Informationen verwandelt und helfen Verständnis für eine Sachlage zu schaffen sowie Entscheidungen zu treffen. [@nussbaumerknaflic2017] Mit dieser Masterarbeit soll dieser Prozess vereinfacht werden, ohne an Flexibilität einzubüssen.
+
+Im ersten Teil der Arbeit werden die wichtigsten Punkte für die Erstellung von Visualisierungen mit Daten eingeführt und erläutert. Wie werden aus Datenwerte Datenvisualisierungen? Zum einen sind das technische Aspekte wie das Koordinatensystem. Zum anderen psychologische Faktoren wie die Verarbeitung von kognitiven Reizen. Im zweiten Teile wird auf Methoden und Voraussetzungen der Datenvisualisierungen, die bei der Erstellung des Pakets verwendet wurden eingegangen. Der dritte Abschnitt erläutert die klassischen Entwicklungsschritte eines Pakets. Am Ende wird die Anwendung des entwickelten Pakets beispielhaft gezeigt und anschliessend ein Fazit gezogen.
+
+## 
+
+## TODO
+
+> Begrifflichkeiten -\> Skale, Aestetics Gestaltungselement, Visuelle eigenschaft, visuelle Elemente, Ebene -\> vereinheitlichen
+
+{{< pagebreak >}}
 
 # Von Datenwerten zu Visualisierung {#sec-von-datenwerten-zu-visualisierung}
 
@@ -284,6 +319,8 @@ Das Gestaltprinzip der Verbindung.
 Das Gestaltprinzip der Verbindung ist stärker als das Prinzip der Ähnlichkeit und schwächer als die Umrandung. Das heisst, die Zusammengehörigkeit von Verbundene Elemente ist stärker als die gleiche Farbe, Grösse oder Form. Eine Umrandung ist besitzt jedoch eine höhere visuelle Hirarchie als die Verbindung, wodurch die Objekte in einem Rahmen zusammengehörig wahrgenommen werden obwohl sie mit einem anderen Objekten verbunden sind. Verbindungen helfen, den Datenpunkten eine Ordnung zugeben und wird unteranderem bei Liniendiagrammen eingesetzt. In den meisten Liniendiagrammen bestehen aus einzelnen Datenpunkten, welche erste dank dem Gestaltprinzip der Verbindung als Kontinuum erkennbar werden.
 
 > Falls noch mehr Text notwendig ist ...nussbaumercole 88, 90, 91-93, 105 !!!!!!!!!!
+>
+> https://cwd.numbat.space/lectures/lecture-06.html#/elementary-perceptual-tasks
 
 ## Mit Daten Geschichten erzählen
 
@@ -305,7 +342,7 @@ Die Vermittlung von Analysen ist üblicherweise der einzige Teil welches das Pub
 | Resultat                                 | Insighet (Verständnis & Erkenntnis) | Aktion                      |
 +------------------------------------------+-------------------------------------+-----------------------------+
 
-: Die zwei Arten der Analyse. Quelle: @dykes2020, S. 138, mit eigenen Anpassungen. {#tbl-erforschen-erklaeren}
+: Die zwei Arten der Analyse. Quelle: @dykes2020, S. 138. Eigenen Anpassungen. {#tbl-erforschen-erklaeren}
 
 In der Forschung ist das die Beantwortung der Forschungsfrage und im geschäftlichen Umfeld biespielsweise die Erkärung weshalb der Pendenzenstand im Team A zugenommen hat. Um die Fragen zu beantworten, werden eine Vielzahl von erforschenden Analysen durchgeführt, aber nur einige wenige geben Informationen um die Fragestellung zu beantworten. Auf diese Informationen wird bei der erklärenden Analyse eingegangen. Damit die Argumente überzeugen und die Erkenntnisse in Erinnerung bleiben, wird eine packende Geschichte benötigt. Die Erzählung einer Geschichte hilf, die gewonnen Fakten aus der erforschenden Analyse bei der erklärenden Analyse dem Publikum interessant und nachvollziehbar zu präsentieren. Damit das möglich ist, muss der Kontext eruiert werden. Wer ist das Publikum und in welcher Rolle stehe ich zum Zielpublikum? Je nach Situation muss eine andere Kommunikation gewählt werden, damit die Geschichte ihr Ziel erreicht. Was soll das Publikum wissen? Erkennen was für das Publikum spannend und relevant ist. Hier wir die Handlung der Geschichte definiert. Dabei muss immer die Frage beantwortet werden, weshalb soll sich das Publikum für die Geschichte interessieren soll. Wie kann die Frage beantwortet werden? Bei diesem Schritt werden die Daten ausgewählt, welche die Geschichte untermauern und plausibilisieren. [@nussbaumerknaflic2017, S. 18-23] Um den Kontext einer Data Story zu erfassen, ist der Startpunkt am Ende des Prozesses der Entwicklung einer Data Story. Damit die Geischichte entstehen kann, werden zuerst die Daten untersucht und anschiessend die entscheidenden Erkenntnisse dem Publikum präsentiert. [@dykes2020, S. 136] Was aber ist eine Geschichte? Bei einer Geschichte werden Beobachtungen, Erkenntnisse und Ereignisse in eine bestimmte Reihenfolge gebracht, mit dem Ziel beim Publikum eine emotionale Wirkung zu erzielen. Durch den Aufbau einer Spannung am Anfang und der Lösung am Ende der Geschichte fesselt eine Geschichte das Publikum, was eine emotionale Reaktion verursacht. [@wilke2020, S. 304] Neben der Wiederholung ist die emotionale Wirkung der Geschichte deren Spannungsbogen wichtig, damit sie in unserem Gedächnis bleibt. Es gibt eine Vielzahl von narrativen Strukturen und Methoden des Storytellings, sei es im Theater, im Film oder bei Texten. Eine einfache Methode für das Datastorytelling ist das Muster Anfang-Mitte-Ende, welches im dem klassischen Narrativ eines Forschungspaper (Einleitung-Hauptteil-Schlussfolgerung) gleicht. Am Anfang wir de Handlung eingeführt und eine Auslegeordnung gemacht, damit das Publikum erkennt weshalb die Geschichte wichtig für sie ist. Was ist der Kontext, welches sind die Schlüsselpunkte, was ist das Problem und was ist die gewünschte Lösungen. In der Mitte muss das Publikum von einem Sachstand überzeugt werden. Deshalb steht das "wie" der Problemlösung im Zentrum. Dafür wird das Thema in ins seinen Details (Hintergrundinformationen, Vergleiche, Szenarien, mögliche Problemlösungen) dargestellt. Am Ende wird auf die Ausgangslage Bezug genommen und eine Handlungsempfehlung abgegeben. Über den ganzen Prozess steht immer das Publikum im Mittelpunkt: Warum ist es relevant für sie? Was stösst auf Resonanz und motiviert? Dabei steht jedes mal der gleiche Inhalt zur Debatte lediglich aus unterschiedlichen Perspektiven (Einführen, Details, Zusammenfassen). [@nussbaumerknaflic2017, S. 146-149] Bei der Integration von Datenvisualisierungen in Geschichte müssen gewisse Punkte berücksichtigt werden. Erstens kann eine einzelne Visualisierung keine ganze Geschichte erzählen. Damit mit Visualisierung eine Geschichte erzählt werden kann, benötigt es mehrere Diagramme. Je Station des Storytellings benötigt es in der Regel mindestens eine Grafik. Sowenig in Textform der Anfang, die Mitte und das Ende einer Geschichte in einem Satz sinnvoll dargelegt werden kann, kann dies auch keine Visualisierung erreichen. [@wilke2020, S. 305] Damit die Visualisierung (Form) den gewünschten Effekt (Funktion) auslösst, muss die Form (Visualisierung) der Funktion (Effekt). Das heisst, mit der Visualisierung soll etwas auslösen, damit das funktioniert, benötigt sie eine vorher definierte Funktion (Was soll die Grafik machen?). Um die Funktion des Diagramms zu zeigen werden visuelle Affordanzen benutzt. Die wichtigste Methode dafür ist bei der Datenvisualisierung die Verwendung von Farben (vgl. @sec-farben-als-steuerungsinstrument). Damit die Hervorhebung seine Wirkung entfalten kann, ist es wichtig sparsam mit diesem Tool umzugehen. [@nussbaumerknaflic2017, S. 107-109] Zudem muss die Visualisierung Zugänglichkeit, nicht das Publikum ist verantwortlich, dass es die Grafik versteht sondern der Autor. Durch ein verständliches Design (keine unnötige Komplexität), Lesbarkeit (Schriftart und Grösse), Klarheit (wichtiges wird Hervorgehoben) und einfche Sprache (Publikum angepasst). Das Publikum muss durch das Diagramm geführt werden, dazu sind Titel, Achsenbeschriftungen und direkte Annotationen notwendig. [@nussbaumerknaflic2017, S. 118-119] Werden alle diese Punkte berücksichtige und alle Elemente folgen einer visuellen Ordnung, dann hat das Diagramm eine ansprechende Ästhetik, wodurch das Vertrauen des Publikums gewonnen wird [@nussbaumerknaflic2017, S. 68; S. 123]
 
@@ -561,9 +598,9 @@ Als letztes wird noch ein `README` für GitHub benötigt. Hier wird der Zweck de
 
 ## Schritt 4: Testen
 
-Das Testen der Funktionen ist ein wichtiger Teil der Paketentwicklung. Das Testen ist so wichtig, dass es sich ab einer gewisse Relevanz (Anzahl Funktionen, Anzahl Nutzende, etc.) lohnt die Test zu formalisieren. Mit {**testthat**} [@wickham2011a] liefert das Paket devtools ein Framework, die das schreiben von Tests unterstützen. Für das Testen von Grafischenoutputs wir zusätzich noch das Paket {**vdiffr**} [@henry2023] benötigt. Beim Unit Test wird die erwartete Ausgabe eines Codes festgehalten und mit dem tatsächlichen Wert verglichen. Dieser Ablauft läuft automatisch auf der Basis von Code. Beim Snaphot testing wird eine Datei erstellt, die von einem Menschen lesbar ist. Bei Datenvisualisierungen -- wie im Paket {biviz} -- wird das Snaphot testing angewendet. Hier wird ein Bildfile mit der erwarteten Darstellung erstellt. Beim Testen wird anschliessend mit der erwarteten Darstellung angeglichen. Snapshots test für Grafiken sind anfällig. Aus diesem Grund und da sich {biviz} noch in der Entwicklungsphase ist, werden die Test bei {biviz} noch informell also händisch gemacht. Ausgenommen davon sind die standartisierten R CMD checks wie in @sec-schritt-2-funktionen-schreiben beschrieben.
+Das Testen der Funktionen ist ein wichtiger Teil der Paketentwicklung. Das Testen ist so wichtig, dass es sich ab einer gewisse Relevanz (Anzahl Funktionen, Anzahl Nutzende, etc.) lohnt die Test zu formalisieren. Mit {**testthat**} [@wickham2011a] liefert das Paket devtools ein Framework, die das schreiben von Tests unterstützen. Für das Testen von Grafischenoutputs wir zusätzich noch das Paket {**vdiffr**} [@henry2023] benötigt. Beim Unit Test wird die erwartete Ausgabe eines Codes festgehalten und mit dem tatsächlichen Wert verglichen. Dieser Ablauft läuft automatisch auf der Basis von Code. Beim Snaphot testing wird eine Datei erstellt, die von einem Menschen lesbar ist. Bei Datenvisualisierungen -- wie im Paket {biviz} -- wird das Snaphot testing angewendet. Hier wird ein Bildfile mit der erwarteten Darstellung erstellt. Beim Testen wird anschliessend mit der erwarteten Darstellung angeglichen. Snapshots test für Grafiken sind anfällig. Aus diesem Grund und da sich {biviz} noch in der Entwicklungsphase ist, werden die Test bei {biviz} noch informell also händisch gemacht. Ausgenommen davon sind die standartisierten R CMD checks wie in @sec-schritt-2-funktionen-schreiben beschrieben. Aktuell werden die Funktionen in {biviz} noch manuell getestet. Beim nächsten Entwicklungsschritt, sollen die Tests wie oben beschrieben formalisiert werden.
 
-**Schritt 5: Installieren**
+## **Schritt 5: Installieren**
 
 Vor dem Installieren des Pakets wird nochmals mit `devtools::check()` alles geprüft und anschliessend mit `devtools::install()` (oder von GitHub mit `devtools::install_github()`). Danach wird das Paket wie alle Pakete mit `base::library()` verwendet.
 
@@ -659,7 +696,7 @@ plot_abfall_zh_shine <-
       " kleinste pro Kopf Abfallmenge"
       )
     ) +
-  labs(y = "Abfallmenge Total\nin Tonnen") +
+  labs(y = "Gesamte Abfallmenge\nje Gemeinde in Tonnen") +
   # damit der html/markdown code im text gerendert werden kann, benötigt es 
   # die funktion element_markdown
   theme(plot.title = ggtext::element_markdown(),
@@ -681,6 +718,35 @@ plot_abfall_zh_nice
 plot_abfall_zh_shine
 ```
 
-# Fazit / Schlussfolgerung
+> Hinweis auf Punkte die im Paket noch verbessert werden müssen.
+>
+> Cleaneren Code
+>
+> Weitere Grafiken: Heatmap, Punktediagramm bzw. Lollipop (anstatt Balken), Tabellen
+
+{{< pagebreak >}}
+
+# Fazit
+
+Der Ausgangspunkt der Masterarbeit war die fehlende Qualität von Datenanalysen bei nicht reproduzierbaren Workflows und fehlendem Storytelling. Der Fokus lag auf praktischen Umsetzung der Kommunikation mit Daten. Damit das Data Storytelling für die Anwendenden möglichst einfach gestaltet werden kann, wurde das R-Paket {biviz} entwickelt. Durch dieses Paket wurde im gleichen Zug auch die zweite Problemstellung angegangen. Das Paket wird in der Skript basierten Programmierumgebung von R angewendet, wodurch jeder Arbeitsschritt nachvollziehbar ist. Zudem kann somit auch eine Datenpipeline von den Rohdaten bis zum finalen Report gebaut werden.
+
+Im ersten Teil der Arbeit wurde aufgezeigt, wie aus Datenwerten eine Visualisierung entsteht. Für diesen Prozess ist die Beziehung zwischen Aesthetics und Skalen zentral. Also die Verbindung zwischen Daten und quantifizierbaren Merkmalen, in Form von abbildbaren Elementen (Position, Grösse, Farbe und Form). Zudem wurden wichtige Aspekte dess Data Storytellings, wie die Entwicklung und Steuerung einer Geschichte, aufgezeigt. Anschliessend wurde die technische Basis für die Entwicklung von {biviz} aufgezeigt und erläutert. Im Mittelpunkt lag dabei die Konzepte von Tidy Data und Grammer of Graphics. Tidy Data heisst, alle Variablen sind Spalten, alle Untersuchungen sind Zeilen und alle Werte sind Zellen. Durch diese Ordnung der Daten sind die weiteren Anlyseschritte einfacher umzusetzen und sie gibt eine konsequente Struktur vor. Eine konsequente Datenstruktur hilft Tools zu entwickeln, da ein Standard des Dateninputs vorliegt. Mit ihren Stages und die damit verbundene Zerstückelung der Erstellung von Grafiken biete die Grammer of Graphics eine grosse Flexibilität bei der Datenvisualisierung. Diese strukturierte Beziehung von Datenvariablen und deren Repräsentation wurde mit dem Paket {ggplot2} in {bivz} integriert. Im dritten und vierten Teil wurde die effektive Entwicklung von {biviz} beispielhaft dargestellt und auf Herausforderungen und Probleme eingegangen. Zum einen wurde mit der Ordnerstruktur und Codesyntax ein Gerüst für Entwicklungsprozess defineirt. Die Inhalte und Funktionen (Dokumentation, Quellcode, etc.) wurden kurz dargelegt. Da {biviz} auf dem Paket {ggplot2} basiert, welches Tidy evaluation unterstützt, wurden die Unterscheidung zwischen environment-variables und data-variables eingeführt. Mit den curly-curly ("{{") bietet das Tidyverse Framework eine intuitiven Umgang mit diesem Problem beim erstellen eines Pakets. Der Entwicklungsworkflow besteht aus vier Schritte, welche immer kleinere Teilschritte beinhalten. Die effektive Entwicklung findet dabei in den Schritten "Funktionen schreiben", "Dokumentation" und "Testen" statt. Eine genaue Abfolge zwischen diesen Schritten gib es nicht. Wichtig ist es das die Tests und Dokumentation regelmässig durchgeführt bzw. ergänzt werden. Es muss noch nicht die Finaleversion sein. Aber solange der geschriebene Code und die Gedanken dazu noch frisch sind, ist es einfacher entsprechende Tests und Dokumentationen zu schreiben. Das letzten Kapitel zeigte die Anwendung des Pakets und ihre Vorteile. Dafür wurden die Funktionsfamilien beschrieben und ein Showcase zur Anwedung von {biviz} präsentiert
+
+> Datenvisualisierung ist teils Kunst und teils Wissenschaft. Die Herausforderung besteht darin, die Kunst richtig zu machen, ohne die Wissenschaft falsch zu machen, und umgekehrt.\
+> [@wilke2020, S. 1]
+
+Die Arbeit hatte das Ziel ein Tool zu entwickeln, welches das Datastorytelling und die Datenvisualisierungen vereinfacht und dennoch eine grosse Flexibilität bereithält. Mit {biviz} werden schnell basis Grafiken erstellt und es steht mehr Zeit zur Verfügung um sich dem Datastorytelling zu widmen. Gleichzeitig wird mit der Verwendung von {biviz} einen minimalen Standard für die Grafiken eingeführt. Dadurch trägt {biviz} dazu bei, dass sowohl die Kunst als auch die Wissenschaft richtig zu machen einen kleinen Schritt einfacher geworden ist. Die Fähigkeit eines "Auge" kann das Paket aber nicht kompensieren. Folglich bleibt die Auseinandersetzung und Optimierung von Datenvisualisierungen ein lebenslager Prozess. In diesem Sinne ist {biviz} auch kein statisches Projekt, sondern wird sich in Zukunft weiterentwickelt und optimiert.
+
+{biviz} importiert einige Funktionen aus anderen R-Paketen, wodurch sie sich Abhängigkeiten ergeben. Die grosse Mehrheit der Paketen kommen aus dem Tidyverse Framework, welches vom Unternehmen Posit unterstützt wird und entsprechend eine Sicherheit bietet. Andere Pakete wie das colorspace [@zeileis2020] sind in einem universitären Kontext entstanden, was ebenfalls eine gewisse Beständigkeit gewährleistet. Der nächste wichtige Schritt für {biviz} ist die Implementierung von formellen Tests. Zudem können weitere Datenvisualisierungen ergänzt und der Code optimiert werden. Ein weiteres Ziel bei der Weiterentwicklung des Paket ist es, das die basis Grafiken bereits mehr Data Storytelling optimiert sind.
+
+Das Paket steht noch in den Kinderschuhen und hat noch viel Steigerungspotential. Der Arbeit liegt das Motto von Hadley Wickham zugrunde:
+
+> The only way to write good code is to write tons of shitty code first. Feeling shame about bad code stops you from getting to good code.
+>
+> [@wickham2015b]
+
+In diesem Sinne ist {biviz} wie es aktuell dasteht ein erster Entwurf, welcher in Zukunft stetig eine Weiterentwicklung erfährt.
+
+{{< pagebreak >}}
 
 # Literaturverzeichnis {.unnumbered}
