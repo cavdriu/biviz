@@ -1,0 +1,74 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://stackoverflow.com/questions/73182820/how-can-i-use-different-margins-for-the-title-page-in-quarto-pdf-book
+% https://github.com/nmfs-opensci/quarto_titlepages_v1/tree/main/titlepages/academic-static
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Declaring new geometry for the title page only.
+\newgeometry{margin=25.4mm}
+
+%----------------------------------------------
+%   Title Page
+%----------------------------------------------
+
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for horizontal lines, change thickness here
+
+	%\center % Centre everything on the page
+	\begin{center}
+
+	%------------------------------------------------
+	%	Logo
+	%------------------------------------------------
+
+	\includegraphics[width=0.4\textwidth]{images/uni-basel-logo.png}\\[2.5cm] % Include a department/university logo - this will require the graphicx package
+
+	%------------------------------------------------
+	%	Headings
+	%------------------------------------------------
+
+	%\textsc{\LARGE\ Masterarbeit}\\[1.5cm] % Main heading such as the name of your university/college
+
+	\textsc{\Large Masterarbeit}\\[0.5cm] % Major heading such as course name
+
+	%------------------------------------------------
+	%	Title
+	%------------------------------------------------
+
+	\HRule\\[0.4cm]
+
+	{\huge\ Entwicklung eines R-Pakets für Data Storytelling und Datenvisualisierungen}\\[0.4cm] % Title of your document
+
+	\HRule\\[1.5cm]
+
+	%------------------------------------------------
+	%	Author(s)
+	%------------------------------------------------
+
+	\large
+	  \textit{Autor}\\
+	  Andriu \textsc{Cavelti}\\
+	  Dorfstrasse 30, 6005 Luzern\\
+	  16-057-390\\
+	  andriu.cavelti@stud.unibas.ch\\
+	  Dorfstrasse 30, 6005 Luzern\\[1.5cm]
+
+	  \textit{Referent}\\
+	  Prof. Dr. Lukas \textsc{Rosenthaler}\\[0.5cm]
+	  \textit{Korreferentin}\\
+		Dr. Vera \textsc{Chiquet}\\[1.5cm]
+
+	%------------------------------------------------
+	%	Date
+	%------------------------------------------------
+
+	%{\large\today} % Date, change the \today to a set date if you want to be precise
+	Herbstsemester 2022\\
+	Abgabedatum: {\large\date 019. Februar 2023}\\[1cm]
+
+	\end{center}
+
+% Ending the declared geometry for the title page
+% and restore the geometry for other pages
+\restoregeometry
+
+\newpage
+

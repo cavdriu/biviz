@@ -109,7 +109,7 @@ plot_amounts_grouped <- function(data, x, y, group) {
   if (near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
-    colors <- colorspace::sequential_hcl(levels, palette = "Purples 2")
+    colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3") # colorspace::sequential_hcl(palette = "Purples 2")
   }
 
   plot <-
