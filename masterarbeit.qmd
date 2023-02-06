@@ -50,7 +50,7 @@ library(cowplot)
 library(colorspace)
 library(palmerpenguins)
 library(biviz)
-devtools::load_all()
+#devtools::load_all()
 
 ```
 
@@ -129,12 +129,18 @@ Die @tbl-data-abfall-zuerich zeigt die verschiedenen Variablentypen. Die Spalte 
 #| tbl-cap: "Abfallart und -menge im Kanton Zürich. Quelle: @amtfürabfallwasserenergieundluftdeskantonszürich2022"
 #| message: false
 
-abfall_zh <- 
-  read_csv(here::here("data", "KTZH_00001803_00003460.csv")) |> 
-  select(!c("Gemeinde_Nr", "Einheit"))
+#abfall_zh <- 
+  #read_csv(here::here("data", "KTZH_00001803_00003460.csv")) |> 
+  #read_csv(here::here("data", "abfall_zh.csv")) |> 
+  #load(here::here("data", "abfall_zh.rda"))
+
+#abfall_zh <- 
+  #abfall_zh |> 
+  #select(!c("Gemeinde_Nr", "Einheit"))
 
 abfall_zh_sample <- 
-  abfall_zh|> 
+  biviz::abfall_zh|> 
+  select(!c("Gemeinde_Nr", "Einheit")) |> 
   rename("Menge in Tonnen" = Wert) |> 
   filter(row_number() %% 214 == 1)
 
@@ -639,6 +645,7 @@ Damit das Handling der Funktion in {biviz} einfach bleibt, haben die Funktionen 
 
 df_abfall_zh <- 
   abfall_zh |> 
+  select(!c("Gemeinde_Nr", "Einheit")) |> 
   filter(
     Gemeinde %in% c("Aeugst a.A.", 
                     "Affoltern a.A.", 
@@ -733,6 +740,8 @@ plot_abfall_zh_shine
 > Cleaneren Code
 >
 > Weitere Grafiken: Heatmap, Punktediagramm bzw. Lollipop (anstatt Balken), Tabellen
+>
+> Helperfunktionen schreiben
 
 {{< pagebreak >}}
 
@@ -760,3 +769,4 @@ In diesem Sinne ist {biviz} wie es aktuell dasteht ein erster Entwurf, welcher i
 {{< pagebreak >}}
 
 # Literaturverzeichnis {.unnumbered}
+

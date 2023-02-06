@@ -17,7 +17,6 @@ Imports:
     ggplot2,
     ggrepel,
     lubridate,
-    RColorBrewer,
     rlang,
     scales,
     stats,
@@ -27,3 +26,6 @@ Suggests:
     tibble,
     vdiffr
 Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
+LazyData: true
