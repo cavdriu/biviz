@@ -17,17 +17,47 @@
 #' theme element_blank
 #'
 #' @examples
-#' # Test Daten als Beispiel verwenden
-#' df <-
-#' tibble::tibble(
-#'  x = c("a", "b", "c", "d", "e"),
-#'  y = 1:5
-#' )
+#' df <- tibble::tibble(
+#'   x = c("a", "b", "c", "d", "e"),
+#'   y = 1:5
+#'   )
 #'
-#' plot_amounts(df, x, y)
+#' plot_amounts_vertical(df, x, y)
 #'
-#'@export plot_amounts
+#'socviz::gss_lon |>
+#'  dplyr::count(age, degree) |>
+#'  plot_amounts_facets(x = age, y = n, facet = degree)
+#'
+#'socviz::gss_lon |>
+#'  dplyr::count(sex, degree) |>
+#'  plot_amounts_stacked(x = degree, y = n, group = sex)
+#'
+#'socviz::gss_lon |>
+#'  dplyr::count(sex, degree) |>
+#'  plot_amounts_grouped(x = sex, y = n, group = degree) +
+#'  colorspace::scale_fill_discrete_sequential(palette = "Purples 2")
+#'
+#'
+#'@export
+#'@rdname plot_amounts
 plot_amounts_vertical <- function(data, x, y, color = "#0d7abc") {
+
+  ## TODO: argument checking mit stopifnot()
+  # umgang mit na
+  # nur numerische variablen für die y-achse zulassen (vgl. cond in den funktionen)
+  # evt. testen auf factors
+
+  ## argument checking
+  # es sollen keine berechnungen in der plot funktin vorkommen.
+  # werte sollen wie im datensatz abgebildet werden. deshalb muss
+  # jede zeile eindeutig sein
+  stopifnot("Jede Zeile muss eindeutig sein. Die darzustellenden Werte muessen bereits berechnet sein." =
+              data |>
+              dplyr::group_by({{ x }}, {{ y }}) |>
+              dplyr::filter(dplyr::n() > 1) |>
+              dplyr::ungroup() |>
+              nrow() < 1
+            )
 
   plot <-
     ggplot(data = data,
@@ -61,6 +91,16 @@ plot_amounts_vertical <- function(data, x, y, color = "#0d7abc") {
 #' @rdname plot_amounts
 plot_amounts_horizontal <- function(data, x, y, color = "#0d7abc") {
 
+  ## argument checking
+  # vgl. plot_amounts_vertical
+  stopifnot("Jede Zeile muss eindeutig sein. Die darzustellenden Werte muessen bereits berechnet sein." =
+              data |>
+              dplyr::group_by({{ x }}, {{ y }}) |>
+              dplyr::filter(dplyr::n() > 1) |>
+              dplyr::ungroup() |>
+              nrow() < 1
+            )
+
   plot <-
     ggplot(data = data,
          mapping = aes(x = {{ x }}, y = {{ y }})) +
@@ -90,8 +130,15 @@ plot_amounts_horizontal <- function(data, x, y, color = "#0d7abc") {
 #' @rdname plot_amounts
 plot_amounts_grouped <- function(data, x, y, group) {
 
-
-# TODO: farbwahl bei nur 2 gruppen und continues farbwahl ----------------------------------------
+  ## argument checking
+  # vgl. plot_amounts_vertical
+  stopifnot("Jede Zeile muss eindeutig sein. Die darzustellenden Werte muessen bereits berechnet sein." =
+              data |>
+              dplyr::group_by({{ x }}, {{ y }}) |>
+              dplyr::filter(dplyr::n() > 1) |>
+              dplyr::ungroup() |>
+              nrow() < 1
+            )
 
   # testen ob die group-variable ein factor ist
   group_as_factor <- dplyr::pull(data, {{ group }})
@@ -109,7 +156,7 @@ plot_amounts_grouped <- function(data, x, y, group) {
   if (near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
-    colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3") # colorspace::sequential_hcl(palette = "Purples 2")
+    colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
   }
 
   plot <-
@@ -140,6 +187,16 @@ plot_amounts_grouped <- function(data, x, y, group) {
 #' @rdname plot_amounts
 plot_amounts_facets <- function(data, x, y, facet, n_col = 2, color = "#0d7abc") {
 
+  ## argument checking
+  # vgl. plot_amounts_vertical
+  stopifnot("Jede Zeile muss eindeutig sein. Die darzustellenden Werte muessen bereits berechnet sein." =
+              data |>
+              dplyr::group_by({{ x }}, {{ y }}, {{ facet }}) |>
+              dplyr::filter(dplyr::n() > 1) |>
+              dplyr::ungroup() |>
+              nrow() < 1
+            )
+
   plot <-
     ggplot(data = data,
            mapping = aes(x = {{ x }}, y = {{ y }})) +
@@ -169,8 +226,15 @@ plot_amounts_facets <- function(data, x, y, facet, n_col = 2, color = "#0d7abc")
 #' @rdname plot_amounts
 plot_amounts_stacked <- function(data, x, y, group) {
 
-  # stop if not -> check, dass die daten als werte abgebildet sind, also
-  # jede kombination ur einmal vorkommt, vgl. sandbox
+  ## argument checking
+  # vgl. plot_amounts_vertical
+  stopifnot("Jede Zeile muss eindeutig sein. Die darzustellenden Werte muessen bereits berechnet sein." =
+              data |>
+              dplyr::group_by({{ x }}, {{ y }}, {{ group }}) |>
+              dplyr::filter(dplyr::n() > 1) |>
+              dplyr::ungroup() |>
+              nrow() < 1
+            )
 
   # labes berechnen, damit sie in der mitte des jeweiligen blocks sind
   data <-
