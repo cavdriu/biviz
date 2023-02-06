@@ -17,32 +17,29 @@
 #' ggplot aes geom_col geom_text geom_hline geom_density geom_rect
 #' scale_y_continuous scale_y_discrete scale_x_continuous scale_x_discrete
 #' scale_fill_manual expansion coord_polar coord_flip
-#' facet_wrap vars
+#' facet_wrap vars after_stat
 #' theme theme_void element_blank
-#'
-#'@importFrom dplyr
-#'arrange desc mutate ungroup pull near
 #'
 #' @examples
 #' # tbd
 #'
 #' @export
 #' @rdname plot_proportions
-plot_proportions <- function(data, n = n, group) {
+plot_proportions_bar <- function(data, group, percent = percent, n = n) {
 
   # labels berechnen, damit sie in der mitte des jeweiligen blocks sind
   data <-
     data |>
-    arrange(desc({{ n }})) |>
-    mutate(n_label = cumsum({{ n }}) - ({{ n }} / 2)) |>
-    ungroup()
+    dplyr::arrange(dplyr::desc({{ percent }})) |>
+    dplyr::mutate(n_label = cumsum({{ percent }}) - ({{ percent }} / 2))
 
   plot <-
     ggplot(data = data,
-           mapping = aes(x = 1, y = {{ n }}, fill = as.factor({{ group }}))) +
+           mapping = aes(x = 1, y = {{ percent }}, fill = as.factor({{ group }}))) +
     geom_col(position = "stack", color = "white") +
     geom_text(aes(x = 1, y = n_label,
-                  label = paste0({{group}}, ":\nn = ", n)),
+                  label = paste0({{ group }}, ":\nn = ", {{ n }})
+                  ),
               color = "white")
 
   # testen ob die group-variable ein factor ist
@@ -58,7 +55,7 @@ plot_proportions <- function(data, n = n, group) {
   levels <- nlevels(group_as_factor)
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
-  if (near(levels, 2)) {
+  if (dplyr::near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
@@ -88,6 +85,7 @@ plot_proportions <- function(data, n = n, group) {
 #' @rdname plot_proportions
 plot_proportions_donut <- function(data, n = n, percent = percent, group) {
 
+# evt. donut aus dem portfolio nehmen
 # https://semba-blog.netlify.app/07/12/2019/pie-chart-and-donut-plot-with-ggplot2/
 # es ist einfacher alles zuerst ohne coord_polar() einzustellen, da ich gewohnt bin
 # kartesischen koordinatensystem zu denken
@@ -95,10 +93,9 @@ plot_proportions_donut <- function(data, n = n, percent = percent, group) {
   # positionen für text berechnen
   data <-
     data |>
-    arrange(desc({{ n }})) |>
-    mutate(pos_value = cumsum({{ percent }}) - (0.5 * {{ percent }} ),
-           pos_label = cumsum({{ percent }}) - (0.45 * {{ percent }} )) |>
-    ungroup()
+    dplyr::arrange(dplyr::desc({{ n }})) |>
+    dplyr::mutate(pos_value = cumsum({{ percent }}) - (0.5 * {{ percent }} ),
+           pos_label = cumsum({{ percent }}) - (0.45 * {{ percent }} ))
 
   plot <-
     ggplot(data = data,
@@ -118,7 +115,7 @@ plot_proportions_donut <- function(data, n = n, percent = percent, group) {
   levels <- nlevels(group_as_factor)
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
-  if (near(levels, 2)) {
+  if (dplyr::near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
@@ -163,7 +160,7 @@ plot_proportions_stacked <- function(data, x, y, group) {
   levels <- nlevels(group_as_factor)
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
-  if (near(levels, 2)) {
+  if (dplyr::near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
@@ -207,7 +204,7 @@ plot_proportions_sidebyside_bar <- function(data, x, percent, facet) {
   levels <- nlevels(group_as_factor)
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
-  if (near(levels, 2)) {
+  if (dplyr::near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
@@ -309,9 +306,9 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
         focus = as.character(forcats::fct_collapse({{ variable }},
                                                    factor = focus_group,
                                                    # aa damit es immer oben ist im plot
-                                                   aa_other = setdiff(levels(pull({{ data }}, {{ variable }})),
-                                                                   focus_group))),
-        # notwendig, dass bei fc_collapse() nicht direkt den wert aus focus_group extrahiert werden kann als name
+                                                   aa_other = setdiff(levels(dplyr::pull({{ data }}, {{ variable }})),
+                                                                      focus_group))),
+        # notwendig, da bei fc_collapse() nicht direkt der wert aus focus_group extrahiert werden kann als name
         focus = ifelse(focus == "factor", focus_group, focus),
         highlight = focus_group
       )
@@ -321,7 +318,7 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
   df_build_group <- function(data, variable) {
 
     output <- tibble::tibble()
-    var <- pull(data, {{ variable }})
+    var <- dplyr::pull(data, {{ variable }})
     focus_group <- levels(var)
 
     for (i in seq_along(focus_group)) {
