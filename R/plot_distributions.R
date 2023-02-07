@@ -1,7 +1,8 @@
-#' Verteilungen visualisieren
+#' Verteilungen visualisieren. plot_distributions_* Familie.
 #'
 #' @param data Ein Tibble mit den Daten für den Plot.
 #' @param x Variable die untersucht wird (x-Achse).
+#' @param y Variable die untersucht wird (y-Achse).
 #' @param bw Breite (Anzahl werte die zusammengefasst werden) der Behälter.
 #' @param color Farbe um die Balken optisch zu trennen.
 #' @param group Variable um die Daten zu gruppieren.
@@ -16,11 +17,56 @@
 #' facet_wrap theme coord_cartesian
 #'
 #' @examples
-#' #tbd
+#' df <- socviz::gss_lon
+#'
+#' cowplot::plot_grid(
+#'   plot_distributions_histogram(data = df, x = age),
+#'   plot_distributions_histogram(data = df, x = age, bw = 2),
+#'   labels = c('A: bw = 5 (default)', 'B: bw = 2')
+#'   )
+#'
+#' # mit pipe syntax
+#' df |>
+#'   tidyr::drop_na(happy) |>
+#'   plot_distributions_grouped(age, group = happy, bw = 3)
+#'
+#' # ohne pipe
+#'   plot_distributions_sidebyside(data = df, x = age, group = sex)
+#'
+#' df |>
+#'   # jede 100th Zeile im df behalten
+#'   # notwendig, da ansonsten zu grosse
+#'   # datenmenge für diesen plot
+#'   dplyr::filter(dplyr::row_number() %% 100 == 1) |>
+#'   plot_distributions_raincloud(x = happy, y = age)
+#'
+#' cowplot::plot_grid(
+#'   plot_distributions_raincloud(data = df, x = happy, y = age),
+#'   plot_distributions_boxplot(data = df, x = happy, y = age, size = 3),
+#'   labels = c("A: Zuviele Datenpunkte für raincloud plot.",
+#'              "B: Beobachtungen als Zahl darstellen."
+#'              )
+#'   )
+#'
 #'
 #' @export
 #' @rdname plot_distributions
-plot_distributions_histogram <- function(data, x, bw = 5, color = "#0d7abc") { #group
+plot_distributions_histogram <- function(data, x, bw = 5, color = "#0d7abc") {
+
+  ## argument checking
+  ## x muss numerisch sein, damit die die histogramme
+  # korrekt berechnet werden kann
+  stopifnot("x muss numerisch sein. Wandele die Variable im Datensatz um."
+            = is.numeric(dplyr::pull(data, {{ x }})))
+
+  # fuer die histogram funktion dürfen die daten nicht aggregiert sein.
+  # anders als bei den balken diagrammen. die berechnung erfolgt in der funktion.
+  # um die warnung von ggplot2 bei na verstaendlicher zu machen, werden die na
+  # noch ausgegeben.
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
+  message(
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+  )
 
   plot <-
     ggplot(data = data,
@@ -33,10 +79,6 @@ plot_distributions_histogram <- function(data, x, bw = 5, color = "#0d7abc") { #
       # damit die einzelnen bins besser erkennabr sind
       color = "white",
       fill = color)
-
-  # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
-  print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
@@ -54,19 +96,27 @@ plot_distributions_density <- function(data, x, bw = 5, color = "#0d7abc") {
 
   # https://de.wikipedia.org/wiki/Kerndichtesch%C3%A4tzer
 
+  ## argument checking
+  # vgl. plot_distributions_histogram
+  stopifnot("x muss numerisch sein. Wandele die Variable im Datensatz um."
+            = is.numeric(dplyr::pull(data, {{ x }})))
+
+  # vgl. plot_distributions_histogram
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
+  message(
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+  )
+
   plot <-
     ggplot(data = data,
            mapping = aes(x = {{ x }})) + # y = stat(count), (scaled) bei skalierter dichte (Anzahl)
     geom_density(
       # breite des bandes, immer verschiedene werte ausprobieren
       bw = bw,
-      # kernal wird absichtlich nich angegeben in der funktion, es soll immer mit
-      # der default wert gearbeitet werden (kernel = "qaussian")
+      # kernal wird absichtlich nich angegeben in der funktion, es soll immer
+      # mit dem default wert gearbeitet werden (kernel = "qaussian")
+      # https://ggplot2.tidyverse.org/reference/geom_density.html#arguments
       fill = color)
-
-  # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
-  print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
@@ -79,6 +129,17 @@ plot_distributions_density <- function(data, x, bw = 5, color = "#0d7abc") {
 #' @export
 #' @rdname plot_distributions
 plot_distributions_sidebyside <- function(data, x, group, bw = 5) {
+
+  ## argument checking
+  # vgl. plot_distributions_histogram
+  stopifnot("x muss numerisch sein. Wandele die Variable im Datensatz um."
+            = is.numeric(dplyr::pull(data, {{ x }})))
+
+  # vgl. plot_distributions_histogram
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
+  message(
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+  )
 
   plot <-
     ggplot(data = data,
@@ -104,7 +165,7 @@ plot_distributions_sidebyside <- function(data, x, group, bw = 5) {
   n_levels <- nlevels(group_as_factor)
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
-  if (near(n_levels, 2)) {
+  if (dplyr::near(n_levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
     } else {
       colors <- colorspace::qualitative_hcl(n_levels, palette = "Dark 3")
@@ -118,10 +179,6 @@ plot_distributions_sidebyside <- function(data, x, group, bw = 5) {
     labels = c("Total", levels(group_as_factor)),
     name = NULL
     )
-
-  # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
-  print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
@@ -144,6 +201,17 @@ plot_distributions_sidebyside <- function(data, x, group, bw = 5) {
 #' @rdname plot_distributions
 plot_distributions_grouped <- function(data, x, group, bw = 5) {
 
+  ## argument checking
+  # vgl. plot_distributions_histogram
+  stopifnot("x muss numerisch sein. Wandele die Variable im Datensatz um."
+            = is.numeric(dplyr::pull(data, {{ x }})))
+
+  # vgl. plot_distributions_histogram
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
+  message(
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (y) beinhaltet ", n_na, " NAs.")
+  )
+
   plot <-
     ggplot(data = {{ data }},
            mapping = aes(x = {{ x }}, fill = {{ group }}, color = {{ group }})) +
@@ -160,15 +228,11 @@ plot_distributions_grouped <- function(data, x, group, bw = 5) {
   levels <- nlevels(group_as_factor)
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
-  if (near(levels, 2)) {
+  if (dplyr::near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
   }
-
-  # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
-  print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
@@ -183,13 +247,24 @@ plot_distributions_grouped <- function(data, x, group, bw = 5) {
 
 #' @export
 #' @rdname plot_distributions
-plot_distributions_raincloud <- function(data, x, group, bw = 5, color = "#0d7abc") {
+plot_distributions_raincloud <- function(data, x, y, bw = 5, color = "#0d7abc") {
 
   # https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/
 
+  ## argument checking
+  # vgl. plot_distributions_histogram
+  stopifnot("y muss numerisch sein. Wandele die Variable im Datensatz um."
+            = is.numeric(dplyr::pull(data, {{ y }})))
+
+  # vgl. plot_distributions_histogram
+  n_na <- sum(is.na(dplyr::pull(data, {{ y }})))
+  message(
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (y) beinhaltet ", n_na, " NAs.")
+  )
+
   plot <-
     ggplot(data = data,
-           mapping = aes(x = {{ group }}, y = {{ x }})) +
+           mapping = aes(x = {{ x }}, y = {{ y }})) +
     geom_boxplot(width = 0.25, outlier.shape = NA) +
     geom_point(size = 1.3,
                color = color,
@@ -223,8 +298,18 @@ plot_distributions_raincloud <- function(data, x, group, bw = 5, color = "#0d7ab
 
 #' @export
 #' @rdname plot_distributions
-plot_distributions_boxplot <- function(data, x, group, bw = 5, color = "#0d7abc", size = 5) {
+plot_distributions_boxplot <- function(data, x, y, bw = 5, color = "#0d7abc", size = 5) {
 
+  ## argument checking
+  # vgl. plot_distributions_histogram
+  stopifnot("y muss numerisch sein. Wandele die Variable im Datensatz um."
+            = is.numeric(dplyr::pull(data, {{ y }})))
+
+  # vgl. plot_distributions_histogram
+  n_na <- sum(is.na(dplyr::pull(data, {{ y }})))
+  message(
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+  )
 
 # helper function ---------------------------------------------------------
   n_fun <- function(x){
@@ -238,7 +323,7 @@ plot_distributions_boxplot <- function(data, x, group, bw = 5, color = "#0d7abc"
 
   plot <-
     ggplot(data = data,
-           mapping = aes(x = {{ group }}, y = {{ x }})) +
+           mapping = aes(x = {{ x }}, y = {{ y }})) +
     geom_boxplot(width = 0.25, outlier.shape = NA) +
     # auf der y-achse soll n angezeigt werden (vgl. helper function)
     # https://ggplot2-book.org/layers.html?q=stat_summary#stat
@@ -256,8 +341,7 @@ plot_distributions_boxplot <- function(data, x, group, bw = 5, color = "#0d7abc"
       # punkt beim median entfernen
       point_colour = NA
     ) +
-    # notwendig??? ######
-    coord_cartesian(xlim = c(1.2, NA))#, clip = "off")
+    coord_cartesian(xlim = c(1.2, NA)) #evt. clip = "off"
 
   plot +
     scale_y_continuous(#expand = expansion(mult = c(0, 0.05)),
