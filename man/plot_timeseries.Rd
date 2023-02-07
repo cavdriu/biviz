@@ -5,7 +5,7 @@
 \alias{plot_timeseries_line}
 \alias{plot_timeseries_trend}
 \alias{plot_timeseries_detrend}
-\title{Zeitreihen visualisieren}
+\title{Zeitreihen visualisieren. plot_timeseries_* Familie.}
 \usage{
 plot_timeseries_slope(
   data,
@@ -81,7 +81,7 @@ plot_timeseries_detrend(
 ggplot object
 }
 \description{
-Zeitreihen visualisieren
+Zeitreihen visualisieren. plot_timeseries_* Familie.
 }
 \examples{
 # tbd
