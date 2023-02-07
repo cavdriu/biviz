@@ -1,4 +1,4 @@
-#' Proportionen visualisieren
+#' Proportionen visualisieren. plot_proportions_* Familie.
 #'
 #' @param data Ein Tibble mit den Daten für den Plot.
 #' @param x Die Variable für die x-Achse.
@@ -9,7 +9,7 @@
 #' @param facet Gruppierungsvariable um einen Plot je Teilaspekt zu machen (Facetten).
 #' @param facet_row Anzahl Zeilen für Darstellung der Teilaspekte.
 #' @param bw Breite (Anzahl werte die zusammengefasst werden) der Behälter.
-#' @param color Farbe um die Balken optisch zu trennen.
+#' @param color Farbe um Gruppierungen zu markieren.
 #'
 #' @return ggplot object
 #'
@@ -21,7 +21,34 @@
 #' theme theme_void element_blank
 #'
 #' @examples
-#' # tbd
+#' df1 <- tibble::tibble(
+#'   x = c("a", "b", "c"),
+#'   y = c(3, 7, 10)
+#'   )
+#'
+#' df1 |>
+#'   dplyr::mutate(percent = y / sum(y)) |>
+#'   plot_proportions_bar(group = x, n = y, percent = percent)
+#'
+#'# aufbereitung der daten
+#' df2 <- socviz::gss_sib |>
+#'   dplyr::count(year, sex) |>
+#'   dplyr::group_by(year) |>
+#'   dplyr::mutate(sum_year = sum(n)) |>
+#'   dplyr::group_by(year, sex) |>
+#'   dplyr::summarise(percent = n / sum_year) |>
+#'   dplyr::ungroup()
+#'
+#'# mit pipe syntax
+#' df2 |>
+#'   plot_proportions_stacked(x = year, y = percent, group = sex)
+#'
+#'# ohne pipe
+#' plot_proportions_sidebyside_col(data = df2, x = year, y = percent, color = sex, facet = sex)
+#'
+#' socviz::gss_lon |>
+#'   plot_proportions_sidebyside_density1(x = as.numeric(age), group = happy)
+#'
 #'
 #' @export
 #' @rdname plot_proportions
@@ -64,9 +91,8 @@ plot_proportions_bar <- function(data, group, percent = percent, n = n) {
   plot +
     scale_y_continuous(
       # expand notwendig, damit die prozent 0 & 100 ganz dargestellt werden
-      #expand = expansion(mult = c(0.05, 0.05)), # mit dem default geht es auch
       labels = scales::label_percent(),
-      #damit nach coord_flip die y-achse oben ist
+      # damit nach coord_flip die y-achse oben ist
       position = "right"
     ) +
     #scale_y_continuous(expand = c(0, 0)) +
@@ -83,7 +109,7 @@ plot_proportions_bar <- function(data, group, percent = percent, n = n) {
 
 #' @export
 #' @rdname plot_proportions
-plot_proportions_donut <- function(data, n = n, percent = percent, group) {
+plot_proportions_donut <- function(data, group, n = n, percent = percent) {
 
 # evt. donut aus dem portfolio nehmen
 # https://semba-blog.netlify.app/07/12/2019/pie-chart-and-donut-plot-with-ggplot2/
@@ -147,6 +173,16 @@ plot_proportions_stacked <- function(data, x, y, group) {
       color = "black", size = 0.5, linetype = 1
     )
 
+  # testen ob die x-achse numerisch ist, wenn ja darf am ende und anfang kein
+  # whitespace sein und deshalb wird die erweiterung der x-achse unterbunden.
+  cond <- dplyr::pull(data, {{ x }})
+
+  if (is.numeric(cond)) {
+    scale_x <- scale_x_continuous(expand = c(0, 0))
+  } else {
+    scale_x <- scale_x_discrete()
+    }
+
   # group-variable als factor
   group_as_factor <- dplyr::pull(data, {{ group }})
 
@@ -154,7 +190,7 @@ plot_proportions_stacked <- function(data, x, y, group) {
     group_as_factor
   } else {
     group_as_factor <- as.factor(group_as_factor)
-  }
+    }
 
   # anzahl levels wird verwendet um die farbpalette auszuwählen
   levels <- nlevels(group_as_factor)
@@ -171,7 +207,8 @@ plot_proportions_stacked <- function(data, x, y, group) {
       expand = expansion(mult = c(0, 0.05)),
       labels = scales::label_percent()
       ) +
-    scale_x_continuous(expand = c(0, 0)) +
+    #scale_x_continuous(expand = c(0, 0)) +
+    scale_x +
     scale_fill_manual(values = colors, name = NULL) +
     cowplot::theme_half_open() +
     theme(axis.line.y = element_blank())
@@ -179,29 +216,35 @@ plot_proportions_stacked <- function(data, x, y, group) {
 
 #' @export
 #' @rdname plot_proportions
-plot_proportions_sidebyside_bar <- function(data, x, percent, facet) {
+plot_proportions_sidebyside_col <- function(data, x, y, color, facet) {
+
+  ## argument checking
+  # color muss ein factor sein, damit die labels für die farben eruiert werden können
+  stopifnot("x muss ein factor sein. Wandele die Variable im Datensatz um."
+            = is.factor(dplyr::pull(data, {{ color }})))
 
   # grundgerüst vom plot
   plot <-
     ggplot(data = data,
-           mapping = aes(x = {{ x }}, y = {{ percent }}, fill = {{ x }})) +
+           mapping = aes(x = {{ x }}, y = {{ y }}, fill = {{ color }})) +
     geom_col() +
     scale_y_continuous(
       expand = expansion(mult = c(0, 0.05)),
       labels = scales::label_percent()
       )
 
-  # testen ob die group-variable ein factor ist
-  group_as_factor <- dplyr::pull(data, {{ x }})
+  # testen ob die x-achse numerisch ist, wenn ja darf am ende und anfang kein
+  # whitespace sein und deshalb wird die erweiterung der x-achse unterbunden.
+  cond <- dplyr::pull(data, {{ x }})
 
-  if (is.factor(group_as_factor)) {
-    group_as_factor
+  if (is.numeric(cond)) {
+    scale_x <- scale_x_continuous(expand = c(0, 0))
   } else {
-    group_as_factor <- as.factor(group_as_factor)
+    scale_x <- scale_x_discrete()
   }
 
   # anzahl levels wird verwendet um die farbpalette auszuwählen
-  levels <- nlevels(group_as_factor)
+  levels <- nlevels(dplyr::pull(data, {{ color }}))
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
   if (dplyr::near(levels, 2)) {
@@ -211,6 +254,7 @@ plot_proportions_sidebyside_bar <- function(data, x, percent, facet) {
   }
 
   plot +
+    scale_x +
     scale_fill_manual(values = colors, name = NULL) +
     facet_wrap(vars({{ facet }})) +
     cowplot::theme_half_open() +
@@ -221,6 +265,21 @@ plot_proportions_sidebyside_bar <- function(data, x, percent, facet) {
 #' @export
 #' @rdname plot_proportions
 plot_proportions_sidebyside_density1 <- function(data, x, group, bw = 5, color = "#0d7abc", facet_row = 1) {
+
+  ## argument checking
+  ## x muss numerisch sein, damit die die dichte (density)
+  # korrekt berechnet werden kann
+  stopifnot("x muss numerisch sein. Wandele die Variable im Datensatz um."
+            = is.numeric(dplyr::pull(data, {{ x }})))
+
+  # fuer die density funktion dürfen die daten nicht aggregiert sein.
+  # anders als bei den balken diagrammen. die berechnung erfolgt in der funktion.
+  # um die warnung von ggplot2 bei na verstaendlicher zu machen, werden die na
+  # noch ausgegeben.
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
+  message(
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+    )
 
   plot <-
     ggplot(data = data,
@@ -249,10 +308,6 @@ plot_proportions_sidebyside_density1 <- function(data, x, group, bw = 5, color =
     name = NULL
   )
 
-  # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
-  print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
-
   plot +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
                        breaks = scales::breaks_extended(),
@@ -274,13 +329,16 @@ plot_proportions_sidebyside_density1 <- function(data, x, group, bw = 5, color =
 #' @rdname plot_proportions
 plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color = "#0d7abc", facet_row = 1) {
 
-  # # wie mit map() schreiben?
-  # output <- vector("logical")
-  # for (i in seq_along(data)) {
-  #   output[[i]] <- is.na(df[[i]])
-  # }
-  #stopifnot(all(!is.na(data)))
+  # funktion funtioniert noch nicht korrekt. deshalb soll sich abgebrochen
+  # werden bei einem aufruf
+  stop("Die Funktion ist noch nicht anwendbar. Check: Quellcode.")
 
+  # TODO --------------------------------------------------------------------
+
+  # nur einmal hervorgehobene .. als legende
+  # df_build_group(gss_happy, happy) |>
+  #   # factor arg bei plot funktion ergänzen, damit die reihenfolge kontrolliert werden kann
+  #   #mutate(higlight = factor(higlight, levels = levels(lev)))
   # legende muss noch optimiert werden
   #
   # Hilfe Funktionen sind notwendig, da die einzelne facette über alle daten ist (proportional)
@@ -289,9 +347,38 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
   #
   # https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-and-vctrs/
   #
-  #   Achtung: labelled daten müssen in factor umgewandet werden
+  # Achtung: labelled daten müssen in factor umgewandet werden
   #
   # bw = bw & color = "transparent" kontrollieren ob das notwendig ist
+  #
+  # genaue anwendung noch definieren
+  #
+  # Beispiel:
+  # socviz::gss_lon |>
+  #   mutate(age = as.numeric(age)) |>
+  #   select(age, happy) |>
+  #   filter(!is.na(happy)) |>
+  #   plot_proportions_sidebyside_density2(x = age, group = happy)
+
+
+
+
+# checking ----------------------------------------------------------------
+
+  ## argument checking
+  ## x muss numerisch sein, damit die die dichte (density)
+  # korrekt berechnet werden kann
+  stopifnot("x muss numerisch sein." = is.numeric(dplyr::pull(data, {{ x }})))
+
+  # fuer die density funktion dürfen die daten nicht aggregiert sein.
+  # anders als bei den balken diagrammen. die berechnung erfolgt in der funktion.
+  # um die warnung von ggplot2 bei na verstaendlicher zu machen, werden die na
+  # noch ausgegeben.
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
+  message(
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+  )
+
 
 # helper functions -----------------------------------------------------------------------
 
@@ -334,9 +421,6 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
 
   # die daten werden anhand der anzahl teilaspekte (facetten) multipliziert
   data <- df_build_group(data, {{ group }})
-  #print(data)
-
-  ## check for numeric, wegen scale::percent ist eine dezihamlzahl notwendig
 
   plot <-
     ggplot(data = data,
@@ -355,15 +439,6 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
   v_levels <- levels(levels)
   n_levels <- nlevels(levels)
 
-  #print(n_levels)
-  #print(rep(color, n_levels))
-
-  # TODO --------------------------------------------------------------------
-  # nur einmal hervorgehobene .. als legende
-  # df_build_group(gss_happy, happy) |>
-  #   # factor arg bei plot funktion ergänzen, damit die reihenfolge kontrolliert werden kann
-  #   #mutate(higlight = factor(higlight, levels = levels(lev)))
-
   # farben auf scale mappen
   scale_fill <- scale_fill_manual(
     name = NULL,
@@ -373,10 +448,6 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
     breaks = c("aa_other", v_levels),
     labels = c("alle Beobachtungen", rep("hervorgehobene Gruppe", n_levels))
   )
-
-  # damit die warnung von ggplot beser verstanden wird, die anzahl na ausgeben
-  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
-  print(paste0("Achtung!! Die untersuchte Variable beinhaltet ", n_na, " NAs."))
 
   plot +
     facet_wrap(vars(highlight), nrow = facet_row) + #{{}}
