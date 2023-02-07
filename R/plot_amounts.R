@@ -1,4 +1,4 @@
-#' Mengen visualisieren
+#' Mengen visualisieren. plot_amounts_* Familie.
 #'
 #' @param data Ein Tibble mit den Daten für den Plot.
 #' @param x Die Variable für die x-Achse.
@@ -42,13 +42,13 @@
 #'@rdname plot_amounts
 plot_amounts_vertical <- function(data, x, y, color = "#0d7abc") {
 
-  ## TODO: argument checking mit stopifnot()
+  ## TODO für ganze Familie: argument checking mit stopifnot()
   # umgang mit na
   # nur numerische variablen für die y-achse zulassen (vgl. cond in den funktionen)
   # evt. testen auf factors
 
   ## argument checking
-  # es sollen keine berechnungen in der plot funktin vorkommen.
+  # es sollen keine berechnungen in der plot funktion vorkommen.
   # werte sollen wie im datensatz abgebildet werden. deshalb muss
   # jede zeile eindeutig sein
   stopifnot("Jede Zeile muss eindeutig sein. Die darzustellenden Werte muessen bereits berechnet sein." =
@@ -153,7 +153,7 @@ plot_amounts_grouped <- function(data, x, y, group) {
   levels <- nlevels(group_as_factor)
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
-  if (near(levels, 2)) {
+  if (dplyr::near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
@@ -266,7 +266,7 @@ plot_amounts_stacked <- function(data, x, y, group) {
   levels <- nlevels(group_as_factor)
 
   # farbpaletten benötigen mindestens 3 werte (n >= 3)
-  if (near(levels, 2)) {
+  if (dplyr::near(levels, 2)) {
     colors <- c("#ff7b39", "#4565b2")
   } else {
     colors <- colorspace::qualitative_hcl(levels, palette = "Dark 3")
