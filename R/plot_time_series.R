@@ -1,4 +1,5 @@
-#' Zeitreihen visualisieren
+#' Zeitreihen visualisieren. plot_timeseries_* Familie.
+#'
 #'
 #' @param data Ein Tibble mit den Daten für den Plot.
 #' @param x Die Variable für die x-Achse.
@@ -9,9 +10,11 @@
 #' @param color_area Farbe vom Bereich unter dem Linienplot.
 #' @param color_trend Farbe für die Trendlinie.
 #' @param y_limits Die beiden Poole bei der Y-Achse.
+#' [Mehr Infos beim Argument limits in der ggplot2 Dokumentation](https://ggplot2.tidyverse.org/reference/scale_continuous.html?q=scale_y_con#arguments)
 #' @param method Methode die in der Funktion verwendet wird. Variiert je nach Funktion.
+#' [Mehr Infos beim Argument method in der ggplot2 Dokumentation](https://ggplot2.tidyverse.org/reference/geom_smooth.html?q=geom_smooth#arguments)
 #' @param formula Berechnungsformel der Methode.
-#' @param span Zeitspanne einer Analyseeinheit.
+#' [Mehr Infos beim Argument formula in der ggplot2 Dokumentation](https://ggplot2.tidyverse.org/reference/geom_smooth.html?q=geom_smooth#arguments)
 #' @param facet Gruppierungsvariable um einen Plot je Teilaspekt zu machen (Facetten).
 #'
 #'
@@ -27,7 +30,46 @@
 #' @return ggplot object
 #'
 #' @examples
-#' # tbd
+#' ggplot2::mpg |>
+#'   dplyr::group_by(year, manufacturer) |>
+#'   dplyr::summarise(hwy_by_manufacturer = mean(hwy)) |>
+#'   dplyr::ungroup() |>
+#'   plot_timeseries_slope(x = year, y = hwy_by_manufacturer, group = manufacturer)
+#'
+#' stock_markets <- tsbox::ts_tbl(datasets::EuStockMarkets) |>
+#'   dplyr::mutate(time = lubridate::as_date(time))
+#'
+#' # ein Aktienmarkt (1 Merkmal)
+#' stock_markets |>
+#'   dplyr::filter(id == "FTSE") |>
+#'   plot_timeseries_line(x = time, y = value, group = id)
+#'
+#' # mehrere Aktienmaerkte (n Merkmale)
+#' stock_markets |>
+#'   dplyr::filter(id != "FTSE") |>
+#'   plot_timeseries_line(x = time, y = value, group = id)
+#'
+#' # ein Aktienmarkt (1 Merkmal)
+#' stock_markets |>
+#'   dplyr::filter(id == "FTSE") |>
+#'   plot_timeseries_trend(x = time, y = value)
+#'
+#' # mehrere Aktienmaerkte (n Merkmale)
+#' stock_markets |>
+#'   dplyr::filter(id != "FTSE") |>
+#'   plot_timeseries_trend(x = time, y = value) +
+#'   # Erweiterung mit ggplot2 Funktion
+#'   ggplot2::facet_wrap(ggplot2::vars(id))
+#'
+#' # trendbereinigte monatliche Entwicklung
+#' stock_markets |>
+#'   # zuerst die durchschnittliche
+#'   # monatliche entwicklung berechnen
+#'   dplyr::mutate(time = format(time, "%Y-%m")) |>
+#'   dplyr::group_by(id, time) |>
+#'   dplyr::summarise(value = mean(value)) |>
+#'   dplyr::ungroup() |>
+#'   plot_timeseries_detrend(x = time, y = value, group = id)
 #'
 #' @export
 #' @rdname plot_timeseries
@@ -35,7 +77,7 @@ plot_timeseries_slope <- function(data, x, y, group, color_point = "#0d7abc", co
 
   ## argument checking
   ## x muss numerisch sein, damit die labels für das höchste jahr eruiert werden kann
-  stopifnot("x muss numerisch sein." = is.numeric(dplyr::pull(data, {{ x }}))) # "x must be numeric"
+  stopifnot("x muss numerisch sein." = is.numeric(dplyr::pull(data, {{ x }})))
 
   ## labels für die einzelne slops (direkt labeling)
   labels <-
@@ -87,7 +129,8 @@ plot_timeseries_slope <- function(data, x, y, group, color_point = "#0d7abc", co
 
 #' @export
 #' @rdname plot_timeseries
-plot_timeseries_line <- function(data, x, y, group, color_line = "#0d7abc", color_area = "#6fa8dc", y_limits = NULL) {
+plot_timeseries_line <- function(data, x, y, group, color_line = "#0d7abc",
+                                 color_area = "#6fa8dc", y_limits = NULL) {
 
   ## argument checking
   stopifnot("x muss ein datum (yyyy-mm-dd) sein." = lubridate::is.Date(dplyr::pull(data, {{ x }}))) # "x must be numeric"
@@ -196,17 +239,12 @@ plot_timeseries_line <- function(data, x, y, group, color_line = "#0d7abc", colo
 
 #' @export
 #' @rdname plot_timeseries
-plot_timeseries_trend <- function(data, x, y, method = NULL, formula = NULL, span = 0.75,
+plot_timeseries_trend <- function(data, x, y, method = NULL, formula = NULL,
                                   color_line = "black", color_trend = "#0d7abc", y_limits = NULL) {
 
   ## argument checking
-  # stopifnot("x muss ein datum (yyyy-mm-dd) sein" = lubridate::is.Date(dplyr::pull(data, {{ x }})))
+  stopifnot("x muss ein datum (yyyy-mm-dd) sein" = lubridate::is.Date(dplyr::pull(data, {{ x }})))
   stopifnot("y muss numerisch sein." = is.numeric(dplyr::pull(data, {{ y }})))
-
-# TODO pruefen ob "span" so sinn macht -------------------------------------------
-
-  ## span argument ist nur bei der methode: loess gültig
-  span <- ifelse(method == "loess", span, NULL)
 
   plot <-
     ggplot(data = data,
@@ -216,7 +254,6 @@ plot_timeseries_trend <- function(data, x, y, method = NULL, formula = NULL, spa
       se = FALSE,
       method = method,
       formula = formula,
-      span = span,
       color = color_trend
       )
 
@@ -229,13 +266,13 @@ plot_timeseries_trend <- function(data, x, y, method = NULL, formula = NULL, spa
         labels = scales::label_number(big.mark = "'")) +
       cowplot::theme_half_open() +
       theme(panel.grid.major.y = element_line(color = "grey85", size = 0.5))
-
 }
 
 #' @export
 #' @rdname plot_timeseries
 plot_timeseries_detrend <- function(data, x, y, method = "pc", group, facet = TRUE,
-                                    color_line = "#0d7abc", color_area = "#6fa8dc", y_limits = NULL ) {
+                                    color_line = "#0d7abc", color_area = "#6fa8dc",
+                                    y_limits = NULL ) {
 
     ## argument checking
     stopifnot("y muss numerisch sein." = is.numeric(dplyr::pull(data, {{ y }})))
@@ -243,10 +280,12 @@ plot_timeseries_detrend <- function(data, x, y, method = "pc", group, facet = TR
     stopifnot("Keine Trendschaetzung fuer Zeitreihen unter 7 Beobachtungen." = nrow(data) > 7)
 
     ## data preparation
+    ## die gruppierung ist notwendig, da unten tsbox::ts_pc ansonsten nicht funktioniert
+    ## bei dieser funktion kein zweitwert mehrmals vorkommen pro gruppe (id)
     df <-
       data |>
       dplyr::select({{ group }}, {{ x }}, {{ y }}) |>
-      dplyr::transmute(id := {{ group }}, time := {{ x }}, value := {{ y }})
+      dplyr::mutate(id := {{ group }}, time := {{ x }}, value := {{ y }}, .keep = "none")
 
     ## methoden fuer detrend checken
     ## https://www.tsbox.help
@@ -289,6 +328,8 @@ plot_timeseries_detrend <- function(data, x, y, method = "pc", group, facet = TR
       cowplot::theme_half_open() +
       theme(panel.grid.major.y = element_line(color = "grey85", size = 0.5))
 
+    plot
+
     ## facet
 
     ## group-variable als factor damit levels gezaehlt werden
@@ -303,7 +344,7 @@ plot_timeseries_detrend <- function(data, x, y, method = "pc", group, facet = TR
       message("Achtung!\nDas df hat mehrere Gruppen aber 'facet' hat den Wert FALSE. Ist eine Aufteilung nach Gruppe (facet) sinnvoll?")
       plot
     } else {
-      stop("Keine gueltige Eingabe. Pruefe die Argumente facet und group.")
+      stop("Keine gueltige Eingabe. Pruefe die Argumente facet und group. facet = TRUE braucht mehr als 1 Merkmal in group.")
     }
 
 }
