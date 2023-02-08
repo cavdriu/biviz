@@ -9,6 +9,7 @@
 #' @param facet Gruppierungsvariable um einen Plot je Teilaspekt zu machen (Facetten).
 #' @param facet_row Anzahl Zeilen für Darstellung der Teilaspekte.
 #' @param bw Breite (Anzahl werte die zusammengefasst werden) der Behälter.
+#' [Mehr Infos beim Argument bw in der ggplot2 Dokumentation](https://ggplot2.tidyverse.org/reference/geom_density.html?q=density#arguments)
 #' @param color Farbe um Gruppierungen zu markieren.
 #'
 #' @return ggplot object

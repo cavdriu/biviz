@@ -4,6 +4,7 @@
 #' @param x Variable die untersucht wird (x-Achse).
 #' @param y Variable die untersucht wird (y-Achse).
 #' @param bw Breite (Anzahl werte die zusammengefasst werden) der Behälter.
+#' [Mehr Infos beim Argument bw in der ggplot2 Dokumentation](https://ggplot2.tidyverse.org/reference/geom_density.html?q=density#arguments)
 #' @param color Farbe um die Balken optisch zu trennen.
 #' @param group Variable um die Daten zu gruppieren.
 #' @param size Grösse der Schrift.
