@@ -52,7 +52,8 @@ plot_proportions_sidebyside_density2(
 
 \item{facet}{Gruppierungsvariable um einen Plot je Teilaspekt zu machen (Facetten).}
 
-\item{bw}{Breite (Anzahl werte die zusammengefasst werden) der Behälter.}
+\item{bw}{Breite (Anzahl werte die zusammengefasst werden) der Behälter.
+\href{https://ggplot2.tidyverse.org/reference/geom_density.html?q=density#arguments}{Mehr Infos im Kapitel Arguments beim Argument bw in der ggplot2 Dokumentation}}
 
 \item{facet_row}{Anzahl Zeilen für Darstellung der Teilaspekte.}
 }
