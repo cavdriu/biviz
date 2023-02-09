@@ -32,7 +32,6 @@ plot_timeseries_trend(
   y,
   method = NULL,
   formula = NULL,
-  span = 0.75,
   color_line = "black",
   color_trend = "#0d7abc",
   y_limits = NULL
@@ -65,13 +64,14 @@ plot_timeseries_detrend(
 
 \item{color_area}{Farbe vom Bereich unter dem Linienplot.}
 
-\item{y_limits}{Die beiden Poole bei der Y-Achse.}
+\item{y_limits}{Die beiden Poole bei der Y-Achse.
+\href{https://ggplot2.tidyverse.org/reference/scale_continuous.html?q=scale_y_con#arguments}{Mehr Infos im Kapitel Arguments beim Argument limits in der ggplot2 Dokumentation}}
 
-\item{method}{Methode die in der Funktion verwendet wird. Variiert je nach Funktion.}
+\item{method}{Methode die in der Funktion verwendet wird. Variiert je nach Funktion.
+\href{https://ggplot2.tidyverse.org/reference/geom_smooth.html?q=geom_smooth#arguments}{Mehr Infos im Kapitel Arguments beim Argument method in der ggplot2 Dokumentation}}
 
-\item{formula}{Berechnungsformel der Methode.}
-
-\item{span}{Zeitspanne einer Analyseeinheit.}
+\item{formula}{Berechnungsformel der Methode.
+\href{https://ggplot2.tidyverse.org/reference/geom_smooth.html?q=geom_smooth#arguments}{Mehr Infos im Kapitel Arguments beim Argument formula in der ggplot2 Dokumentation}}
 
 \item{color_trend}{Farbe für die Trendlinie.}
 
@@ -84,6 +84,45 @@ ggplot object
 Zeitreihen visualisieren. plot_timeseries_* Familie.
 }
 \examples{
-# tbd
+ggplot2::mpg |>
+  dplyr::group_by(year, manufacturer) |>
+  dplyr::summarise(hwy_by_manufacturer = mean(hwy)) |>
+  dplyr::ungroup() |>
+  plot_timeseries_slope(x = year, y = hwy_by_manufacturer, group = manufacturer)
+
+stock_markets <- tsbox::ts_tbl(datasets::EuStockMarkets) |>
+  dplyr::mutate(time = lubridate::as_date(time))
+
+# ein Aktienmarkt (1 Merkmal)
+stock_markets |>
+  dplyr::filter(id == "FTSE") |>
+  plot_timeseries_line(x = time, y = value, group = id)
+
+# mehrere Aktienmaerkte (n Merkmale)
+stock_markets |>
+  dplyr::filter(id != "FTSE") |>
+  plot_timeseries_line(x = time, y = value, group = id)
+
+# ein Aktienmarkt (1 Merkmal)
+stock_markets |>
+  dplyr::filter(id == "FTSE") |>
+  plot_timeseries_trend(x = time, y = value)
+
+# mehrere Aktienmaerkte (n Merkmale)
+stock_markets |>
+  dplyr::filter(id != "FTSE") |>
+  plot_timeseries_trend(x = time, y = value) +
+  # Erweiterung mit ggplot2 Funktion
+  ggplot2::facet_wrap(ggplot2::vars(id))
+
+# trendbereinigte monatliche Entwicklung
+stock_markets |>
+  # zuerst die durchschnittliche
+  # monatliche entwicklung berechnen
+  dplyr::mutate(time = format(time, "\%Y-\%m")) |>
+  dplyr::group_by(id, time) |>
+  dplyr::summarise(value = mean(value)) |>
+  dplyr::ungroup() |>
+  plot_timeseries_detrend(x = time, y = value, group = id)
 
 }
