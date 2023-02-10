@@ -46,7 +46,7 @@ library(tidyverse)
 ```
 
 
-```{r plot_distributions_sidebyside, message=FALSE, warning=FALSE, fig.width=6}
+```{r plot_distributions_sidebyside, message=FALSE, warning=FALSE, fig.height=5}
 plot1 <- 
   socviz::gss_lon |> 
   drop_na() |>
@@ -61,9 +61,9 @@ plot1
 
 ### Datenvisualisierungen verfeinern
 
-Da der Output von biviz ein ggplot2 Objekt ist, können es anschliessend innerhalb des ggplot2 Frameworks weiter bearbeitet werden. Der ganze Datensatz aus dem Beipsiel stehen unter [opendata.swiss](https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/resource/2f2cd364-6f42-4611-be73-98d3f0bb6acc) frei zur Verfügung.
+Da der Output von biviz ein ggplot2 Objekt ist, können es anschliessend innerhalb des ggplot2 Frameworks weiter bearbeitet werden. Der ganze Datensatz aus dem Beipsiel stehen unter [opendata.swiss](https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/) frei zur Verfügung.
 
-```{r plot_amounts_vertical, message=FALSE, fig.width=6}
+```{r plot_amounts_vertical, message=FALSE, fig.height=5}
 df <- 
   biviz::sample_abfall_zh
 

@@ -68,7 +68,7 @@ plot1
 Da der Output von biviz ein ggplot2 Objekt ist, können es anschliessend
 innerhalb des ggplot2 Frameworks weiter bearbeitet werden. Der ganze
 Datensatz aus dem Beipsiel stehen unter
-[opendata.swiss](https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/resource/2f2cd364-6f42-4611-be73-98d3f0bb6acc)
+[opendata.swiss](https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/)
 frei zur Verfügung.
 
 ``` r
