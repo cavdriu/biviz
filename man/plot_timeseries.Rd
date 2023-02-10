@@ -65,13 +65,13 @@ plot_timeseries_detrend(
 \item{color_area}{Farbe vom Bereich unter dem Linienplot.}
 
 \item{y_limits}{Die beiden Poole bei der Y-Achse.
-\href{https://ggplot2.tidyverse.org/reference/scale_continuous.html?q=scale_y_con#arguments}{Mehr Infos im Kapitel Arguments beim Argument limits in der ggplot2 Dokumentation}}
+\href{https://ggplot2.tidyverse.org/reference/scale_continuous.html?q=scale_y_con#arguments}{Mehr Infos beim Argument limits in der ggplot2 Dokumentation}}
 
 \item{method}{Methode die in der Funktion verwendet wird. Variiert je nach Funktion.
-\href{https://ggplot2.tidyverse.org/reference/geom_smooth.html?q=geom_smooth#arguments}{Mehr Infos im Kapitel Arguments beim Argument method in der ggplot2 Dokumentation}}
+\href{https://ggplot2.tidyverse.org/reference/geom_smooth.html?q=geom_smooth#arguments}{Mehr Infos beim Argument method in der ggplot2 Dokumentation}}
 
 \item{formula}{Berechnungsformel der Methode.
-\href{https://ggplot2.tidyverse.org/reference/geom_smooth.html?q=geom_smooth#arguments}{Mehr Infos im Kapitel Arguments beim Argument formula in der ggplot2 Dokumentation}}
+\href{https://ggplot2.tidyverse.org/reference/geom_smooth.html?q=geom_smooth#arguments}{Mehr Infos beim Argument formula in der ggplot2 Dokumentation}}
 
 \item{color_trend}{Farbe für die Trendlinie.}
 

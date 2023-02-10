@@ -4,7 +4,7 @@
 \alias{plot_proportions_bar}
 \alias{plot_proportions_donut}
 \alias{plot_proportions_stacked}
-\alias{plot_proportions_sidebyside_col}
+\alias{plot_proportions_sidebyside_bar}
 \alias{plot_proportions_sidebyside_density1}
 \alias{plot_proportions_sidebyside_density2}
 \title{Proportionen visualisieren. plot_proportions_* Familie.}
@@ -15,7 +15,7 @@ plot_proportions_donut(data, group, n = n, percent = percent)
 
 plot_proportions_stacked(data, x, y, group)
 
-plot_proportions_sidebyside_col(data, x, y, color, facet)
+plot_proportions_sidebyside_bar(data, x, y, color, facet)
 
 plot_proportions_sidebyside_density1(
   data,
@@ -53,7 +53,7 @@ plot_proportions_sidebyside_density2(
 \item{facet}{Gruppierungsvariable um einen Plot je Teilaspekt zu machen (Facetten).}
 
 \item{bw}{Breite (Anzahl werte die zusammengefasst werden) der Behälter.
-\href{https://ggplot2.tidyverse.org/reference/geom_density.html?q=density#arguments}{Mehr Infos im Kapitel Arguments beim Argument bw in der ggplot2 Dokumentation}}
+\href{https://ggplot2.tidyverse.org/reference/geom_density.html?q=density#arguments}{Mehr Infos beim Argument bw in der ggplot2 Dokumentation}}
 
 \item{facet_row}{Anzahl Zeilen für Darstellung der Teilaspekte.}
 }
@@ -87,7 +87,7 @@ df2 |>
   plot_proportions_stacked(x = year, y = percent, group = sex)
 
 # ohne pipe
-plot_proportions_sidebyside_col(data = df2, x = year, y = percent, color = sex, facet = sex)
+plot_proportions_sidebyside_bar(data = df2, x = year, y = percent, color = sex, facet = sex)
 
 socviz::gss_lon |>
   plot_proportions_sidebyside_density1(x = as.numeric(age), group = happy)

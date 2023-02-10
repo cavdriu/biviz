@@ -27,7 +27,7 @@ plot_distributions_boxplot(data, x, y, bw = 5, color = "#0d7abc", size = 5)
 \item{x}{Variable die untersucht wird (x-Achse).}
 
 \item{bw}{Breite (Anzahl werte die zusammengefasst werden) der Behälter.
-\href{https://ggplot2.tidyverse.org/reference/geom_density.html?q=density#arguments}{Mehr Infos im Kapitel Arguments beim Argument bw in der ggplot2 Dokumentation}}
+\href{https://ggplot2.tidyverse.org/reference/geom_density.html?q=density#arguments}{Mehr Infos beim Argument bw in der ggplot2 Dokumentation}}
 
 \item{color}{Farbe um die Balken optisch zu trennen.}
 
