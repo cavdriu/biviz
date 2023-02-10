@@ -1,6 +1,6 @@
 Package: biviz
 Title: Visualisierungstools für einfache Grafiken
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person("Andriu", "Cavelti", , "tricktracktriu@mailbox.org", role = c("aut", "cre"))
 Description: Wrappers um ggplot Visualisierung, die das Erzeugen von Grafiken erleichtern.
