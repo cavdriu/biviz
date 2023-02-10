@@ -45,7 +45,7 @@
 #'   plot_proportions_stacked(x = year, y = percent, group = sex)
 #'
 #'# ohne pipe
-#' plot_proportions_sidebyside_col(data = df2, x = year, y = percent, color = sex, facet = sex)
+#' plot_proportions_sidebyside_bar(data = df2, x = year, y = percent, color = sex, facet = sex)
 #'
 #' socviz::gss_lon |>
 #'   plot_proportions_sidebyside_density1(x = as.numeric(age), group = happy)
@@ -217,7 +217,7 @@ plot_proportions_stacked <- function(data, x, y, group) {
 
 #' @export
 #' @rdname plot_proportions
-plot_proportions_sidebyside_col <- function(data, x, y, color, facet) {
+plot_proportions_sidebyside_bar <- function(data, x, y, color, facet) {
 
   ## argument checking
   # color muss ein factor sein, damit die labels für die farben eruiert werden können
@@ -391,7 +391,7 @@ plot_proportions_sidebyside_density2 <- function(data, x, group, bw = 5, color =
       dplyr::mutate(
         # r4ds, S. 217
         # https://forcats.tidyverse.org/reference/fct_collapse.html
-        focus = as.character(forcats::fct_collapse({{ variable }},
+        focus = as.factor(forcats::fct_collapse({{ variable }},
                                                    factor = focus_group,
                                                    # aa damit es immer oben ist im plot
                                                    aa_other = setdiff(levels(dplyr::pull({{ data }}, {{ variable }})),
