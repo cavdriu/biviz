@@ -51,8 +51,8 @@ library(tidyverse)
 library(lubridate)
 library(cowplot)
 library(colorspace)
-library(palmerpenguins)
 library(biviz)
+#library(palmerpenguins)
 #devtools::load_all()
 
 ```
@@ -126,17 +126,8 @@ Die @tbl-data-abfall-zuerich zeigt die verschiedenen Variablentypen. Die Spalte 
 
 ```{r}
 #| label: tbl-data-abfall-zuerich
-#| tbl-cap: "Abfallart und -menge im Kanton Zürich. Quelle: @amtfürabfallwasserenergieundluftdeskantonszürich2022"
+#| tbl-cap: "Abfallart und -menge im Kanton Zürich. Quelle: @amtfürabfallwasserenergieundluftdeskantonszürich2022 %%% ANPASSEN biviz pkg %%%"
 #| message: false
-
-#abfall_zh <- 
-  #read_csv(here::here("data", "KTZH_00001803_00003460.csv")) |> 
-  #read_csv(here::here("data", "abfall_zh.csv")) |> 
-  #load(here::here("data", "abfall_zh.rda"))
-
-#abfall_zh <- 
-  #abfall_zh |> 
-  #select(!c("Gemeinde_Nr", "Einheit"))
 
 abfall_zh_sample <- 
   biviz::abfall_zh|> 
@@ -461,7 +452,8 @@ Zu Beginn des Entwicklungsprozesses standen organisatorische Entscheide im Fokus
     R Pakete werden in der Regel mit `install.packages()` installiert und werden irgendwo auf dem Computer auf dem R verwendet wird abgespeichert. Sollen Dateien, welche nicht direkt in Zusammenhang mit dem Paket stehen mitgeliefert werden, dann ist der *inst* Ordner ein guter Ort dafür. Der Ordner wird im Stammordner des installierten Pakets gespeichert und bleibt so immer in Bezug zum Paket. Der Ordner bietet auch Platz für Sandboxes oder um mit neuen Funktionen zu experimentieren.
 
     > TODO: docs / vignettes\
-    > https://devops-carpentry.github.io/book/programming.html#folder-structure
+    > https://devops-carpentry.github.io/book/programming.html#folder-structure\
+    > https://r-pkgs.org/vignettes.html#sec-vignettes-article
 
 Neben der Ordnerstruktur ist für die stringente Entwicklung und anschliessende Nutzung des Pakets eine einheitliche Syntax wichtig. Für {biviz} wird der snake_case Ansatz verwendet. Beim snake_case werden alle Begriffe in Kleinbuchstaben oder Zahlen verwendet und mit einem Unterstrich (\_) verbunden. Neben der Darstellung ist auch der Inhalt wichtig. Gute Namen können bereits eine Form der Dokumentation sein und entsprechend beschreiben was sie repräsentieren. Als Faustregel gilt: Variablen sind Nomen und beschreiben was sie sind (`abfallart`). Funktionen sind Verben und beschreiben was sie machen (`plot_amounts_grouped`). [@hadleywickham2022b] Es hilft sich in Erinnerung zu rufen, dass der Code auch von Menschen gelesen und verstanden werden muss. Für den Computer ist es nicht relevant ob `function1()` oder `compute_max()` steht. Für einen Menschen ist es jedoch ein grosser Unterschied und macht den Code verständlicher. Entsprechend soll der Code für Menschen einfach und verständlich gehalten werden.
 
