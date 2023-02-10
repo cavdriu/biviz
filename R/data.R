@@ -1,6 +1,10 @@
 #' Abfallmengen nach Abfallarten und Gemeinden Kanton Zuerich
 #'
-#' Source: https://www.zh.ch/de/politik-staat/opendata.zhweb-noredirect.zhweb-cache.html?keywords=ogd#/datasets/1803@awel-kanton-zuerich/distributions/3460
+#' Source: https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/
+#'
+#' Eine Teilmenge ist im Datensatz "sample_abfall_zh" zusammengefasst und mit Informationen vom
+#' [Gemeindeportraet](https://www.zh.ch/de/politik-staat/gemeinden/gemeindeportraet.html) ergänzt.
+#'
 #' @format
 #' Ein Datensatz mit 6 Variablen und 34668 Zeilen:
 #' \describe{
