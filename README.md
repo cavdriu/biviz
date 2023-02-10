@@ -55,7 +55,8 @@ plot1 <-
   plot_distributions_sidebyside(
     as.numeric(age), 
     group = sex, 
-    bw = 3)
+    bw = 3
+    )
 
 plot1
 ```
@@ -119,7 +120,8 @@ plot_abfall_zh_shine <-
   # "übermalt" indem ein neuer layer auf die visualisierung gelegt wird
   geom_col(
     data = filter(df, 
-                  abfall_pro_person != min(df$abfall_pro_person)),
+                  abfall_pro_person != min(df$abfall_pro_person)
+                  ),
     mapping = aes(
       x = fct_reorder(Gemeinde, Wert),
       y = Wert
@@ -163,5 +165,4 @@ aufgerufen werden.
 ``` r
 
 ?plot_distributions_raincloud
-#> starte den http Server für die Hilfe fertig
 ```
