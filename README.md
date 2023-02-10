@@ -49,21 +49,18 @@ definiert `plot_amounts_*` und am Ende die Form `plot_amounts_grouped`.
 ## Beispiele
 
 ``` r
-library(biviz)
-
 plot1 <- 
   socviz::gss_lon |> 
-  tidyr::drop_na() |>
+  drop_na() |>
   plot_distributions_sidebyside(
     as.numeric(age), 
     group = sex, 
     bw = 3)
-#> [1] "Achtung!! Die untersuchte Variable beinhaltet 0 NAs."
 
 plot1
 ```
 
-<img src="man/figures/README-socviz-1.png" width="100%" />
+<img src="man/figures/README-plot_distributions_sidebyside-1.png" width="100%" />
 
 ### Datenvisualisierungen verfeinern
 
@@ -74,75 +71,129 @@ Datensatz aus dem Beipsiel stehen unter
 frei zur Verfügung.
 
 ``` r
-df <- readr::read_csv2("data/sample_abfall_zh.csv")
+df <- 
+  biviz::sample_abfall_zh
 
-plot2 <- 
-  df |> 
-  plot_amounts_grouped(
-    x = forcats::fct_reorder(Gemeinde, Wert),
-    y = Wert, 
-    group = Gemeinde)
+## raw plot
+plot_abfall_zh_raw <- 
+  # biviz funktion
+  plot_amounts_vertical(
+    data = df,
+    # die daten haben keine logische reihenfolge, deshalb werden sie
+    # der grösse nach sortiert. dies geschieht mit forcats::fct_reorder
+    x = fct_reorder(Gemeinde, Wert),
+    y = Wert
+    ) 
 
-plot2
+plot_abfall_zh_raw 
 ```
 
-<img src="man/figures/README-abfall-1.png" width="100%" />
+<img src="man/figures/README-plot_amounts_vertical-1.png" width="100%" />
 
 ``` r
 
-plot3 <- 
-  plot2 +
-  ggplot2::ggtitle("Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021") +
-    ggplot2::labs(
+## make the plot nice
+plot_abfall_zh_nice <- 
+  # das vorherige ggplot2 objekt wird verwendet
+  plot_abfall_zh_raw +
+  # kontext hinzufügen
+  ggtitle("Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021") +
+    labs(
     x = "Gemeinde",
     y = "Menge in Tonnen"
-  ) +
-  ggplot2::theme(legend.position = "none")
+    ) +
+  theme(legend.position = "none")
 
-plot3
+plot_abfall_zh_nice
 ```
 
-<img src="man/figures/README-abfall-2.png" width="100%" />
+<img src="man/figures/README-plot_amounts_vertical-2.png" width="100%" />
 
 ``` r
 
-plot4 <- 
-  plot3 +
-  ggplot2::geom_col(
-    data = dplyr::filter(df, abfall_pro_person != min(df$abfall_pro_person)),
-    mapping = ggplot2::aes(
-      x = forcats::fct_reorder(Gemeinde, Wert),
+## let the plot shine
+plot_abfall_zh_shine <- 
+  # das vorherige ggplot2 objekt wird verwendet
+  plot_abfall_zh_nice +
+  # mit diesem schritt werden alle balken ausser, der hervorzuhebende grau
+  # "übermalt" indem ein neuer layer auf die visualisierung gelegt wird
+  geom_col(
+    data = filter(df, 
+                  abfall_pro_person != min(df$abfall_pro_person)),
+    mapping = aes(
+      x = fct_reorder(Gemeinde, Wert),
       y = Wert
       ),
     fill = "lightgrey",
     position = "dodge"
            ) +
-    ggplot2::ggtitle(
+  ggtitle(
+    # mit dem paket ggtext kann html/markdown code im text verwendet werden
     paste0(
-      "<span style = 'color:lightgrey;'>Im Jahr 2021 hatte die </span><br>",
-      "<span style = 'color:#909800; style = font-size:24pt'>Gemeinde Affoltern a.A.</span><br>",
-      "mit 5.6 Tonnen ",
-      "<span style = 'color:lightgrey;'>brennbaren Abfällen <br>und Sperrgut die</span>",
-      " kleinste pro Kopf Abfallmenge"
+      "<span style = 'color:lightgrey;'>Im Jahr 2021 hatte die</span><br>",
+      "<span style = 'color:#0d7abc; style = font-size:24pt'>
+      Gemeinde Affoltern a.A.</span><br>",
+      " total am meisten ",
+      "<span style = 'color:lightgrey;'>brennbare Abfällen und Sperrgut</span><br>",
+      "<span style = 'color:lightgrey;'>aber</span>",
+      " pro Kopf am wenigsten (5.6 Tonnen)"
+      #"<span style = 'color:lightgrey;'>Menge</span>"
       )
     ) +
-    ggplot2::labs(y = "Abfallmenge Total\nin Tonnen") +
-    ggplot2::theme(
-      plot.title = ggtext::element_markdown(),
-      axis.title.x =  ggplot2::element_blank()
-      ) 
+  labs(y = "Totale Abfallmenge\nin Tonnen") +
+  # damit der html/markdown code im text gerendert werden kann, benötigt es 
+  # die funktion element_markdown
+  theme(
+    plot.title = ggtext::element_markdown(size = 14),
+    axis.title.x = element_blank(),
+    axis.title.y = element_text(size = 11, vjust = 3)
+    )
 
-plot4 
+plot_abfall_zh_shine
 ```
 
-<img src="man/figures/README-abfall-3.png" width="100%" />
+<img src="man/figures/README-plot_amounts_vertical-3.png" width="100%" />
 
 ``` r
-
-## plots zusammenfügen
-#cowplot::plot_grid(plot2, plot3, plot4, NULL, labels = c("A", "B", "C"), ncol = 2)
-# first_row <- cowplot::plot_grid(plot2, plot3, labels = c("A", "B"))
-# cowplot::plot_grid(first_row, plot4, labels = c("", "C"), ncol = 1)
+# 
+# plot3 <- 
+#   plot2 +
+#   ggplot2::ggtitle("Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021") +
+#     ggplot2::labs(
+#     x = "Gemeinde",
+#     y = "Menge in Tonnen"
+#   ) +
+#   ggplot2::theme(legend.position = "none")
+# 
+# plot3
+# 
+# plot4 <- 
+#   plot3 +
+#   ggplot2::geom_col(
+#     data = dplyr::filter(df, abfall_pro_person != min(df$abfall_pro_person)),
+#     mapping = ggplot2::aes(
+#       x = forcats::fct_reorder(Gemeinde, Wert),
+#       y = Wert
+#       ),
+#     fill = "lightgrey",
+#     position = "dodge"
+#            ) +
+#     ggplot2::ggtitle(
+#     paste0(
+#       "<span style = 'color:lightgrey;'>Im Jahr 2021 hatte die </span><br>",
+#       "<span style = 'color:#909800; style = font-size:24pt'>Gemeinde Affoltern a.A.</span><br>",
+#       "mit 5.6 Tonnen ",
+#       "<span style = 'color:lightgrey;'>brennbaren Abfällen <br>und Sperrgut die</span>",
+#       " kleinste pro Kopf Abfallmenge"
+#       )
+#     ) +
+#     ggplot2::labs(y = "Abfallmenge Total\nin Tonnen") +
+#     ggplot2::theme(
+#       plot.title = ggtext::element_markdown(),
+#       axis.title.x =  ggplot2::element_blank()
+#       ) 
+# 
+# plot4 
 ```
 
 ## Help
@@ -153,7 +204,6 @@ aufgerufen werden.
 
 ``` r
 
-?plot_distribution
-#> Keine Dokumentation für 'plot_distribution' in angegebenen Paketen und Bibliotheken:
-#> Sie können '??plot_distribution' versuchen
+?plot_distributions_raincloud
+#> starte den http Server für die Hilfe fertig
 ```

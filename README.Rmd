@@ -37,15 +37,18 @@ Um die Wrapper schlank zu halten, werden bei den meisten Funktionen in biviz die
 
 Die Visualisierungen sind in 4 Gruppen (amounts, distributions, proportions und time series) aufgeteilt und folgen immer der gleichen Syntax. Jede Funktion startet mit `plot_*` anschliessend wird die Gruppe definiert `plot_amounts_*` und am Ende die Form `plot_amounts_grouped`.
 
-
 ## Beispiele
 
-```{r socviz, message=FALSE, warning=FALSE, fig.width=6}
+```{r load pkg, include=FALSE}
 library(biviz)
+library(tidyverse)
+```
 
+
+```{r plot_distributions_sidebyside, message=FALSE, warning=FALSE, fig.width=6}
 plot1 <- 
   socviz::gss_lon |> 
-  tidyr::drop_na() |>
+  drop_na() |>
   plot_distributions_sidebyside(
     as.numeric(age), 
     group = sex, 
@@ -55,64 +58,80 @@ plot1
 ```
 
 ### Datenvisualisierungen verfeinern
+
 Da der Output von biviz ein ggplot2 Objekt ist, können es anschliessend innerhalb des ggplot2 Frameworks weiter bearbeitet werden. Der ganze Datensatz aus dem Beipsiel stehen unter [opendata.swiss](https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/resource/2f2cd364-6f42-4611-be73-98d3f0bb6acc) frei zur Verfügung.
 
+```{r plot_amounts_vertical, message=FALSE, fig.width=6}
+df <- 
+  biviz::sample_abfall_zh
 
-```{r abfall, message=FALSE, fig.width=6}
-df <- readr::read_csv2("data/sample_abfall_zh.csv")
+## raw plot
+plot_abfall_zh_raw <- 
+  # biviz funktion
+  plot_amounts_vertical(
+    data = df,
+    # die daten haben keine logische reihenfolge, deshalb werden sie
+    # der grösse nach sortiert. dies geschieht mit forcats::fct_reorder
+    x = fct_reorder(Gemeinde, Wert),
+    y = Wert
+    ) 
 
-plot2 <- 
-  df |> 
-  plot_amounts_grouped(
-    x = forcats::fct_reorder(Gemeinde, Wert),
-    y = Wert, 
-    group = Gemeinde)
+plot_abfall_zh_raw 
 
-plot2
-
-plot3 <- 
-  plot2 +
-  ggplot2::ggtitle("Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021") +
-    ggplot2::labs(
+## make the plot nice
+plot_abfall_zh_nice <- 
+  # das vorherige ggplot2 objekt wird verwendet
+  plot_abfall_zh_raw +
+  # kontext hinzufügen
+  ggtitle("Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021") +
+    labs(
     x = "Gemeinde",
     y = "Menge in Tonnen"
-  ) +
-  ggplot2::theme(legend.position = "none")
+    ) +
+  theme(legend.position = "none")
 
-plot3
+plot_abfall_zh_nice
 
-plot4 <- 
-  plot3 +
-  ggplot2::geom_col(
-    data = dplyr::filter(df, abfall_pro_person != min(df$abfall_pro_person)),
-    mapping = ggplot2::aes(
-      x = forcats::fct_reorder(Gemeinde, Wert),
+## let the plot shine
+plot_abfall_zh_shine <- 
+  # das vorherige ggplot2 objekt wird verwendet
+  plot_abfall_zh_nice +
+  # mit diesem schritt werden alle balken ausser, der hervorzuhebende grau
+  # "übermalt" indem ein neuer layer auf die visualisierung gelegt wird
+  geom_col(
+    data = filter(df, 
+                  abfall_pro_person != min(df$abfall_pro_person)),
+    mapping = aes(
+      x = fct_reorder(Gemeinde, Wert),
       y = Wert
       ),
     fill = "lightgrey",
     position = "dodge"
            ) +
-    ggplot2::ggtitle(
+  ggtitle(
+    # mit dem paket ggtext kann html/markdown code im text verwendet werden
     paste0(
-      "<span style = 'color:lightgrey;'>Im Jahr 2021 hatte die </span><br>",
-      "<span style = 'color:#909800; style = font-size:24pt'>Gemeinde Affoltern a.A.</span><br>",
-      "mit 5.6 Tonnen ",
-      "<span style = 'color:lightgrey;'>brennbaren Abfällen <br>und Sperrgut die</span>",
-      " kleinste pro Kopf Abfallmenge"
+      "<span style = 'color:lightgrey;'>Im Jahr 2021 hatte die</span><br>",
+      "<span style = 'color:#0d7abc; style = font-size:24pt'>
+      Gemeinde Affoltern a.A.</span><br>",
+      " total am meisten ",
+      "<span style = 'color:lightgrey;'>brennbare Abfälle und Sperrgut</span><br>",
+      "<span style = 'color:lightgrey;'>aber</span>",
+      " pro Kopf am wenigsten (5.6 Tonnen)"
+      #"<span style = 'color:lightgrey;'>Menge</span>"
       )
     ) +
-    ggplot2::labs(y = "Abfallmenge Total\nin Tonnen") +
-    ggplot2::theme(
-      plot.title = ggtext::element_markdown(),
-      axis.title.x =  ggplot2::element_blank()
-      ) 
+  labs(y = "Totale Abfallmenge\nin Tonnen") +
+  # damit der html/markdown code im text gerendert werden kann, benötigt es 
+  # die funktion element_markdown
+  theme(
+    plot.title = ggtext::element_markdown(size = 14),
+    axis.title.x = element_blank(),
+    axis.title.y = element_text(size = 11, vjust = 3)
+    )
 
-plot4 
+plot_abfall_zh_shine
 
-## plots zusammenfügen
-#cowplot::plot_grid(plot2, plot3, plot4, NULL, labels = c("A", "B", "C"), ncol = 2)
-# first_row <- cowplot::plot_grid(plot2, plot3, labels = c("A", "B"))
-# cowplot::plot_grid(first_row, plot4, labels = c("", "C"), ncol = 1)
 ```
 
 ## Help
@@ -121,7 +140,6 @@ Die einzelnen Dokumentationen zu den Funktionen sind mit `help()` oder `?functio
 
 ```{r help}
 
-?plot_distribution
+?plot_distributions_raincloud
 
 ```
-
