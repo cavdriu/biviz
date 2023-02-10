@@ -134,7 +134,7 @@ plot_abfall_zh_shine <-
       "<span style = 'color:#0d7abc; style = font-size:24pt'>
       Gemeinde Affoltern a.A.</span><br>",
       " total am meisten ",
-      "<span style = 'color:lightgrey;'>brennbare Abfällen und Sperrgut</span><br>",
+      "<span style = 'color:lightgrey;'>brennbare Abfälle und Sperrgut</span><br>",
       "<span style = 'color:lightgrey;'>aber</span>",
       " pro Kopf am wenigsten (5.6 Tonnen)"
       #"<span style = 'color:lightgrey;'>Menge</span>"
@@ -153,48 +153,6 @@ plot_abfall_zh_shine
 ```
 
 <img src="man/figures/README-plot_amounts_vertical-3.png" width="100%" />
-
-``` r
-# 
-# plot3 <- 
-#   plot2 +
-#   ggplot2::ggtitle("Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021") +
-#     ggplot2::labs(
-#     x = "Gemeinde",
-#     y = "Menge in Tonnen"
-#   ) +
-#   ggplot2::theme(legend.position = "none")
-# 
-# plot3
-# 
-# plot4 <- 
-#   plot3 +
-#   ggplot2::geom_col(
-#     data = dplyr::filter(df, abfall_pro_person != min(df$abfall_pro_person)),
-#     mapping = ggplot2::aes(
-#       x = forcats::fct_reorder(Gemeinde, Wert),
-#       y = Wert
-#       ),
-#     fill = "lightgrey",
-#     position = "dodge"
-#            ) +
-#     ggplot2::ggtitle(
-#     paste0(
-#       "<span style = 'color:lightgrey;'>Im Jahr 2021 hatte die </span><br>",
-#       "<span style = 'color:#909800; style = font-size:24pt'>Gemeinde Affoltern a.A.</span><br>",
-#       "mit 5.6 Tonnen ",
-#       "<span style = 'color:lightgrey;'>brennbaren Abfällen <br>und Sperrgut die</span>",
-#       " kleinste pro Kopf Abfallmenge"
-#       )
-#     ) +
-#     ggplot2::labs(y = "Abfallmenge Total\nin Tonnen") +
-#     ggplot2::theme(
-#       plot.title = ggtext::element_markdown(),
-#       axis.title.x =  ggplot2::element_blank()
-#       ) 
-# 
-# plot4 
-```
 
 ## Help
 
