@@ -1,13 +1,15 @@
 # advanced boxplot
 
+#  # https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/
+
 # ## install CRAN packages if needed
-# pckgs <- c("ggplot2", "systemfonts", "ggforce", 
+# pckgs <- c("ggplot2", "systemfonts", "ggforce",
 #            "ggdist", "ggbeeswarm", "devtools")
 # new_pckgs <- pckgs[!(pckgs %in% installed.packages()[,"Package"])]
 # if(length(new_pckgs)) install.packages(new_pckgs)
-# 
+#
 # ## install gghalves from GitHub if needed
-# if(!require(gghalves)) {  
+# if(!require(gghalves)) {
 #   devtools::install_github('erocoar/gghalves')
 # }
 
@@ -18,7 +20,7 @@ library(systemfonts)
 
 # own theme ---------------------------------------------------------------
 
-# wie funktioniert das???
+# wie funktioniert das?
 
 ## overwrite default ggplot2 theme
 theme_set(
@@ -54,7 +56,7 @@ data <- tibble(
   value = c(seq(0, 20, length.out = 100),
             c(rep(0, 5), rnorm(30, 2, .1), rnorm(90, 5.4, .1), rnorm(90, 14.6, .1), rnorm(30, 18, .1), rep(20, 5)),
             rep(seq(0, 20, length.out = 5), 5))
-) %>% 
+) %>%
   rowwise() %>%
   mutate(value = if_else(group == "Group 2", value + rnorm(1, 0, .4), value))
 
@@ -63,14 +65,14 @@ data <- tibble(
 # plots -------------------------------------------------------------------
 
 n_fun <- function(x){
-  return(data.frame(y = median(x) - 1.25, 
+  return(data.frame(y = median(x) - 1.25,
                     label = paste0("n = ",length(x))))
 }
 
 ## boxplot with points
 # ggbeeswarm::geom_quasirandom() or ggforce::geom_sina()
 
-data |> 
+data |>
   ggplot(aes(x = group, y = value)) +
   geom_boxplot(fill = "grey92") +
   geom_point(
@@ -93,7 +95,7 @@ data |>
 ## boxplot with violin (bei vielen datenpunkte -> lesbarkeit und berechnungszeit)
 # mit ggplot halbes violin machen evt. mit desity?
 # code für ggdist::stat_halfeye() anschauen
-data |> 
+data |>
   ggplot(aes(x = group, y = value)) +
   geom_violin(
     fill = "grey72",
@@ -109,10 +111,10 @@ data |>
   )
 
 ## raincloud
-data |> 
+data |>
   ggplot(aes(x = group, y = value)) +
   geom_boxplot(width = 0.25, outlier.shape = NA) +
-  geom_point(size = 1.3, alpha = 0.3, 
+  geom_point(size = 1.3, alpha = 0.3,
              position = position_jitter(seed = 1, width = 0.1)
              #position = position_jitterdodge()
              ) +

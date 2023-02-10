@@ -1,4 +1,4 @@
-#' theme_iv()
+#' theme_biviz()
 #'
 #' @description
 #' Diverse Themes für die unterschiedlichen Plots der IV. Sie kontrollieren die
@@ -17,14 +17,14 @@
 #' noch zu machen
 #'
 #' @export
-theme_iv_hgrid <- function() {
+theme_biviz_hgrid <- function() {
 
   cowplot::theme_minimal_hgrid()
 
 }
 
 #' @export
-theme_iv_vgrid <- function() {
+theme_biviz_vgrid <- function() {
 
   cowplot::theme_minimal_vgrid()
 
