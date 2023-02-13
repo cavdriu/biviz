@@ -3,7 +3,7 @@
 \docType{data}
 \name{abfall_zh}
 \alias{abfall_zh}
-\title{Abfallmengen nach Abfallarten und Gemeinden Kanton Zuerich}
+\title{Datensatz: Abfallmengen nach Abfallarten und Gemeinden des Kanton Zuerichs}
 \format{
 Ein Datensatz mit 6 Variablen und 34668 Zeilen:
 \describe{
@@ -19,10 +19,10 @@ Ein Datensatz mit 6 Variablen und 34668 Zeilen:
 abfall_zh
 }
 \description{
-Source: https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/
+Eine Teilmenge ist im Datensatz \code{sample_abfall_zh} zusammengefasst und mit Informationen vom
+\href{https://www.zh.ch/de/politik-staat/gemeinden/gemeindeportraet.html}{Gemeindeportraet} ergänzt.
 }
 \details{
-Eine Teilmenge ist im Datensatz "sample_abfall_zh" zusammengefasst und mit Informationen vom
-\href{https://www.zh.ch/de/politik-staat/gemeinden/gemeindeportraet.html}{Gemeindeportraet} ergänzt.
+Quelle: \href{https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/}{opendata.swiss}
 }
 \keyword{datasets}

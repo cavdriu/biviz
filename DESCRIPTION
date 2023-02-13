@@ -22,8 +22,10 @@ Imports:
     stats,
     tsbox
 Suggests: 
+    socviz,
     testthat (>= 3.0.0),
     tibble,
+    tidyr,
     vdiffr
 Config/testthat/edition: 3
 Depends: 
