@@ -29,4 +29,4 @@ Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)
 LazyData: true
-URL: https://tricktracktriu.github.io/biviz/
+URL: https://tricktracktriu.github.io/biviz/, https://github.com/tricktracktriu/biviz/
