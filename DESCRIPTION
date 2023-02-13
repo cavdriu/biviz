@@ -3,7 +3,7 @@ Title: Visualisierungstools für einfache Grafiken
 Version: 0.0.0.9001
 Authors@R: 
     person("Andriu", "Cavelti", , "tricktracktriu@mailbox.org", role = c("aut", "cre"))
-Description: Wrappers um ggplot Visualisierung, die das Erzeugen von Grafiken erleichtern.
+Description: Wrappers fuer ggplot2 Visualisierung, die das Erzeugen von Grafiken erleichtern.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -29,3 +29,4 @@ Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)
 LazyData: true
+URL: https://tricktracktriu.github.io/biviz/

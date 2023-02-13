@@ -19,6 +19,10 @@ Ein Datensatz mit 6 Variablen und 34668 Zeilen:
 abfall_zh
 }
 \description{
-Source: https://www.zh.ch/de/politik-staat/opendata.zhweb-noredirect.zhweb-cache.html?keywords=ogd#/datasets/1803@awel-kanton-zuerich/distributions/3460
+Source: https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/
+}
+\details{
+Eine Teilmenge ist im Datensatz "sample_abfall_zh" zusammengefasst und mit Informationen vom
+\href{https://www.zh.ch/de/politik-staat/gemeinden/gemeindeportraet.html}{Gemeindeportraet} ergänzt.
 }
 \keyword{datasets}

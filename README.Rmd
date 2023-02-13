@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 Mit biviz können häufig verwendete Datenvisualisierungen mit einfachen Funktionen erstellt werden. biviz stellt insbesondere Datenvisualisierungen die oft im Bereich Business Intelligence (BI) verwendet werden zur Verfügung. Das Paket implementiert Trends der Datenvisualisierung, wodurch sich das Paket auch für andere Zwecke eignet. In biviz werden [ggplot2](https://ggplot2.tidyverse.org/) Wrapper zur Verfügung gestellt, welche die gängigen Datenvisualisierungen erzeugen. Dies hat zum Vorteil, dass bei Standardgrafiken die Datenvisualisierung nicht Schicht für Schicht programmiert werden, wie es beim ggplot2 Framework vorgesehen ist. Eine Zeile Code reicht um eine Datenvisualisierung zu erstellen. Da das Paket auf ggplot2 aufbaut kann das erzeugte Objekt, zu einem späteren Zeitpunkt dennoch angepasst werden.
 
-Die Datenvisualisierungen orientieren sich Stark am Buch [Data Visualization von Claus O. Wilke](https://clauswilke.com/dataviz/)
+Die Datenvisualisierungen orientieren sich am Buch [Data Visualization von Claus O. Wilke](https://clauswilke.com/dataviz/)
 
 ## Installation
 
@@ -48,6 +48,8 @@ library(tidyverse)
 
 ```{r plot_distributions_sidebyside, message=FALSE, warning=FALSE, fig.height=5}
 plot1 <- 
+  # informationen zu den daten: 
+  # https://kjhealy.github.io/socviz/reference/
   socviz::gss_lon |> 
   drop_na() |>
   plot_distributions_sidebyside(

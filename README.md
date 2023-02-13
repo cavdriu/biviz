@@ -20,8 +20,8 @@ Zeile Code reicht um eine Datenvisualisierung zu erstellen. Da das Paket
 auf ggplot2 aufbaut kann das erzeugte Objekt, zu einem späteren
 Zeitpunkt dennoch angepasst werden.
 
-Die Datenvisualisierungen orientieren sich Stark am Buch [Data
-Visualization von Claus O. Wilke](https://clauswilke.com/dataviz/)
+Die Datenvisualisierungen orientieren sich am Buch [Data Visualization
+von Claus O. Wilke](https://clauswilke.com/dataviz/)
 
 ## Installation
 
@@ -50,6 +50,8 @@ definiert `plot_amounts_*` und am Ende die Form `plot_amounts_grouped`.
 
 ``` r
 plot1 <- 
+  # informationen zu den daten: 
+  # https://kjhealy.github.io/socviz/reference/
   socviz::gss_lon |> 
   drop_na() |>
   plot_distributions_sidebyside(
