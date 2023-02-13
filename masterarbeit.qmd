@@ -450,7 +450,7 @@ Zu Beginn des Entwicklungsprozesses standen organisatorische Entscheide im Fokus
 
     R Pakete werden in der Regel mit `install.packages()` installiert und werden irgendwo auf dem Computer auf dem R verwendet wird abgespeichert. Sollen Dateien, welche nicht direkt in Zusammenhang mit dem Paket stehen mitgeliefert werden, dann ist der *inst* Ordner ein guter Ort dafür. Der Ordner wird im Stammordner des installierten Pakets gespeichert und bleibt so immer in Bezug zum Paket. Der Ordner bietet auch Platz für Sandboxes oder um mit neuen Funktionen zu experimentieren.
 
-    > **TODO**: docs \
+    > **TODO**: docs\
     > https://devops-carpentry.github.io/book/programming.html#folder-structure\
     > https://r-pkgs.org/lifecycle.html#sec-lifecycle-breaking-change-pros-cons
 
@@ -635,6 +635,7 @@ Daten mit einem Zeitpunkt haben eine inhärente Reihenfolge (geordnete Richtung)
 Damit das Handling der Funktion in {biviz} einfach bleibt, haben die Funktionen Einschränkungen bzw. können nicht die ganze Palette an Möglichkeiten die in {ggplot2} zur Verfügung steht anwenden. Wie im Kapitel @sec-von-datenwerten-zu-visualisierung gesehen, sind für ein effektives Data Storytelling eine flexible Anpassung von Datenvisualisierungen wichtig. Durch den modularen Aufbau von {ggplot2} geht dies relativ einfach. Mit dem Aufruf einer {biviz} Funktion wird ein {ggplot2} Objekt erstellt. Dieses Objekt kann mit {ggplot2} Funktionen angepasst und verfeinert werden. Geht eine Feinpolierung über die Möglichkeit des {biviz} hinaus, so kann dem erstellten Objekt einfach {ggplot2} Funktionen angehänkt werden um Anpassungen an der Grafik zu machen. Wichtig: Normalerweise werden in R aufeinanderfolgende Funktionsaufrufe mit der Pipe `|>` verbunden. Bei {ggplot2} Objekten wird dafür das `+` verwendet.
 
 ```{r}
+#| echo: false
 
 df_abfall_zh <- 
   abfall_zh |> 

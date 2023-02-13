@@ -22,7 +22,8 @@ Zeitpunkt dennoch angepasst werden. Die Datenvisualisierungen
 orientieren sich am Buch [Data Visualization von Claus O.
 Wilke](https://clauswilke.com/dataviz/)  
 
-> :notebook: Mehr Details zur Entwicklung des Pakets findest du in der
+> :notebook: Mehr Details zur Entwicklung des Pakets findest du in
+> meiner
 > [**Masterarbeit**](https://htmlpreview.github.io/?https://github.com/tricktracktriu/biviz/blob/main/masterarbeit.html).
 
 ## Installation
