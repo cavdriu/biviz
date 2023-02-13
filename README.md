@@ -18,10 +18,12 @@ Standardgrafiken die Datenvisualisierung nicht Schicht für Schicht
 programmiert werden, wie es beim ggplot2 Framework vorgesehen ist. Eine
 Zeile Code reicht um eine Datenvisualisierung zu erstellen. Da das Paket
 auf ggplot2 aufbaut kann das erzeugte Objekt, zu einem späteren
-Zeitpunkt dennoch angepasst werden.
+Zeitpunkt dennoch angepasst werden. Die Datenvisualisierungen
+orientieren sich am Buch [Data Visualization von Claus O.
+Wilke](https://clauswilke.com/dataviz/)  
 
-Die Datenvisualisierungen orientieren sich am Buch [Data Visualization
-von Claus O. Wilke](https://clauswilke.com/dataviz/)
+> :notebook: Mehr Details zur Entwicklung des Pakets findest du in der
+> [**Masterarbeit**](https://htmlpreview.github.io/?https://github.com/tricktracktriu/biviz/blob/main/masterarbeit.html).
 
 ## Installation
 

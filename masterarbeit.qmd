@@ -60,9 +60,10 @@ library(biviz)
 # Einleitung
 
 ::: callout-note
-Diese Arbeit ist mit [Quarto](https://quarto.org/){style="font-size: 11pt;"} geschrieben. Eine HTML-Version der Arbeit steht auf der Website des Pakets [biviz](https://tricktracktriu.github.io/biviz){style="font-size: 11pt;"} zur Verfügung. Der Quellcode des Pakets ist unter [GitHub](https://github.com/tricktracktriu/biviz/){style="font-size: 11pt;"} (https://github.com/tricktracktriu/biviz/) abrufbar.
+Diese Arbeit ist mit [Quarto](https://quarto.org/){style="font-size: 11pt;"} (https://quarto.org/) geschrieben. Eine HTML-Version der Arbeit steht zusammen mit der Dokumentation auf der Website des Pakets [biviz](https://tricktracktriu.github.io/biviz){style="font-size: 11pt;"} (https://tricktracktriu.github.io/biviz/) zur Verfügung. Der Quellcode des Pakets ist unter [GitHub](https://github.com/tricktracktriu/biviz/){style="font-size: 11pt;"} (https://github.com/tricktracktriu/biviz/) abrufbar.
 :::
 
+\
 Datenvisualisierungen und die Auseinandersetzung mit Informationsdesign für quantitative Daten gab es schon lange vor Big Data. John W. Tukey [@tukey1977], Edward R. Tufte [@tufte2001, Erstveröffentlichung 1982] und William S. Cleveland [@cleveland1984] sind bis heute prägend für das Gebiet der Datenvisualisierung. Datenvisualisierungen wurden aber schon viel früher für die Erkenntnisgewinnung verwendet. John Snow, ein britischer Epidemiologe im 19. Jahrhundert, erkannte durch die Visualisierung von Choleratodesfällen auf einer Karte von London (jeder Todesfall war ein kleiner schwarzer Balken), dass die Cholerafälle sich rund um eine Wasserpumpe in der Broad Street konzentrierten. Nach der Abschaltung der Wasserpumpe gab es keine weiteren Fälle mehr [@gerste2022, Kapitel Karte des Todes; @snow1855, S. 45]. Datenvisualisierungen können wichtige Einblicke in Daten geben. Dennoch werden sie in der statistischen Ausbildung oft etwas vernachlässigt.
 
 > The Analysis stage has traditionally been the main emphasis of statistics courses \[...\] but sometimes all that is required is a useful visualization \[...\].\
@@ -126,7 +127,7 @@ Die @tbl-data-abfall-zuerich zeigt die verschiedenen Variablentypen. Die Spalte 
 
 ```{r}
 #| label: tbl-data-abfall-zuerich
-#| tbl-cap: "Abfallart und -menge im Kanton Zürich. Quelle: @amtfürabfallwasserenergieundluftdeskantonszürich2022 %%% ANPASSEN biviz pkg %%%"
+#| tbl-cap: "Abfallart und -menge im Kanton Zürich. Quelle: @amtfürabfallwasserenergieundluftdeskantonszürich2022 `%%% ANPASSEN biviz pkg %%%`"
 #| message: false
 
 abfall_zh_sample <- 
@@ -194,15 +195,15 @@ temp_plot <-
 
 plot_grid(
   plot_grid(
-    temp_plot, NULL, temp_plot, 
+    temp_plot, NULL, temp_plot,
     rel_widths = c(1, 0.06, 2),
     labels = c("a", "", "b"),
     nrow = 1
     ),
   NULL, temp_plot,
-  rel_heights = c(1.5, 0.06, 1), 
-  labels = c("", "", "c"), 
-  label_y = c(1, 1, 1.2), 
+  rel_heights = c(1.5, 0.06, 1),
+  labels = c("", "", "c"),
+  label_y = c(1, 1, 1.2),
   ncol = 1
   )
 
@@ -249,7 +250,7 @@ Wann ist der Einsatz von Farbe sinnvoll? Immer dann wenn sie dem Publikum das Le
 
 Die Aufnahme von Informationen ist für das Gehirn eine mentale Anstrengung. Die Gehirnkapazität des Publikums ist begrenzt, daher muss die kognitive Belastung bewusst und effektiv gestaltet sein. Das bedeutet, relevanten Informationen müssen mit möglichst geringer wahrgenommener kognitiver Belastung kommuniziert werden. Dafür müssen die Signale (die Informationen, die vermittelt werden) gestärkt und das Rauschen (Elemente die von der Information ablenken) reduziert werden. Das Diagramm soll eingänglich und einfach erscheinen. Komplizierte Grafiken können das Publikum abschrecken und ihre Aufmerksamkeit geht verloren. Die Gestaltprinzipien der visuellen Wahrnehmung helfen die Signale einer Grafik zu erkennen und Rauschen zu minimieren. Damit die Botschaft der präsentierten Daten einfach erkennbar ist [@nussbaumerknaflic2017, S. 61-63]. Die Überlegungen und Grafiken zu den Gestaltprinzipien folgen den Ausführungen von Nussbaumer Knaflic [-@nussbaumerknaflic2017] im Kapitel *Gestaltprinzipien der visuellen Wahrnehmung*:
 
-::: {#fig-naehe layout-ncol="2"}
+::: {#fig-naehe layout-ncol="2" fig-pos="H"}
 ![](images/gestaltprinzip_naehe.jpg)
 
 ![](images/gestaltprinzip_naehe2.jpg)
@@ -259,7 +260,7 @@ Das Gestaltprinzip der Nähe.
 
 Durch die physische Nähe der Punkte, werden sie als zusammengehörig wahrgenommen. Dank der Anordnung und Nutzung von Zwischenräumen sehen die Augen Gruppen, Linien etc.. Bei den vertikalen Reihen ist der Weissraum (Zwischenräume) grösser zwischen den nebeneinander liegenden Punkten und bei den horizontalen Reihen zwischen den oberen und unteren Punkten.
 
-::: {#fig-aehnlichkeit layout-ncol="2"}
+::: {#fig-aehnlichkeit layout-ncol="2" fig-pos="H"}
 ![](images/gestaltprinzip_aehnlichkeit.jpg)
 
 ![](images/gestaltprinzip_aehnlichkeit2.jpg)
@@ -269,7 +270,7 @@ Das Gestaltprinzip der Ähnlichkeit.
 
 Haben Objekte eine ähnliche Erscheinung (Form, Farbe, Grösse, etc) so stellt unser Gehirn eine Verbindung zwischen diesen Punkten her. Damit kann dem Publikum wichtige Interpretationshilfe geboten werden und die kognitive Belastung ist tief. Beispielsweise sehen wir durch die Färbung der Punkte in der zweiten Grafik Linien.
 
-::: {#fig-umrandung layout-ncol="2"}
+::: {#fig-umrandung layout-ncol="2" fig-pos="H"}
 ![](images/gestaltprinzip_umrandung.jpg)
 
 ![](images/gestaltprinzip_umrandung2.jpg)
@@ -279,7 +280,7 @@ Das Gestaltprinzip der Umrandung
 
 Durch einen Rahmen werden Teilemengen einfach als Gruppe identifiziert. Die Fläche kann schattiert oder klassisch mit Linien umrandet werden. Die Umrandung ist hilfreich zur Unterscheidung von unterschiedlichen (Daten-) Bereichen.
 
-::: {#fig-form layout-ncol="2"}
+::: {#fig-form layout-ncol="2" fig-pos="H"}
 ![](images/gestaltprinzip_form.jpg)
 
 ![](images/gestaltprinzip_form2.jpg)
@@ -289,7 +290,7 @@ Das Gestaltprinzip der Form.
 
 Unser Hirn neigt dazu, einzelne Elemente in einer Reihe wenn möglich als ein einzige Form wahrzunehmen. Trotz der Lücken in der Kreisform erkennt unser Gehirn einen Kreis, indem er die fehlenden Teile ausfüllt. Dazu muss das Konstrukt aber bekannt und eine einfach Darstellung sein. Dank dem Konzept der Form erkennen wir auch, die Zusammengehörigkeit einer Grafik ohne einen Rahmen. Gleichzeitig wird das Rauschen reduziert und die Daten hervorgehoben.
 
-::: {#fig-kontinuitaet layout-ncol="2"}
+::: {#fig-kontinuitaet layout-ncol="2" fig-pos="H"}
 ![](images/gestaltprinzip_kontinuitaet.jpg)
 
 ![](images/gestaltprinzip_kontinuitaet2.jpg)
@@ -299,7 +300,7 @@ Das Gestaltprinzip der Kontinuität.
 
 Unser Gehirn sucht in Objekten die Kontinuität und das Bekannte. Daher erwarten die meisten Menschen beim Auseinander nehmen des Bildes 1, das Bild 2, obwohl es genauso gut Bild 3 sein könnte [vgl. auch @kanizsa1970]. Im Balkendiagramm wird kein y-Achse benötigt, da unser Hirn die Linie selber zeichnet und erkennt, dass alle Balken am gleichen Punkt starten. Da die Distanz bzw. der Weissraum zwischen der Beschriftung (links) und den dargestellten Daten (rechtes) überall identisch ist, wird eine Linie signalisiert.
 
-::: {#fig-verbindung layout-ncol="2"}
+::: {#fig-verbindung layout-ncol="2" fig-pos="H"}
 ![](images/gestaltprinzip_verbindung.jpg)
 
 ![](images/gestaltprinzip_verbindung2.jpg)
@@ -449,9 +450,9 @@ Zu Beginn des Entwicklungsprozesses standen organisatorische Entscheide im Fokus
 
     R Pakete werden in der Regel mit `install.packages()` installiert und werden irgendwo auf dem Computer auf dem R verwendet wird abgespeichert. Sollen Dateien, welche nicht direkt in Zusammenhang mit dem Paket stehen mitgeliefert werden, dann ist der *inst* Ordner ein guter Ort dafür. Der Ordner wird im Stammordner des installierten Pakets gespeichert und bleibt so immer in Bezug zum Paket. Der Ordner bietet auch Platz für Sandboxes oder um mit neuen Funktionen zu experimentieren.
 
-    > **TODO**: docs / vignettes\
+    > **TODO**: docs \
     > https://devops-carpentry.github.io/book/programming.html#folder-structure\
-    > https://r-pkgs.org/vignettes.html#sec-vignettes-article
+    > https://r-pkgs.org/lifecycle.html#sec-lifecycle-breaking-change-pros-cons
 
 Neben der Ordnerstruktur ist für die stringente Entwicklung und anschliessende Nutzung des Pakets eine einheitliche Syntax wichtig. Für {biviz} wird der snake_case Ansatz verwendet. Beim snake_case werden alle Begriffe in Kleinbuchstaben oder Zahlen verwendet und mit einem Unterstrich (\_) verbunden. Neben der Darstellung ist auch der Inhalt wichtig. Gute Namen können bereits eine Form der Dokumentation sein und entsprechend beschreiben was sie repräsentieren. Als Faustregel gilt: Variablen sind Nomen und beschreiben was sie sind (`abfallart`). Funktionen sind Verben und beschreiben was sie machen (`plot_amounts_grouped`). [@hadleywickham2022b] Es hilft sich in Erinnerung zu rufen, dass der Code auch von Menschen gelesen und verstanden werden muss. Für den Computer ist es nicht relevant ob `function1()` oder `compute_max()` steht. Für einen Menschen ist es jedoch ein grosser Unterschied und macht den Code verständlicher. Entsprechend soll der Code für Menschen einfach und verständlich gehalten werden.
 
