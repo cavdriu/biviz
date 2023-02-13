@@ -1,5 +1,6 @@
 url: https://tricktracktriu.github.io/biviz/
 template:
   bootstrap: 5
+  bootswatch: flatly
 lang: de
 
