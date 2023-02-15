@@ -46,7 +46,7 @@ Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolgt in der 
 \examples{
 df <-
   socviz::gss_lon |>
-   tidyr::drop_na(sex)
+   tidyr::drop_na(age)
 
 cowplot::plot_grid(
   plot_distributions_histogram(data = df, x = age),
@@ -74,8 +74,7 @@ cowplot::plot_grid(
   plot_distributions_boxplot(data = df, x = happy, y = age, size = 3),
   labels = c("A: Zuviele Datenpunkte für raincloud plot.",
              "B: Beobachtungen als Zahl darstellen."
-             ),
-  ncol = 1
+             )
   )
 
 
