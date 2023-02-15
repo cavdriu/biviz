@@ -1,5 +1,8 @@
 #' Proportionen visualisieren. plot_proportions_* Familie.
 #'
+#' "Hinweis: Daten in den Dichteplots (density) duerfen nicht aggregiert sein.
+#' Die Berechnung erfolgt in der Funktion.
+#'
 #' @param data Ein Tibble mit den Daten für den Plot.
 #' @param x Die Variable für die x-Achse.
 #' @param y Die Variable für die y-Achse.
@@ -54,6 +57,9 @@
 #' @export
 #' @rdname plot_proportions
 plot_proportions_bar <- function(data, group, percent = percent, n = n) {
+
+  ## TODO für ganze Familie: argument checking mit stopifnot()
+  # eindeutige zeilen vgl. amounts
 
   # labels berechnen, damit sie in der mitte des jeweiligen blocks sind
   data <-
@@ -273,13 +279,11 @@ plot_proportions_sidebyside_density1 <- function(data, x, group, bw = 5, color =
   stopifnot("x muss numerisch sein. Wandele die Variable im Datensatz um."
             = is.numeric(dplyr::pull(data, {{ x }})))
 
-  # fuer die density funktion dürfen die daten nicht aggregiert sein.
-  # anders als bei den balken diagrammen. die berechnung erfolgt in der funktion.
   # um die warnung von ggplot2 bei na verstaendlicher zu machen, werden die na
-  # noch ausgegeben.
+  # noch ausgegeben. -> TODO: ifelse
   n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   message(
-    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolgt in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
     )
 
   plot <-

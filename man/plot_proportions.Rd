@@ -61,7 +61,8 @@ plot_proportions_sidebyside_density2(
 ggplot object
 }
 \description{
-Proportionen visualisieren. plot_proportions_* Familie.
+"Hinweis: Daten in den Dichteplots (density) duerfen nicht aggregiert sein.
+Die Berechnung erfolgt in der Funktion.
 }
 \examples{
 df1 <- tibble::tibble(
