@@ -41,10 +41,12 @@ plot_distributions_boxplot(data, x, y, bw = 5, color = "#0d7abc", size = 5)
 ggplot2 object
 }
 \description{
-Verteilungen visualisieren. plot_distributions_* Familie.
+Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolgt in der Funktion.
 }
 \examples{
-df <- socviz::gss_lon
+df <-
+  socviz::gss_lon |>
+   tidyr::drop_na(sex)
 
 cowplot::plot_grid(
   plot_distributions_histogram(data = df, x = age),
@@ -55,7 +57,7 @@ cowplot::plot_grid(
 # mit pipe syntax
 df |>
   tidyr::drop_na(happy) |>
-  plot_distributions_grouped(age, group = happy, bw = 3)
+  plot_distributions_grouped(x = age, group = happy, bw = 3)
 
 # ohne pipe
   plot_distributions_sidebyside(data = df, x = age, group = sex)
@@ -72,7 +74,8 @@ cowplot::plot_grid(
   plot_distributions_boxplot(data = df, x = happy, y = age, size = 3),
   labels = c("A: Zuviele Datenpunkte für raincloud plot.",
              "B: Beobachtungen als Zahl darstellen."
-             )
+             ),
+  ncol = 1
   )
 
 

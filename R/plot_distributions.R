@@ -1,5 +1,7 @@
 #' Verteilungen visualisieren. plot_distributions_* Familie.
 #'
+#' Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolgt in der Funktion.
+#'
 #' @param data Ein Tibble mit den Daten für den Plot.
 #' @param x Variable die untersucht wird (x-Achse).
 #' @param y Variable die untersucht wird (y-Achse).
@@ -18,7 +20,9 @@
 #' facet_wrap theme coord_cartesian
 #'
 #' @examples
-#' df <- socviz::gss_lon
+#' df <-
+#'   socviz::gss_lon |>
+#'    tidyr::drop_na(sex)
 #'
 #' cowplot::plot_grid(
 #'   plot_distributions_histogram(data = df, x = age),
@@ -29,7 +33,7 @@
 #' # mit pipe syntax
 #' df |>
 #'   tidyr::drop_na(happy) |>
-#'   plot_distributions_grouped(age, group = happy, bw = 3)
+#'   plot_distributions_grouped(x = age, group = happy, bw = 3)
 #'
 #' # ohne pipe
 #'   plot_distributions_sidebyside(data = df, x = age, group = sex)
@@ -46,7 +50,8 @@
 #'   plot_distributions_boxplot(data = df, x = happy, y = age, size = 3),
 #'   labels = c("A: Zuviele Datenpunkte für raincloud plot.",
 #'              "B: Beobachtungen als Zahl darstellen."
-#'              )
+#'              ),
+#'   ncol = 1
 #'   )
 #'
 #'
@@ -60,13 +65,11 @@ plot_distributions_histogram <- function(data, x, bw = 5, color = "#0d7abc") {
   stopifnot("x muss numerisch sein. Wandele die Variable im Datensatz um."
             = is.numeric(dplyr::pull(data, {{ x }})))
 
-  # fuer die histogram funktion dürfen die daten nicht aggregiert sein.
-  # anders als bei den balken diagrammen. die berechnung erfolgt in der funktion.
   # um die warnung von ggplot2 bei na verstaendlicher zu machen, werden die na
-  # noch ausgegeben.
+  # noch ausgegeben. -> TODO: ifelse
   n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   message(
-    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+    paste0("Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
   )
 
   plot <-
@@ -105,7 +108,7 @@ plot_distributions_density <- function(data, x, bw = 5, color = "#0d7abc") {
   # vgl. plot_distributions_histogram
   n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   message(
-    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+    paste0("Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
   )
 
   plot <-
@@ -139,13 +142,13 @@ plot_distributions_sidebyside <- function(data, x, group, bw = 5) {
   # vgl. plot_distributions_histogram
   n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   message(
-    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+    paste0("Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
   )
 
   plot <-
     ggplot(data = data,
            # y = stat(count) skaliert die dichte auf anzahl, so ist die fläche das total an untersuchungen
-           mapping = aes(x = {{ x }}, y = stat(count))) +
+           mapping = aes(x = {{ x }}, y = after_stat(count))) +
     geom_density(
       data = dplyr::select(data, !{{ group }}),
       mapping = aes(fill = "n_total"),
@@ -210,7 +213,7 @@ plot_distributions_grouped <- function(data, x, group, bw = 5) {
   # vgl. plot_distributions_histogram
   n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   message(
-    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (y) beinhaltet ", n_na, " NAs.")
+    paste0("Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
   )
 
   plot <-
@@ -258,9 +261,9 @@ plot_distributions_raincloud <- function(data, x, y, bw = 5, color = "#0d7abc") 
             = is.numeric(dplyr::pull(data, {{ y }})))
 
   # vgl. plot_distributions_histogram
-  n_na <- sum(is.na(dplyr::pull(data, {{ y }})))
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   message(
-    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (y) beinhaltet ", n_na, " NAs.")
+    paste0("Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
   )
 
   plot <-
@@ -307,9 +310,9 @@ plot_distributions_boxplot <- function(data, x, y, bw = 5, color = "#0d7abc", si
             = is.numeric(dplyr::pull(data, {{ y }})))
 
   # vgl. plot_distributions_histogram
-  n_na <- sum(is.na(dplyr::pull(data, {{ y }})))
+  n_na <- sum(is.na(dplyr::pull(data, {{ x }})))
   message(
-    paste0("Hinweis: Die Daten duerfen nicht aggregiert sein. Die Berechnung erfolg in der Funktion. Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
+    paste0("Die untersuchte Variable (x) beinhaltet ", n_na, " NAs.")
   )
 
 # helper function ---------------------------------------------------------

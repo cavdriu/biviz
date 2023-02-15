@@ -18,9 +18,6 @@ midwest
 mpg <- ggplot2::mpg
 AirPassengers # data()
 
-tech_stocks <-
-  read_csv("https://wilkelab.org/SDS375/datasets/tech_stocks.csv") |>
-  mutate(date = ymd(date))
 
 
 # test amounts ------------------------------------------------------------
@@ -48,6 +45,7 @@ gss_lon |>
 # test distributions ------------------------------------------------------
 
 gss_lon|>
+  drop_na(age) |>
   #filter(happy != "NA") |>
   #drop_na() |>
   #count(age)
@@ -55,7 +53,7 @@ gss_lon|>
   #plot_distributions_histogram(age)#, bw = 3)
   #mutate(age = as.character(age)) |>
   #plot_distributions_density(age, bw = 3)
-  #plot_distributions_sidebyside(x = age, group = sex)
+  plot_distributions_sidebyside(x = age, group = sex)
   drop_na(happy) |>
   plot_distributions_grouped(age, group = happy, bw = 3)
 

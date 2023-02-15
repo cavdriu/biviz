@@ -48,6 +48,7 @@ df <- tibble::tibble(
 plot_amounts_vertical(df, x, y)
 
 socviz::gss_lon |>
+ tidyr::drop_na(degree) |>
  dplyr::count(age, degree) |>
  plot_amounts_facets(x = age, y = n, facet = degree)
 
@@ -58,6 +59,7 @@ socviz::gss_lon |>
 socviz::gss_lon |>
  dplyr::count(sex, degree) |>
  plot_amounts_grouped(x = sex, y = n, group = degree) +
+ # farbe manuell anpassen
  colorspace::scale_fill_discrete_sequential(palette = "Purples 2")
 
 
