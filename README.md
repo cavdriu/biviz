@@ -49,6 +49,10 @@ proportions und time series) aufgeteilt und folgen immer der gleichen
 Syntax. Jede Funktion startet mit `plot_*` anschliessend wird die Gruppe
 definiert `plot_amounts_*` und am Ende die Form `plot_amounts_grouped`.
 
+> :clipboard: Alle Funktionen sind im
+> [Verzeichnis](https://tricktracktriu.github.io/biviz/reference/index.html)
+> dokumentiert.
+
 ## Beispiele
 
 ``` r
@@ -161,13 +165,12 @@ plot_abfall_zh_shine
 
 <img src="man/figures/README-plot_amounts_vertical-3.png" width="100%" />
 
-## Help
+## Hilfe
 
 Die einzelnen Dokumentationen zu den Funktionen sind mit `help()` oder
 `?function` ersichtlich alternativ kann mit `example()` Beispiele
 aufgerufen werden.
 
 ``` r
-
 ?plot_distributions_raincloud
 ```
