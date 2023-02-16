@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-Mit biviz können häufig verwendete Datenvisualisierungen mit einfachen Funktionen erstellt werden. biviz stellt insbesondere Datenvisualisierungen die oft im Bereich Business Intelligence (BI) verwendet werden zur Verfügung. Das Paket implementiert Trends der Datenvisualisierung, wodurch sich das Paket auch für andere Zwecke eignet. In biviz werden [ggplot2](https://ggplot2.tidyverse.org/) Wrapper zur Verfügung gestellt, welche die gängigen Datenvisualisierungen erzeugen. Dies hat zum Vorteil, dass bei Standardgrafiken die Datenvisualisierung nicht Schicht für Schicht programmiert werden, wie es beim ggplot2 Framework vorgesehen ist. Eine Zeile Code reicht um eine Datenvisualisierung zu erstellen. Da das Paket auf ggplot2 aufbaut kann das erzeugte Objekt, zu einem späteren Zeitpunkt dennoch angepasst werden. Die Datenvisualisierungen orientieren sich am Buch [Data Visualization von Claus O. Wilke](https://clauswilke.com/dataviz/)\
+Mit {biviz} können häufig verwendete Datenvisualisierungen mit einfachen Funktionen erstellt werden. {biviz} stellt insbesondere Datenvisualisierungen, die oft im Bereich Business Intelligence (BI) verwendet werden, zur Verfügung. Das Paket implementiert Trends der Datenvisualisierung, wodurch sich das Paket auch für andere Zwecke eignet. In {biviz} werden [{ggplot2}](https://ggplot2.tidyverse.org/) Wrapper zur Verfügung gestellt, welche die gängigen Datenvisualisierungen erzeugen. Dies hat den Vorteil, dass bei Standardgrafiken die Datenvisualisierung nicht Schicht für Schicht programmiert wird, wie es beim {ggplot2} Framework vorgesehen ist. Eine Zeile Code reicht, um eine Datenvisualisierung zu erstellen. Da das Paket auf {ggplot2} aufbaut, kann das erzeugte Objekt zu einem späteren Zeitpunkt dennoch angepasst werden. Um die Wrapper schlank zu halten, werden bei den meisten Funktionen in {biviz} die Daten vor der Übergabe in die Funktion so aufbereitet, dass keine Berechnungen innerhalb der Visualisierungsfunktion vorgenommen werden müssen. Ausnahmen mit komplexen Berechnungen sind in der Dokumentation vermerkt. Die Datenvisualisierungen orientieren sich am Buch [Data Visualization von Claus O. Wilke](https://clauswilke.com/dataviz/)\
 
 > :notebook: Mehr Details zur Entwicklung des Pakets findest du in meiner [Masterarbeit](https://htmlpreview.github.io/?https://github.com/tricktracktriu/biviz/blob/main/masterarbeit.html).
 
@@ -33,13 +33,23 @@ Das Paket biviz kann direkt von [GitHub](https://github.com/) installiert werden
 devtools::install_github("tricktracktriu/biviz")
 ```
 
-## Intro
+## Datenvisualisierungsfamilien
 
-Um die Wrapper schlank zu halten, werden bei den meisten Funktionen in biviz die Daten vor der Übergabe in die Funktion so aufbereitet, dass in der Visualisierung die Datenpunkte in den Daten abgebildet werden und keine Berechnungen innerhalb der Visualisierungsfunktion vorgenommen werden.
+Die Visualisierungen sind in 4 Gruppen (amounts, distributions, proportions und time series) aufgeteilt und folgen immer der gleichen Syntax. Jede Funktion startet mit `plot_*()`, anschliessend wird die Gruppe definiert `plot_amounts_*()` und am Ende wird die Form angegeben `plot_amounts_grouped()`.
 
-Die Visualisierungen sind in 4 Gruppen (amounts, distributions, proportions und time series) aufgeteilt und folgen immer der gleichen Syntax. Jede Funktion startet mit `plot_*` anschliessend wird die Gruppe definiert `plot_amounts_*` und am Ende die Form `plot_amounts_grouped`.
+In der Gruppe *amounts* sind jene Datenvisualisierungen zusammengefasst, die Mengen abbilden. Dabei werden die Zahlenwerte von Kategorien bzw. deren Anzahl in einer Variable dargestellt. Die Kategorien können zusätzlich einer Gruppe zugeordnet werden. Dazu werden Variablen verwendet, welche die Gruppenzugehörigkeit definieren.
 
-> :clipboard: Alle Funktionen sind im [Verzeichnis](https://tricktracktriu.github.io/biviz/reference/index.html) dokumentiert. 
+Bei *distributions* werden Verteilungen innerhalb einer Variable dargestellt. Dazu können unterschiedliche Methoden verwendet werden, welche je nach Ausgangslage unterschiedliche Vorteile mit sich bringen. Bei den Datenvisualisierungen zu Verteilungen lohnt es sich verschiedene Grafiken auszuprobieren, um ein möglichst akkurates Bild der Daten zu erhalten. Die Funktion `plot_distributions_raincloud()` verfolgt beispielsweise das Ziel, einen gesamthaften Überblick (inkl. Rohdaten) zu präsentieren. Dies passiert indem verschiedene Layers (Boxplot-, Violin- und Punktediagramm) übereinander gelegt werden. Bei grossen Datenmengen gibt es jedoch so viele Datenpunkte, dass das Punktediagramm keinen Mehrwert mehr liefert. Deshalb bietet die Funktion `plot_distributions_boxplot()` eine Alternative. Die Diskussion rund um statistisch robusteren und transparenten Ansätzen zur Datenvisualisierung, ist ein Disziplin übergreifendes Thema.
+
+Für *proportions* gibt es unterschiedliche Formen der Darstellung, die verschiedene Vorteile haben. Bei gestapelten Balken oder Donutplots ist es klar ersichtlich, dass es Teilmengen eines Ganzen sind. Nebeneinander angeordnete Balken zeigen den relativen Unterschied besser und eignen sich zudem für viele Teilmengen. Werden die Proportionen von verschiedenen Variablen untersucht, dann eignen sich wiederum gestapelte Balken. Durch Visualisierungssysteme wie {ggplot2} lassen sich Proportionen separat als Teil der Gesamtmenge darstellen. Mit `plot_proportions_sidebyside_density1()` werden zwei Probleme gelöst: Erstens, ist das Verhältnis zur Gesamtmenge ersichtlich (im Gegensatz zum Balkendiagramm). Zweitens, hat jede Teilmenge eine Grundlinie wodurch die Mengen einfach verglichen werden können (im Gegensatz zu gestapelten Balkendiagrammen). Mit `plot_proportions_sidebyside_density2()` kann der relative Anteil zu einem bestimmten Zeitpunkt einfach bestimmt werden.
+
+Daten mit einem Zeitpunkt haben eine inhärente Reihenfolge (geordnete Richtung) und Liniendiagramme eigenen sich, die zeitliche Ordnung darzustellen, da abgesehen vom Anfang und Ende alle Datenpunkte einen Vorgänger und Nachfolger haben. Die Familie *time series* bietet neben unterschiedlichen Formen von Liniendiagrammen auch Visualisierungen von Trends an. Die Darstellung von Trends hilft, übergeordnete Entwicklungen zu erkennen. Um verschiedene Methoden der Glättung und Trendbereinigung bereitzustellen, greifen die Funktionen auf das Paket [{tsbox}](https://www.tsbox.help/) zurück.
+
+> :clipboard: Alle Funktionen sind im [Verzeichnis](https://tricktracktriu.github.io/biviz/reference/index.html) dokumentiert.
+
+## Vorteile
+
+Damit das Handling der Funktion in {biviz} einfach bleibt, haben die Funktionen Einschränkungen bzw. können sie nicht die ganze Palette an Möglichkeiten, die in {ggplot2} zur Verfügung steht, anwenden. Für ein effektives Data Storytelling ist eine flexible Anpassung von Datenvisualisierungen wichtig. Durch den modularen Aufbau von {ggplot2} geht dies relativ einfach. Mit dem Aufruf einer {biviz} Funktion wird ein {ggplot2} Objekt erstellt. Dieses Objekt kann mit {ggplot2} Funktionen angepasst und verfeinert werden. Geht eine Feinpolierung über die Möglichkeit des {biviz} hinaus, so kann dem erstellten Objekt einfach {ggplot2} Funktionen angefügt werden, um Anpassungen an der Grafik zu machen. Wichtig: Normalerweise werden in R aufeinanderfolgende Funktionsaufrufe mit der Pipe `|>` verbunden. Bei {ggplot2} Objekten wird dafür das `+` verwendet.
 
 ## Beispiele
 
@@ -65,9 +75,11 @@ plot1
 
 ### Datenvisualisierungen verfeinern
 
-Da der Output von biviz ein ggplot2 Objekt ist, können es anschliessend innerhalb des ggplot2 Frameworks weiter bearbeitet werden. Der ganze Datensatz aus dem Beipsiel stehen unter [opendata.swiss](https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/) frei zur Verfügung.
+Da der Output von {biviz} ein {ggplot2} Objekt ist, kann er anschliessend innerhalb des {ggplot2} Frameworks weiter bearbeitet werden.
 
 ```{r plot_amounts_vertical, message=FALSE, fig.height=5}
+library(ggplot2) # für die verfeinerung der datenvisualisierungen 
+
 df <- 
   biviz::sample_abfall_zh
 
@@ -77,8 +89,8 @@ plot_abfall_zh_raw <-
   plot_amounts_vertical(
     data = df,
     # die daten haben keine logische reihenfolge, deshalb werden sie
-    # der grösse nach sortiert. dies geschieht mit forcats::fct_reorder
-    x = fct_reorder(Gemeinde, Wert),
+    # der grösse nach sortiert. dies geschieht mit fct_reorder
+    x = forcats::fct_reorder(Gemeinde, Wert),
     y = Wert
     ) 
 
