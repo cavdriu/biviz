@@ -74,8 +74,7 @@ cowplot::plot_grid(
   plot_distributions_boxplot(data = df, x = happy, y = age, size = 3),
   labels = c("A: Zuviele Datenpunkte für raincloud plot.",
              "B: Beobachtungen als Zahl darstellen."
-             ),
-  label_size = 12
+             )
   )
 
 

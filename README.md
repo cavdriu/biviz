@@ -24,7 +24,7 @@ Wilke](https://clauswilke.com/dataviz/)
 
 > :notebook: Mehr Details zur Entwicklung des Pakets findest du in
 > meiner
-> [**Masterarbeit**](https://htmlpreview.github.io/?https://github.com/tricktracktriu/biviz/blob/main/masterarbeit.html).
+> [Masterarbeit](https://htmlpreview.github.io/?https://github.com/tricktracktriu/biviz/blob/main/masterarbeit.html).
 
 ## Installation
 
