@@ -62,7 +62,7 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>Mit biviz können häufig verwendete Datenvisualisierungen mit einfachen Funktionen erstellt werden. biviz stellt insbesondere Datenvisualisierungen die oft im Bereich Business Intelligence (BI) verwendet werden zur Verfügung. Das Paket implementiert Trends der Datenvisualisierung, wodurch sich das Paket auch für andere Zwecke eignet. In biviz werden <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a> Wrapper zur Verfügung gestellt, welche die gängigen Datenvisualisierungen erzeugen. Dies hat zum Vorteil, dass bei Standardgrafiken die Datenvisualisierung nicht Schicht für Schicht programmiert werden, wie es beim ggplot2 Framework vorgesehen ist. Eine Zeile Code reicht um eine Datenvisualisierung zu erstellen. Da das Paket auf ggplot2 aufbaut kann das erzeugte Objekt, zu einem späteren Zeitpunkt dennoch angepasst werden. Die Datenvisualisierungen orientieren sich am Buch <a href="https://clauswilke.com/dataviz/" class="external-link">Data Visualization von Claus O. Wilke</a></p>
+<p>Mit {biviz} können häufig verwendete Datenvisualisierungen mit einfachen Funktionen erstellt werden. {biviz} stellt insbesondere Datenvisualisierungen, die oft im Bereich Business Intelligence (BI) verwendet werden, zur Verfügung. Das Paket implementiert Trends der Datenvisualisierung, wodurch sich das Paket auch für andere Zwecke eignet. In {biviz} werden <a href="https://ggplot2.tidyverse.org/" class="external-link">{ggplot2}</a> Wrapper zur Verfügung gestellt, welche die gängigen Datenvisualisierungen erzeugen. Dies hat den Vorteil, dass bei Standardgrafiken die Datenvisualisierung nicht Schicht für Schicht programmiert wird, wie es beim {ggplot2} Framework vorgesehen ist. Eine Zeile Code reicht, um eine Datenvisualisierung zu erstellen. Da das Paket auf {ggplot2} aufbaut, kann das erzeugte Objekt zu einem späteren Zeitpunkt dennoch angepasst werden. Um die Wrapper schlank zu halten, werden bei den meisten Funktionen in {biviz} die Daten vor der Übergabe in die Funktion so aufbereitet, dass keine Berechnungen innerhalb der Visualisierungsfunktion vorgenommen werden müssen. Ausnahmen mit komplexen Berechnungen sind in der Dokumentation vermerkt. Die Datenvisualisierungen orientieren sich am Buch <a href="https://clauswilke.com/dataviz/" class="external-link">Data Visualization von Claus O. Wilke</a></p>
 <blockquote>
 <p><span class="emoji" data-emoji="notebook">📓</span> Mehr Details zur Entwicklung des Pakets findest du in meiner <a href="https://htmlpreview.github.io/?https://github.com/tricktracktriu/biviz/blob/main/masterarbeit.html" class="external-link">Masterarbeit</a>.</p>
 </blockquote>
@@ -75,13 +75,21 @@
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"tricktracktriu/biviz"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="intro">Intro<a class="anchor" aria-label="anchor" href="#intro"></a>
+<h2 id="datenvisualisierungsfamilien">Datenvisualisierungsfamilien<a class="anchor" aria-label="anchor" href="#datenvisualisierungsfamilien"></a>
 </h2>
-<p>Um die Wrapper schlank zu halten, werden bei den meisten Funktionen in biviz die Daten vor der Übergabe in die Funktion so aufbereitet, dass in der Visualisierung die Datenpunkte in den Daten abgebildet werden und keine Berechnungen innerhalb der Visualisierungsfunktion vorgenommen werden.</p>
-<p>Die Visualisierungen sind in 4 Gruppen (amounts, distributions, proportions und time series) aufgeteilt und folgen immer der gleichen Syntax. Jede Funktion startet mit <code>plot_*</code> anschliessend wird die Gruppe definiert <code>plot_amounts_*</code> und am Ende die Form <code>plot_amounts_grouped</code>.</p>
+<p>Die Visualisierungen sind in 4 Gruppen (amounts, distributions, proportions und time series) aufgeteilt und folgen immer der gleichen Syntax. Jede Funktion startet mit <code>plot_*()</code>, anschliessend wird die Gruppe definiert <code>plot_amounts_*()</code> und am Ende wird die Form angegeben <code><a href="reference/plot_amounts.html">plot_amounts_grouped()</a></code>.</p>
+<p>In der Gruppe <em>amounts</em> sind jene Datenvisualisierungen zusammengefasst, die Mengen abbilden. Dabei werden die Zahlenwerte von Kategorien bzw. deren Anzahl in einer Variable dargestellt. Die Kategorien können zusätzlich einer Gruppe zugeordnet werden. Dazu werden Variablen verwendet, welche die Gruppenzugehörigkeit definieren.</p>
+<p>Bei <em>distributions</em> werden Verteilungen innerhalb einer Variable dargestellt. Dazu können unterschiedliche Methoden verwendet werden, welche je nach Ausgangslage unterschiedliche Vorteile mit sich bringen. Bei den Datenvisualisierungen zu Verteilungen lohnt es sich verschiedene Grafiken auszuprobieren, um ein möglichst akkurates Bild der Daten zu erhalten. Die Funktion <code><a href="reference/plot_distributions.html">plot_distributions_raincloud()</a></code> verfolgt beispielsweise das Ziel, einen gesamthaften Überblick (inkl. Rohdaten) zu präsentieren. Dies passiert indem verschiedene Layers (Boxplot-, Violin- und Punktediagramm) übereinander gelegt werden. Bei grossen Datenmengen gibt es jedoch so viele Datenpunkte, dass das Punktediagramm keinen Mehrwert mehr liefert. Deshalb bietet die Funktion <code><a href="reference/plot_distributions.html">plot_distributions_boxplot()</a></code> eine Alternative. Die Diskussion rund um statistisch robusteren und transparenten Ansätzen zur Datenvisualisierung, ist ein Disziplin übergreifendes Thema.</p>
+<p>Für <em>proportions</em> gibt es unterschiedliche Formen der Darstellung, die verschiedene Vorteile haben. Bei gestapelten Balken oder Donutplots ist es klar ersichtlich, dass es Teilmengen eines Ganzen sind. Nebeneinander angeordnete Balken zeigen den relativen Unterschied besser und eignen sich zudem für viele Teilmengen. Werden die Proportionen von verschiedenen Variablen untersucht, dann eignen sich wiederum gestapelte Balken. Durch Visualisierungssysteme wie {ggplot2} lassen sich Proportionen separat als Teil der Gesamtmenge darstellen. Mit <code><a href="reference/plot_proportions.html">plot_proportions_sidebyside_density1()</a></code> werden zwei Probleme gelöst: Erstens, ist das Verhältnis zur Gesamtmenge ersichtlich (im Gegensatz zum Balkendiagramm). Zweitens, hat jede Teilmenge eine Grundlinie wodurch die Mengen einfach verglichen werden können (im Gegensatz zu gestapelten Balkendiagrammen). Mit <code><a href="reference/plot_proportions.html">plot_proportions_sidebyside_density2()</a></code> kann der relative Anteil zu einem bestimmten Zeitpunkt einfach bestimmt werden.</p>
+<p>Daten mit einem Zeitpunkt haben eine inhärente Reihenfolge (geordnete Richtung) und Liniendiagramme eigenen sich, die zeitliche Ordnung darzustellen, da abgesehen vom Anfang und Ende alle Datenpunkte einen Vorgänger und Nachfolger haben. Die Familie <em>time series</em> bietet neben unterschiedlichen Formen von Liniendiagrammen auch Visualisierungen von Trends an. Die Darstellung von Trends hilft, übergeordnete Entwicklungen zu erkennen. Um verschiedene Methoden der Glättung und Trendbereinigung bereitzustellen, greifen die Funktionen auf das Paket <a href="https://www.tsbox.help/" class="external-link">{tsbox}</a> zurück.</p>
 <blockquote>
 <p><span class="emoji" data-emoji="clipboard">📋</span> Alle Funktionen sind im <a href="https://tricktracktriu.github.io/biviz/reference/index.html">Verzeichnis</a> dokumentiert.</p>
 </blockquote>
+</div>
+<div class="section level2">
+<h2 id="vorteile">Vorteile<a class="anchor" aria-label="anchor" href="#vorteile"></a>
+</h2>
+<p>Damit das Handling der Funktion in {biviz} einfach bleibt, haben die Funktionen Einschränkungen bzw. können sie nicht die ganze Palette an Möglichkeiten, die in {ggplot2} zur Verfügung steht, anwenden. Für ein effektives Data Storytelling ist eine flexible Anpassung von Datenvisualisierungen wichtig. Durch den modularen Aufbau von {ggplot2} geht dies relativ einfach. Mit dem Aufruf einer {biviz} Funktion wird ein {ggplot2} Objekt erstellt. Dieses Objekt kann mit {ggplot2} Funktionen angepasst und verfeinert werden. Geht eine Feinpolierung über die Möglichkeit des {biviz} hinaus, so kann dem erstellten Objekt einfach {ggplot2} Funktionen angefügt werden, um Anpassungen an der Grafik zu machen. Wichtig: Normalerweise werden in R aufeinanderfolgende Funktionsaufrufe mit der Pipe <code>|&gt;</code> verbunden. Bei {ggplot2} Objekten wird dafür das <code>+</code> verwendet.</p>
 </div>
 <div class="section level2">
 <h2 id="beispiele">Beispiele<a class="anchor" aria-label="anchor" href="#beispiele"></a>
@@ -103,9 +111,11 @@
 <div class="section level3">
 <h3 id="datenvisualisierungen-verfeinern">Datenvisualisierungen verfeinern<a class="anchor" aria-label="anchor" href="#datenvisualisierungen-verfeinern"></a>
 </h3>
-<p>Da der Output von biviz ein ggplot2 Objekt ist, können es anschliessend innerhalb des ggplot2 Frameworks weiter bearbeitet werden. Der ganze Datensatz aus dem Beipsiel stehen unter <a href="https://opendata.swiss/de/dataset/abfallmengen-und-abfallgebuhren-in-den-gemeinden-im-kanton-zurich-ab-2000/" class="external-link">opendata.swiss</a> frei zur Verfügung.</p>
+<p>Da der Output von {biviz} ein {ggplot2} Objekt ist, kann er anschliessend innerhalb des {ggplot2} Frameworks weiter bearbeitet werden.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> </span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># für die verfeinerung der datenvisualisierungen </span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu">biviz</span><span class="fu">::</span><span class="va">sample_abfall_zh</span></span>
 <span></span>
 <span><span class="co">## raw plot</span></span>
@@ -114,8 +124,8 @@
 <span>  <span class="fu"><a href="reference/plot_amounts.html">plot_amounts_vertical</a></span><span class="op">(</span></span>
 <span>    data <span class="op">=</span> <span class="va">df</span>,</span>
 <span>    <span class="co"># die daten haben keine logische reihenfolge, deshalb werden sie</span></span>
-<span>    <span class="co"># der grösse nach sortiert. dies geschieht mit forcats::fct_reorder</span></span>
-<span>    x <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">Gemeinde</span>, <span class="va">Wert</span><span class="op">)</span>,</span>
+<span>    <span class="co"># der grösse nach sortiert. dies geschieht mit fct_reorder</span></span>
+<span>    x <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">Gemeinde</span>, <span class="va">Wert</span><span class="op">)</span>,</span>
 <span>    y <span class="op">=</span> <span class="va">Wert</span></span>
 <span>    <span class="op">)</span> </span>
 <span></span>
@@ -128,12 +138,12 @@
 <span>  <span class="co"># das vorherige ggplot2 objekt wird verwendet</span></span>
 <span>  <span class="va">plot_abfall_zh_raw</span> <span class="op">+</span></span>
 <span>  <span class="co"># kontext hinzufügen</span></span>
-<span>  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">labs</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Anzahl Brennbare Abfälle und Sperrgut\nje Gemeinde im Jahr 2021"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="st">"Gemeinde"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Menge in Tonnen"</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">plot_abfall_zh_nice</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot_amounts_vertical-2.png" width="100%"></p>
@@ -145,18 +155,18 @@
 <span>  <span class="va">plot_abfall_zh_nice</span> <span class="op">+</span></span>
 <span>  <span class="co"># mit diesem schritt werden alle balken ausser, der hervorzuhebende grau</span></span>
 <span>  <span class="co"># "übermalt" indem ein neuer layer auf die visualisierung gelegt wird</span></span>
-<span>  <span class="fu">geom_col</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span></span>
 <span>    data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">df</span>, </span>
 <span>                  <span class="va">abfall_pro_person</span> <span class="op">!=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">abfall_pro_person</span><span class="op">)</span></span>
 <span>                  <span class="op">)</span>,</span>
-<span>    mapping <span class="op">=</span> <span class="fu">aes</span><span class="op">(</span></span>
+<span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span></span>
 <span>      x <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">Gemeinde</span>, <span class="va">Wert</span><span class="op">)</span>,</span>
 <span>      y <span class="op">=</span> <span class="va">Wert</span></span>
 <span>      <span class="op">)</span>,</span>
 <span>    fill <span class="op">=</span> <span class="st">"lightgrey"</span>,</span>
 <span>    position <span class="op">=</span> <span class="st">"dodge"</span></span>
 <span>           <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggtitle</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span></span>
 <span>    <span class="co"># mit dem paket ggtext kann html/markdown code im text verwendet werden</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
 <span>      <span class="st">"&lt;span style = 'color:lightgrey;'&gt;Im Jahr 2021 hatte die&lt;/span&gt;&lt;br&gt;"</span>,</span>
@@ -169,13 +179,13 @@
 <span>      <span class="co">#"&lt;span style = 'color:lightgrey;'&gt;Menge&lt;/span&gt;"</span></span>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Totale Abfallmenge\nin Tonnen"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Totale Abfallmenge\nin Tonnen"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># damit der html/markdown code im text gerendert werden kann, benötigt es </span></span>
 <span>  <span class="co"># die funktion element_markdown</span></span>
-<span>  <span class="fu">theme</span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
 <span>    plot.title <span class="op">=</span> <span class="fu">ggtext</span><span class="fu">::</span><span class="fu">element_markdown</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span>,</span>
-<span>    axis.title.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    axis.title.y <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, vjust <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span>    axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, vjust <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span></span>
 <span><span class="va">plot_abfall_zh_shine</span></span></code></pre></div>
