@@ -601,7 +601,7 @@ Als letztes wird noch ein `README` für GitHub benötigt. Hier werden der Zweck 
 
 Das Testen der Funktionen ist ein wichtiger Teil der Paketentwicklung. Es ist so wichtig, dass es sich ab einer gewissen Relevanz (Anzahl Funktionen, Anzahl Nutzende, etc.) lohnt, die Tests zu formalisieren. Mit {**testthat**} [@wickham2011a] liefert das Paket {devtools} ein Framework, welches das Schreiben von Tests unterstützt. Für das Testen von grafischen Outputs wir zusätzlich noch das Paket {**vdiffr**} [@henry2023] benötigt. Beim Unit Test wird die erwartete Ausgabe eines Codes festgehalten und mit dem tatsächlichen Wert verglichen. Dieser Prozess läuft automatisch auf der Basis von Code. Beim Snapshot testing wird eine Datei erstellt, die für Menschen lesbar ist. Bei Datenvisualisierungen -- wie im Paket {biviz} -- wird das Snapshot testing angewendet. Hier wird ein Bildfile mit der erwarteten Darstellung erstellt. Beim Testen wird anschliessend der Output mit der erwarteten Darstellung abgeglichen. Snapshot tests für Grafiken sind anfällig. Aus diesem Grund, und da {biviz} noch in der Entwicklungsphase ist, werden die Tests bei {biviz} noch informell, also manuell gemacht. Ausgenommen davon sind die standardisierten R CMD checks wie in @sec-schritt-2-funktionen-schreiben beschrieben. Beim nächsten Entwicklungsschritt sollen die Tests, wie oben beschrieben, formalisiert werden.
 
-## **Schritt 5: Installieren**
+## Schritt 5: Installieren
 
 Vor dem Installieren des Pakets wird nochmals mit `devtools::check()` alles geprüft und anschliessend mit `devtools::install()` (oder von GitHub mit `devtools::install_github()`) installiert. Danach wird das Paket, wie alle Pakete, mit `base::library()` verwendet.
 
